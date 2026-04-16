@@ -1,0 +1,203 @@
+ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
+
+DirectoryIndex page74159603.html
+
+RewriteEngine On
+
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} /robots.txt
+RewriteCond "%{DOCUMENT_ROOT}/robots_%{HTTP_HOST}.txt" -f
+RewriteRule ^(.*)$ robots_%{HTTP_HOST}.txt [NC,L]
+RewriteRule ^ru$ page71206423.html [NC]
+RewriteRule ^ru/$ page71206423.html [NC]
+
+RewriteRule ^serg$ page59542573.html [NC]
+RewriteRule ^serg/$ page59542573.html [NC]
+
+RewriteRule ^baza$ page71175721.html [NC]
+RewriteRule ^baza/$ page71175721.html [NC]
+
+RewriteRule ^basics_en$ page74160039.html [NC]
+RewriteRule ^basics_en/$ page74160039.html [NC]
+
+RewriteRule ^blog$ page67461973.html [NC]
+RewriteRule ^blog/$ page67461973.html [NC]
+
+RewriteRule ^blog_en$ page74160963.html [NC]
+RewriteRule ^blog_en/$ page74160963.html [NC]
+
+RewriteRule ^tests$ page68447389.html [NC]
+RewriteRule ^tests/$ page68447389.html [NC]
+
+RewriteRule ^tests_en$ page74162685.html [NC]
+RewriteRule ^tests_en/$ page74162685.html [NC]
+
+RewriteRule ^about_ru$ page73776655.html [NC]
+RewriteRule ^about_ru/$ page73776655.html [NC]
+
+RewriteRule ^about_en$ page74170395.html [NC]
+RewriteRule ^about_en/$ page74170395.html [NC]
+
+RewriteRule ^iqei$ page69603109.html [NC]
+RewriteRule ^iqei/$ page69603109.html [NC]
+
+RewriteRule ^tests_stress$ page68264903.html [NC]
+RewriteRule ^tests_stress/$ page68264903.html [NC]
+
+RewriteRule ^tests_stress_en$ page74171285.html [NC]
+RewriteRule ^tests_stress_en/$ page74171285.html [NC]
+
+RewriteRule ^ptsd_g$ page68263237.html [NC]
+RewriteRule ^ptsd_g/$ page68263237.html [NC]
+
+RewriteRule ^c-ssrs_en$ page74173217.html [NC]
+RewriteRule ^c-ssrs_en/$ page74173217.html [NC]
+
+RewriteRule ^trauma_screening$ page68264191.html [NC]
+RewriteRule ^trauma_screening/$ page68264191.html [NC]
+
+RewriteRule ^trauma_en$ page74173227.html [NC]
+RewriteRule ^trauma_en/$ page74173227.html [NC]
+
+RewriteRule ^anxiety$ page68264329.html [NC]
+RewriteRule ^anxiety/$ page68264329.html [NC]
+
+RewriteRule ^anxiety_en$ page74173231.html [NC]
+RewriteRule ^anxiety_en/$ page74173231.html [NC]
+
+RewriteRule ^test_kids_1$ page68359779.html [NC]
+RewriteRule ^test_kids_1/$ page68359779.html [NC]
+
+RewriteRule ^kids_2-6$ page74173235.html [NC]
+RewriteRule ^kids_2-6/$ page74173235.html [NC]
+
+RewriteRule ^kids_test_2$ page68264763.html [NC]
+RewriteRule ^kids_test_2/$ page68264763.html [NC]
+
+RewriteRule ^kids_7-17_en$ page74173241.html [NC]
+RewriteRule ^kids_7-17_en/$ page74173241.html [NC]
+
+RewriteRule ^trinity$ page67848391.html [NC]
+RewriteRule ^trinity/$ page67848391.html [NC]
+
+RewriteRule ^article1$ page71313223.html [NC]
+RewriteRule ^article1/$ page71313223.html [NC]
+
+RewriteRule ^functions_en$ page74163661.html [NC]
+RewriteRule ^functions_en/$ page74163661.html [NC]
+
+RewriteRule ^cognitive_bias$ page71584021.html [NC]
+RewriteRule ^cognitive_bias/$ page71584021.html [NC]
+
+RewriteRule ^bias_en$ page74168241.html [NC]
+RewriteRule ^bias_en/$ page74168241.html [NC]
+
+RewriteRule ^ptsd_baza$ page71504381.html [NC]
+RewriteRule ^ptsd_baza/$ page71504381.html [NC]
+
+RewriteRule ^ptsd_en$ page74168753.html [NC]
+RewriteRule ^ptsd_en/$ page74168753.html [NC]
+
+RewriteRule ^ptsd_article$ page71497353.html [NC]
+RewriteRule ^ptsd_article/$ page71497353.html [NC]
+
+RewriteRule ^ptsd_recovery_en$ page74168825.html [NC]
+RewriteRule ^ptsd_recovery_en/$ page74168825.html [NC]
+
+RewriteRule ^ptsd_vr$ page76295646.html [NC]
+RewriteRule ^ptsd_vr/$ page76295646.html [NC]
+
+RewriteRule ^ptsd_vr_en$ page77790596.html [NC]
+RewriteRule ^ptsd_vr_en/$ page77790596.html [NC]
+
+RewriteRule ^myphs$ page73076527.html [NC]
+RewriteRule ^myphs/$ page73076527.html [NC]
+
+RewriteRule ^myths_en$ page74169049.html [NC]
+RewriteRule ^myths_en/$ page74169049.html [NC]
+
+RewriteRule ^gpt_brain$ page73093805.html [NC]
+RewriteRule ^gpt_brain/$ page73093805.html [NC]
+
+RewriteRule ^gpt_brain_en$ page74169139.html [NC]
+RewriteRule ^gpt_brain_en/$ page74169139.html [NC]
+
+RewriteRule ^vrfear_ru$ page74148259.html [NC]
+RewriteRule ^vrfear_ru/$ page74148259.html [NC]
+
+RewriteRule ^vrfear_en$ page74169253.html [NC]
+RewriteRule ^vrfear_en/$ page74169253.html [NC]
+
+RewriteRule ^eye_brain$ page67844903.html [NC]
+RewriteRule ^eye_brain/$ page67844903.html [NC]
+
+RewriteRule ^iq$ page67462017.html [NC]
+RewriteRule ^iq/$ page67462017.html [NC]
+
+RewriteRule ^brain_ru$ page67521125.html [NC]
+RewriteRule ^brain_ru/$ page67521125.html [NC]
+
+RewriteRule ^monkeyfood$ page59602655.html [NC]
+RewriteRule ^monkeyfood/$ page59602655.html [NC]
+
+RewriteRule ^ptsd$ page65408983.html [NC]
+RewriteRule ^ptsd/$ page65408983.html [NC]
+
+RewriteRule ^curiousity$ page65787813.html [NC]
+RewriteRule ^curiousity/$ page65787813.html [NC]
+
+RewriteRule ^wecan$ page60604405.html [NC]
+RewriteRule ^wecan/$ page60604405.html [NC]
+
+RewriteRule ^arhitecture$ page9656425.html [NC]
+RewriteRule ^arhitecture/$ page9656425.html [NC]
+
+RewriteRule ^brain_eng$ page67516197.html [NC]
+RewriteRule ^brain_eng/$ page67516197.html [NC]
+
+RewriteRule ^valeria$ page71861971.html [NC]
+RewriteRule ^valeria/$ page71861971.html [NC]
+
+RewriteRule ^galery$ page71863837.html [NC]
+RewriteRule ^galery/$ page71863837.html [NC]
+
+RewriteRule ^fiunctions_research$ page72990531.html [NC]
+RewriteRule ^fiunctions_research/$ page72990531.html [NC]
+
+RewriteRule ^r-combinator$ page73176031.html [NC]
+RewriteRule ^r-combinator/$ page73176031.html [NC]
+
+RewriteRule ^test10$ page73936655.html [NC]
+RewriteRule ^test10/$ page73936655.html [NC]
+
+RewriteRule ^understand_test$ page75911196.html [NC]
+RewriteRule ^understand_test/$ page75911196.html [NC]
+
+RewriteRule ^test_calculations$ page77800776.html [NC]
+RewriteRule ^test_calculations/$ page77800776.html [NC]
+
+RewriteRule ^similarity$ page77803686.html [NC]
+RewriteRule ^similarity/$ page77803686.html [NC]
+
+RewriteRule ^test_words$ page77805056.html [NC]
+RewriteRule ^test_words/$ page77805056.html [NC]
+
+RewriteRule ^test_numbers$ page77949726.html [NC]
+RewriteRule ^test_numbers/$ page77949726.html [NC]
+
+RewriteRule ^bias$ page65552443.html [NC]
+RewriteRule ^bias/$ page65552443.html [NC]
+
+RewriteRule ^chile$ page74329483.html [NC]
+RewriteRule ^chile/$ page74329483.html [NC]
+
+RewriteRule ^vret_ptsd_2$ page76064696.html [NC]
+RewriteRule ^vret_ptsd_2/$ page76064696.html [NC]
+
+RewriteRule ^test_details$ page77956256.html [NC]
+RewriteRule ^test_details/$ page77956256.html [NC]
+
+
