@@ -338,12 +338,86 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
                 font-size: 18px;
             }
         }
-    </style> </head> <body> <!-- Меню, которое движется вместе со скроллом --> <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <nav> <a href="index.html" class="active-link">Главная</a> <a href="baza.html">База</a> <a href="blog.html">Блог</a> <a href="tests.html">Тесты</a> </nav> </header> <main> <div class="container"> <section class="page-title-section"> <h1>Центр когнитивных исследований</h1> </section> </div> <!-- Разделительная полоса между заголовком и контентом --> <div class="full-width-divider"></div> <div class="container"> <article class="main-content-section"> <!-- Левая колонка --> <div class="post-details"> <h2 class="post-title">Мозг, здоровье, общество</h2> </div> <!-- Правая колонка --> <div class="post-excerpt"> <p>Мы предоставляем свободный доступ к знаниям, нейротехнологиям и практикам для здоровья, образования и решения общественно-значимых задач.</p> </div> </article> </div> <!-- Блок новостей --> <section class="news-section"> <div class="news-full-width"> <div class="news-container" id="newsContainer"> <div class="news-block" id="newsBlock"> <!-- Новость 1: Нейроинтерфейсы --> <a href="cognitive_bias.html" class="news-item active"> <img src="https://avatars.mds.yandex.net/i?id=91b7fd9701148a4e638cfc2eb8a334c9_l-5232106-images-thumbs&n=13" 
+    
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+        .current-language {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            user-select: none;
+        }
+        .current-language:hover { background-color: #f5f5f5; }
+        .language-code {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 100px;
+            overflow: hidden;
+            z-index: 100;
+        }
+        .language-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+        .language-option:hover { background-color: #f5f5f5; }
+        .language-option.current {
+            background-color: #f0f0f0;
+            font-weight: 600;
+        }
+</style> </head> <body> <!-- Меню, которое движется вместе со скроллом --> <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <div class="nav-container"><nav> <a href="index.html" class="active-link">Главная</a> <a href="baza.html">База</a> <a href="blog.html">Блог</a> <a href="tests.html">Тесты</a> </nav> <div class="language-selector"><div class="current-language" id="language-toggle"><span class="language-code">RU</span></div><div class="language-dropdown" id="language-dropdown"><a href="fiunctions_research.html" class="language-option current"><span class="language-code">RU</span></a><a href="index.html" class="language-option"><span class="language-code">EN</span></a></div></div></div> </header> <main> <div class="container"> <section class="page-title-section"> <h1>Центр когнитивных исследований</h1> </section> </div> <!-- Разделительная полоса между заголовком и контентом --> <div class="full-width-divider"></div> <div class="container"> <article class="main-content-section"> <!-- Левая колонка --> <div class="post-details"> <h2 class="post-title">Мозг, здоровье, общество</h2> </div> <!-- Правая колонка --> <div class="post-excerpt"> <p>Мы предоставляем свободный доступ к знаниям, нейротехнологиям и практикам для здоровья, образования и решения общественно-значимых задач.</p> </div> </article> </div> <!-- Блок новостей --> <section class="news-section"> <div class="news-full-width"> <div class="news-container" id="newsContainer"> <div class="news-block" id="newsBlock"> <!-- Новость 1: Нейроинтерфейсы --> <a href="cognitive_bias.html" class="news-item active"> <img src="https://avatars.mds.yandex.net/i?id=91b7fd9701148a4e638cfc2eb8a334c9_l-5232106-images-thumbs&n=13" 
                                  alt="Нейроинтерфейсы" class="news-image"> <div class="news-content"> <div class="news-category">Блог</div> <h3 class="news-title">Нейроинтерфейсы</h3> <p class="news-description">Исследование современных технологий прямого взаимодействия между мозгом и компьютером</p> </div> </a> <!-- Новость 2: ПТСР --> <a href="ptsd_article.html" class="news-item"> <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
                                  alt="ПТСР" class="news-image"> <div class="news-content"> <div class="news-category">Блог</div> <h3 class="news-title">ПТСР: инструкция по возвращению</h3> <p class="news-description">Практические рекомендации по преодолению посттравматического стрессового расстройства</p> </div> </a> <!-- Новость 3: Мифы о мозге --> <a href="myphs.html" class="news-item"> <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWдfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
                                  alt="Мифы о мозге" class="news-image"> <div class="news-content"> <div class="news-category">Блог</div> <h3 class="news-title">5 мифов о мозге, в которые вы до сих пор верите</h3> <p class="news-description">Развенчиваем самые распространенные заблуждения о работе человеческого мозга</p> </div> </a> <!-- Новость 4: ChatGPT и мозг --> <a href="gpt_brain.html" class="news-item"> <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
                                  alt="ChatGPT и мозг" class="news-image"> <div class="news-content"> <div class="news-category">Блог</div> <h3 class="news-title">Действительно ли ChatGPT разрушает наш мозг?</h3> <p class="news-description">Анализ влияния искусственного интеллекта на когнитивные функции человека</p> </div> </a> </div> <!-- Стрелки навигации --> <button class="news-arrow news-arrow-left" id="prevBtn"></button> <button class="news-arrow news-arrow-right" id="nextBtn"></button> </div> </div> </section> </main> <script>
         document.addEventListener('DOMContentLoaded', function() {
+
+            const languageToggle = document.getElementById('language-toggle');
+            const languageDropdown = document.getElementById('language-dropdown');
+            if (languageToggle) {
+                languageToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    languageDropdown.classList.toggle('active');
+                });
+                document.addEventListener('click', function() {
+                    languageDropdown.classList.remove('active');
+                });
+            }
             const newsItems = document.querySelectorAll('.news-item');
             const newsContainer = document.getElementById('newsContainer');
             const prevBtn = document.getElementById('prevBtn');
