@@ -179,9 +179,83 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
                  font-size: 28px;
             }
         }
-    </style> </head> <body> <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <nav> <a href="index.html">Главная</a> <a href="baza.html" class="active-link">База</a> <a href="blog.html">Блог</a> <a href="tests.html">Тесты</a> </nav> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">Когнитивные функции</h1> <div class="definition-block"> <p><strong>Когнитивные функции</strong> - это совокупность процессов, с помощью которых человек воспринимает, кодирует, хранит, извлекает и манипулирует информацией для выработки адаптивного поведения.</p> <span class="source">(The Oxford Handbook of Cognitive Science)</span> </div> <h3 id="part2">Когнитивные функции:</h3> <ol> <li><strong>Восприятие:</strong> Процесс интерпретации сенсорной информации (Преобразование воздействия внешней среды - света, звука, температуры и т.д на наши органы чувств в наши ощущения этого воздейсвия).</li> <li><strong>Внимание:</strong> Способность фокусироваться на определенных стимулах или задачах (например, способность фокусироваться на нужной задаче, при отвлекающах факторах - шум, свет, люди).</li> <li><strong>Память:</strong> Процессы кодирования, хранения и извлечения информации (Что, как и почему мы помним лучше или хуже, а так же, насколько легко мы извлекаем сохраненную информацию).</li> <li><strong>Речь:</strong> Способность понимать и производить коммуникацию.(Как мы интерпретируем смыслы, и как мы способны доносить идеи до дугих людей с помощью слов)</li> <li><strong>Моторика:</strong> Планирование и выполнение движений (Ловкость и способность последовательно и четко выполнять движения, например - танцы).</li> <li><strong>Исполнительные функции:</strong> Процессы высшего порядка, регулирующие другие когнитивные функции (опосредуются префронтальной корой).</li> <li><strong>Обработка и регуляция эмоций:</strong> Способность осознавать эмоциональные состояния у себя и окружающих, а так же управлять ими.</li> </ol> </section> </div> </main> <script>
+    
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .language-selector {
+            position: relative;
+            margin-left: 20px;
+        }
+        .current-language {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            user-select: none;
+        }
+        .current-language:hover { background-color: #f5f5f5; }
+        .language-code {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 100px;
+            overflow: hidden;
+            z-index: 100;
+        }
+        .language-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+        .language-option:hover { background-color: #f5f5f5; }
+        .language-option.current {
+            background-color: #f0f0f0;
+            font-weight: 600;
+        }
+</style> </head> <body> <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <div class="nav-container"><nav> <a href="index.html">Главная</a> <a href="baza.html" class="active-link">База</a> <a href="blog.html">Блог</a> <a href="tests.html">Тесты</a> </nav> <div class="language-selector"><div class="current-language" id="language-toggle"><span class="language-code">RU</span></div><div class="language-dropdown" id="language-dropdown"><a href="article1.html" class="language-option current"><span class="language-code">RU</span></a><a href="functions_en.html" class="language-option"><span class="language-code">EN</span></a></div></div></div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">Когнитивные функции</h1> <div class="definition-block"> <p><strong>Когнитивные функции</strong> - это совокупность процессов, с помощью которых человек воспринимает, кодирует, хранит, извлекает и манипулирует информацией для выработки адаптивного поведения.</p> <span class="source">(The Oxford Handbook of Cognitive Science)</span> </div> <h3 id="part2">Когнитивные функции:</h3> <ol> <li><strong>Восприятие:</strong> Процесс интерпретации сенсорной информации (Преобразование воздействия внешней среды - света, звука, температуры и т.д на наши органы чувств в наши ощущения этого воздейсвия).</li> <li><strong>Внимание:</strong> Способность фокусироваться на определенных стимулах или задачах (например, способность фокусироваться на нужной задаче, при отвлекающах факторах - шум, свет, люди).</li> <li><strong>Память:</strong> Процессы кодирования, хранения и извлечения информации (Что, как и почему мы помним лучше или хуже, а так же, насколько легко мы извлекаем сохраненную информацию).</li> <li><strong>Речь:</strong> Способность понимать и производить коммуникацию.(Как мы интерпретируем смыслы, и как мы способны доносить идеи до дугих людей с помощью слов)</li> <li><strong>Моторика:</strong> Планирование и выполнение движений (Ловкость и способность последовательно и четко выполнять движения, например - танцы).</li> <li><strong>Исполнительные функции:</strong> Процессы высшего порядка, регулирующие другие когнитивные функции (опосредуются префронтальной корой).</li> <li><strong>Обработка и регуляция эмоций:</strong> Способность осознавать эмоциональные состояния у себя и окружающих, а так же управлять ими.</li> </ol> </section> </div> </main> <script>
         // Скрипт для компенсации высоты меню, если оно станет фиксированным
         // document.addEventListener('DOMContentLoaded', function() {
+
+            const languageToggle = document.getElementById('language-toggle');
+            const languageDropdown = document.getElementById('language-dropdown');
+            if (languageToggle) {
+                languageToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    languageDropdown.classList.toggle('active');
+                });
+                document.addEventListener('click', function() {
+                    languageDropdown.classList.remove('active');
+                });
+            }
         //     const header = document.querySelector('.site-header');
         //     const main = document.querySelector('main');
 
