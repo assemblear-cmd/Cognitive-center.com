@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
         .site-header {
             position: sticky;
             top: 0;
-            background-color: rgba(247, 247, 247, 0.85); 
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             z-index: 1000;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
             justify-content: space-between;
             align-items: center;
             padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .logo {
@@ -332,18 +332,13 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
 
         @media (max-width: 767px) {
             .site-header {
-                padding: 15px 20px;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: space-between;
-                align-items: center;
+                padding: 15px;
+                flex-direction: column;
+                gap: 15px;
             }
             .nav-container {
                 flex-wrap: wrap;
-                justify-content: flex-start;
-                gap: 10px;
-                width: 100%;
+                justify-content: center;
             }
             .tests-section, .meaning-section {
                 padding: 40px 0;
