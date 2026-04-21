@@ -232,14 +232,15 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
         }
         .footer-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 60px;
             align-items: flex-start;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
         .footer-copyright {
-            flex-basis: 40%;
+            flex-basis: auto;
         }
         .footer-nav {
             display: flex;
@@ -362,8 +363,9 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
                 gap: 30px;
             }
             .footer-nav {
-                flex-direction: column;
-                gap: 30px;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
             }
         }
     
