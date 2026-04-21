@@ -332,9 +332,18 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
 
         @media (max-width: 767px) {
             .site-header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 15px;
+                padding: 15px 20px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 10px;
+                width: 100%;
             }
             .tests-section, .meaning-section {
                 padding: 40px 0;
