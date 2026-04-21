@@ -606,7 +606,8 @@ style="max-width:160px;" alt=""> </a> </div> </div> </div> <script>t_onReady(fun
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+            gap: 60px;
     align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
@@ -614,7 +615,7 @@ style="max-width:160px;" alt=""> </a> </div> </div> </div> <script>t_onReady(fun
 }
 
 .footer-copyright {
-    flex-basis: 40%;
+    flex-basis: auto;
 }
 
 .footer-nav {
@@ -730,8 +731,9 @@ style="max-width:160px;" alt=""> </a> </div> </div> </div> <script>t_onReady(fun
     }
     
     .footer-nav {
-        flex-direction: column;
-        gap: 30px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 40px;
     }
     
     .footer-copyright {
