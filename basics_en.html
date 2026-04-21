@@ -218,14 +218,15 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
         }
         .site-footer .footer-container {
             display: flex !important;
-            justify-content: space-between !important;
+            justify-content: flex-start !important;
+            gap: 60px !important;
             align-items: flex-start !important;
             max-width: 960px !important;
             margin: 0 auto !important;
             padding: 0 20px !important;
         }
         .site-footer .footer-copyright {
-            flex-basis: 40% !important;
+            flex-basis: auto !important;
         }
         .site-footer .footer-nav {
             display: flex !important;
@@ -305,8 +306,9 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
                 gap: 30px;
             }
             .footer-nav {
-                flex-direction: column;
-                gap: 30px;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
             }
         }
     </style> </head> <body> <header class="site-header"> <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index.html">Home</a> <a href="basics_en.html" class="active-link">Basics</a> <a href="blog_en.html">Blog</a> <a href="tests_en.html">Tests</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">EN</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="basics_en.html" class="language-option current"> <span class="language-code">EN</span> </a> <a href="baza.html" class="language-option"> <span class="language-code">RU</span> </a> </div> </div> </div> </header> <main> <div class="container"> <div class="blog-header"> <h1>Basics</h1> </div> </div> <article class="blog-post"> <div class="container"> <div class="post-content"> <div class="post-details"> <h2 class="post-title"><a href="functions_en.html" style="text-decoration:none;color:inherit;">What are "Cognitive Functions"</a></h2> </div> <div class="post-excerpt"> <p>Definition and description of functions</p> <a href="functions_en.html" class="keep-reading">Read article <span>→</span></a> </div> </div> </div> </article> <article class="blog-post"> <div class="container"> <div class="post-content"> <div class="post-details"> <h2 class="post-title"><a href="ptsd_en.html" style="text-decoration:none;color:inherit;">What is PTSD</a></h2> </div> <div class="post-excerpt"> <p>Origin, diagnosis, and key therapy factors</p> <a href="ptsd_en.html" class="keep-reading">Read article <span>→</span></a> </div> </div> </div> </article> <article class="blog-post"> <div class="container"> <div class="post-content"> <div class="post-details"> <h2 class="post-title"><a href="bias_en.html" style="text-decoration:none;color:inherit;">What are Cognitive Biases</a></h2> </div> <div class="post-excerpt"> <p>Systematic, predictable patterns of thought that cause us to perceive reality inaccurately. An overview of 15 key biases.</p> <a href="bias_en.html" class="keep-reading">Read article <span>→</span></a> </div> </div> </div> </article> </main> <footer class="site-footer"> <div class="footer-container"> <div class="footer-copyright">
