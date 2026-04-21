@@ -326,14 +326,15 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
         }
         .site-footer .footer-container {
             display: flex !important;
-            justify-content: space-between !important;
+            justify-content: flex-start !important;
+            gap: 60px !important;
             align-items: flex-start !important;
             max-width: 1200px !important;
             margin: 0 auto !important;
             padding: 0 20px !important;
         }
         .site-footer .footer-copyright {
-            flex-basis: 40% !important;
+            flex-basis: auto !important;
         }
         .site-footer .footer-nav {
             display: flex !important;
@@ -401,8 +402,9 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head
                 gap: 30px;
             }
             .footer-nav {
-                flex-direction: column;
-                gap: 30px;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
             }
         }
     </style> </head> <body> <header class="site-header"> <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index.html">Home</a> <a href="basics_en.html">Basics</a> <a href="blog_en.html" class="active-link">Blog</a> <a href="tests_en.html">Tests</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">EN</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="gpt_brain_en.html" class="language-option current"> <span class="language-code">EN</span> </a> <a href="gpt_brain.html" class="language-option"> <span class="language-code">RU</span> </a> </div> </div> </div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">Is ChatGPT Really Ruining Our Brains?</h1> <div class="article-author">By Anne-Laure Le Cunff, PhD Neuroscientist</div> <div class="article-source">
