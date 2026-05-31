@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From p-factor to Identity - CRC</title>
+<style>
+/* General Styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+main { flex-grow: 1; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0;
+  background-color: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.logo { font-size: 24px; font-weight: 600; color: #1a1a1a; }
+.nav-container { display: flex; align-items: center; gap: 20px; }
+nav a {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  text-decoration: none !important; color: #1a1a1a !important;
+  margin-left: 20px; font-size: 16px; padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+nav a.active-link { font-weight: 600; border-bottom-color: #1a1a1a; }
+nav a:not(.active-link):hover { border-bottom-color: #ccc; }
+
+/* Language selector */
+.language-selector { position: relative; margin-left: 20px; }
+.current-language {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  padding: 8px 12px; border-radius: 8px;
+  transition: background-color 0.3s; user-select: none;
+}
+.current-language:hover { background-color: #f5f5f5; }
+.language-code { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.language-dropdown {
+  position: absolute; top: 100%; right: 0; margin-top: 8px;
+  background: white; border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0; visibility: hidden; transform: translateY(-10px);
+  transition: all 0.3s ease; min-width: 100px; overflow: hidden;
+}
+.language-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.language-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; cursor: pointer;
+  transition: background-color 0.2s; text-decoration: none; color: #1a1a1a;
+}
+.language-option:hover { background-color: #f5f5f5; }
+.language-option.current { background-color: #f0f0f0; font-weight: 600; }
+
+/* Article */
+.article-section { padding: 60px 0; }
+.article-title { font-size: 52px; font-weight: 300; margin: 0 0 25px 0; line-height: 1.2; }
+.intro-block { font-size: 18px; color: #555; margin-bottom: 50px; }
+.intro-block p { margin: 10px 0; }
+.article-section h2 {
+  font-size: 32px; font-weight: 500; margin: 60px 0 20px 0;
+  border-top: 1px solid #e0e0e0; padding-top: 40px;
+}
+.article-section p { font-size: 18px; color: #333; margin-bottom: 20px; }
+
+/* ── INTERACTIVE MAP ── */
+.map-wrap { margin: 40px 0 60px; }
+
+.master-q {
+  background: #f7f7f7; border-top: 2px solid #1a1a1a;
+  padding: 24px 28px; margin-bottom: 32px;
+}
+.master-q .mq-label {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: #888; margin-bottom: 8px;
+}
+.master-q p { font-size: 17px; color: #1a1a1a; margin: 0; line-height: 1.65; }
+
+/* Level card */
+.level-card {
+  border: 1px solid #e8e8e8; margin-bottom: 6px;
+  transition: border-color .2s;
+}
+.level-card:hover { border-color: #bbb; }
+.level-card.open { border-color: #1a1a1a; }
+
+.level-header {
+  display: grid; grid-template-columns: 36px 1fr auto;
+  align-items: center; gap: 14px;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  background: #fff;
+}
+
+.level-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  border: 1.5px solid #1a1a1a; color: #1a1a1a;
+  flex-shrink: 0; transition: background .2s, color .2s;
+}
+.level-card.open .level-num { background: #1a1a1a; color: #fff; }
+
+.level-meta { min-width: 0; }
+.level-title { font-size: 16px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
+.level-sub { font-size: 12px; color: #888; margin-top: 2px; }
+
+.level-badge {
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 10px; border: 1px solid #e0e0e0;
+  color: #888; white-space: nowrap;
+}
+
+.chev {
+  font-size: 12px; color: #aaa; transition: transform .2s;
+  margin-left: 8px; display: inline-block;
+}
+.level-card.open .chev { transform: rotate(180deg); }
+
+/* Body */
+.level-body {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows .28s ease;
+}
+.level-card.open .level-body { grid-template-rows: 1fr; }
+.level-body-inner { overflow: hidden; }
+.level-content {
+  padding: 0 20px 24px 70px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Tabs */
+.tabs {
+  display: flex; gap: 0; margin: 16px 0 18px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.tab-btn {
+  background: none; border: none; color: #aaa;
+  font-family: inherit; font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; padding: 6px 14px 8px;
+  cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: color .15s, border-color .15s;
+}
+.tab-btn:hover { color: #1a1a1a; }
+.tab-btn.act { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+
+/* Panels */
+.tab-panel { display: none; }
+.tab-panel.act { display: block; }
+
+.def-q { font-style: italic; font-size: 15px; color: #888; margin-bottom: 12px; }
+.def-text { font-size: 16px; color: #333; line-height: 1.75; }
+
+/* Components grid */
+.comp-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
+  gap: 8px; margin-top: 4px;
+}
+.comp-item {
+  background: #f9f9f9; border-left: 3px solid #1a1a1a;
+  padding: 10px 14px;
+}
+.comp-name { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+.comp-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+/* Mechanism */
+.mech-block {
+  background: #f7f7f7; padding: 20px 24px;
+}
+.mech-text { font-size: 16px; color: #333; line-height: 1.75; }
+.mech-source {
+  margin-top: 14px; font-size: 11px; color: #aaa;
+  border-top: 1px solid #e8e8e8; padding-top: 10px;
+}
+
+/* Transition */
+.trans-block {
+  padding: 18px 22px;
+  border-left: 3px solid #1a1a1a; background: #f9f9f9;
+}
+.trans-q { font-style: italic; font-size: 16px; color: #333; line-height: 1.7; margin-bottom: 12px; }
+.trans-next-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #aaa; margin-bottom: 4px; }
+.trans-next-name { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+
+.open-next-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px; font-size: 13px; padding: 7px 14px;
+  border: 1.5px solid #1a1a1a; background: none; color: #1a1a1a;
+  cursor: pointer; transition: background .15s, color .15s;
+  font-family: inherit;
+}
+.open-next-btn:hover { background: #1a1a1a; color: #fff; }
+
+/* Connector */
+.connector {
+  height: 24px; display: flex; align-items: center;
+  padding-left: 54px; opacity: .3;
+}
+.conn-line { width: 1px; height: 100%; background: #1a1a1a; }
+
+/* Progress bar */
+.progress-bar {
+  position: sticky; top: 0; z-index: 999;
+  height: 2px; background: #f0f0f0; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: #1a1a1a;
+  width: 0%; transition: width .3s ease;
+}
+
+/* Nav links */
+.navigation-links {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 40px; padding: 30px 0; border-top: 1px solid #e0e0e0;
+}
+.nav-link {
+  display: flex; align-items: center;
+  text-decoration: none; color: #1a1a1a !important;
+  font-size: 18px; font-weight: 500; transition: color 0.3s ease;
+}
+.nav-link:hover { color: #666 !important; }
+.nav-link.prev { flex-direction: row; }
+.nav-link.next { flex-direction: row-reverse; }
+.nav-arrow { font-size: 20px; margin: 0 10px; }
+.mobile-nav-list { display: none; }
+
+/* Footer */
+.site-footer {
+  background-color: #ffffff !important; padding: 40px 0 !important;
+  margin-top: 0 !important; font-size: 14px !important;
+  color: #555 !important; border-top: none !important;
+}
+.site-footer .footer-container {
+  display: flex !important; justify-content: space-between !important;
+  align-items: flex-end !important; width: 100% !important;
+  max-width: 100% !important; margin: 0 !important;
+  padding: 0 40px !important; box-sizing: border-box !important;
+}
+.site-footer .footer-copyright { flex-basis: auto !important; align-self: flex-end !important; }
+.site-footer .footer-nav { display: flex !important; gap: 60px !important; align-items: flex-start !important; }
+.site-footer .footer-column { text-align: left !important; }
+.site-footer .footer-column h4 {
+  font-size: 16px !important; font-weight: 600 !important; color: #1a1a1a !important;
+  margin: 0 0 15px 0 !important; padding: 0 !important; text-align: left !important;
+}
+.site-footer .footer-column h4 a { text-decoration: none !important; color: #1a1a1a !important; }
+.site-footer .footer-column ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+.site-footer .footer-column li { margin: 0 0 10px 0 !important; padding: 0 !important; list-style: none !important; }
+.site-footer .footer-column a { text-decoration: none !important; color: #555 !important; }
+.site-footer .footer-column a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 768px) {
+  .site-header { flex-direction: column; gap: 15px; }
+  .article-title { font-size: 38px; }
+  .level-content { padding: 0 16px 20px 16px; }
+  .navigation-links { display: none; }
+  .mobile-nav-list { display: block; margin-top: 40px; padding: 0; list-style: none; border-top: 1px solid #e0e0e0; padding-top: 30px; }
+  .mobile-nav-item { margin-bottom: 15px; font-size: 16px; }
+  .mobile-nav-item::before { content: "- "; color: #1a1a1a; margin-right: 5px; }
+  .mobile-nav-item a { color: #1a1a1a !important; text-decoration: none !important; font-weight: 500; }
+  .site-footer .footer-container { flex-direction: column; gap: 30px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<header class="site-header">
+  <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div>
+  <div class="nav-container">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="basics_en.html">Basics</a>
+      <a href="blog_en.html" class="active-link">Blog</a>
+      <a href="tests_en.html">Tests</a>
+    </nav>
+    <div class="language-selector">
+      <div class="current-language" id="language-toggle">
+        <span class="language-code">EN</span>
+      </div>
+      <div class="language-dropdown" id="language-dropdown">
+        <a href="pfactor_identity_en.html" class="language-option current"><span class="language-code">EN</span></a>
+        <a href="pfactor_identity_ru.html" class="language-option"><span class="language-code">RU</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="article-section">
+
+      <h1 class="article-title">From p-Factor to Identity</h1>
+      <div class="intro-block">
+        <p>A logical vertical: how biological vulnerability becomes personality.</p>
+      </div>
+
+      <h2 style="border-top:none;padding-top:0;margin-top:0">The central question</h2>
+      <div class="map-wrap">
+        <div class="master-q">
+          <div class="mq-label">What this map answers</div>
+          <p>How does a person's biological predisposition to negative emotions — fear, anxiety, depression — travel from genetic vulnerability to specific personality traits and the structure of self-identity?</p>
+        </div>
+
+        <div id="levels-container"></div>
+      </div>
+
+      <div class="navigation-links">
+        <a href="ptsd_recovery_en.html" class="nav-link prev">
+          <span class="nav-arrow">←</span>
+          <span>PTSD: A Guide to Recovery</span>
+        </a>
+        <a href="trauma_en.html" class="nav-link next">
+          <span>PTSD Screening Test</span>
+          <span class="nav-arrow">→</span>
+        </a>
+      </div>
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="ptsd_recovery_en.html">PTSD: A Guide to Recovery</a></li>
+        <li class="mobile-nav-item"><a href="trauma_en.html">PTSD Screening Test</a></li>
+      </ul>
+
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-copyright">© All rights reserved. Center for Cognitive Research</div>
+    <div class="footer-nav">
+      <div class="footer-column">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="basics_en.html">Basics</a></li>
+          <li><a href="blog_en.html">Blog</a></li>
+          <li><a href="tests_en.html">Tests</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4><a href="about_en.html">About Us</a></h4>
+        <ul>
+          <li><a href="about_en.html#who-we-are">Who we are</a></li>
+          <li><a href="about_en.html#mission">Mission</a></li>
+          <li><a href="about_en.html#tasks">Tasks</a></li>
+          <li><a href="about_en.html#contacts">Contacts</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const LEVELS = [
+  {
+    num:'1', badge:'superstructure',
+    title:'p-factor — general vulnerability',
+    sub:'Caspi et al., 2014',
+    q:'Why are some people prone to any mental disorder, while others are not?',
+    def:'There is a single latent factor — p — that explains why a person who develops one mental disorder is statistically vulnerable to all others. This is not a disease or a diagnosis. It is a measurable predisposition — a kind of "mental resistance" to breakdowns. The name "p" is a direct analogy to the g-factor of intelligence: just as a person with high g performs well on all cognitive tasks, a person with high p is vulnerable to all types of psychopathology.',
+    comps:[
+      {n:'Neurobiological vulnerability',d:'Amygdala hyperreactivity, PFC regulation impairment'},
+      {n:'Genetic component',d:'Polygenic heritability ~40–60%'},
+      {n:'Early ontogenesis',d:'Adverse experience in ages 0–5 amplifies p'},
+      {n:'Neuroticism as proxy',d:'Correlation r ≈ 0.50 with p-factor'},
+      {n:'Self-regulation deficits',d:'Deficiency in response inhibition'},
+      {n:'Cognitive vulnerabilities',d:'Intolerance of uncertainty'},
+    ],
+    mech:'p is defined through a bifactor statistical model: symptoms of all major disorders load onto it simultaneously. High p does not mean "sick with everything" — it means that any sufficient stressor can cause a breakdown at any point in the system. The mechanism is impaired emotional regulation as a common pathway to any form of psychopathology.',
+    src:'Caspi et al. (2014), Nature Neuroscience · Lahey et al. (2012) · Caspi & Moffitt (2024)',
+    trans:'p explains general vulnerability — but does not say where it will manifest. The next level describes how p splits into types of emotional responding.',
+    nextTitle:'Emotional dysfunction'
+  },
+  {
+    num:'2', badge:'superspectrum',
+    title:'Emotional dysfunction',
+    sub:'Watson et al., 2022 · HiTOP',
+    q:'What class of problems unites fear, depression, anxiety, and somatic symptoms?',
+    def:'The emotional dysfunction superspectrum is the second level after p. It unites all disorders in which distress is directed inward: anxiety, fear, depression, somatic symptoms. This superspectrum is contrasted with the externalizing superspectrum (aggression, impulsivity, addiction) and the thought disorder spectrum (psychosis). Emotional dysfunction = suffering directed at oneself, not outward.',
+    comps:[
+      {n:'Internalizing spectrum',d:'Anxiety, fear, depression, PTSD'},
+      {n:'Somatoform spectrum',d:'Physical symptoms without organic cause'},
+      {n:'Negative affect',d:'Common loading of both spectra'},
+      {n:'Neuroticism',d:'Personality axis of the superspectrum'},
+    ],
+    mech:'The superspectrum is shaped through a common pathway: high negative affect + reduced positive affect + neurobiological hyperreactivity to threats. This distinguishes it from externalization, where low impulse control dominates rather than high emotional reactivity.',
+    src:'Watson et al. (2022), World Psychiatry · HiTOP Consortium',
+    trans:'Within the superspectrum there is structure: not all "inward" disorders are the same. Some center on present threat, others on loss and hopelessness. The internalizing spectrum describes this distinction.',
+    nextTitle:'Internalizing spectrum'
+  },
+  {
+    num:'3', badge:'spectrum',
+    title:'Internalizing spectrum',
+    sub:'Krueger & Markon, 2006 · HiTOP',
+    q:'What do fear, panic, anxiety, and depression have in common — despite their differences?',
+    def:'The internalizing spectrum is an empirically derived dimension uniting disorders in which distress is directed inward: anxiety, fear, depression, PTSD. This is not a diagnostic category but a continuous space. The DSM carved this spectrum into separate disorders for clinical convenience — not biological reality. This is your range of states.',
+    comps:[
+      {n:'Fear subfactor',d:'Panic, phobias, separation anxiety'},
+      {n:'Distress subfactor',d:'Depression, GAD, PTSD'},
+      {n:'Eating pathology subfactor',d:'Eating disorders'},
+      {n:'Common loading',d:'Negative affect as the spectrum axis'},
+    ],
+    mech:'All conditions on the spectrum share one loading: high negative affect, neurobiological threat vulnerability, emotional regulation impairment. This explains high comorbidity — not different diseases, but one spectrum with different phenotypes.',
+    src:'Krueger & Markon (2006) · HiTOP Working Group (2017–2023)',
+    trans:'Fear and depression are still different things within the spectrum. They differ neurobiologically and clinically. The next level describes this difference: two subfactors.',
+    nextTitle:'Fear · Distress subfactors'
+  },
+  {
+    num:'4', badge:'subfactors',
+    title:'Fear · Distress — two subfactors',
+    sub:'Krueger (1999) · Watson & Clark (1991)',
+    q:'How does phobic vulnerability fundamentally differ from depressive-anxious vulnerability?',
+    def:'Within the internalizing spectrum, two subfactors consistently emerge. The fear subfactor includes conditions centered on present threat: panic disorder, phobias, separation anxiety. The distress subfactor includes conditions centered on loss, hopelessness, and chronic uncertainty: depression, GAD, PTSD.',
+    comps:[
+      {n:'Fear: panic disorder',d:'Response to predictable threat'},
+      {n:'Fear: specific phobias',d:'Conditioned fear of objects/situations'},
+      {n:'Fear: social anxiety',d:'Threat of social evaluation'},
+      {n:'Distress: depression',d:'Loss, anhedonia, hopelessness'},
+      {n:'Distress: GAD',d:'Chronic uncertain threat'},
+      {n:'Distress: PTSD',d:'Response to experienced threat'},
+    ],
+    mech:'Neurobiologically: the fear subfactor is linked to reactivity to predictable threat (amygdala, BLA). The distress subfactor — to unpredictable threat and chronic dysregulation (PFC, hippocampus, HPA axis). One person can have high fear and low distress — these are fundamentally different profiles.',
+    src:'Krueger (1999) · Watson & Clark (1991) · RDoC NIMH (2023)',
+    trans:'Subfactors define the structure of vulnerability. But how do they manifest clinically? What specific disorders do they produce — and why are there so many?',
+    nextTitle:'Syndromes'
+  },
+  {
+    num:'5', badge:'syndromes',
+    title:'Syndromes — clinical manifestations',
+    sub:'DSM-5-TR (APA, 2022) · HiTOP',
+    q:'How does vulnerability become a specific disorder?',
+    def:'Syndromes are stable clusters of symptoms, roughly corresponding to DSM diagnoses, but treated as points on continuous dimensions rather than categories. One person with high fear subfactor loading may receive different DSM diagnoses depending on the specific object of fear: spiders, crowds, heights. HiTOP argues: these are not three diseases — it is one vulnerability with different objects.',
+    comps:[
+      {n:'Panic disorder',d:'Recurrent sudden fear peaks'},
+      {n:'Agoraphobia',d:'Avoidance of open/crowded spaces'},
+      {n:'Social anxiety disorder',d:'Fear of being judged by others'},
+      {n:'Specific phobias',d:'Fear of specific stimuli'},
+      {n:'Major depression',d:'Anhedonia + low mood ≥2 weeks'},
+      {n:'GAD',d:'Uncontrollable worry ≥6 months'},
+      {n:'PTSD',d:'Re-experiencing + hyperarousal'},
+      {n:'Separation anxiety',d:'Fear of separation from close others'},
+    ],
+    mech:'DSM diagnoses are clinically useful threshold labels on continuous dimensions. Comorbidity (multiple diagnoses) is explained not by independent diseases but by shared subfactor loading. 80% of patients with panic disorder have at least one additional diagnosis — because it is one vulnerability.',
+    src:'DSM-5-TR (APA, 2022) · HiTOP primer (Conway et al., 2022)',
+    trans:'Syndromes describe the pattern. But where does the symptom itself come from — what exactly is disrupted at the level of specific moment-to-moment experience?',
+    nextTitle:'Symptom dimensions'
+  },
+  {
+    num:'6', badge:'symptoms',
+    title:'Symptom dimensions',
+    sub:'RDoC · Borsboom (2017)',
+    q:'Of what specific impairments are disorders composed?',
+    def:'The most granular clinical level: individual symptoms treated as continuous dimensions, not binary features. Separation anxiety, rumination, insomnia, avoidance, anhedonia, physiological arousal — each can be measured quantitatively. Here live the RDoC biomarkers: startle reflex, skin conductance, amygdala activation patterns.',
+    comps:[
+      {n:'Rumination',d:'Repetitive thoughts about threat/loss'},
+      {n:'Avoidance',d:'Behavioral escape from triggers'},
+      {n:'Hyperarousal',d:'Nervousness, insomnia, reactivity'},
+      {n:'Anhedonia',d:'Reduced capacity for pleasure'},
+      {n:'Memory intrusion',d:'Intrusive memories/flashbacks'},
+      {n:'Somatic symptoms',d:'Muscle tension, palpitations'},
+    ],
+    mech:'Symptoms are not isolated — they form networks (Borsboom network model): one symptom activates another. Insomnia amplifies rumination → rumination amplifies anxiety → anxiety disrupts sleep. This explains disorder chronification even after the original stressor is removed.',
+    src:'Borsboom (2017), Psychological Review · NIMH RDoC Matrix (2023)',
+    trans:'Until now we described psychopathology — what happens. But how does this connect to personality — to who a person persistently is, not just during episodes of disorder?',
+    nextTitle:'Neuroticism'
+  },
+  {
+    num:'7', badge:'personality trait',
+    title:'Neuroticism — the bridge to personality',
+    sub:'Kotov et al. (2010) · Lahey (2009)',
+    q:'Is there a personality trait that explains the full internalizing spectrum vulnerability?',
+    def:'Neuroticism is a stable personality trait describing the tendency toward negative emotions, emotional instability, and reactivity to stressors. Correlation with p-factor r ≈ 0.50 — the single most powerful predictor of psychopathology among all Big Five traits. Neuroticism precedes disorders and persists after recovery — it is not a symptom, but a vulnerability.',
+    comps:[
+      {n:'Anxiousness',d:'Chronic background worry'},
+      {n:'Emotional instability',d:'Rapid mood fluctuations'},
+      {n:'Vulnerability',d:'Reduced stress tolerance'},
+      {n:'Self-criticism',d:'Negative automatic thoughts about self'},
+      {n:'Somatization',d:'Bodily expression of emotional distress'},
+    ],
+    mech:'Neuroticism is a stable trait (40–60% genetically determined), rising in adolescence, peaking at ~age 20, then slowly declining. Longitudinal studies: high neuroticism at 15 → 14-fold increase in depression risk by age 25. Neuroticism is an amplifier: it intensifies any stressor.',
+    src:'Kotov et al. (2010), Psychological Bulletin · Lahey (2009), Ann. Rev. Clin. Psych.',
+    trans:'Neuroticism is a trait describing "who the person is." But how exactly does it influence how the person constructs their self, makes decisions, and builds their life? The mechanism is self-regulation.',
+    nextTitle:'Self-regulation'
+  },
+  {
+    num:'8', badge:'cognition',
+    title:'Self-regulation — the cognitive mechanism',
+    sub:'Leyro et al. (2010) · Carver & Scheier',
+    q:'Through what mechanism does the internalizing spectrum influence personality development?',
+    def:'Self-regulation is the ability to maintain goal-directed behavior in the face of distress, uncertainty, and internal conflict. The link between neuroticism and disorders is mediated by four cognitive vulnerabilities that impair self-regulation: anxiety sensitivity, intolerance of uncertainty, experiential avoidance, and looming cognitive style.',
+    comps:[
+      {n:'Anxiety sensitivity',d:'"Fear of fear" — fear of anxiety\'s physical symptoms'},
+      {n:'Intolerance of uncertainty',d:'Inability to act without guarantees'},
+      {n:'Experiential avoidance',d:'Escape from inner experience'},
+      {n:'Looming cognition',d:'Future threat perceived as already real'},
+      {n:'Working memory deficit',d:'Chronic anxiety reduces cognitive resources'},
+    ],
+    mech:'Impaired self-regulation is the key mechanism through which the p-factor manifests in life outcomes. A person with high p and neuroticism regulates attention, decision-making, social interaction, and long-term planning less effectively. This affects education, relationships, career — and how the self is constructed.',
+    src:'Leyro, Zvolensky & Bernstein (2010) · Hofmann et al. (2012)',
+    trans:'Impaired self-regulation directly affects the capacity to explore oneself, commit to choices, and revise the self — that is, to form identity.',
+    nextTitle:'Identity'
+  },
+  {
+    num:'9', badge:'identity',
+    title:'Identity — the developmental outcome',
+    sub:'Luyckx et al. (2013) · Erikson (1968)',
+    q:'How does biological vulnerability ultimately sum up in the structure of the self?',
+    def:'Identity is an organized system of a person\'s representations of themselves, their values, goals, and place in the world. It forms through two interacting processes: exploration (trying different versions of the self) and commitment (choosing and following through on them). The internalizing spectrum disrupts both processes.',
+    comps:[
+      {n:'Exploration in breadth',d:'Trying different roles, values, relationships'},
+      {n:'Exploration in depth',d:'Reflecting on made commitments'},
+      {n:'Ruminative exploration',d:'Pathological inability to finalize a choice'},
+      {n:'Commitment',d:'Stable identifications and goals'},
+      {n:'Identification with commitments',d:'Emotional investment in choices'},
+      {n:'Diffuse identity',d:'Absence of stable self — outcome of disruption'},
+    ],
+    mech:'Anxiety and depression disrupt identity formation through two paths: ruminative exploration (the person endlessly reconsiders choices without finalizing them) and avoidance of exploration (the person does not try new things out of fear). The result is either a diffuse or a prematurely foreclosed identity. Longitudinal data confirm a feedback loop: symptoms → identity disruption → amplified symptoms.',
+    src:'Luyckx et al. (2013), Dev. Psychology · Klimstra et al. (2016) · Erikson (1968)',
+    trans:null,
+    nextTitle:null
+  }
+];
+
+function toggleCard(id) {
+  const card = document.getElementById('card-' + id);
+  card.classList.toggle('open');
+  updateProgress();
+}
+
+function switchTab(levelIdx, tab) {
+  const card = document.getElementById('card-' + levelIdx);
+  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('act'));
+  card.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('act'));
+  card.querySelector('.tab-btn[data-tab="' + tab + '"]').classList.add('act');
+  card.querySelector('.panel-' + tab).classList.add('act');
+}
+
+function openNext(currentIdx) {
+  const nextIdx = currentIdx + 1;
+  if (nextIdx < LEVELS.length) {
+    const card = document.getElementById('card-' + nextIdx);
+    card.classList.add('open');
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updateProgress();
+  }
+}
+
+function updateProgress() {
+  const open = document.querySelectorAll('.level-card.open').length;
+  document.getElementById('prog').style.width = Math.round(open / LEVELS.length * 100) + '%';
+}
+
+const container = document.getElementById('levels-container');
+
+LEVELS.forEach((lv, i) => {
+  if (i > 0) {
+    const conn = document.createElement('div');
+    conn.className = 'connector';
+    conn.innerHTML = '<div class="conn-line"></div>';
+    container.appendChild(conn);
+  }
+
+  const hasNext = lv.trans !== null;
+  const compsHtml = lv.comps.map(c =>
+    `<div class="comp-item"><div class="comp-name">${c.n}</div><div class="comp-desc">${c.d}</div></div>`
+  ).join('');
+
+  const transTab = hasNext ? `<button class="tab-btn" data-tab="trans" onclick="switchTab(${i},'trans')">Transition</button>` : '';
+  const transPanel = hasNext ? `
+    <div class="tab-panel panel-trans">
+      <div class="trans-block">
+        <p class="trans-q">${lv.trans}</p>
+        <div class="trans-next-label">Next level</div>
+        <div class="trans-next-name">${lv.nextTitle}</div>
+      </div>
+      <button class="open-next-btn" onclick="openNext(${i})">Open next level →</button>
+    </div>` : '';
+
+  const div = document.createElement('div');
+  div.className = 'level-card';
+  div.id = 'card-' + i;
+  div.innerHTML = `
+    <div class="level-header" onclick="toggleCard(${i})">
+      <div class="level-num">${lv.num}</div>
+      <div class="level-meta">
+        <div class="level-title">${lv.title}</div>
+        <div class="level-sub">${lv.sub}</div>
+      </div>
+      <span class="level-badge">${lv.badge}</span>
+      <span class="chev">▾</span>
+    </div>
+    <div class="level-body">
+      <div class="level-body-inner">
+        <div class="level-content">
+          <div class="tabs">
+            <button class="tab-btn act" data-tab="def" onclick="switchTab(${i},'def')">Definition</button>
+            <button class="tab-btn" data-tab="comp" onclick="switchTab(${i},'comp')">Components</button>
+            <button class="tab-btn" data-tab="mech" onclick="switchTab(${i},'mech')">Mechanism</button>
+            ${transTab}
+          </div>
+          <div class="tab-panel panel-def act">
+            <p class="def-q">${lv.q}</p>
+            <p class="def-text">${lv.def}</p>
+          </div>
+          <div class="tab-panel panel-comp">
+            <div class="comp-grid">${compsHtml}</div>
+          </div>
+          <div class="tab-panel panel-mech">
+            <div class="mech-block">
+              <p class="mech-text">${lv.mech}</p>
+              <div class="mech-source">${lv.src}</div>
+            </div>
+          </div>
+          ${transPanel}
+        </div>
+      </div>
+    </div>`;
+  container.appendChild(div);
+});
+
+// Open first card
+document.getElementById('card-0').classList.add('open');
+updateProgress();
+
+// Language dropdown
+document.getElementById('language-toggle').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('language-dropdown').classList.toggle('active');
+});
+document.addEventListener('click', function() {
+  document.getElementById('language-dropdown').classList.remove('active');
+});
+</script>
+</body>
+</html>
