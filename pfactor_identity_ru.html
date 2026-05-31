@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>От p-фактора до идентичности - ЦКИ</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a;
+  line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+main { flex-grow: 1; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0;
+  background-color: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 1000; display: flex; justify-content: space-between;
+  align-items: center; padding: 20px; border-bottom: 1px solid #f0f0f0;
+}
+.logo { font-size: 24px; font-weight: 600; color: #1a1a1a; }
+.nav-container { display: flex; align-items: center; gap: 20px; }
+nav a {
+  font-family: inherit !important; text-decoration: none !important;
+  color: #1a1a1a !important; margin-left: 20px; font-size: 16px;
+  padding-bottom: 4px; border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+nav a.active-link { font-weight: 600; border-bottom-color: #1a1a1a; }
+nav a:not(.active-link):hover { border-bottom-color: #ccc; }
+
+.language-selector { position: relative; margin-left: 20px; }
+.current-language {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  padding: 8px 12px; border-radius: 8px;
+  transition: background-color 0.3s; user-select: none;
+}
+.current-language:hover { background-color: #f5f5f5; }
+.language-code { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.language-dropdown {
+  position: absolute; top: 100%; right: 0; margin-top: 8px;
+  background: white; border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0; visibility: hidden; transform: translateY(-10px);
+  transition: all 0.3s ease; min-width: 100px; overflow: hidden;
+}
+.language-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.language-option {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  cursor: pointer; transition: background-color 0.2s; text-decoration: none; color: #1a1a1a;
+}
+.language-option:hover { background-color: #f5f5f5; }
+.language-option.current { background-color: #f0f0f0; font-weight: 600; }
+
+/* Article */
+.article-section { padding: 60px 0; }
+.article-title { font-size: 52px; font-weight: 300; margin: 0 0 25px 0; line-height: 1.2; }
+.intro-block { font-size: 18px; color: #555; margin-bottom: 50px; }
+.intro-block p { margin: 10px 0; }
+.article-section h2 {
+  font-size: 32px; font-weight: 500; margin: 60px 0 20px 0;
+  border-top: 1px solid #e0e0e0; padding-top: 40px;
+}
+.article-section p { font-size: 18px; color: #333; margin-bottom: 20px; }
+
+/* MAP */
+.map-wrap { margin: 40px 0 60px; }
+.master-q {
+  background: #f7f7f7; border-top: 2px solid #1a1a1a;
+  padding: 24px 28px; margin-bottom: 32px;
+}
+.master-q .mq-label {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: #888; margin-bottom: 8px;
+}
+.master-q p { font-size: 17px; color: #1a1a1a; margin: 0; line-height: 1.65; }
+
+.level-card {
+  border: 1px solid #e8e8e8; margin-bottom: 6px;
+  transition: border-color .2s;
+}
+.level-card:hover { border-color: #bbb; }
+.level-card.open { border-color: #1a1a1a; }
+
+.level-header {
+  display: grid; grid-template-columns: 36px 1fr auto;
+  align-items: center; gap: 14px;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  background: #fff;
+}
+.level-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  border: 1.5px solid #1a1a1a; color: #1a1a1a;
+  flex-shrink: 0; transition: background .2s, color .2s;
+}
+.level-card.open .level-num { background: #1a1a1a; color: #fff; }
+.level-meta { min-width: 0; }
+.level-title { font-size: 16px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
+.level-sub { font-size: 12px; color: #888; margin-top: 2px; }
+.level-badge {
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 10px; border: 1px solid #e0e0e0;
+  color: #888; white-space: nowrap;
+}
+.chev {
+  font-size: 12px; color: #aaa; transition: transform .2s;
+  margin-left: 8px; display: inline-block;
+}
+.level-card.open .chev { transform: rotate(180deg); }
+
+.level-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s ease; }
+.level-card.open .level-body { grid-template-rows: 1fr; }
+.level-body-inner { overflow: hidden; }
+.level-content { padding: 0 20px 24px 70px; border-top: 1px solid #f0f0f0; }
+
+.tabs { display: flex; margin: 16px 0 18px; border-bottom: 1px solid #e8e8e8; }
+.tab-btn {
+  background: none; border: none; color: #aaa;
+  font-family: inherit; font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; padding: 6px 14px 8px;
+  cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: color .15s, border-color .15s;
+}
+.tab-btn:hover { color: #1a1a1a; }
+.tab-btn.act { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+
+.tab-panel { display: none; }
+.tab-panel.act { display: block; }
+
+.def-q { font-style: italic; font-size: 15px; color: #888; margin-bottom: 12px; }
+.def-text { font-size: 16px; color: #333; line-height: 1.75; }
+
+.comp-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
+  gap: 8px; margin-top: 4px;
+}
+.comp-item { background: #f9f9f9; border-left: 3px solid #1a1a1a; padding: 10px 14px; }
+.comp-name { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+.comp-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+.mech-block { background: #f7f7f7; padding: 20px 24px; }
+.mech-text { font-size: 16px; color: #333; line-height: 1.75; }
+.mech-source { margin-top: 14px; font-size: 11px; color: #aaa; border-top: 1px solid #e8e8e8; padding-top: 10px; }
+
+.trans-block { padding: 18px 22px; border-left: 3px solid #1a1a1a; background: #f9f9f9; }
+.trans-q { font-style: italic; font-size: 16px; color: #333; line-height: 1.7; margin-bottom: 12px; }
+.trans-next-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #aaa; margin-bottom: 4px; }
+.trans-next-name { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+
+.open-next-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px; font-size: 13px; padding: 7px 14px;
+  border: 1.5px solid #1a1a1a; background: none; color: #1a1a1a;
+  cursor: pointer; transition: background .15s, color .15s; font-family: inherit;
+}
+.open-next-btn:hover { background: #1a1a1a; color: #fff; }
+
+.connector { height: 24px; display: flex; align-items: center; padding-left: 54px; opacity: .3; }
+.conn-line { width: 1px; height: 100%; background: #1a1a1a; }
+
+.progress-bar { position: sticky; top: 0; z-index: 999; height: 2px; background: #f0f0f0; overflow: hidden; }
+.progress-fill { height: 100%; background: #1a1a1a; width: 0%; transition: width .3s ease; }
+
+.navigation-links {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 40px; padding: 30px 0; border-top: 1px solid #e0e0e0;
+}
+.nav-link {
+  display: flex; align-items: center;
+  text-decoration: none; color: #1a1a1a !important;
+  font-size: 18px; font-weight: 500; transition: color 0.3s ease;
+}
+.nav-link:hover { color: #666 !important; }
+.nav-link.prev { flex-direction: row; }
+.nav-link.next { flex-direction: row-reverse; }
+.nav-arrow { font-size: 20px; margin: 0 10px; }
+.mobile-nav-list { display: none; }
+
+.site-footer {
+  background-color: #ffffff !important; padding: 40px 0 !important;
+  margin-top: 0 !important; font-size: 14px !important;
+  color: #555 !important; border-top: none !important;
+}
+.site-footer .footer-container {
+  display: flex !important; justify-content: space-between !important;
+  align-items: flex-end !important; width: 100% !important;
+  padding: 0 40px !important; box-sizing: border-box !important;
+}
+.site-footer .footer-copyright { flex-basis: auto !important; align-self: flex-end !important; }
+.site-footer .footer-nav { display: flex !important; gap: 60px !important; align-items: flex-start !important; }
+.site-footer .footer-column { text-align: left !important; }
+.site-footer .footer-column h4 {
+  font-size: 16px !important; font-weight: 600 !important; color: #1a1a1a !important;
+  margin: 0 0 15px 0 !important; padding: 0 !important;
+}
+.site-footer .footer-column h4 a { text-decoration: none !important; color: #1a1a1a !important; }
+.site-footer .footer-column ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+.site-footer .footer-column li { margin: 0 0 10px 0 !important; list-style: none !important; }
+.site-footer .footer-column a { text-decoration: none !important; color: #555 !important; }
+.site-footer .footer-column a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 768px) {
+  .site-header { flex-direction: column; gap: 15px; }
+  .article-title { font-size: 36px; }
+  .level-content { padding: 0 16px 20px 16px; }
+  .navigation-links { display: none; }
+  .mobile-nav-list { display: block; margin-top: 40px; padding: 0; list-style: none; border-top: 1px solid #e0e0e0; padding-top: 30px; }
+  .mobile-nav-item { margin-bottom: 15px; font-size: 16px; }
+  .mobile-nav-item::before { content: "- "; color: #1a1a1a; margin-right: 5px; }
+  .mobile-nav-item a { color: #1a1a1a !important; text-decoration: none !important; font-weight: 500; }
+  .site-footer .footer-container { flex-direction: column; gap: 30px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<header class="site-header">
+  <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div>
+  <div class="nav-container">
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="basics_en.html">Основы</a>
+      <a href="blog_en.html" class="active-link">Блог</a>
+      <a href="tests_en.html">Тесты</a>
+    </nav>
+    <div class="language-selector">
+      <div class="current-language" id="language-toggle">
+        <span class="language-code">RU</span>
+      </div>
+      <div class="language-dropdown" id="language-dropdown">
+        <a href="pfactor_identity_en.html" class="language-option"><span class="language-code">EN</span></a>
+        <a href="pfactor_identity_ru.html" class="language-option current"><span class="language-code">RU</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="article-section">
+
+      <h1 class="article-title">От p-фактора до идентичности</h1>
+      <div class="intro-block">
+        <p>Логическая вертикаль: как биологическая уязвимость становится личностью.</p>
+      </div>
+
+      <h2 style="border-top:none;padding-top:0;margin-top:0">Центральный вопрос</h2>
+      <div class="map-wrap">
+        <div class="master-q">
+          <div class="mq-label">На какой вопрос отвечает эта карта</div>
+          <p>Как биологическая предрасположенность человека к негативным эмоциям — страху, тревоге, депрессии — проходит путь от генетической уязвимости до конкретных черт личности и структуры самоощущения «я»?</p>
+        </div>
+
+        <div id="levels-container"></div>
+      </div>
+
+      <div class="navigation-links">
+        <a href="ptsd_recovery_en.html" class="nav-link prev">
+          <span class="nav-arrow">←</span>
+          <span>ПТСР: руководство по восстановлению</span>
+        </a>
+        <a href="trauma_en.html" class="nav-link next">
+          <span>Скрининг ПТСР</span>
+          <span class="nav-arrow">→</span>
+        </a>
+      </div>
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="ptsd_recovery_en.html">ПТСР: руководство по восстановлению</a></li>
+        <li class="mobile-nav-item"><a href="trauma_en.html">Скрининг ПТСР</a></li>
+      </ul>
+
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-copyright">© Все права защищены. Центр когнитивных исследований</div>
+    <div class="footer-nav">
+      <div class="footer-column">
+        <h4>Меню</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="basics_en.html">Основы</a></li>
+          <li><a href="blog_en.html">Блог</a></li>
+          <li><a href="tests_en.html">Тесты</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4><a href="about_ru.html">О нас</a></h4>
+        <ul>
+          <li><a href="about_ru.html#who-we-are">Кто мы</a></li>
+          <li><a href="about_ru.html#mission">Миссия</a></li>
+          <li><a href="about_ru.html#tasks">Задачи</a></li>
+          <li><a href="about_ru.html#contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const LEVELS = [
+  {
+    num:'1', badge:'суперструктура',
+    title:'p-фактор — общая уязвимость',
+    sub:'Caspi et al., 2014',
+    q:'Почему одни люди склонны к любым психическим расстройствам, а другие — ни к каким?',
+    def:'Существует единый латентный фактор — p — который объясняет, почему человек, у которого развилось одно психическое расстройство, статистически уязвим ко всем остальным. Это не болезнь и не диагноз. Это измеримая предрасположенность — своего рода «сопротивление психики» к сбоям. Название «p» — прямая аналогия с g-фактором интеллекта: как человек с высоким g хорошо решает все когнитивные задачи, так человек с высоким p уязвим ко всем типам психопатологии.',
+    comps:[
+      {n:'Нейробиологическая уязвимость', d:'Гиперреактивность амигдалы, нарушения регуляции ПФК'},
+      {n:'Генетический компонент', d:'Полигенная наследуемость ~40–60%'},
+      {n:'Ранний онтогенез', d:'Неблагоприятный опыт 0–5 лет усиливает p'},
+      {n:'Нейротизм как прокси', d:'Корреляция r ≈ 0.50 с p-фактором'},
+      {n:'Дефицит саморегуляции', d:'Нарушения торможения реакций'},
+      {n:'Когнитивные уязвимости', d:'Интолерантность к неопределённости'},
+    ],
+    mech:'p определяется через бифакторную статистическую модель: к нему загружаются симптомы всех основных расстройств одновременно. Высокий p — не значит «болен всем»: это значит, что любой достаточный стрессор может дать сбой в любой точке системы. Механизм — нарушение эмоциональной регуляции как общий путь к любой форме психопатологии.',
+    src:'Caspi et al. (2014), Nature Neuroscience · Lahey et al. (2012) · Caspi & Moffitt (2024)',
+    trans:'p объясняет общую уязвимость, но не говорит, куда именно она направится. Для этого нужен следующий уровень: как p распадается на типы эмоционального реагирования.',
+    nextTitle:'Эмоциональная дисфункция'
+  },
+  {
+    num:'2', badge:'суперспектр',
+    title:'Эмоциональная дисфункция',
+    sub:'Watson et al., 2022 · HiTOP',
+    q:'Какой класс проблем объединяет страх, депрессию, тревогу и телесные симптомы?',
+    def:'Суперспектр эмоциональной дисфункции — второй уровень после p. Он объединяет все расстройства, при которых дистресс направлен вовнутрь: тревогу, страх, депрессию, соматические симптомы. Этот суперспектр противопоставлен экстернализующему (агрессия, импульсивность, зависимости) и спектру расстройств мышления (психоз). Эмоциональная дисфункция = страдание, направленное на себя, а не вовне.',
+    comps:[
+      {n:'Интернализующий спектр', d:'Тревога, страх, депрессия, ПТСР'},
+      {n:'Соматоформный спектр', d:'Телесные симптомы без органической причины'},
+      {n:'Негативный аффект', d:'Общая нагрузка обоих спектров'},
+      {n:'Нейротизм', d:'Личностная ось суперспектра'},
+    ],
+    mech:'Суперспектр формируется через общий путь: высокий негативный аффект + сниженный позитивный аффект + нейробиологическая гиперреактивность на угрозы. Это отличает его от экстернализации, где доминирует низкий контроль импульсов, а не высокая эмоциональная реактивность.',
+    src:'Watson et al. (2022), World Psychiatry · HiTOP Consortium',
+    trans:'Внутри суперспектра есть структура: не все «внутренние» расстройства одинаковы. Одни центрированы на угрозе здесь и сейчас, другие — на потере и безнадёжности. Это различие описывает интернализующий спектр.',
+    nextTitle:'Интернализующий спектр'
+  },
+  {
+    num:'3', badge:'спектр',
+    title:'Интернализующий спектр',
+    sub:'Krueger & Markon, 2006 · HiTOP',
+    q:'Что общего у страха, паники, тревоги и депрессии — несмотря на их различия?',
+    def:'Интернализующий спектр — эмпирически выведенное измерение, объединяющее расстройства, при которых дистресс направлен вовнутрь: тревогу, страх, депрессию, ПТСР. Это не диагностическая категория, а непрерывное пространство. DSM разрезал этот спектр на отдельные расстройства по клиническому удобству — но не по биологической реальности. Это ваш диапазон состояний.',
+    comps:[
+      {n:'Субфактор страха', d:'Паника, фобии, сепарационная тревога'},
+      {n:'Субфактор дистресса', d:'Депрессия, ГТР, ПТСР'},
+      {n:'Субфактор пищевого поведения', d:'Нарушения пищевого поведения'},
+      {n:'Общая нагрузка', d:'Негативный аффект как ось спектра'},
+    ],
+    mech:'Все состояния спектра разделяют одну нагрузку: высокий негативный аффект, нейробиологическую уязвимость к угрозам, нарушения регуляции эмоций. Именно это объясняет высокую коморбидность — это не разные болезни, а один спектр с разными фенотипами.',
+    src:'Krueger & Markon (2006) · HiTOP Working Group (2017–2023)',
+    trans:'Страх и депрессия — всё же разные вещи внутри спектра. Они отличаются нейробиологически и клинически. Это различие описывает следующий уровень: два субфактора.',
+    nextTitle:'Субфакторы страха и дистресса'
+  },
+  {
+    num:'4', badge:'субфакторы',
+    title:'Страх · Дистресс — два субфактора',
+    sub:'Krueger (1999) · Watson & Clark (1991)',
+    q:'Чем принципиально отличается фобическая уязвимость от депрессивно-тревожной?',
+    def:'Внутри интернализующего спектра устойчиво обнаруживаются два субфактора. Субфактор страха включает состояния, центрированные на угрозе здесь и сейчас: паническое расстройство, фобии, сепарационную тревогу. Субфактор дистресса включает состояния, центрированные на потере, безнадёжности и хронической неопределённости: депрессию, ГТР, ПТСР.',
+    comps:[
+      {n:'Страх: паническое расстройство', d:'Реакция на предсказуемую угрозу'},
+      {n:'Страх: специфические фобии', d:'Обусловленный страх объектов/ситуаций'},
+      {n:'Страх: социальная тревога', d:'Угроза социальной оценки'},
+      {n:'Дистресс: депрессия', d:'Потеря, ангедония, безнадёжность'},
+      {n:'Дистресс: ГТР', d:'Хроническая неопределённая угроза'},
+      {n:'Дистресс: ПТСР', d:'Реакция на пережитую угрозу'},
+    ],
+    mech:'Нейробиологически: субфактор страха связан с реактивностью на предсказуемую угрозу (амигдала, БЛА). Субфактор дистресса — на непредсказуемую угрозу и хроническую дисрегуляцию (ПФК, гиппокамп, ось ГГН). Один человек может иметь высокий страх и низкий дистресс — это принципиально разные профили.',
+    src:'Krueger (1999) · Watson & Clark (1991) · RDoC NIMH (2023)',
+    trans:'Субфакторы задают структуру уязвимости. Но как они проявляются клинически? Какие конкретные расстройства они порождают — и почему их так много?',
+    nextTitle:'Синдромы'
+  },
+  {
+    num:'5', badge:'синдромы',
+    title:'Синдромы — клинические проявления',
+    sub:'DSM-5-TR (APA, 2022) · HiTOP',
+    q:'Как уязвимость становится конкретным расстройством?',
+    def:'Синдромы — стабильные кластеры симптомов, примерно соответствующие диагнозам DSM, но трактуемые как точки на непрерывных измерениях, а не категории. Один человек с высокой нагрузкой по субфактору страха может получить разные диагнозы DSM в зависимости от конкретного объекта страха: пауки, толпа, высота. HiTOP утверждает: это не три болезни — это одна уязвимость с разными объектами.',
+    comps:[
+      {n:'Паническое расстройство', d:'Повторяющиеся внезапные пики страха'},
+      {n:'Агорафобия', d:'Избегание открытых/людных мест'},
+      {n:'Социальная тревога', d:'Страх оценки другими'},
+      {n:'Специфические фобии', d:'Страх конкретных стимулов'},
+      {n:'Большая депрессия', d:'Ангедония + низкое настроение ≥2 нед.'},
+      {n:'ГТР', d:'Неконтролируемое беспокойство ≥6 мес.'},
+      {n:'ПТСР', d:'Повторное переживание + гипервозбуждение'},
+      {n:'Сепарационная тревога', d:'Страх разлуки с близкими'},
+    ],
+    mech:'Диагнозы DSM — клинически полезные пороговые метки на непрерывных измерениях. Коморбидность (наличие нескольких диагнозов) объясняется не независимыми болезнями, а общей нагрузкой субфакторов. 80% пациентов с паническим расстройством имеют ещё минимум один диагноз — потому что это одна уязвимость.',
+    src:'DSM-5-TR (APA, 2022) · HiTOP primer (Conway et al., 2022)',
+    trans:'Синдромы описывают паттерн симптомов. Но откуда берётся сам симптом — что именно нарушено на уровне конкретного переживания, момент за моментом?',
+    nextTitle:'Симптомные измерения'
+  },
+  {
+    num:'6', badge:'симптомы',
+    title:'Симптомные измерения',
+    sub:'RDoC · Borsboom (2017)',
+    q:'Из каких конкретных нарушений состоят расстройства?',
+    def:'Самый детальный клинический уровень: отдельные симптомы трактуются как непрерывные измерения, а не бинарные признаки. Тревога разлуки, руминация, бессонница, избегание, ангедония, физиологическое возбуждение — каждый может быть измерен количественно. Здесь живут биомаркеры RDoC: стартл-рефлекс, кожная проводимость, паттерны активации амигдалы.',
+    comps:[
+      {n:'Руминация', d:'Повторяющиеся мысли об угрозе/потере'},
+      {n:'Избегание', d:'Поведенческое уклонение от триггеров'},
+      {n:'Гипервозбуждение', d:'Тревожность, бессонница, реактивность'},
+      {n:'Ангедония', d:'Снижение способности к удовольствию'},
+      {n:'Интрузии памяти', d:'Навязчивые воспоминания/флэшбэки'},
+      {n:'Соматические симптомы', d:'Мышечное напряжение, сердцебиение'},
+    ],
+    mech:'Симптомы не изолированы — они образуют сети (сетевая модель по Borsboom): один симптом активирует другой. Бессонница усиливает руминацию → руминация усиливает тревогу → тревога нарушает сон. Это объясняет хронификацию расстройств даже после устранения исходного стрессора.',
+    src:'Borsboom (2017), Psychological Review · NIMH RDoC Matrix (2023)',
+    trans:'До сих пор мы описывали психопатологию — что происходит. Но как всё это связано с личностью — с тем, кем человек является постоянно, а не только в эпизодах расстройства?',
+    nextTitle:'Нейротизм'
+  },
+  {
+    num:'7', badge:'черта личности',
+    title:'Нейротизм — мост к личности',
+    sub:'Kotov et al. (2010) · Lahey (2009)',
+    q:'Есть ли черта личности, которая объясняет склонность ко всему интернализующему спектру?',
+    def:'Нейротизм — устойчивая черта личности, описывающая тенденцию к негативным эмоциям, эмоциональную нестабильность и реактивность на стрессоры. Корреляция с p-фактором r ≈ 0.50 — это самый мощный единственный предиктор психопатологии из всех черт Большой пятёрки. Нейротизм предшествует расстройствам и сохраняется после выздоровления — это не симптом, а уязвимость.',
+    comps:[
+      {n:'Тревожность', d:'Хроническое фоновое беспокойство'},
+      {n:'Эмоциональная нестабильность', d:'Быстрые перепады настроения'},
+      {n:'Ранимость', d:'Сниженная стрессоустойчивость'},
+      {n:'Самокритика', d:'Негативные автоматические мысли о себе'},
+      {n:'Соматизация', d:'Телесное выражение эмоционального дистресса'},
+    ],
+    mech:'Нейротизм — стабильная черта (40–60% генетически обусловлена): нарастает в подростковом возрасте, достигает пика в ~20 лет, затем медленно снижается. Продольные исследования: высокий нейротизм в 15 лет → 14-кратный рост риска депрессии к 25 годам. Нейротизм — это усилитель: он интенсифицирует любой стрессор.',
+    src:'Kotov et al. (2010), Psychological Bulletin · Lahey (2009), Ann. Rev. Clin. Psych.',
+    trans:'Нейротизм — черта, описывающая «кто человек». Но как именно она влияет на то, как человек строит своё «я», принимает решения и строит жизнь? Механизм — саморегуляция.',
+    nextTitle:'Саморегуляция'
+  },
+  {
+    num:'8', badge:'когниция',
+    title:'Саморегуляция — когнитивный механизм',
+    sub:'Leyro et al. (2010) · Carver & Scheier',
+    q:'Через какой механизм интернализующий спектр влияет на развитие личности?',
+    def:'Саморегуляция — способность сохранять целенаправленное поведение перед лицом дистресса, неопределённости и внутренних конфликтов. Связь нейротизма с расстройствами опосредована четырьмя когнитивными уязвимостями, нарушающими саморегуляцию: тревожной чувствительностью, нетерпимостью к неопределённости, экспериентальным избеганием и нависающим когнитивным стилем.',
+    comps:[
+      {n:'Тревожная чувствительность', d:'«Страх страха» — страх физических симптомов тревоги'},
+      {n:'Нетерпимость к неопределённости', d:'Неспособность действовать без гарантий'},
+      {n:'Экспериентальное избегание', d:'Уклонение от внутреннего опыта'},
+      {n:'Нависающий когнитивный стиль', d:'Будущая угроза воспринимается как уже реальная'},
+      {n:'Дефицит рабочей памяти', d:'Хроническая тревога снижает когнитивные ресурсы'},
+    ],
+    mech:'Нарушенная саморегуляция — ключевой механизм, через который p-фактор проявляется в жизненных исходах. Человек с высоким p и нейротизмом хуже регулирует внимание, принятие решений, социальное взаимодействие и долгосрочное планирование. Это влияет на образование, отношения, карьеру — и на то, как формируется «я».',
+    src:'Leyro, Zvolensky & Bernstein (2010) · Hofmann et al. (2012)',
+    trans:'Нарушенная саморегуляция напрямую влияет на способность исследовать себя, принимать обязательства и пересматривать своё «я» — то есть на формирование идентичности.',
+    nextTitle:'Идентичность'
+  },
+  {
+    num:'9', badge:'идентичность',
+    title:'Идентичность — итог развития',
+    sub:'Luyckx et al. (2013) · Erikson (1968)',
+    q:'Как биологическая уязвимость суммируется в структуре «я»?',
+    def:'Идентичность — организованная система представлений человека о себе, своих ценностях, целях и своём месте в мире. Она формируется через два взаимодействующих процесса: исследование (пробование разных вариантов «я») и принятие обязательств (выбор и следование им). Интернализующий спектр нарушает оба процесса.',
+    comps:[
+      {n:'Исследование в широту', d:'Пробование разных ролей, ценностей, отношений'},
+      {n:'Исследование в глубину', d:'Рефлексия принятых обязательств'},
+      {n:'Руминативное исследование', d:'Патологическая неспособность завершить выбор'},
+      {n:'Принятие обязательств', d:'Устойчивые идентификации и цели'},
+      {n:'Идентификация с обязательствами', d:'Эмоциональная вовлечённость в выбор'},
+      {n:'Диффузная идентичность', d:'Отсутствие устойчивого «я» — итог нарушений'},
+    ],
+    mech:'Тревога и депрессия нарушают формирование идентичности двумя путями: руминативное исследование (человек бесконечно пересматривает выборы, не завершая их) и избегание исследования (человек вообще не пробует новое из-за страха). Результат — либо диффузная, либо преждевременно закрытая идентичность. Продольно зафиксирована петля: симптомы → нарушения идентичности → усиление симптомов.',
+    src:'Luyckx et al. (2013), Dev. Psychology · Klimstra et al. (2016) · Erikson (1968)',
+    trans:null, nextTitle:null
+  }
+];
+
+function toggleCard(id) {
+  document.getElementById('card-'+id).classList.toggle('open');
+  updateProgress();
+}
+function switchTab(idx, tab) {
+  const card = document.getElementById('card-'+idx);
+  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('act'));
+  card.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('act'));
+  card.querySelector('.tab-btn[data-tab="'+tab+'"]').classList.add('act');
+  card.querySelector('.panel-'+tab).classList.add('act');
+}
+function openNext(idx) {
+  const next = document.getElementById('card-'+(idx+1));
+  if (next) { next.classList.add('open'); next.scrollIntoView({behavior:'smooth',block:'start'}); updateProgress(); }
+}
+function updateProgress() {
+  const open = document.querySelectorAll('.level-card.open').length;
+  document.getElementById('prog').style.width = Math.round(open/LEVELS.length*100)+'%';
+}
+
+const container = document.getElementById('levels-container');
+LEVELS.forEach((lv, i) => {
+  if (i > 0) {
+    const conn = document.createElement('div');
+    conn.className = 'connector';
+    conn.innerHTML = '<div class="conn-line"></div>';
+    container.appendChild(conn);
+  }
+  const compsHtml = lv.comps.map(c =>
+    `<div class="comp-item"><div class="comp-name">${c.n}</div><div class="comp-desc">${c.d}</div></div>`
+  ).join('');
+  const transTab = lv.trans ? `<button class="tab-btn" data-tab="trans" onclick="switchTab(${i},'trans')">Переход</button>` : '';
+  const transPanel = lv.trans ? `
+    <div class="tab-panel panel-trans">
+      <div class="trans-block">
+        <p class="trans-q">${lv.trans}</p>
+        <div class="trans-next-label">Следующий уровень</div>
+        <div class="trans-next-name">${lv.nextTitle}</div>
+      </div>
+      <button class="open-next-btn" onclick="openNext(${i})">Открыть следующий уровень →</button>
+    </div>` : '';
+
+  const div = document.createElement('div');
+  div.className = 'level-card';
+  div.id = 'card-'+i;
+  div.innerHTML = `
+    <div class="level-header" onclick="toggleCard(${i})">
+      <div class="level-num">${lv.num}</div>
+      <div class="level-meta">
+        <div class="level-title">${lv.title}</div>
+        <div class="level-sub">${lv.sub}</div>
+      </div>
+      <span class="level-badge">${lv.badge}</span>
+      <span class="chev">▾</span>
+    </div>
+    <div class="level-body"><div class="level-body-inner"><div class="level-content">
+      <div class="tabs">
+        <button class="tab-btn act" data-tab="def" onclick="switchTab(${i},'def')">Определение</button>
+        <button class="tab-btn" data-tab="comp" onclick="switchTab(${i},'comp')">Составляющие</button>
+        <button class="tab-btn" data-tab="mech" onclick="switchTab(${i},'mech')">Механизм</button>
+        ${transTab}
+      </div>
+      <div class="tab-panel panel-def act">
+        <p class="def-q">${lv.q}</p>
+        <p class="def-text">${lv.def}</p>
+      </div>
+      <div class="tab-panel panel-comp"><div class="comp-grid">${compsHtml}</div></div>
+      <div class="tab-panel panel-mech">
+        <div class="mech-block">
+          <p class="mech-text">${lv.mech}</p>
+          <div class="mech-source">${lv.src}</div>
+        </div>
+      </div>
+      ${transPanel}
+    </div></div></div>`;
+  container.appendChild(div);
+});
+
+document.getElementById('card-0').classList.add('open');
+updateProgress();
+
+document.getElementById('language-toggle').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('language-dropdown').classList.toggle('active');
+});
+document.addEventListener('click', function() {
+  document.getElementById('language-dropdown').classList.remove('active');
+});
+</script>
+</body>
+</html>
