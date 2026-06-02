@@ -642,7 +642,192 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
         </svg>
       </div>
 
-            <div class="navigation-links">
+      
+      <h2>Слои механики страха</h2>
+      <p>Страх существует одновременно на семи уровнях описания — от молекулярного до социально-экзистенциального. Каждый уровень реален и несводим к соседнему. Кликните на слой, чтобы раскрыть его определение, составляющие и схему каскада.</p>
+
+      <div id="fear-layers-widget" style="margin:32px 0 48px">
+<style>
+.flw *{box-sizing:border-box;margin:0;padding:0}
+.flw{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;margin:0}
+.fl-stack{display:flex;flex-direction:column;gap:0}
+.fl-layer{border:0.5px solid #e0e0e0;overflow:hidden;transition:border-color .18s;cursor:pointer;position:relative}
+.fl-layer:first-child{border-radius:8px 8px 0 0}
+.fl-layer:last-child{border-radius:0 0 8px 8px}
+.fl-layer+.fl-layer{border-top:none}
+.fl-layer:hover{border-color:#aaa}
+.fl-layer.fl-open{border-color:#1a1a1a;z-index:1}
+.fl-hdr{display:flex;align-items:center;gap:10px;padding:11px 16px}
+.fl-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;border:1px solid currentColor;transition:background .18s,color .18s}
+.fl-layer.fl-open .fl-num{background:var(--fllc)!important;color:#fff!important;border-color:var(--fllc)!important}
+.fl-title{flex:1;font-size:13px;font-weight:500;color:#1a1a1a;line-height:1.3}
+.fl-sub{font-size:11px;color:#666;font-weight:400;margin-top:1px}
+.fl-time{font-size:11px;color:#aaa;white-space:nowrap;margin-right:4px}
+.fl-chev{font-size:14px;color:#aaa;transition:transform .22s;flex-shrink:0}
+.fl-layer.fl-open .fl-chev{transform:rotate(180deg)}
+.fl-subs{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+.fl-layer.fl-open .fl-subs{grid-template-rows:1fr}
+.fl-subs-in{overflow:hidden}
+.fl-sl{border-top:0.5px solid #e8e8e8;cursor:pointer}
+.fl-slhdr{display:flex;align-items:center;gap:8px;padding:9px 16px 9px 54px;user-select:none}
+.fl-dot{width:6px;height:6px;border-radius:50%;background:var(--fllc);flex-shrink:0;opacity:.5;transition:opacity .15s}
+.fl-sl.fl-sopen .fl-dot{opacity:1}
+.fl-sltitle{font-size:12px;color:#888;flex:1}
+.fl-sl.fl-sopen .fl-sltitle{color:#1a1a1a;font-weight:500}
+.fl-slchev{font-size:12px;color:#bbb;transition:transform .2s;flex-shrink:0}
+.fl-sl.fl-sopen .fl-slchev{transform:rotate(180deg)}
+.fl-slbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+.fl-sl.fl-sopen .fl-slbody{grid-template-rows:1fr}
+.fl-slbody-in{overflow:hidden}
+.fl-slcontent{padding:10px 16px 16px 54px}
+.fl-def-role{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:2px 8px;border-radius:20px;margin-bottom:8px}
+.fl-def-text{font-size:13px;line-height:1.7;color:#555}
+.fl-comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.fl-comp-item{border:0.5px solid #e0e0e0;border-radius:8px;padding:9px 11px;cursor:pointer;transition:border-color .15s,background .15s}
+.fl-comp-item:hover{border-color:var(--fllc);background:#fafafa}
+.fl-comp-item.fl-cx{border-color:var(--fllc)}
+.fl-comp-name{font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:1px}
+.fl-comp-tag{font-size:10px;color:#aaa}
+.fl-comp-def{display:grid;grid-template-rows:0fr;transition:grid-template-rows .2s ease}
+.fl-comp-item.fl-cx .fl-comp-def{grid-template-rows:1fr}
+.fl-comp-def-in{overflow:hidden}
+.fl-comp-def-text{font-size:11px;line-height:1.6;color:#666;padding-top:7px;border-top:0.5px solid #e8e8e8;margin-top:7px}
+.fl-casc{width:100%;overflow-x:auto}
+.fl-casc svg{display:block;margin:0 auto}
+@media(prefers-color-scheme:dark){
+.fl-layer{border-color:#333}
+.fl-layer:hover{border-color:#666}
+.fl-layer.fl-open{border-color:#e0e0e0}
+.fl-sl{border-top-color:#333}
+.fl-title{color:#e8e4d8}
+.fl-sub{color:#888}
+.fl-def-text{color:#a8a6a0}
+.fl-comp-item{border-color:#333;background:#141412}
+.fl-comp-item:hover{background:#1c1c19}
+.fl-comp-name{color:#e8e4d8}
+.fl-comp-def-text{color:#888;border-top-color:#333}
+}
+</style>
+<div class="flw"><div class="fl-stack" id="fl-stack"></div></div>
+<script>
+(function(){
+var LAYERS=[{num:"1",color:"#854F0B",bg:"#FAEEDA",dbg:"#412402",dc:"#FAC775",title:"Молекулярный и генетический",sub:"NMDA · GABA · гены уязвимости",time:"мс – часы",role:"субстрат и уязвимость",def:"Базовый субстрат всего каскада страха. Молекулярные события в синапсах амигдалы определяют, закрепится ли память угрозы, насколько интенсивной будет реакция и поддаётся ли она угашению. Генетические варианты модулируют этот субстрат, определяя индивидуальную уязвимость задолго до первого триггера.",comps:[{n:"NMDA-рецепторы",tag:"ионотропные глутаматные",def:"Главные «ворота» долгосрочной потенциации (LTP) в латеральном ядре амигдалы. Открываются при одновременном возбуждении пре- и постсинаптического нейрона — так условный стимул «сплавляется» с угрозой в память страха. Блокада NMDA (кетамин, AP5) предотвращает формирование страховой памяти."},{n:"GABA / ГАМК",tag:"тормозный нейромедиатор",def:"Главная тормозная система мозга. ГАМК-А рецепторы в интернейронах амигдалы контролируют «ворота» страхового ответа: высокая ГАМК-эргическая активность снижает страх. Бензодиазепины усиливают ГАМК — отсюда их анксиолитическое действие."},{n:"Глутамат",tag:"возбуждающий нейромедиатор",def:"Основной возбуждающий нейромедиатор. Через AMPA- и NMDA-рецепторы глутамат обеспечивает передачу сигнала угрозы от таламуса и коры к амигдале. mGluR5 в амигдале модулирует генерализацию памяти страха — гиперактивация mGluR5 связана с ПТСР-подобной генерализацией."},{n:"BDNF / TrkB",tag:"нейротрофин",def:"Brain-derived neurotrophic factor — ключевой модулятор синаптической пластичности при страхе. Полиморфизм Val66Met снижает активность-зависимую секрецию BDNF, ухудшает угашение страха и связан с тревожными расстройствами."},{n:"Серотонин / 5-HT",tag:"моноамин",def:"Серотонин модулирует реактивность амигдалы. Полиморфизм 5-HTTLPR (S-аллель) снижает обратный захват серотонина, усиливает ответ амигдалы на угрозу и увеличивает риск тревожных расстройств при стрессорах."},{n:"Норадреналин",tag:"катехоламин",def:"Через β-адренорецепторы амигдалы НА усиливает консолидацию эмоциональной памяти. Пропранолол (β-блокатор) ослабляет реконсолидацию памяти страха. α2-агонисты снижают ночные кошмары при ПТСР."},{n:"Кортизол / ГКС",tag:"стероидный гормон",def:"Острый кортизол усиливает консолидацию страховой памяти; хронически высокий — разрушает гиппокамп. Гидрокортизол в малых дозах усиливает угашение при экспозиционной терапии ПТСР."},{n:"FKBP5",tag:"ген регуляции ГКС",def:"Ко-шаперон, регулирующий чувствительность ГК-рецепторов. Вариант rs1360780 повышает уязвимость к ПТСР после детской травмы через персистирующую активацию FKBP5 и глюкокортикоидную резистентность."},{n:"COMT",tag:"ген дофаминового метаболизма",def:"Фермент деградации дофамина и НА в ПФК. Val158Met (Met-аллель): меньше COMT → больше дофамина в ПФК → лучшая когнитивная регуляция страха. Val-аллель связан со сниженной активностью ПФК при стрессе."},{n:"5-HTTLPR",tag:"ген серотонин. транспортёра",def:"S-аллель снижает экспрессию транспортёра → больше серотонина в синапсе → усиленный ответ амигдалы. Классический пример ген×среда: S-аллель повышает риск ПТСР в высокострессовых средах, снижает — в низкострессовых."}],cn:[[{id:"t",label:"Триггер",sub:"стимул угрозы",col:"gray",w:120}],[{id:"s",label:"Синапс амигдалы",sub:"глутамат + NMDA",col:"coral",w:160}],[{id:"ltp",label:"LTP",sub:"AMPA↑",col:"coral",w:100},{id:"gaba",label:"ГАМК торможение",sub:"интернейроны",col:"amber",w:140}],[{id:"cons",label:"Консолидация",sub:"BDNF · кортизол · НА",col:"amber",w:160}],[{id:"mem",label:"Память страха",sub:"стабильная",col:"coral",w:120},{id:"ext",label:"Угашение",sub:"ПФК → ГАМК",col:"teal",w:110}]],ce:[["t","s"],["s","ltp"],["s","gaba"],["ltp","cons"],["gaba","cons"],["cons","mem"],["cons","ext"]]},{num:"2",color:"#0F6E56",bg:"#E1F5EE",dbg:"#085041",dc:"#9FE1CB",title:"Сенсорный и перцептивный",sub:"Зрение · Слух · Интероцепция · Память",time:"0 – 10 мс",role:"качество входного сигнала",def:"Первый активный уровень обработки угрозы. Качество сигнала, поступающего в таламус, определяется качеством сенсорных каналов. Повреждённый канал — искажённый сигнал. Память — равноправный сенсорный вход: обусловленный страх запускается сохранённым паттерном, а не реальной угрозой.",comps:[{n:"Зрение (V1→V2)",tag:"экстероцепция",def:"Угрожающие визуальные стимулы обрабатываются по магноцеллюлярному пути — низкочастотная информация достигает амигдалы за 12–50 мс. Качество: острота зрения, освещённость, расстояние модулируют скорость и точность детекции."},{n:"Слух (улитка→A1)",tag:"экстероцепция",def:"Звуковой сигнал через ствол мозга и МКТ таламуса идёт напрямую к амигдале — это «нижний» слуховой путь страха. Громкий неожиданный звук → мгновенное замирание. Аудиторное обусловливание — наиболее воспроизводимая модель в нейронауке."},{n:"Интероцепция",tag:"висцеральная сенсорика",def:"Сигналы от внутренних органов через блуждающий нерв и ядро одиночного тракта → инсула → амигдала. Телесные изменения сами становятся условными стимулами страха — механизм тревожной чувствительности и панических атак."},{n:"Обоняние",tag:"прямой путь к амигдале",def:"Единственная сенсорная система с прямым доступом к амигдале без таламуса — через обонятельную луковицу. Запах хищника запускает врождённый страх без обучения. Феромоны страха активируют амигдалу в обход осознания."},{n:"Гиппокампальная память",tag:"контекстуальная",def:"Гиппокамп предоставляет контекстуальный вход: «это то место/запах/звук, что и при угрозе». При ПТСР нейтральный стимул, совпадающий с кодированным контекстом, запускает полный каскад."},{n:"Таламус (VPM/MGB)",tag:"ретрансляция",def:"Одновременно отправляет грубую копию сигнала прямо в амигдалу («нижний путь») и детальную — в кору («верхний путь»). Качество ретрансляции определяет баланс скорости и точности."}],cn:[[{id:"e1",label:"Зрение",sub:"V1",col:"teal",w:80},{id:"e2",label:"Слух",sub:"МКТ",col:"teal",w:80},{id:"e3",label:"Запах",sub:"прямо",col:"teal",w:80},{id:"e4",label:"Интероц.",sub:"инсула",col:"teal",w:80}],[{id:"hc",label:"Гиппокамп",sub:"контекст",col:"blue",w:110},{id:"th",label:"Таламус",sub:"ретрансляция",col:"gray",w:110}],[{id:"am",label:"Амигдала",sub:"детекция угрозы",col:"coral",w:140}]],ce:[["e1","th"],["e2","th"],["e3","am"],["e4","th"],["hc","am"],["th","am"]]},{num:"3",color:"#993C1D",bg:"#FAECE7",dbg:"#712B13",dc:"#F5C4B3",title:"Нейронный и системный",sub:"Два пути · Амигдала · Ствол мозга",time:"12 – 200 мс",role:"нейронная реализация",def:"Уровень нейронной реализации страхового каскада. Два параллельных пути от таламуса конкурируют по скорости и точности. Амигдала управляет тремя параллельными выходами. Здесь решается: тело действует немедленно или ждёт оценки коры.",comps:[{n:"«Нижний путь»",tag:"таламус→БЛА · 12–88 мс",def:"Прямая проекция от таламуса к БЛА, минуя кору. Передаёт грубую копию сигнала за 12–88 мс. Тело начинает реагировать до осознания угрозы. Недостаток — высокий процент ложных тревог: тень, похожая на хищника, запускает полный каскад."},{n:"«Верхний путь»",tag:"таламус→кора→БЛА · 150–300 мс",def:"Детальная обработка в коре с последующей передачей в БЛА. Медленнее на 100–200 мс, но точнее. При ПТСР верхний путь не тормозит нижний — любой похожий стимул запускает полный каскад."},{n:"Амигдала (БЛА)",tag:"базолатеральный комплекс",def:"Место сходимости входных сигналов и ассоциативного обусловливания. Здесь условный стимул сплавляется с безусловным через LTP. Проецирует в три выхода: ЦЯ → ствол, ПФК → оценка, BNST → тревога."},{n:"Центральное ядро (ЦЯ)",tag:"моторный выход амигдалы",def:"Главный выход амигдалы для исполнения защитных реакций. ЦЯ проецирует в ПАВ (замирание), гипоталамус (ВНС+ГГН) и стволовые ядра. Активация ЦЯ — необходимое и достаточное условие для замирания."},{n:"ПАВ (PAG)",tag:"периакведуктальное серое",def:"Дорсальное ПАВ → активная защита (бегство, борьба). Вентральное ПАВ → пассивная защита (замирание). Выбор стратегии зависит от дистанции до угрозы (континуум хищнической неотложности)."},{n:"Инфралимбическая ПФК",tag:"угашение страха",def:"Проецирует в тормозные интернейроны БЛА. Активируется при успешном угашении; угнетена при ПТСР. Электростимуляция инфралимбической ПФК ускоряет угашение — мишень для нейромодуляции."}],cn:[[{id:"th2",label:"Таламус",sub:"два выхода",col:"gray",w:110}],[{id:"lw",label:"Нижний путь",sub:"12–88 мс",col:"coral",w:120},{id:"hw",label:"Верхний путь",sub:"150–300 мс",col:"blue",w:120}],[{id:"bla",label:"БЛА амигдалы",sub:"обусловливание",col:"coral",w:140}],[{id:"hy",label:"Гипоталамус",sub:"ВНС+ГГН",col:"amber",w:110},{id:"pg",label:"ПАВ / ствол",sub:"замир.·бегство",col:"coral",w:110},{id:"pf",label:"ПФК",sub:"оценка·угаш.",col:"purple",w:100}]],ce:[["th2","lw"],["th2","hw"],["lw","bla"],["hw","bla"],["bla","hy"],["bla","pg"],["bla","pf"]]},{num:"4",color:"#BA7517",bg:"#FAEEDA",dbg:"#633806",dc:"#FAC775",title:"Физиологический",sub:"ВНС · Ось ГГН · Гормоны",time:"100 мс – 1 час",role:"телесная реализация",def:"Уровень телесной реализации страхового каскада. Тело реагирует раньше сознания: адреналин достигает сердца через секунды, кортизол нарастает 10–20 минут. Физиологические изменения одновременно поддерживают защитное поведение и возвращаются в амигдалу через интероцепцию, замыкая петлю.",comps:[{n:"Симпатическая ВНС",tag:"немедленный ответ · сек.",def:"НА из симпатических окончаний и адреналин из надпочечников: ↑ЧСС, ↑АД, бронходилатация, перераспределение кровотока к мышцам, расширение зрачков. Всё это до осознания страха."},{n:"Ось ГГН (HPA)",tag:"кортизол · 10–60 мин",def:"Гипоталамус→КРГ→гипофиз→АКТГ→кора надпочечников→кортизол. Нарастание 10–20 мин, пик 20–60 мин. Острый кортизол усиливает консолидацию страховой памяти. Хронически высокий атрофирует гиппокамп."},{n:"Замирание (freeze)",tag:"парасимпатика · ПАВ",def:"Вентральное ПАВ и вагальные тормозные пути: ↓ЧСС, ↓ДД, мышечная ригидность. Эволюционно — притвориться мёртвым. Наиболее надёжный поведенческий биомаркер страха у животных."},{n:"↑ ЧСС · ↑ АД",tag:"сердечно-сосудистый ответ",def:"Тахикардия до 120–160 уд/мин за 10–15 сек. Сигнал от барорецепторов возвращается через блуждающий нерв в инсулу и амигдалу — телесный ответ усиливает страховую реакцию."},{n:"КГР · Потоотделение",tag:"биомаркер страха",def:"Изменение электрической проводимости кожи из-за активации потовых желёз. Наиболее чувствительный периферический биомаркер: реагирует на условный стимул ещё до осознания угрозы."},{n:"Подавление ЖКТ",tag:"торможение пищеварения",def:"Симпатика подавляет перистальтику и перераспределяет кровоток. «Тошнота от страха» — вагальный ответ на стресс, через интероцепцию усиливающий субъективное переживание страха."}],cn:[[{id:"am2",label:"Амигдала (ЦЯ)",sub:"→гипоталамус+ПАВ",col:"coral",w:150}],[{id:"sy",label:"Симпатика",sub:"адреналин",col:"amber",w:110},{id:"hp",label:"Ось ГГН",sub:"кортизол",col:"amber",w:110},{id:"fz",label:"Замирание",sub:"вент.ПАВ",col:"gray",w:100}],[{id:"hr",label:"↑ЧСС·↑АД",sub:"сек.",col:"amber",w:100},{id:"gs",label:"КГР·Пот",sub:"биомаркер",col:"amber",w:100},{id:"co",label:"Кортизол↑",sub:"10–60 мин",col:"amber",w:100},{id:"gt",label:"ЖКТ↓",sub:"торможение",col:"gray",w:90}]],ce:[["am2","sy"],["am2","hp"],["am2","fz"],["sy","hr"],["sy","gs"],["hp","co"],["sy","gt"]]},{num:"5",color:"#534AB7",bg:"#EEEDFE",dbg:"#3C3489",dc:"#CECBF6",title:"Когнитивный и регуляторный",sub:"ПФК · Рабочая память · Угашение",time:"300 мс – минуты",role:"осознание и регуляция",def:"Уровень сознательной обработки и регуляции страха. Субъективное переживание «я боюсь» возникает здесь — через сборку сигналов в рабочей памяти. ПФК строит переживание и запускает обратное торможение амигдалы. Нарушение этой петли — центральный механизм ПТСР.",comps:[{n:"Рабочая память",tag:"длПФК",def:"длПФК поддерживает одновременную репрезентацию: сигнал амигдалы + контекст гиппокампа + телесное состояние (инсула). Именно это «одновременное присутствие» порождает субъективный страх. Без длПФК — нет «я боюсь», есть только поведение."},{n:"Оценка угрозы",tag:"вмПФК",def:"ВмПФК оценивает реальность угрозы. При оценке «угроза ложная/прошла» — запускает торможение амигдалы. Нарушенная вмПФК при ПТСР — причина неспособности отличить безопасное от опасного."},{n:"Когнитивная переоценка",tag:"регуляция сверху-вниз",def:"Сознательное переосмысление значения угрозы активирует дПФК и снижает активность амигдалы. Нейробиологическая основа КПТ. Эффективность ограничена при высокой интенсивности страха."},{n:"Угашение страха",tag:"инфралимбическая ПФК",def:"Повторная экспозиция без подкрепления формирует ингибиторную память через ПФК→тормозные интернейроны БЛА. Угашение не стирает страховую память — создаёт конкурирующую «безопасную» ассоциацию."},{n:"«Я боюсь»",tag:"субъективное переживание",def:"Появляется на 300–500 мс — позже всех телесных реакций. По LeDoux (2016): субъективный страх — содержимое рабочей памяти, когда в ней одновременно: сигнал амигдалы + контекстуальная память + интероцептивный сигнал."},{n:"Экспозиционная терапия",tag:"клинический механизм",def:"Форсированное угашение через ПФК. D-циклосерин и йохимбин усиливают угашение. Гидрокортизол перед экспозицией ускоряет формирование ингибиторной памяти."}],cn:[[{id:"am3",label:"Амигдала",sub:"сигнал↑",col:"coral",w:100},{id:"hc2",label:"Гиппокамп",sub:"контекст",col:"blue",w:100},{id:"ins",label:"Инсула",sub:"тело",col:"gray",w:90}],[{id:"wm",label:"Рабочая память",sub:"дл-ПФК · сборка",col:"purple",w:140}],[{id:"sb",label:"«Я боюсь»",sub:"субъект.",col:"purple",w:110},{id:"ap",label:"Оценка угрозы",sub:"вм-ПФК",col:"purple",w:120}],[{id:"ex",label:"Угашение",sub:"ПФК→торм.инт.",col:"teal",w:120},{id:"ch",label:"Хронификация",sub:"петля нарушена",col:"coral",w:120}]],ce:[["am3","wm"],["hc2","wm"],["ins","wm"],["wm","sb"],["wm","ap"],["ap","ex"],["ap","ch"]]},{num:"6",color:"#534AB7",bg:"#EEEDFE",dbg:"#26215C",dc:"#CECBF6",title:"Феноменологический",sub:"Каково это — бояться изнутри",time:"300 мс +",role:"структура переживания",def:"Уровень первичного опыта от первого лица. Страх здесь — не симптом и не биомаркер, а способ быть-в-мире: мир сужается до угрозы, тело становится «напуганным» до рефлексии, время деформируется.",comps:[{n:"Интенциональность",tag:"страх всегда «на что-то»",def:"Страх не бывает «вообще» — он всегда направлен на объект (Брентано, Гуссерль). Furcht (страх) имеет конкретный объект; Angst (тревога) — нет. Это объясняет, почему лечение страха требует работы с конкретным объектом."},{n:"Телесное схватывание",tag:"до рефлексии",def:"Тело реагирует раньше, чем возникает мысль (Мерло-Понти). «Напуганное тело» — не следствие страха, а его форма бытия. Диссоциация при ПТСР — разрыв единства тела и сознания."},{n:"Сужение горизонта",tag:"деформация мира",def:"В страхе мир «схлопывается»: исчезают варианты и будущее. Хайдеггер: страх обнаруживает угрозу и «забирает» широту бытия-в-мире. Хроническое избегание — экзистенциальное сужение жизни."},{n:"Деформация времени",tag:"«только сейчас»",def:"Острый страх уничтожает горизонт: исчезают прошлое и будущее. При ПТСР — обратный эффект: прошлое вторгается в настоящее. Флэшбэк феноменологически — не воспоминание, а настоящее переживание прошлого."},{n:"Angst vs Furcht",tag:"Хайдеггер",def:"Furcht направлен на конкретную угрозу. Angst — на «ничто»: конечность, свободу, бессмысленность. Angst обнажает структуру существования, Furcht — конкретную опасность."},{n:"Квалиа страха",tag:"«каково это»",def:"Субъективное «каково это — бояться» (Нагель) нередуцируемо к нейронной активации. «Трудная проблема» (Чалмерс): паттерн активации не тождественен переживанию."}],cn:[[{id:"st",label:"Стимул воспринят",sub:"как угрожающий",col:"gray",w:150}],[{id:"bd",label:"Тело «напугано»",sub:"до рефлексии",col:"coral",w:130},{id:"ho",label:"Мир сужается",sub:"фокус на угрозу",col:"purple",w:130}],[{id:"ql",label:"«Я боюсь»",sub:"квалиа · интенц.",col:"purple",w:150}],[{id:"rf",label:"Рефлексия и смысл",sub:"переоценка",col:"teal",w:150}]],ce:[["st","bd"],["st","ho"],["bd","ql"],["ho","ql"],["ql","rf"]]},{num:"7",color:"#5F5E5A",bg:"#F1EFE8",dbg:"#2C2C2A",dc:"#D3D1C7",title:"Социальный и экзистенциальный",sub:"Страх как сила · Культура · Смысл",time:"хроника жизни",role:"смысл и коллективная сила",def:"Самый широкий уровень. Страх — не реакция организма, а структурирующая сила: организует общества, используется властью, конструируется культурой и задаёт экзистенциальный горизонт. Объект страха на этом уровне создаётся социально.",comps:[{n:"Социальный страх",tag:"отвержение · стыд · статус",def:"Страх социального исключения активирует те же цепи, что и физическая боль (АCC). Эволюционно: изгнание из группы = смерть. Страх публичного позора удерживает нормы эффективнее физического наказания."},{n:"Культура страха",tag:"Фуреди",def:"Культура страха (Furedi, 1997/2018) — социальная динамика несоразмерного культивирования угрозы. Медиа и институты усиливают восприятие опасности, подавляя автономное суждение. Результат: хроническая тревога как норма."},{n:"Страх смерти",tag:"Кьеркегор · ТМТ",def:"Осознание конечности — фундаментальный экзистенциальный страх. Terror Management Theory: большинство культурных феноменов — защита от осознания смертности. Страх смерти структурирует религию, героизм, идеологию."},{n:"Angst (Хайдеггер)",tag:"бытие-к-смерти",def:"Тревога перед собственной конечностью и несостоятельностью всех опор. Angst «вырывает» из обезличенного существования и обнажает подлинное. Невроз — бегство от Angst в Furcht."},{n:"Политический страх",tag:"Кори Робин",def:"Власть использует страх двумя способами: страх наказания (принуждение) и страх внешнего врага (мобилизация). Демократические режимы используют «разумную предосторожность» как инструмент добровольного самоконтроля."},{n:"Ритуал и разрешение",tag:"антропология страха",def:"Похороны, жертвоприношения, коллективные нарративы — социальные технологии управления экзистенциальным страхом. Разрушение ритуалов (секуляризация, атомизация) оставляет страх без культурного «контейнера»."}],cn:[[{id:"sc",label:"Социальный страх",sub:"отвержение",col:"gray",w:130},{id:"dt",label:"Страх смерти",sub:"конечность",col:"gray",w:120}],[{id:"cu",label:"Культура страха",sub:"медиа·власть",col:"gray",w:120},{id:"an",label:"Angst",sub:"«ничто»",col:"purple",w:120}],[{id:"rs",label:"Ритуал · Смысл",sub:"разрешение",col:"teal",w:140}]],ce:[["sc","cu"],["dt","an"],["cu","rs"],["an","rs"]]}];
+
+var COLMAP={gray:["#F1EFE8","#888780","#444441","#5F5E5A"],teal:["#E1F5EE","#0F6E56","#085041","#0F6E56"],coral:["#FAECE7","#993C1D","#4A1B0C","#712B13"],amber:["#FAEEDA","#854F0B","#412402","#633806"],purple:["#EEEDFE","#534AB7","#26215C","#3C3489"],blue:["#E6F1FB","#185FA5","#042C53","#0C447C"]};
+
+function buildCasc(rows,edges){
+  var W=520,PAD=16,rowH=50,rowGap=24;
+  var pm={};
+  var y=PAD;
+  for(var ri=0;ri<rows.length;ri++){
+    var row=rows[ri];
+    var tw=row.reduce(function(s,n){return s+n.w},0)+(row.length-1)*10;
+    var x=(W-tw)/2;
+    for(var ni=0;ni<row.length;ni++){
+      var n=row[ni];
+      pm[n.id]={x:x+n.w/2,y:y+rowH/2,x0:x,y0:y,w:n.w,h:rowH,n:n};
+      x+=n.w+10;
+    }
+    y+=rowH+rowGap;
+  }
+  var H=y-rowGap+PAD;
+  var lines='';
+  for(var ei=0;ei<edges.length;ei++){
+    var pa=pm[edges[ei][0]],pb=pm[edges[ei][1]];
+    if(!pa||!pb)continue;
+    lines+='<line x1="'+pa.x+'" y1="'+(pa.y0+pa.h)+'" x2="'+pb.x+'" y2="'+pb.y0+'" stroke="#bbb" stroke-width="0.9" fill="none" marker-end="url(#flarr)"/>';
+  }
+  var rects='';
+  for(var id in pm){
+    var p=pm[id],n=p.n,c=COLMAP[n.col]||COLMAP.gray;
+    var cx=p.x,hasS=!!n.sub;
+    var tY=p.y0+(hasS?13:rowH/2),sY=p.y0+30;
+    rects+='<rect x="'+p.x0+'" y="'+p.y0+'" width="'+p.w+'" height="'+p.h+'" rx="6" fill="'+c[0]+'" stroke="'+c[1]+'" stroke-width="0.5"/>';
+    rects+='<text x="'+cx+'" y="'+tY+'" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="'+c[2]+'">'+n.label+'</text>';
+    if(hasS)rects+='<text x="'+cx+'" y="'+sY+'" text-anchor="middle" dominant-baseline="central" font-size="10" fill="'+c[3]+'">'+n.sub+'</text>';
+  }
+  return '<div class="fl-casc"><svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:'+W+'px;height:'+H+'px;display:block;margin:0 auto"><defs><marker id="flarr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1.5L8.5 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>'+lines+rects+'</svg></div>';
+}
+
+var SLDEFS=[{key:"def",label:"Определение и функция"},{key:"comp",label:"Составляющие элементы"},{key:"casc",label:"Схема каскада"}];
+var stack=document.getElementById('fl-stack');
+var dk=window.matchMedia('(prefers-color-scheme:dark)').matches;
+
+LAYERS.forEach(function(lv,li){
+  var nf=dk?lv.dbg:lv.bg,nc=dk?lv.dc:lv.color;
+  var layer=document.createElement('div');
+  layer.className='fl-layer';
+  layer.id='fll'+li;
+  layer.style.setProperty('--fllc',lv.color);
+
+  var hdr=document.createElement('div');
+  hdr.className='fl-hdr';
+  hdr.innerHTML='<div class="fl-num" id="flnum'+li+'" style="color:'+nc+';background:'+nf+';border-color:'+lv.color+'">'+lv.num+'</div><div style="flex:1"><div class="fl-title">'+lv.title+'<div class="fl-sub">'+lv.sub+'</div></div></div><div class="fl-time">'+lv.time+'</div><span class="fl-chev">▾</span>';
+  hdr.onclick=function(li){return function(){flToggle(li)}}(li);
+  layer.appendChild(hdr);
+
+  var subs=document.createElement('div');subs.className='fl-subs';
+  var subsin=document.createElement('div');subsin.className='fl-subs-in';
+
+  SLDEFS.forEach(function(sl,si){
+    var sub=document.createElement('div');
+    sub.className='fl-sl';sub.id='flsl'+li+'_'+si;
+    var slhdr=document.createElement('div');
+    slhdr.className='fl-slhdr';
+    slhdr.innerHTML='<span class="fl-dot"></span><span class="fl-sltitle">'+sl.label+'</span><span class="fl-slchev">▾</span>';
+    slhdr.onclick=function(li,si){return function(e){e.stopPropagation();flSlToggle(li,si)}}(li,si);
+    sub.appendChild(slhdr);
+    var slbody=document.createElement('div');slbody.className='fl-slbody';
+    var slbin=document.createElement('div');slbin.className='fl-slbody-in';
+    var slc=document.createElement('div');slc.className='fl-slcontent';
+
+    if(sl.key==='def'){
+      slc.innerHTML='<div class="fl-def-role" style="background:'+(dk?lv.dbg:lv.bg)+';color:'+lv.color+';border:0.5px solid '+lv.color+'40">'+lv.role+'</div><div class="fl-def-text">'+lv.def+'</div>';
+    } else if(sl.key==='comp'){
+      var grid=document.createElement('div');grid.className='fl-comp-grid';
+      lv.comps.forEach(function(c,ci){
+        var item=document.createElement('div');
+        item.className='fl-comp-item';
+        item.style.setProperty('--fllc',lv.color);
+        item.innerHTML='<div class="fl-comp-name">'+c.n+'</div><div class="fl-comp-tag" style="color:'+lv.color+'90">'+c.tag+'</div><div class="fl-comp-def"><div class="fl-comp-def-in"><div class="fl-comp-def-text">'+c.def+'</div></div></div>';
+        item.onclick=function(grid,item){return function(e){e.stopPropagation();var was=item.classList.contains('fl-cx');grid.querySelectorAll('.fl-comp-item').forEach(function(i){i.classList.remove('fl-cx')});if(!was)item.classList.add('fl-cx')}}(grid,item);
+        grid.appendChild(item);
+      });
+      slc.appendChild(grid);
+    } else if(sl.key==='casc'){
+      slc.innerHTML=buildCasc(lv.cn,lv.ce);
+    }
+    slbin.appendChild(slc);slbody.appendChild(slbin);sub.appendChild(slbody);subsin.appendChild(sub);
+  });
+  subs.appendChild(subsin);layer.appendChild(subs);stack.appendChild(layer);
+});
+
+function flToggle(li){
+  var el=document.getElementById('fll'+li);
+  var was=el.classList.contains('fl-open');
+  document.querySelectorAll('.fl-layer').forEach(function(l,j){
+    l.classList.remove('fl-open');
+    var num=document.getElementById('flnum'+j);
+    var lv=LAYERS[j];var dk=window.matchMedia('(prefers-color-scheme:dark)').matches;
+    num.style.background=dk?lv.dbg:lv.bg;num.style.color=dk?lv.dc:lv.color;num.style.borderColor=lv.color;
+    document.querySelectorAll('#fll'+j+' .fl-sl').forEach(function(s){s.classList.remove('fl-sopen')});
+  });
+  if(!was){
+    el.classList.add('fl-open');
+    var lv=LAYERS[li];var num=document.getElementById('flnum'+li);
+    num.style.background=lv.color;num.style.color='#fff';num.style.borderColor=lv.color;
+    var first=document.getElementById('flsl'+li+'_0');if(first)first.classList.add('fl-sopen');
+  }
+}
+function flSlToggle(li,si){
+  var el=document.getElementById('flsl'+li+'_'+si);
+  el.classList.toggle('fl-sopen');
+}
+})();
+</script>
+      </div>
+
+      <div class="navigation-links">
         <a href="ptsd_recovery_en.html" class="nav-link prev">
           <span class="nav-arrow">←</span>
           <span>ПТСР: руководство по восстановлению</span>
