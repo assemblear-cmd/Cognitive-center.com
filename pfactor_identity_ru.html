@@ -261,6 +261,377 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
         <div id="levels-container"></div>
       </div>
 
+
+      <h2>Механика страха: от триггера к реакции</h2>
+      <p>Схема показывает полный каскад протекания страха — от сенсорного стимула через инструменты восприятия, два параллельных нейронных пути и физиологический каскад до моторной и поведенческой реакции. Каждый узел соответствует конкретной нейронной структуре и временно́му окну активации. Кликните на любой элемент для подробного объяснения.</p>
+
+      <div class="diagram-wrap" style="margin:32px 0 48px;overflow-x:auto">
+        <svg width="100%" viewBox="0 0 680 1320" role="img" style="min-width:520px">
+          <title>Механика страха: от триггера до реакции</title>
+          <desc>Полная схема протекания страха — от сенсорного триггера через инструменты восприятия, два пути обработки угрозы, физиологический каскад до моторной и поведенческой реакции</desc>
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="arrs" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <style>
+            .dsvg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1a1a1a; }
+            .dsvg .th { font-size: 14px; font-weight: 500; }
+            .dsvg .ts { font-size: 12px; font-weight: 400; fill: #5f5e5a; }
+            .dsvg .tm { font-size: 11px; font-weight: 400; fill: #888; }
+            .dsvg .node { cursor: pointer; }
+            .dsvg .node:hover rect { opacity: .88; }
+            .dsvg .arr-line { fill: none; stroke: #888; stroke-width: 1; }
+            .dsvg .arr-dash { fill: none; stroke: #bbb; stroke-width: 0.8; stroke-dasharray: 3 3; }
+            .dsvg .section-dash { fill: none; stroke: #e0e0e0; stroke-width: 0.5; stroke-dasharray: 4 3; }
+            @media (prefers-color-scheme: dark) {
+              .dsvg text { fill: #e8e4d8; }
+              .dsvg .ts { fill: #9b9990; }
+              .dsvg .tm { fill: #666; }
+              .dsvg .arr-line { stroke: #888; }
+              .dsvg .arr-dash { stroke: #555; }
+              .dsvg .section-dash { stroke: #333; }
+              .dsvg .c-gray rect { fill: #2c2c2a; stroke: #5f5e5a; }
+              .dsvg .c-gray .th { fill: #d3d1c7; }
+              .dsvg .c-gray .ts { fill: #888780; }
+              .dsvg .c-teal rect { fill: #085041; stroke: #1d9e75; }
+              .dsvg .c-teal .th { fill: #9fe1cb; }
+              .dsvg .c-teal .ts { fill: #5dcaa5; }
+              .dsvg .c-coral rect { fill: #712b13; stroke: #d85a30; }
+              .dsvg .c-coral .th { fill: #f5c4b3; }
+              .dsvg .c-coral .ts { fill: #f0997b; }
+              .dsvg .c-amber rect { fill: #633806; stroke: #ba7517; }
+              .dsvg .c-amber .th { fill: #fac775; }
+              .dsvg .c-amber .ts { fill: #ef9f27; }
+              .dsvg .c-purple rect { fill: #3c3489; stroke: #7f77dd; }
+              .dsvg .c-purple .th { fill: #cecbf6; }
+              .dsvg .c-purple .ts { fill: #afa9ec; }
+              .dsvg .c-blue rect { fill: #0c447c; stroke: #378add; }
+              .dsvg .c-blue .th { fill: #b5d4f4; }
+              .dsvg .c-blue .ts { fill: #85b7eb; }
+            }
+            .dsvg .c-gray rect { fill: #f1efe8; stroke: #888780; stroke-width: 0.5; }
+            .dsvg .c-gray .th { fill: #444441; }
+            .dsvg .c-gray .ts { fill: #5f5e5a; }
+            .dsvg .c-teal rect { fill: #e1f5ee; stroke: #0f6e56; stroke-width: 0.5; }
+            .dsvg .c-teal .th { fill: #085041; }
+            .dsvg .c-teal .ts { fill: #0f6e56; }
+            .dsvg .c-coral rect { fill: #faece7; stroke: #993c1d; stroke-width: 0.5; }
+            .dsvg .c-coral .th { fill: #4a1b0c; }
+            .dsvg .c-coral .ts { fill: #712b13; }
+            .dsvg .c-amber rect { fill: #faeeda; stroke: #854f0b; stroke-width: 0.5; }
+            .dsvg .c-amber .th { fill: #412402; }
+            .dsvg .c-amber .ts { fill: #633806; }
+            .dsvg .c-purple rect { fill: #eeedfe; stroke: #534ab7; stroke-width: 0.5; }
+            .dsvg .c-purple .th { fill: #26215c; }
+            .dsvg .c-purple .ts { fill: #3c3489; }
+            .dsvg .c-blue rect { fill: #e6f1fb; stroke: #185fa5; stroke-width: 0.5; }
+            .dsvg .c-blue .th { fill: #042c53; }
+            .dsvg .c-blue .ts { fill: #0c447c; }
+          </style>
+          <g class="dsvg">
+
+            <!-- Time labels -->
+            <text class="tm" x="22" y="60">0 мс</text>
+            <text class="tm" x="22" y="145">~5 мс</text>
+            <text class="tm" x="22" y="250">10 мс</text>
+            <text class="tm" x="22" y="352">12–88 мс</text>
+            <text class="tm" x="22" y="442">88–170</text>
+            <text class="tm" x="22" y="532">100–200</text>
+            <text class="tm" x="22" y="648">100 мс–</text>
+            <text class="tm" x="22" y="660">1 мин</text>
+            <text class="tm" x="22" y="802">300–500</text>
+            <text class="tm" x="22" y="918">500 мс–</text>
+            <text class="tm" x="22" y="930">5 мин</text>
+            <text class="tm" x="22" y="1058">200 мс–</text>
+            <text class="tm" x="22" y="1070">непрер.</text>
+            <text class="tm" x="22" y="1178">20 мин–</text>
+            <text class="tm" x="22" y="1190">дни</text>
+
+            <!-- Section right labels -->
+            <text class="tm" x="656" y="148" text-anchor="end">восприятие</text>
+            <text class="tm" x="656" y="352" text-anchor="end">быстрый путь</text>
+            <text class="tm" x="656" y="442" text-anchor="end">детекция</text>
+            <text class="tm" x="656" y="532" text-anchor="end">каскад</text>
+            <text class="tm" x="656" y="648" text-anchor="end">физиология</text>
+            <text class="tm" x="656" y="802" text-anchor="end">сознание</text>
+            <text class="tm" x="656" y="918" text-anchor="end">оценка</text>
+            <text class="tm" x="656" y="1062" text-anchor="end">действие</text>
+            <text class="tm" x="656" y="1182" text-anchor="end">разрешение</text>
+
+            <!-- TRIGGER -->
+            <g class="node c-gray">
+              <rect x="218" y="40" width="244" height="52" rx="8"/>
+              <text class="th" x="340" y="61" text-anchor="middle" dominant-baseline="central">Триггер — угрожающий стимул</text>
+              <text class="ts" x="340" y="79" text-anchor="middle" dominant-baseline="central">Зрение · Слух · Запах · Тело · Память</text>
+            </g>
+
+            <!-- Trigger → thalamus arrow via perception -->
+            <line x1="340" y1="92" x2="340" y2="118" class="arr-line" marker-end="url(#arr)"/>
+
+            <!-- PERCEPTION ORGANS -->
+            <g class="node c-teal">
+              <rect x="32" y="118" width="94" height="52" rx="6"/>
+              <text class="th" x="79" y="139" text-anchor="middle" dominant-baseline="central">Зрение</text>
+              <text class="ts" x="79" y="157" text-anchor="middle" dominant-baseline="central">сетчатка→V1</text>
+            </g>
+            <g class="node c-teal">
+              <rect x="140" y="118" width="94" height="52" rx="6"/>
+              <text class="th" x="187" y="139" text-anchor="middle" dominant-baseline="central">Слух</text>
+              <text class="ts" x="187" y="157" text-anchor="middle" dominant-baseline="central">улитка→A1</text>
+            </g>
+            <g class="node c-teal">
+              <rect x="248" y="118" width="94" height="52" rx="6"/>
+              <text class="th" x="295" y="139" text-anchor="middle" dominant-baseline="central">Запах</text>
+              <text class="ts" x="295" y="157" text-anchor="middle" dominant-baseline="central">обон. луковица</text>
+            </g>
+            <g class="node c-teal">
+              <rect x="356" y="118" width="94" height="52" rx="6"/>
+              <text class="th" x="403" y="139" text-anchor="middle" dominant-baseline="central">Интероцепция</text>
+              <text class="ts" x="403" y="157" text-anchor="middle" dominant-baseline="central">внутр. органы</text>
+            </g>
+            <g class="node c-teal">
+              <rect x="464" y="118" width="104" height="52" rx="6"/>
+              <text class="th" x="516" y="139" text-anchor="middle" dominant-baseline="central">Память</text>
+              <text class="ts" x="516" y="157" text-anchor="middle" dominant-baseline="central">гиппокамп</text>
+            </g>
+
+            <!-- Quality annotation -->
+            <rect x="578" y="122" width="74" height="44" rx="6" class="section-dash"/>
+            <text class="tm" x="615" y="140" text-anchor="middle">качество</text>
+            <text class="tm" x="615" y="154" text-anchor="middle">сигнала ↕</text>
+
+            <!-- Perception → thalamus -->
+            <line x1="79"  y1="170" x2="275" y2="222" class="arr-line" marker-end="url(#arrs)"/>
+            <line x1="187" y1="170" x2="298" y2="222" class="arr-line" marker-end="url(#arrs)"/>
+            <line x1="295" y1="170" x2="320" y2="222" class="arr-line" marker-end="url(#arrs)"/>
+            <line x1="403" y1="170" x2="368" y2="222" class="arr-line" marker-end="url(#arrs)"/>
+            <line x1="516" y1="170" x2="406" y2="222" class="arr-line" marker-end="url(#arrs)"/>
+
+            <!-- THALAMUS -->
+            <g class="node c-gray">
+              <rect x="228" y="222" width="224" height="52" rx="8"/>
+              <text class="th" x="340" y="243" text-anchor="middle" dominant-baseline="central">Таламус</text>
+              <text class="ts" x="340" y="261" text-anchor="middle" dominant-baseline="central">Ретрансляционный центр</text>
+            </g>
+            <text class="tm" x="340" y="300" text-anchor="middle">↙ два параллельных пути ↘</text>
+
+            <!-- Thalamus → two roads -->
+            <path d="M298 274 L158 318" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+            <path d="M382 274 L522 318" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+
+            <!-- LOW ROAD -->
+            <g class="node c-coral">
+              <rect x="60" y="318" width="196" height="64" rx="8"/>
+              <text class="th" x="158" y="340" text-anchor="middle" dominant-baseline="central">«Нижний путь»</text>
+              <text class="ts" x="158" y="358" text-anchor="middle" dominant-baseline="central">Таламус → амигдала</text>
+              <text class="ts" x="158" y="373" text-anchor="middle" dominant-baseline="central">Грубый сигнал · 12–88 мс</text>
+            </g>
+
+            <!-- HIGH ROAD -->
+            <g class="node c-blue">
+              <rect x="424" y="318" width="196" height="64" rx="8"/>
+              <text class="th" x="522" y="340" text-anchor="middle" dominant-baseline="central">«Верхний путь»</text>
+              <text class="ts" x="522" y="358" text-anchor="middle" dominant-baseline="central">Таламус → кора → амигдала</text>
+              <text class="ts" x="522" y="373" text-anchor="middle" dominant-baseline="central">Точный анализ · 150–300 мс</text>
+            </g>
+
+            <!-- Two roads → amygdala -->
+            <path d="M158 382 L278 418" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+            <path d="M522 382 L402 418" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+
+            <!-- AMYGDALA -->
+            <g class="node c-coral">
+              <rect x="208" y="418" width="264" height="64" rx="8"/>
+              <text class="th" x="340" y="440" text-anchor="middle" dominant-baseline="central">Амигдала (БЛА + ЦЯ)</text>
+              <text class="ts" x="340" y="458" text-anchor="middle" dominant-baseline="central">Детекция угрозы · Условный страх</text>
+              <text class="ts" x="340" y="473" text-anchor="middle" dominant-baseline="central">Запускает защитный каскад</text>
+            </g>
+
+            <!-- Hippocampus -->
+            <g class="node c-blue">
+              <rect x="508" y="430" width="126" height="44" rx="6"/>
+              <text class="th" x="571" y="449" text-anchor="middle" dominant-baseline="central">Гиппокамп</text>
+              <text class="ts" x="571" y="464" text-anchor="middle" dominant-baseline="central">Контекст · Память</text>
+            </g>
+            <line x1="508" y1="452" x2="472" y2="452" class="arr-dash" marker-end="url(#arrs)"/>
+
+            <!-- Amygdala → 3 outputs -->
+            <path d="M258 482 L148 518" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+            <line x1="340" y1="482" x2="340" y2="518" class="arr-line" marker-end="url(#arrs)"/>
+            <path d="M422 482 L530 518" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+
+            <!-- HYPOTHALAMUS -->
+            <g class="node c-amber">
+              <rect x="48" y="518" width="196" height="52" rx="8"/>
+              <text class="th" x="146" y="539" text-anchor="middle" dominant-baseline="central">Гипоталамус</text>
+              <text class="ts" x="146" y="557" text-anchor="middle" dominant-baseline="central">ВНС + ось ГГН</text>
+            </g>
+
+            <!-- PAG brainstem -->
+            <g class="node c-coral">
+              <rect x="240" y="518" width="200" height="52" rx="8"/>
+              <text class="th" x="340" y="539" text-anchor="middle" dominant-baseline="central">ПАВ / ствол мозга</text>
+              <text class="ts" x="340" y="557" text-anchor="middle" dominant-baseline="central">Замирание · Бегство · Борьба</text>
+            </g>
+
+            <!-- PFC -->
+            <g class="node c-purple">
+              <rect x="436" y="518" width="196" height="52" rx="8"/>
+              <text class="th" x="534" y="539" text-anchor="middle" dominant-baseline="central">Префронтальная кора</text>
+              <text class="ts" x="534" y="557" text-anchor="middle" dominant-baseline="central">Оценка · Торможение</text>
+            </g>
+
+            <!-- Section: physiology -->
+            <rect x="32" y="592" width="578" height="22" rx="4" class="section-dash"/>
+            <text class="tm" x="321" y="607" text-anchor="middle">физиологический каскад</text>
+
+            <line x1="146" y1="570" x2="146" y2="608" class="arr-line" marker-end="url(#arrs)"/>
+            <line x1="340" y1="570" x2="340" y2="608" class="arr-line" marker-end="url(#arrs)"/>
+
+            <!-- Physiology row 1 -->
+            <g class="node c-amber">
+              <rect x="32" y="624" width="175" height="52" rx="6"/>
+              <text class="th" x="119" y="645" text-anchor="middle" dominant-baseline="central">Адреналин / норадр.</text>
+              <text class="ts" x="119" y="663" text-anchor="middle" dominant-baseline="central">Надпочечники · сек.</text>
+            </g>
+            <g class="node c-amber">
+              <rect x="222" y="624" width="175" height="52" rx="6"/>
+              <text class="th" x="309" y="645" text-anchor="middle" dominant-baseline="central">Сердце · Лёгкие</text>
+              <text class="ts" x="309" y="663" text-anchor="middle" dominant-baseline="central">↑ ЧСС · ↑ дыхание</text>
+            </g>
+            <g class="node c-amber">
+              <rect x="412" y="624" width="175" height="52" rx="6"/>
+              <text class="th" x="499" y="645" text-anchor="middle" dominant-baseline="central">Мышцы · Зрачки</text>
+              <text class="ts" x="499" y="663" text-anchor="middle" dominant-baseline="central">Напряжение · Расшир.</text>
+            </g>
+
+            <!-- Physiology row 2 -->
+            <g class="node c-amber">
+              <rect x="32" y="690" width="175" height="52" rx="6"/>
+              <text class="th" x="119" y="711" text-anchor="middle" dominant-baseline="central">Кортизол (ГГН)</text>
+              <text class="ts" x="119" y="729" text-anchor="middle" dominant-baseline="central">Нарастает 10–20 мин</text>
+            </g>
+            <g class="node c-amber">
+              <rect x="222" y="690" width="175" height="52" rx="6"/>
+              <text class="th" x="309" y="711" text-anchor="middle" dominant-baseline="central">ЖКТ · Иммунитет</text>
+              <text class="ts" x="309" y="729" text-anchor="middle" dominant-baseline="central">Подавление · Перераспр.</text>
+            </g>
+            <g class="node c-amber">
+              <rect x="412" y="690" width="175" height="52" rx="6"/>
+              <text class="th" x="499" y="711" text-anchor="middle" dominant-baseline="central">Кожа · Потоотдел.</text>
+              <text class="ts" x="499" y="729" text-anchor="middle" dominant-baseline="central">КГР↑ · Пиломоторика</text>
+            </g>
+
+            <!-- Conscious experience -->
+            <line x1="340" y1="742" x2="340" y2="778" class="arr-line" marker-end="url(#arrs)"/>
+            <path d="M534 570 Q534 740 428 800" fill="none" class="arr-dash" marker-end="url(#arrs)"/>
+
+            <g class="node c-purple">
+              <rect x="178" y="778" width="324" height="64" rx="8"/>
+              <text class="th" x="340" y="800" text-anchor="middle" dominant-baseline="central">Субъективное переживание страха</text>
+              <text class="ts" x="340" y="818" text-anchor="middle" dominant-baseline="central">ПФК + рабочая память + амигдала</text>
+              <text class="ts" x="340" y="833" text-anchor="middle" dominant-baseline="central">«Я боюсь» — возникает здесь</text>
+            </g>
+
+            <!-- Appraisal -->
+            <line x1="340" y1="842" x2="340" y2="878" class="arr-line" marker-end="url(#arrs)"/>
+
+            <g class="node c-purple">
+              <rect x="178" y="878" width="324" height="52" rx="8"/>
+              <text class="th" x="340" y="899" text-anchor="middle" dominant-baseline="central">Когнитивная оценка угрозы</text>
+              <text class="ts" x="340" y="917" text-anchor="middle" dominant-baseline="central">«Насколько реальна опасность?» · ПФК</text>
+            </g>
+
+            <!-- Two outcomes -->
+            <path d="M278 930 L148 966" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+            <path d="M402 930 L532 966" fill="none" class="arr-line" marker-end="url(#arrs)"/>
+
+            <g class="node c-coral">
+              <rect x="48" y="966" width="196" height="44" rx="6"/>
+              <text class="th" x="146" y="984" text-anchor="middle" dominant-baseline="central">Угроза реальна</text>
+              <text class="ts" x="146" y="999" text-anchor="middle" dominant-baseline="central">↑ каскад усиливается</text>
+            </g>
+            <g class="node c-teal">
+              <rect x="436" y="966" width="196" height="44" rx="6"/>
+              <text class="th" x="534" y="984" text-anchor="middle" dominant-baseline="central">Угроза ложная</text>
+              <text class="ts" x="534" y="999" text-anchor="middle" dominant-baseline="central">ПФК тормозит амигдалу</text>
+            </g>
+
+            <!-- Motor section header -->
+            <rect x="32" y="1030" width="578" height="22" rx="4" class="section-dash"/>
+            <text class="tm" x="321" y="1045" text-anchor="middle">моторные и поведенческие реакции</text>
+            <line x1="146" y1="1010" x2="146" y2="1048" class="arr-line" marker-end="url(#arrs)"/>
+            <line x1="340" y1="1010" x2="340" y2="1048" class="arr-dash"/>
+
+            <!-- Motor outputs -->
+            <g class="node c-coral">
+              <rect x="32" y="1062" width="128" height="52" rx="6"/>
+              <text class="th" x="96" y="1083" text-anchor="middle" dominant-baseline="central">Замирание</text>
+              <text class="ts" x="96" y="1101" text-anchor="middle" dominant-baseline="central">ПАВ → торм.</text>
+            </g>
+            <g class="node c-coral">
+              <rect x="176" y="1062" width="128" height="52" rx="6"/>
+              <text class="th" x="240" y="1083" text-anchor="middle" dominant-baseline="central">Бегство</text>
+              <text class="ts" x="240" y="1101" text-anchor="middle" dominant-baseline="central">Двиг. кора</text>
+            </g>
+            <g class="node c-coral">
+              <rect x="320" y="1062" width="128" height="52" rx="6"/>
+              <text class="th" x="384" y="1083" text-anchor="middle" dominant-baseline="central">Борьба</text>
+              <text class="ts" x="384" y="1101" text-anchor="middle" dominant-baseline="central">Двиг. кора</text>
+            </g>
+            <g class="node c-purple">
+              <rect x="464" y="1062" width="148" height="52" rx="6"/>
+              <text class="th" x="538" y="1083" text-anchor="middle" dominant-baseline="central">Избегание</text>
+              <text class="ts" x="538" y="1101" text-anchor="middle" dominant-baseline="central">Поведение · дни</text>
+            </g>
+
+            <!-- Resolution -->
+            <line x1="340" y1="1114" x2="340" y2="1150" class="arr-line" marker-end="url(#arrs)"/>
+
+            <g class="node c-teal">
+              <rect x="58" y="1150" width="240" height="64" rx="8"/>
+              <text class="th" x="178" y="1172" text-anchor="middle" dominant-baseline="central">Разрешение (норма)</text>
+              <text class="ts" x="178" y="1190" text-anchor="middle" dominant-baseline="central">ПФК тормозит амигдалу</text>
+              <text class="ts" x="178" y="1205" text-anchor="middle" dominant-baseline="central">Кортизол ↓ · 20–60 мин</text>
+            </g>
+            <g class="node c-coral">
+              <rect x="382" y="1150" width="240" height="64" rx="8"/>
+              <text class="th" x="502" y="1172" text-anchor="middle" dominant-baseline="central">Хронификация</text>
+              <text class="ts" x="502" y="1190" text-anchor="middle" dominant-baseline="central">ПФК не гасит амигдалу</text>
+              <text class="ts" x="502" y="1205" text-anchor="middle" dominant-baseline="central">ПТСР · Тревожн. расстройства</text>
+            </g>
+
+            <!-- Memory consolidation note -->
+            <rect x="148" y="1240" width="384" height="34" rx="6" class="section-dash"/>
+            <text class="tm" x="340" y="1261" text-anchor="middle">Консолидация памяти страха: 4–6 часов</text>
+            <line x1="178" y1="1214" x2="210" y2="1240" class="arr-dash"/>
+            <line x1="502" y1="1214" x2="470" y2="1240" class="arr-dash"/>
+
+            <!-- PFC feedback loop -->
+            <path d="M534 518 Q622 490 622 452 Q622 418 472 452" fill="none" class="arr-dash" marker-end="url(#arrs)"/>
+            <text class="tm" x="652" y="488" text-anchor="end">↺ торм.</text>
+
+            <!-- Legend -->
+            <line x1="32" y1="1292" x2="648" y2="1292" stroke="#e0e0e0" stroke-width="0.5"/>
+            <rect x="32"  y="1302" width="10" height="10" rx="2" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.5"/>
+            <text class="tm" x="48"  y="1311">восприятие / разрешение</text>
+            <rect x="186" y="1302" width="10" height="10" rx="2" fill="#faece7" stroke="#993c1d" stroke-width="0.5"/>
+            <text class="tm" x="202" y="1311">быстрые защитные цепи</text>
+            <rect x="358" y="1302" width="10" height="10" rx="2" fill="#faeeda" stroke="#854f0b" stroke-width="0.5"/>
+            <text class="tm" x="374" y="1311">физиология</text>
+            <rect x="452" y="1302" width="10" height="10" rx="2" fill="#eeedfe" stroke="#534ab7" stroke-width="0.5"/>
+            <text class="tm" x="468" y="1311">сознание / регуляция</text>
+            <rect x="578" y="1302" width="10" height="10" rx="2" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.5"/>
+            <text class="tm" x="594" y="1311">контекст</text>
+
+          </g>
+        </svg>
+      </div>
+
       <div class="navigation-links">
         <a href="ptsd_recovery_en.html" class="nav-link prev">
           <span class="nav-arrow">←</span>
