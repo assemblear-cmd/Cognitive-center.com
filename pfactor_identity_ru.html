@@ -251,7 +251,431 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
         <p>Логическая вертикаль: как биологическая уязвимость становится личностью.</p>
       </div>
 
-      <h2 style="border-top:none;padding-top:0;margin-top:0">Центральный вопрос</h2>
+
+      <!-- ══ TOC ══════════════════════════════════════════════ -->
+      <nav id="fear-toc" aria-label="Оглавление" style="margin:0 0 48px">
+        <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:12px;font-weight:500">Содержание</div>
+        <div id="toc-list" style="display:flex;flex-direction:column;gap:4px"></div>
+      </nav>
+      <style>
+        .toc-item{display:flex;align-items:baseline;gap:10px;padding:7px 12px;border-radius:8px;cursor:pointer;border:0.5px solid #e8e8e8;text-decoration:none;color:#1a1a1a;transition:background .15s,border-color .15s;background:#fff}
+        .toc-item:hover{background:#f7f7f5;border-color:#bbb}
+        .toc-item.toc-active{background:#f7f7f5;border-color:#1a1a1a}
+        .toc-num{font-size:11px;color:#aaa;min-width:18px;font-variant-numeric:tabular-nums}
+        .toc-title{font-size:14px;font-weight:500;flex:1}
+        .toc-status{font-size:11px;color:#aaa;white-space:nowrap}
+        @media(prefers-color-scheme:dark){
+          .toc-item{background:#1c1c19;border-color:#333;color:#e8e4d8}
+          .toc-item:hover{background:#2a2a28;border-color:#666}
+          .toc-item.toc-active{background:#2a2a28;border-color:#e0e0e0}
+        }
+      </style>
+      <script>
+      (function(){
+        var SECTIONS=[
+          {id:"sec-definition",  num:"01", title:"Определение страха",           status:"12 уровней"},
+          {id:"sec-limits",      num:"02", title:"Границы. Где начинается и заканчивается", status:"временна́я шкала"},
+          {id:"sec-flow",        num:"03", title:"Как протекает страх",           status:"каскад"},
+          {id:"sec-measurement", num:"04", title:"Как фиксируется — объективно и субъективно", status:"биомаркеры"},
+          {id:"sec-disorders",   num:"05", title:"С какими заболеваниями связан", status:"спектр"},
+          {id:"sec-layers",      num:"06", title:"Слои механики страха",          status:"7 уровней"},
+          {id:"sec-cascade",     num:"07", title:"Механика: от триггера к реакции",status:"схема"},
+          {id:"sec-question",    num:"08", title:"Центральный вопрос",            status:"p-фактор"},
+        ];
+        var list=document.getElementById('toc-list');
+        SECTIONS.forEach(function(s){
+          var a=document.createElement('a');
+          a.className='toc-item';
+          a.href='#'+s.id;
+          a.id='toc-'+s.id;
+          a.innerHTML='<span class="toc-num">'+s.num+'</span><span class="toc-title">'+s.title+'</span><span class="toc-status">'+s.status+'</span>';
+          a.onclick=function(e){
+            e.preventDefault();
+            var el=document.getElementById(s.id);
+            if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+          };
+          list.appendChild(a);
+        });
+        // Highlight active on scroll
+        var obs=new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            var tocEl=document.getElementById('toc-'+entry.target.id);
+            if(tocEl){
+              if(entry.isIntersecting)tocEl.classList.add('toc-active');
+              else tocEl.classList.remove('toc-active');
+            }
+          });
+        },{rootMargin:'-20% 0px -70% 0px'});
+        SECTIONS.forEach(function(s){
+          var el=document.getElementById(s.id);
+          if(el)obs.observe(el);
+        });
+      })();
+      </script>
+
+      <!-- ══ 01 ОПРЕДЕЛЕНИЕ ════════════════════════════════════ -->
+      <section id="sec-definition" style="scroll-margin-top:80px">
+        <h2>Определение страха</h2>
+        <p>Страх не имеет единого универсального определения — он существует одновременно на нескольких онтологических уровнях, и каждая дисциплина описывает свой уровень в своих терминах. Ниже — наиболее цитируемые определения по каждой призме.</p>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0 32px" id="def-accordion">
+          <style>
+            .def-card{border:0.5px solid #e8e8e8;border-radius:10px;overflow:hidden;transition:border-color .18s}
+            .def-card:hover{border-color:#bbb}
+            .def-card.def-open{border-color:#1a1a1a}
+            .def-hdr{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;user-select:none;background:#fff}
+            .def-pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:20px;border:0.5px solid currentColor;white-space:nowrap;flex-shrink:0}
+            .def-title-wrap{flex:1}
+            .def-card-title{font-size:14px;font-weight:500;color:#1a1a1a}
+            .def-card-src{font-size:11px;color:#888;margin-top:1px}
+            .def-chev{font-size:13px;color:#aaa;transition:transform .2s;flex-shrink:0}
+            .def-card.def-open .def-chev{transform:rotate(180deg)}
+            .def-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+            .def-card.def-open .def-body{grid-template-rows:1fr}
+            .def-body-in{overflow:hidden}
+            .def-body-content{padding:0 16px 16px 16px;border-top:0.5px solid #f0f0f0}
+            .def-text{font-size:14px;line-height:1.75;color:#333;margin-top:12px}
+            .def-quote{font-style:italic;font-size:14px;line-height:1.7;color:#555;border-left:3px solid currentColor;padding-left:14px;margin:12px 0}
+            @media(prefers-color-scheme:dark){
+              .def-card{border-color:#333}.def-card:hover{border-color:#666}.def-card.def-open{border-color:#e0e0e0}
+              .def-hdr{background:#1c1c19}.def-card-title{color:#e8e4d8}.def-card-src{color:#666}
+              .def-body-content{border-top-color:#2a2a28}.def-text{color:#a8a6a0}.def-quote{color:#888}
+            }
+          </style>
+          <script>
+          (function(){
+            var DEFS=[
+              {color:"#854F0B",pill:"DSM-5-TR · Клинический",title:"Официальное клиническое определение",src:"APA, DSM-5-TR, 2022",
+               quote:"Страх — эмоциональный ответ на реальную или воспринимаемую непосредственную угрозу.",
+               text:"Страх связан со всплесками автономного возбуждения, необходимыми для реакции «бей или беги», мыслями о немедленной опасности и поведением побега или избегания. Он отличается от тревоги (предвосхищение будущей угрозы) по временно́му горизонту: страх = сейчас, тревога = потом. Это единственное операциональное определение, используемое в диагностике."},
+              {color:"#0F6E56",pill:"Нейронаука · LeDoux",title:"Двухсистемная нейронаучная модель",src:"LeDoux & Pine, Am. J. Psychiatry, 2016",
+               quote:"Страх обозначает сознательное субъективное переживание, связанное с непосредственной угрозой. Он принципиально отличается от защитных реакций.",
+               text:"По LeDoux, «страх» = то, что человек переживает осознанно (кора). «Защитные реакции» (замирание, бегство, учащение пульса) = то, что тело делает автоматически (амигдала, ствол мозга). Они могут идти параллельно или независимо. Это означает: фармакология, убирающая телесные симптомы, не обязательно убирает субъективный страх — и наоборот."},
+              {color:"#534AB7",pill:"Феноменология",title:"Экзистенциально-феноменологическое определение",src:"Хайдеггер, Sein und Zeit, §30",
+               quote:"Furcht — это аффективный ответ на конкретную угрозу в мире. Angst направлена на ничто — на собственную конечность.",
+               text:"Хайдеггер разграничивает Furcht (страх перед конкретным объектом) и Angst (экзистенциальная тревога без объекта). Страх «обнаруживает» угрожающую вещь и одновременно «забирает» широту бытия-в-мире: мир сужается до угрозы. Это различие принципиальнее, чем DSM-разграничение, поскольку описывает структуру переживания, а не симптоматику."},
+              {color:"#993C1D",pill:"RDoC · Исследовательский",title:"Транзодиагностический исследовательский конструкт",src:"NIMH RDoC: Acute Threat (Fear), 2023",
+               quote:"Острая угроза (страх) — активация оборонительной мотивационной системы мозга с целью продвижения поведений, защищающих организм от воспринимаемой опасности.",
+               text:"RDoC определяет страх не через симптомы, а через измеримые биомаркеры: потенцированный стартл-рефлекс, кожную проводимость, активацию амигдалы, изменения ЧСС. Этот конструкт трансдиагностичен — он релевантен для тревожных расстройств, ПТСР и других патологий. Цель RDoC: создать систему измерений, независимую от диагностических категорий DSM."},
+              {color:"#185FA5",pill:"Вычислительная нейронаука",title:"Байесовская / предиктивная модель",src:"Yamamori & Robinson, NBR, 2023",
+               quote:"Страх — сигнал ошибки предсказания: мозг обнаруживает расхождение между ожидаемой безопасностью и воспринятой угрозой.",
+               text:"В рамках теории активного вывода (active inference) мозг непрерывно предсказывает вероятность угрозы. Страх — не реакция на стимул, а результат байесовского обновления: ошибка предсказания (неожиданная угроза) вызывает всплеск. Патологический страх = нарушение механизма обновления: мозг не обновляет предсказание даже при безопасном исходе — именно так устроена ПТСР-петля."},
+              {color:"#5F5E5A",pill:"Интегративное",title:"Многоуровневое интегративное определение",src:"Разработано на основе 12 призм",
+               quote:"Страх — многоуровневое состояние живого существа, возникающее в ответ на воспринятую угрозу его существованию, целостности или значимым связям.",
+               text:"Это определение не редуцирует страх к одному уровню. Оно утверждает, что страх реализуется одновременно на молекулярном, нейронном, поведенческом, феноменальном, межличностном и смысловом уровнях — каждый из которых реален, ни один из которых не является исчерпывающим. Единое определение страха невозможно по той же причине, по которой невозможно единое определение «жизни» — это объект с несколькими онтологическими слоями."},
+            ];
+            var acc=document.getElementById('def-accordion');
+            DEFS.forEach(function(d,i){
+              var card=document.createElement('div');
+              card.className='def-card';card.id='def-card-'+i;
+              card.innerHTML='<div class="def-hdr" onclick="defToggle('+i+')"><span class="def-pill" style="color:'+d.color+';border-color:'+d.color+'60">'+d.pill+'</span><div class="def-title-wrap"><div class="def-card-title">'+d.title+'</div><div class="def-card-src">'+d.src+'</div></div><span class="def-chev">▾</span></div><div class="def-body"><div class="def-body-in"><div class="def-body-content"><div class="def-quote" style="border-color:'+d.color+'">'+d.quote+'</div><div class="def-text">'+d.text+'</div></div></div></div>';
+              acc.appendChild(card);
+            });
+          })();
+          function defToggle(i){
+            var c=document.getElementById('def-card-'+i);
+            var was=c.classList.contains('def-open');
+            document.querySelectorAll('.def-card').forEach(function(x){x.classList.remove('def-open')});
+            if(!was)c.classList.add('def-open');
+          }
+          </script>
+        </div>
+      </section>
+
+      <!-- ══ 02 ГРАНИЦЫ ════════════════════════════════════════ -->
+      <section id="sec-limits" style="scroll-margin-top:80px">
+        <h2>Границы. Где начинается и где заканчивается</h2>
+        <p>Страх — не мгновенное событие и не бесконечное состояние. У него есть точное начало, пик и разрешение. Понимание границ страха принципиально для отличия нормальной реакции от патологической.</p>
+
+        <div style="margin:24px 0 16px">
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:10px">Где начинается</div>
+          <div style="border:0.5px solid #e8e8e8;border-radius:10px;padding:16px 20px;background:#f9f9f7">
+            <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:6px">Не с осознания — с детекции угрозы таламусом</div>
+            <div style="font-size:13px;line-height:1.75;color:#555">Страх начинается в момент, когда таламус получает сенсорный сигнал и отправляет его в амигдалу — ещё до коры, до сознания, до «я». Тело начинает реагировать за <strong>88 мс</strong>, тогда как субъективное «я боюсь» возникает лишь на <strong>300–500 мс</strong>. Формально точка начала страха — первая синаптическая активация в БЛА амигдалы.</div>
+          </div>
+        </div>
+
+        <div style="margin:0 0 16px">
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:10px">Что отделяет страх от тревоги</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="border:0.5px solid #faece7;border-radius:10px;padding:14px 16px;background:#fdf5f2">
+              <div style="font-size:12px;font-weight:600;color:#993c1d;margin-bottom:5px">СТРАХ</div>
+              <div style="font-size:13px;line-height:1.7;color:#555">Угроза <strong>здесь и сейчас</strong>. Идентифицируемый объект. Пропорциональная интенсивность. Разрешается при устранении угрозы.</div>
+            </div>
+            <div style="border:0.5px solid #e6f1fb;border-radius:10px;padding:14px 16px;background:#f3f8fd">
+              <div style="font-size:12px;font-weight:600;color:#185fa5;margin-bottom:5px">ТРЕВОГА</div>
+              <div style="font-size:13px;line-height:1.7;color:#555">Угроза <strong>там и потом</strong>. Неопределённый или воображаемый объект. Хроническая фоновая. Не разрешается устранением конкретного стимула.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin:0 0 16px">
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:10px">Где заканчивается — норма vs патология</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="border:0.5px solid #e1f5ee;border-radius:10px;padding:14px 16px;background:#f2fbf6">
+              <div style="font-size:12px;font-weight:600;color:#0f6e56;margin-bottom:5px">НОРМАЛЬНОЕ РАЗРЕШЕНИЕ</div>
+              <div style="font-size:13px;line-height:1.7;color:#555">ПФК тормозит амигдалу при исчезновении угрозы. Кортизол снижается через <strong>20–60 минут</strong>. Память консолидируется за <strong>4–6 часов</strong>. Угашение при повторной безопасной экспозиции.</div>
+            </div>
+            <div style="border:0.5px solid #faece7;border-radius:10px;padding:14px 16px;background:#fdf5f2">
+              <div style="font-size:12px;font-weight:600;color:#993c1d;margin-bottom:5px">ПАТОЛОГИЧЕСКАЯ ХРОНИФИКАЦИЯ</div>
+              <div style="font-size:13px;line-height:1.7;color:#555">ПФК не гасит амигдалу. Кортизол не возвращается к базовому уровню. Страх генерализируется на нейтральные стимулы. Петля реконсолидации закрепляет угрозу при каждом воспоминании.</div>
+            </div>
+          </div>
+        </div>
+        <div style="border:0.5px dashed #e0e0e0;border-radius:8px;padding:12px 16px;margin-top:8px">
+          <div style="font-size:12px;color:#888;line-height:1.65">Критерий DSM-5-TR для патологии: <strong>избыточность по отношению к реальной угрозе</strong>, длительность более <strong>6 месяцев</strong> при специфических фобиях, значительное нарушение функционирования или выраженный дистресс.</div>
+        </div>
+      </section>
+
+      <!-- ══ 03 КАК ПРОТЕКАЕТ ══════════════════════════════════ -->
+      <section id="sec-flow" style="scroll-margin-top:80px">
+        <h2>Как протекает страх</h2>
+        <p>Страх разворачивается как каскад параллельных процессов на разных временны́х масштабах — от 12 миллисекунд до нескольких дней. Временна́я шкала ниже показывает каждый этап с точностью до миллисекунды.</p>
+
+        <div style="margin:24px 0 32px">
+          <style>
+            .flow-item{display:flex;gap:16px;position:relative;padding-bottom:20px}
+            .flow-item:not(:last-child)::before{content:'';position:absolute;left:19px;top:38px;bottom:0;width:1px;background:#e0e0e0}
+            .flow-dot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor}
+            .flow-body{flex:1;padding-top:6px}
+            .flow-time{font-size:11px;font-weight:500;letter-spacing:.05em;margin-bottom:4px}
+            .flow-heading{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px}
+            .flow-desc{font-size:13px;line-height:1.7;color:#555}
+            @media(prefers-color-scheme:dark){.flow-heading{color:#e8e4d8}.flow-desc{color:#888}.flow-item:not(:last-child)::before{background:#333}}
+          </style>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#0f6e56;background:#e1f5ee">I</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#0f6e56">0 мс — Триггер</div>
+              <div class="flow-heading">Сенсорный стимул</div>
+              <div class="flow-desc">Зрение, слух, запах, интероцепция или память регистрируют потенциальную угрозу. Качество сигнала зависит от качества сенсорного канала.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#993c1d;background:#faece7">II</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#993c1d">12–88 мс — Нижний путь</div>
+              <div class="flow-heading">Амигдала реагирует до осознания</div>
+              <div class="flow-desc">Таламус отправляет грубую копию сигнала прямо в амигдалу (БЛА). Тело начинает реагировать: симпатика, адреналин, замирание. Сознание ещё «не знает», что происходит.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#185fa5;background:#e6f1fb">III</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#185fa5">100–200 мс — Три выхода</div>
+              <div class="flow-heading">Защитный каскад запущен</div>
+              <div class="flow-desc">Амигдала (ЦЯ) одновременно активирует: гипоталамус (ВНС + ось ГГН), ствол мозга / ПАВ (замирание, бегство, борьба) и префронтальную кору (начало оценки).</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#185fa5;background:#e6f1fb">IV</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#185fa5">150–300 мс — Верхний путь</div>
+              <div class="flow-heading">Кора подключается</div>
+              <div class="flow-desc">Точный анализ через сенсорные зоны коры достигает амигдалы. Верхний путь может подтвердить или отменить тревогу нижнего пути: «это тень, не хищник».</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#534ab7;background:#eeedfe">V</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#534ab7">300–500 мс — Осознание</div>
+              <div class="flow-heading">Возникает субъективный страх</div>
+              <div class="flow-desc">ПФК + рабочая память собирают сигналы: амигдала + гиппокамп (контекст) + инсула (тело). Именно здесь появляется «я боюсь». До этого момента тело уже действовало без сознания.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#ba7517;background:#faeeda">VI</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#ba7517">1–20 мин — Гормональная волна</div>
+              <div class="flow-heading">Кортизол нарастает</div>
+              <div class="flow-desc">Ось ГГН активирована. Адреналин пикует на 1–3 мин, кортизол нарастает 10–20 мин. ПФК начинает активно тормозить амигдалу при оценке «угроза ложная».</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#0f6e56;background:#e1f5ee">VII</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#0f6e56">20–60 мин — Разрешение (норма)</div>
+              <div class="flow-heading">ПФК тормозит амигдалу</div>
+              <div class="flow-desc">Кортизол снижается. Симпатическая активация падает. Гиппокамп сигнализирует о безопасности контекста. Страховой эпизод завершён.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#5f5e5a;background:#f1efe8">VIII</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#5f5e5a">4–6 часов — Консолидация</div>
+              <div class="flow-heading">Память страха закрепляется</div>
+              <div class="flow-desc">BDNF, NMDA-рецепторы и кортизол завершают консолидацию памяти угрозы. Реконсолидация делает память уязвимой при повторной активации — именно в это окно работает фармакологическое вмешательство (пропранолол).</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 04 КАК ФИКСИРУЕТСЯ ════════════════════════════════ -->
+      <section id="sec-measurement" style="scroll-margin-top:80px">
+        <h2>Как фиксируется — объективно и субъективно</h2>
+        <p>Страх — единственная базовая эмоция, у которой разработаны стандартизированные объективные биомаркеры. Именно поэтому он стал главной моделью в аффективной нейронауке.</p>
+
+        <div style="margin:24px 0 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#993c1d;font-weight:500">Объективные методы</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:28px">
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Потенцированный стартл</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">FPS — fear-potentiated startle</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Усиление мигательного рефлекса на громкий звук при присутствии условного стимула угрозы. Наиболее валидированный биомаркер страха. Измеряется ЭМГ-электродами под глазом.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Кожно-гальваническая реакция</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">КГР / GSR / EDA</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Изменение электрической проводимости кожи из-за активации потовых желёз. Наиболее чувствительный периферический маркер: реагирует на условный стимул ещё до осознания угрозы.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Вариабельность ЧСС / ЧСС</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">ЭКГ, пульсоксиметрия</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">При страхе — тахикардия (симпатика). При замирании — брадикардия (парасимпатика). Снижение вариабельности ЧСС коррелирует с тяжестью тревожных расстройств и ПТСР.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Активация амигдалы (фМРТ)</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">BOLD-сигнал</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Амигдала активируется на угрожающие стимулы за 88–170 мс. фМРТ фиксирует эту активацию с точностью до мм. Гиперактивность амигдалы — основной нейровизуализационный маркер ПТСР и тревожных расстройств.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Кортизол и адреналин</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">слюна / кровь / моча</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Кортизол в слюне — доступный биомаркер активации оси ГГН. Повышенный базальный кортизол или нарушение суточного ритма указывают на хроническую стрессовую нагрузку.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">ЭЭГ — N200, P300</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">событийно-связанные потенциалы</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Компонент N200 фиксирует раннее (~200 мс) корковое распознавание угрозы. Θ-активность в миндалевидном теле синхронизируется с гиппокампом при кодировании контекстуального страха.</div>
+          </div>
+        </div>
+
+        <div style="margin:0 0 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#534ab7;font-weight:500">Субъективные методы</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:16px">
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">Визуальная аналоговая шкала (VAS)</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Оценка интенсивности страха от 0 до 100 в реальном времени во время экспозиции. Стандарт в клинических испытаниях экспозиционной терапии.</div>
+          </div>
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">SUDS (субъективные единицы дистресса)</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Шкала 0–100, разработана Wolpe для КПТ и экспозиционной терапии. Пациент оценивает уровень страха на каждом шаге экспозиционной иерархии.</div>
+          </div>
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">SAM (Self-Assessment Manikin)</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Невербальный инструмент: пиктограммы для оценки валентности (приятное–неприятное), возбуждения и контроля. Позволяет разделить страх и тревогу по эмоциональным измерениям.</div>
+          </div>
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">PCL-5, STAI, BAI</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Стандартизированные опросники: PCL-5 для ПТСР, STAI (тревога-состояние/черта), BAI (шкала тревоги Бека). Используются в клинической диагностике и исследованиях.</div>
+          </div>
+        </div>
+        <div style="border:0.5px dashed #e0e0e0;border-radius:8px;padding:12px 16px">
+          <div style="font-size:12px;color:#888;line-height:1.7">Ключевое различие: объективные маркеры фиксируют <strong>защитные реакции</strong> (то, что тело делает), субъективные — <strong>переживание страха</strong> (то, что человек чувствует). По LeDoux (2016), эти системы диссоциируют: лекарство может убрать КГР, не убрав субъективного страха — и наоборот. Именно поэтому комплексная оценка требует обоих типов измерений.</div>
+        </div>
+      </section>
+
+      <!-- ══ 05 СВЯЗАННЫЕ ЗАБОЛЕВАНИЯ ══════════════════════════ -->
+      <section id="sec-disorders" style="scroll-margin-top:80px">
+        <h2>С какими заболеваниями связан страх</h2>
+        <p>Дисфункция страхового каскада — основной механизм большой группы психических расстройств. Разные расстройства отражают поломку на разных уровнях: от гиперреактивной амигдалы до нарушенного угашения в ПФК.</p>
+
+        <div style="margin:24px 0 32px" id="disorders-tabs">
+          <style>
+            .dtabs{display:flex;gap:0;border-bottom:0.5px solid #e8e8e8;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+            .dtab{background:none;border:none;font-family:inherit;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px 9px;cursor:pointer;color:#aaa;border-bottom:2px solid transparent;margin-bottom:-0.5px;white-space:nowrap;transition:color .15s,border-color .15s}
+            .dtab:hover{color:#1a1a1a}
+            .dtab.dtab-act{color:#1a1a1a;border-bottom-color:#1a1a1a}
+            .dpanel{display:none}.dpanel.dpanel-act{display:block}
+            .dis-card{border:0.5px solid #e8e8e8;border-radius:10px;padding:14px 16px;margin-bottom:8px}
+            .dis-name{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:3px}
+            .dis-mech{font-size:12px;margin-bottom:6px;font-weight:500}
+            .dis-desc{font-size:13px;line-height:1.7;color:#555}
+            @media(prefers-color-scheme:dark){.dtabs{border-bottom-color:#333}.dtab:hover{color:#e8e4d8}.dtab.dtab-act{color:#e8e4d8;border-bottom-color:#e8e4d8}.dis-card{border-color:#333;background:#1c1c19}.dis-name{color:#e8e4d8}.dis-desc{color:#888}}
+          </style>
+          <div class="dtabs">
+            <button class="dtab dtab-act" onclick="dTab(0)">Тревожные расстройства</button>
+            <button class="dtab" onclick="dTab(1)">Травматические</button>
+            <button class="dtab" onclick="dTab(2)">ОКС-расстройства</button>
+            <button class="dtab" onclick="dTab(3)">Другие связи</button>
+          </div>
+          <div class="dpanel dpanel-act" id="dpanel-0">
+            <div class="dis-card">
+              <div class="dis-name">Паническое расстройство</div>
+              <div class="dis-mech" style="color:#993c1d">Механизм: гиперреактивная амигдала + тревожная чувствительность</div>
+              <div class="dis-desc">Спонтанные панические атаки — результат ложной тревоги нижнего пути: амигдала запускает полный страховой каскад без реальной угрозы. Тревожная чувствительность (страх физических симптомов тревоги) создаёт петлю самоусиления.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Специфические фобии</div>
+              <div class="dis-mech" style="color:#993c1d">Механизм: патологически закреплённая условная страховая память</div>
+              <div class="dis-desc">Чрезмерно консолидированная память страха к конкретному стимулу (пауки, высота, кровь). Угашение не происходит из-за избегания. Лечение: экспозиционная терапия — форсированное угашение через ПФК.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Социальное тревожное расстройство</div>
+              <div class="dis-mech" style="color:#993c1d">Механизм: гиперреактивность амигдалы на социальные стимулы</div>
+              <div class="dis-desc">Усиленный страховой ответ на лица, оценку и социальное взаимодействие. Амигдала активируется на нейтральные лица как на угрожающие. Нарушена нисходящая регуляция ПФК.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Генерализованное тревожное расстройство (ГТР)</div>
+              <div class="dis-mech" style="color:#993c1d">Механизм: субфактор дистресса + нарушение регуляции неопределённости</div>
+              <div class="dis-desc">Хроническая активация системы потенциальной угрозы (тревога, а не страх). Нетерпимость к неопределённости — основная когнитивная уязвимость. Беспокойство функционирует как избегание аффекта.</div>
+            </div>
+          </div>
+          <div class="dpanel" id="dpanel-1">
+            <div class="dis-card">
+              <div class="dis-name">ПТСР (посттравматическое стрессовое расстройство)</div>
+              <div class="dis-mech" style="color:#712b13">Механизм: нарушение угашения + патология реконсолидации</div>
+              <div class="dis-desc">Центральный дефект ПТСР — неспособность ПФК погасить амигдалу при безопасном контексте. Гиппокампальная атрофия нарушает контекстуальное различение: любой похожий стимул запускает полный каскад. Ось ГГН нарушена: повышен базальный кортизол или дексаметазоновая супрессия снижена.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Острое стрессовое расстройство (ОСР)</div>
+              <div class="dis-mech" style="color:#712b13">Механизм: та же нейробиология, что ПТСР — временной критерий 3 дня – 1 месяц</div>
+              <div class="dis-desc">Если симптомы нормализуются в течение месяца — ОСР. Если сохраняются свыше месяца — диагноз меняется на ПТСР. Раннее вмешательство (экспозиция, гидрокортизол) может предотвратить хронификацию.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Пролонгированное горевание (новый диагноз DSM-5-TR 2022)</div>
+              <div class="dis-mech" style="color:#712b13">Механизм: патологическая реконсолидация памяти утраты</div>
+              <div class="dis-desc">Интенсивная тоска и поглощённость мыслями об умершем спустя ≥12 месяцев. Нейробиологически близко к ПТСР: нарушенное угашение страховой памяти и гиперактивация миндалины при воспоминаниях об умершем.</div>
+            </div>
+          </div>
+          <div class="dpanel" id="dpanel-2">
+            <div class="dis-card">
+              <div class="dis-name">ОКР (обсессивно-компульсивное расстройство)</div>
+              <div class="dis-mech" style="color:#534ab7">Механизм: петля орбитофронтальная кора — хвостатое ядро — таламус</div>
+              <div class="dis-desc">ОКР — не тревожное расстройство: нейробиологически его основа — нарушение орбитофронтально-стриатной петли, а не страховой цепи амигдалы. Компульсии функционируют как «ритуал угашения» тревоги, но её не угашают — создают временное облегчение, поддерживая цикл.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Дисморфофобия (BDD)</div>
+              <div class="dis-mech" style="color:#534ab7">Механизм: нарушенная визуальная обработка + орбитофронтальная дисфункция</div>
+              <div class="dis-desc">Навязчивые мысли о воображаемом дефекте внешности. Страх здесь — вторичен: первичен навязчивый когниция + компульсивные проверки. Связан с ОКР по нейробиологическому профилю.</div>
+            </div>
+          </div>
+          <div class="dpanel" id="dpanel-3">
+            <div class="dis-card">
+              <div class="dis-name">Депрессия</div>
+              <div class="dis-mech" style="color:#5f5e5a">Механизм: субфактор дистресса интернализующего спектра</div>
+              <div class="dis-desc">Страх и депрессия разделяют общую нагрузку интернализующего спектра (p-фактор). Хроническая гиперактивность амигдалы при депрессии нарушает ПФК-регуляцию. 80% пациентов с паническим расстройством имеют коморбидную депрессию.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Расстройства пищевого поведения</div>
+              <div class="dis-mech" style="color:#5f5e5a">Механизм: страх прибавки веса как условный страх</div>
+              <div class="dis-desc">Страх еды и веса при анорексии нейробиологически аналогичен специфической фобии. Нарушенная активность инсулы (интероцепция) и амигдалы при пищевых стимулах. Интернализующий спектр HiTOP включает пищевые расстройства как отдельный субфактор.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Психоз и шизофрения</div>
+              <div class="dis-mech" style="color:#5f5e5a">Механизм: нарушение атрибуции угрозы</div>
+              <div class="dis-desc">При психозе страховой каскад активируется на нейтральные стимулы из-за нарушенного дофаминергического сигналинга (аберрантное выделение значимости). Паранойя — это генерализованный страх без идентифицируемого триггера.</div>
+            </div>
+          </div>
+          <script>
+          function dTab(i){
+            document.querySelectorAll('.dtab').forEach(function(t,j){t.classList.toggle('dtab-act',i===j)});
+            document.querySelectorAll('.dpanel').forEach(function(p,j){p.classList.toggle('dpanel-act',i===j)});
+          }
+          </script>
+        </div>
+      </section>
+
+
+      <h2 id="sec-question" style="border-top:none;padding-top:0;margin-top:0;scroll-margin-top:80px">Центральный вопрос</h2>
       <div class="map-wrap">
         <div class="master-q">
           <div class="mq-label">На какой вопрос отвечает эта карта</div>
@@ -262,7 +686,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
       </div>
 
 
-      <h2>Механика страха: от триггера к реакции</h2>
+      <h2 id="sec-cascade" style="scroll-margin-top:80px">Механика страха: от триггера к реакции</h2>
       <p>Полный каскад протекания страха — от сенсорного стимула до физиологической и поведенческой реакции. Временны́е метки показывают, когда активируется каждая структура.</p>
 
       <div style="margin:32px 0 48px;overflow-x:auto;-webkit-overflow-scrolling:touch">
@@ -643,7 +1067,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
       </div>
 
       
-      <h2>Слои механики страха</h2>
+      <h2 id="sec-layers" style="scroll-margin-top:80px">Слои механики страха</h2>
       <p>Страх существует одновременно на семи уровнях описания — от молекулярного до социально-экзистенциального. Каждый уровень реален и несводим к соседнему. Кликните на слой, чтобы раскрыть его определение, составляющие и схему каскада.</p>
 
       <div id="fear-layers-widget" style="margin:32px 0 48px">
