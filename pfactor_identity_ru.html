@@ -274,11 +274,10 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
       (function(){
         var SECTIONS=[
           {id:"sec-definition",  num:"01", title:"Определение страха",           status:"12 уровней"},
-          {id:"sec-limits",      num:"02", title:"Границы. Где начинается и заканчивается", status:"временна́я шкала"},
-          {id:"sec-flow",        num:"03", title:"Как протекает страх",           status:"каскад"},
-          {id:"sec-measurement", num:"04", title:"Как фиксируется — объективно и субъективно", status:"биомаркеры"},
-          {id:"sec-disorders",   num:"05", title:"С какими заболеваниями связан", status:"спектр"},
-          {id:"sec-question",    num:"06", title:"Центральный вопрос",            status:"p-фактор"},
+          {id:"sec-flow",        num:"02", title:"Как протекает страх",           status:"каскад"},
+          {id:"sec-measurement", num:"03", title:"Как фиксируется — объективно и субъективно", status:"биомаркеры"},
+          {id:"sec-disorders",   num:"04", title:"С какими заболеваниями связан", status:"спектр"},
+          {id:"sec-question",    num:"05", title:"Центральный вопрос",            status:"p-фактор"},
         ];
         var list=document.getElementById('toc-list');
         SECTIONS.forEach(function(s){
@@ -377,51 +376,6 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             if(!was)c.classList.add('def-open');
           }
           </script>
-        </div>
-      </section>
-
-      <!-- ══ 02 ГРАНИЦЫ ════════════════════════════════════════ -->
-      <section id="sec-limits" style="scroll-margin-top:80px">
-        <h2>Границы. Где начинается и где заканчивается</h2>
-        <p>Страх — не мгновенное событие и не бесконечное состояние. У него есть точное начало, пик и разрешение. Понимание границ страха принципиально для отличия нормальной реакции от патологической.</p>
-
-        <div style="margin:24px 0 16px">
-          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:10px">Где начинается</div>
-          <div style="border:0.5px solid #e8e8e8;border-radius:10px;padding:16px 20px;background:#f9f9f7">
-            <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:6px">Не с осознания — с детекции угрозы таламусом</div>
-            <div style="font-size:13px;line-height:1.75;color:#555">Страх начинается в момент, когда таламус получает сенсорный сигнал и отправляет его в амигдалу — ещё до коры, до сознания, до «я». Тело начинает реагировать за <strong>88 мс</strong>, тогда как субъективное «я боюсь» возникает лишь на <strong>300–500 мс</strong>. Формально точка начала страха — первая синаптическая активация в БЛА амигдалы.</div>
-          </div>
-        </div>
-
-        <div style="margin:0 0 16px">
-          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:10px">Что отделяет страх от тревоги</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div style="border:0.5px solid #faece7;border-radius:10px;padding:14px 16px;background:#fdf5f2">
-              <div style="font-size:12px;font-weight:600;color:#993c1d;margin-bottom:5px">СТРАХ</div>
-              <div style="font-size:13px;line-height:1.7;color:#555">Угроза <strong>здесь и сейчас</strong>. Идентифицируемый объект. Пропорциональная интенсивность. Разрешается при устранении угрозы.</div>
-            </div>
-            <div style="border:0.5px solid #e6f1fb;border-radius:10px;padding:14px 16px;background:#f3f8fd">
-              <div style="font-size:12px;font-weight:600;color:#185fa5;margin-bottom:5px">ТРЕВОГА</div>
-              <div style="font-size:13px;line-height:1.7;color:#555">Угроза <strong>там и потом</strong>. Неопределённый или воображаемый объект. Хроническая фоновая. Не разрешается устранением конкретного стимула.</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin:0 0 16px">
-          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:10px">Где заканчивается — норма vs патология</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div style="border:0.5px solid #e1f5ee;border-radius:10px;padding:14px 16px;background:#f2fbf6">
-              <div style="font-size:12px;font-weight:600;color:#0f6e56;margin-bottom:5px">НОРМАЛЬНОЕ РАЗРЕШЕНИЕ</div>
-              <div style="font-size:13px;line-height:1.7;color:#555">ПФК тормозит амигдалу при исчезновении угрозы. Кортизол снижается через <strong>20–60 минут</strong>. Память консолидируется за <strong>4–6 часов</strong>. Угашение при повторной безопасной экспозиции.</div>
-            </div>
-            <div style="border:0.5px solid #faece7;border-radius:10px;padding:14px 16px;background:#fdf5f2">
-              <div style="font-size:12px;font-weight:600;color:#993c1d;margin-bottom:5px">ПАТОЛОГИЧЕСКАЯ ХРОНИФИКАЦИЯ</div>
-              <div style="font-size:13px;line-height:1.7;color:#555">ПФК не гасит амигдалу. Кортизол не возвращается к базовому уровню. Страх генерализируется на нейтральные стимулы. Петля реконсолидации закрепляет угрозу при каждом воспоминании.</div>
-            </div>
-          </div>
-        </div>
-        <div style="border:0.5px dashed #e0e0e0;border-radius:8px;padding:12px 16px;margin-top:8px">
-          <div style="font-size:12px;color:#888;line-height:1.65">Критерий DSM-5-TR для патологии: <strong>избыточность по отношению к реальной угрозе</strong>, длительность более <strong>6 месяцев</strong> при специфических фобиях, значительное нарушение функционирования или выраженный дистресс.</div>
         </div>
       </section>
 
