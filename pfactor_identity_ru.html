@@ -968,6 +968,975 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             <span class="ac-chev">&#9662;</span>
           </div>
           <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+            >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Что такое «Страх» - ЦКИ</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a;
+  line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+main { flex-grow: 1; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0;
+  background-color: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 1000; display: flex; justify-content: space-between;
+  align-items: center; padding: 20px; border-bottom: 1px solid #f0f0f0;
+}
+.logo { font-size: 24px; font-weight: 600; color: #1a1a1a; }
+.nav-container { display: flex; align-items: center; gap: 20px; }
+nav a {
+  font-family: inherit !important; text-decoration: none !important;
+  color: #1a1a1a !important; margin-left: 20px; font-size: 16px;
+  padding-bottom: 4px; border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+nav a.active-link { font-weight: 600; border-bottom-color: #1a1a1a; }
+nav a:not(.active-link):hover { border-bottom-color: #ccc; }
+
+.language-selector { position: relative; margin-left: 20px; }
+.current-language {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  padding: 8px 12px; border-radius: 8px;
+  transition: background-color 0.3s; user-select: none;
+}
+.current-language:hover { background-color: #f5f5f5; }
+.language-code { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.language-dropdown {
+  position: absolute; top: 100%; right: 0; margin-top: 8px;
+  background: white; border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0; visibility: hidden; transform: translateY(-10px);
+  transition: all 0.3s ease; min-width: 100px; overflow: hidden;
+}
+.language-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.language-option {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  cursor: pointer; transition: background-color 0.2s; text-decoration: none; color: #1a1a1a;
+}
+.language-option:hover { background-color: #f5f5f5; }
+.language-option.current { background-color: #f0f0f0; font-weight: 600; }
+
+/* Article */
+.article-section { padding: 60px 0; }
+.article-title { font-size: 52px; font-weight: 300; margin: 0 0 25px 0; line-height: 1.2; }
+.intro-block { font-size: 18px; color: #555; margin-bottom: 50px; }
+.intro-block p { margin: 10px 0; }
+.article-section h2 {
+  font-size: 32px; font-weight: 500; margin: 60px 0 20px 0;
+  border-top: 1px solid #e0e0e0; padding-top: 40px;
+}
+.article-section p { font-size: 18px; color: #333; margin-bottom: 20px; }
+
+/* MAP */
+.map-wrap { margin: 40px 0 60px; }
+.master-q {
+  background: #f7f7f7; border-top: 2px solid #1a1a1a;
+  padding: 24px 28px; margin-bottom: 32px;
+}
+.master-q .mq-label {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: #888; margin-bottom: 8px;
+}
+.master-q p { font-size: 17px; color: #1a1a1a; margin: 0; line-height: 1.65; }
+
+.level-card {
+  border: 1px solid #e8e8e8; margin-bottom: 6px;
+  transition: border-color .2s;
+}
+.level-card:hover { border-color: #bbb; }
+.level-card.open { border-color: #1a1a1a; }
+
+.level-header {
+  display: grid; grid-template-columns: 36px 1fr auto;
+  align-items: center; gap: 14px;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  background: #fff;
+}
+.level-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  border: 1.5px solid #1a1a1a; color: #1a1a1a;
+  flex-shrink: 0; transition: background .2s, color .2s;
+}
+.level-card.open .level-num { background: #1a1a1a; color: #fff; }
+.level-meta { min-width: 0; }
+.level-title { font-size: 16px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
+.level-sub { font-size: 12px; color: #888; margin-top: 2px; }
+.level-badge {
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 10px; border: 1px solid #e0e0e0;
+  color: #888; white-space: nowrap;
+}
+.chev {
+  font-size: 12px; color: #aaa; transition: transform .2s;
+  margin-left: 8px; display: inline-block;
+}
+.level-card.open .chev { transform: rotate(180deg); }
+
+.level-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s ease; }
+.level-card.open .level-body { grid-template-rows: 1fr; }
+.level-body-inner { overflow: hidden; }
+.level-content { padding: 0 20px 24px 70px; border-top: 1px solid #f0f0f0; }
+
+.tabs { display: flex; margin: 16px 0 18px; border-bottom: 1px solid #e8e8e8; }
+.tab-btn {
+  background: none; border: none; color: #aaa;
+  font-family: inherit; font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; padding: 6px 14px 8px;
+  cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: color .15s, border-color .15s;
+}
+.tab-btn:hover { color: #1a1a1a; }
+.tab-btn.act { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+
+.tab-panel { display: none; }
+.tab-panel.act { display: block; }
+
+.def-q { font-style: italic; font-size: 15px; color: #888; margin-bottom: 12px; }
+.def-text { font-size: 16px; color: #333; line-height: 1.75; }
+
+.comp-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
+  gap: 8px; margin-top: 4px;
+}
+.comp-item { background: #f9f9f9; border-left: 3px solid #1a1a1a; padding: 10px 14px; }
+.comp-name { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+.comp-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+.mech-block { background: #f7f7f7; padding: 20px 24px; }
+.mech-text { font-size: 16px; color: #333; line-height: 1.75; }
+.mech-source { margin-top: 14px; font-size: 11px; color: #aaa; border-top: 1px solid #e8e8e8; padding-top: 10px; }
+
+.trans-block { padding: 18px 22px; border-left: 3px solid #1a1a1a; background: #f9f9f9; }
+.trans-q { font-style: italic; font-size: 16px; color: #333; line-height: 1.7; margin-bottom: 12px; }
+.trans-next-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #aaa; margin-bottom: 4px; }
+.trans-next-name { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+
+.open-next-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px; font-size: 13px; padding: 7px 14px;
+  border: 1.5px solid #1a1a1a; background: none; color: #1a1a1a;
+  cursor: pointer; transition: background .15s, color .15s; font-family: inherit;
+}
+.open-next-btn:hover { background: #1a1a1a; color: #fff; }
+
+.connector { height: 24px; display: flex; align-items: center; padding-left: 54px; opacity: .3; }
+.conn-line { width: 1px; height: 100%; background: #1a1a1a; }
+
+.progress-bar { position: sticky; top: 0; z-index: 999; height: 2px; background: #f0f0f0; overflow: hidden; }
+.progress-fill { height: 100%; background: #1a1a1a; width: 0%; transition: width .3s ease; }
+
+.navigation-links {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 40px; padding: 30px 0; border-top: 1px solid #e0e0e0;
+}
+.nav-link {
+  display: flex; align-items: center;
+  text-decoration: none; color: #1a1a1a !important;
+  font-size: 18px; font-weight: 500; transition: color 0.3s ease;
+}
+.nav-link:hover { color: #666 !important; }
+.nav-link.prev { flex-direction: row; }
+.nav-link.next { flex-direction: row-reverse; }
+.nav-arrow { font-size: 20px; margin: 0 10px; }
+.mobile-nav-list { display: none; }
+
+.site-footer {
+  background-color: #ffffff !important; padding: 40px 0 !important;
+  margin-top: 0 !important; font-size: 14px !important;
+  color: #555 !important; border-top: none !important;
+}
+.site-footer .footer-container {
+  display: flex !important; justify-content: space-between !important;
+  align-items: flex-end !important; width: 100% !important;
+  padding: 0 40px !important; box-sizing: border-box !important;
+}
+.site-footer .footer-copyright { flex-basis: auto !important; align-self: flex-end !important; }
+.site-footer .footer-nav { display: flex !important; gap: 60px !important; align-items: flex-start !important; }
+.site-footer .footer-column { text-align: left !important; }
+.site-footer .footer-column h4 {
+  font-size: 16px !important; font-weight: 600 !important; color: #1a1a1a !important;
+  margin: 0 0 15px 0 !important; padding: 0 !important;
+}
+.site-footer .footer-column h4 a { text-decoration: none !important; color: #1a1a1a !important; }
+.site-footer .footer-column ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+.site-footer .footer-column li { margin: 0 0 10px 0 !important; list-style: none !important; }
+.site-footer .footer-column a { text-decoration: none !important; color: #555 !important; }
+.site-footer .footer-column a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 768px) {
+  .site-header { flex-direction: column; gap: 15px; }
+  .article-title { font-size: 36px; }
+  .level-content { padding: 0 16px 20px 16px; }
+  .navigation-links { display: none; }
+  .mobile-nav-list { display: block; margin-top: 40px; padding: 0; list-style: none; border-top: 1px solid #e0e0e0; padding-top: 30px; }
+  .mobile-nav-item { margin-bottom: 15px; font-size: 16px; }
+  .mobile-nav-item::before { content: "- "; color: #1a1a1a; margin-right: 5px; }
+  .mobile-nav-item a { color: #1a1a1a !important; text-decoration: none !important; font-weight: 500; }
+  .site-footer .footer-container { flex-direction: column; gap: 30px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<header class="site-header">
+  <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div>
+  <div class="nav-container">
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="basics_en.html">Основы</a>
+      <a href="blog_en.html" class="active-link">Блог</a>
+      <a href="tests_en.html">Тесты</a>
+    </nav>
+    <div class="language-selector">
+      <div class="current-language" id="language-toggle">
+        <span class="language-code">RU</span>
+      </div>
+      <div class="language-dropdown" id="language-dropdown">
+        <a href="pfactor_identity_en.html" class="language-option"><span class="language-code">EN</span></a>
+        <a href="pfactor_identity_ru.html" class="language-option current"><span class="language-code">RU</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="article-section">
+
+      <h1 class="article-title">Что такое «Страх»</h1>
+      <div class="intro-block">
+        <p>Как биологическая функция формирует личность</p>
+      </div>
+
+      <!-- ACCORDION STYLES -->
+      <style>
+        .ac-wrap { display:flex; flex-direction:column; gap:0; margin:40px 0 48px; }
+        .ac-item { border:0.5px solid #e0e0e0; overflow:hidden; transition:border-color .18s; }
+        .ac-item:first-child { border-radius:10px 10px 0 0; }
+        .ac-item:last-child  { border-radius:0 0 10px 10px; }
+        .ac-item + .ac-item  { border-top:none; }
+        .ac-item.ac-open     { border-color:#1a1a1a; position:relative; z-index:1; }
+        .ac-item:hover:not(.ac-open) { border-color:#aaa; }
+
+        .ac-hdr {
+          display:flex; align-items:center; gap:14px;
+          padding:18px 22px; cursor:pointer; user-select:none;
+          background:#fff; transition:background .15s;
+        }
+        .ac-item.ac-open .ac-hdr { background:#fff; }
+
+        .ac-num {
+          font-size:11px; font-weight:500; color:#aaa;
+          min-width:22px; font-variant-numeric:tabular-nums;
+          letter-spacing:.04em;
+        }
+        .ac-item.ac-open .ac-num { color:#1a1a1a; }
+
+        .ac-title {
+          flex:1; font-size:16px; font-weight:500; color:#1a1a1a; line-height:1.3;
+        }
+        .ac-chev {
+          font-size:18px; color:#ccc; transition:transform .22s; flex-shrink:0;
+          line-height:1;
+        }
+
+        /* ── TERM TOOLTIPS ── */
+        .term {
+          border-bottom: 1.5px dotted currentColor;
+          cursor: help;
+          position: relative;
+          display: inline;
+          white-space: nowrap;
+        }
+        .term-popup {
+          display: none;
+          position: fixed;
+          z-index: 9999;
+          max-width: 320px;
+          background: #fff;
+          border: 0.5px solid #1a1a1a;
+          border-radius: 10px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+          padding: 14px 16px;
+          pointer-events: auto;
+          animation: tp-in .15s ease;
+        }
+        @keyframes tp-in {
+          from { opacity:0; transform:translateY(4px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+        .term-popup.tp-show { display: block; }
+        .tp-term-name {
+          font-size: 13px; font-weight: 600; color: #1a1a1a;
+          margin-bottom: 6px;
+        }
+        .tp-def {
+          font-size: 12px; line-height: 1.65; color: #555;
+          margin-bottom: 10px;
+        }
+        .tp-source {
+          font-size: 11px; color: #aaa;
+          border-top: 0.5px solid #e8e8e8;
+          padding-top: 8px;
+          display: flex; align-items: center; gap: 6px;
+        }
+        .tp-source a {
+          color: #1a1a1a; text-decoration: none;
+          border-bottom: 0.5px solid #ccc;
+          transition: border-color .15s;
+          font-size: 11px;
+        }
+        .tp-source a:hover { border-bottom-color: #1a1a1a; }
+        @media (prefers-color-scheme: dark) {
+          .term-popup { background: #1c1c19; border-color: #e0e0e0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+          .tp-term-name { color: #e8e4d8; }
+          .tp-def { color: #9b9990; }
+          .tp-source { border-top-color: #2a2a28; color: #666; }
+          .tp-source a { color: #e8e4d8; border-bottom-color: #555; }
+          .tp-source a:hover { border-bottom-color: #e8e4d8; }
+        }
+
+        .ac-item.ac-open .ac-chev { transform:rotate(180deg); color:#1a1a1a; }
+
+        .ac-body {
+          display:grid; grid-template-rows:0fr;
+          transition:grid-template-rows .3s ease;
+        }
+        .ac-item.ac-open .ac-body { grid-template-rows:1fr; }
+        .ac-body-inner { overflow:hidden; }
+        .ac-content { padding:0 22px 28px 22px; border-top:0.5px solid #f0f0f0; }
+
+        @media(prefers-color-scheme:dark){
+          .ac-item { border-color:#2a2a28; }
+          .ac-item.ac-open { border-color:#e0e0e0; }
+          .ac-item:hover:not(.ac-open) { border-color:#555; }
+          .ac-hdr { background:#141412; }
+          .ac-title { color:#e8e4d8; }
+          .ac-num { color:#555; }
+          .ac-item.ac-open .ac-num { color:#e8e4d8; }
+          .ac-item.ac-open .ac-chev { color:#e8e4d8; }
+          .ac-body-inner { background:#141412; }
+          .ac-content { border-top-color:#2a2a28; }
+        }
+      </style>
+
+      <div class="ac-wrap">
+
+        <!-- 01 ОПРЕДЕЛЕНИЕ -->
+        <div class="ac-item" id="ac-definition">
+          <div class="ac-hdr" onclick="acToggle('ac-definition')">
+            <span class="ac-num">01</span>
+            <span class="ac-title">Определение страха</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+            <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0 32px" id="def-accordion">
+          <style>
+            .def-card{border:0.5px solid #e8e8e8;border-radius:10px;overflow:hidden;transition:border-color .18s}
+            .def-card:hover{border-color:#bbb}
+            .def-card.def-open{border-color:#1a1a1a}
+            .def-hdr{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:12px 16px;cursor:pointer;user-select:none;background:#fff}
+            .def-pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:20px;border:0.5px solid currentColor;white-space:nowrap;flex-shrink:0}
+            .def-title-wrap{flex:1}
+            .def-card-title{font-size:14px;font-weight:500;color:#1a1a1a}
+            .def-card-src{font-size:11px;color:#888;margin-top:1px}.def-card-src a{color:inherit;text-decoration:none;border-bottom:0.5px solid #ccc;transition:color .15s,border-color .15s}.def-card-src a:hover{color:#1a1a1a;border-bottom-color:#1a1a1a}
+            .def-chev{font-size:13px;color:#aaa;transition:transform .2s;flex-shrink:0}
+            .def-card.def-open .def-chev{transform:rotate(180deg)}
+            .def-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+            .def-card.def-open .def-body{grid-template-rows:1fr}
+            .def-body-in{overflow:hidden}
+            .def-body-content{padding:0 16px 16px 16px;border-top:0.5px solid #f0f0f0}
+            .def-text{font-size:14px;line-height:1.75;color:#333;margin-top:12px}
+            .def-quote{font-style:italic;font-size:14px;line-height:1.7;color:#555;border-left:3px solid currentColor;padding-left:14px;margin:12px 0}
+            @media(prefers-color-scheme:dark){
+              .def-card{border-color:#333}.def-card:hover{border-color:#666}.def-card.def-open{border-color:#e0e0e0}
+              .def-hdr{background:#1c1c19}.def-card-title{color:#e8e4d8}.def-card-src{color:#666}
+              .def-body-content{border-top-color:#2a2a28}.def-text{color:#a8a6a0}.def-quote{color:#888}
+            }
+          </style>
+          <script>
+          (function(){
+            var DEFS=[
+              {color:"#854F0B",pill:"DSM-5-TR · Клинический",title:"Официальное клиническое определение",src:"APA, DSM-5-TR, 2022 &mdash; <a href='https://doi.org/10.1176/appi.books.9780890425787' target='_blank' rel='noopener'>psychiatryonline.org</a>",
+               quote:"Страх — эмоциональный ответ на реальную или воспринимаемую непосредственную угрозу.",
+               text:"Страх связан со всплесками автономного возбуждения, необходимыми для реакции «бей или беги», мыслями о немедленной опасности и поведением побега или избегания. Он отличается от тревоги (предвосхищение будущей угрозы) по временно́му горизонту: страх = сейчас, тревога = потом. Это единственное операциональное определение, используемое в диагностике."},
+              {color:"#0F6E56",pill:"Нейронаука · LeDoux",title:"Двухсистемная нейронаучная модель",src:"LeDoux & Pine, Am. J. Psychiatry, 2016 &mdash; <a href='https://doi.org/10.1176/appi.ajp.2016.16030353' target='_blank' rel='noopener'>doi:10.1176/appi.ajp.2016.16030353</a>",
+               quote:"Страх обозначает сознательное субъективное переживание, связанное с непосредственной угрозой. Он принципиально отличается от защитных реакций.",
+               text:"По LeDoux, «страх» = то, что человек переживает осознанно (кора). «Защитные реакции» (замирание, бегство, учащение пульса) = то, что тело делает автоматически (амигдала, ствол мозга). Они могут идти параллельно или независимо. Это означает: фармакология, убирающая телесные симптомы, не обязательно убирает субъективный страх — и наоборот."},
+              {color:"#534AB7",pill:"Феноменология",title:"Экзистенциально-феноменологическое определение",src:"Хайдеггер, Sein und Zeit, §30 &mdash; <a href='https://plato.stanford.edu/entries/heidegger/' target='_blank' rel='noopener'>Stanford Encyclopedia of Philosophy</a>",
+               quote:"Furcht — это аффективный ответ на конкретную угрозу в мире. Angst направлена на ничто — на собственную конечность.",
+               text:"Хайдеггер разграничивает Furcht (страх перед конкретным объектом) и Angst (экзистенциальная тревога без объекта). Страх «обнаруживает» угрожающую вещь и одновременно «забирает» широту бытия-в-мире: мир сужается до угрозы. Это различие принципиальнее, чем DSM-разграничение, поскольку описывает структуру переживания, а не симптоматику."},
+              {color:"#993C1D",pill:"RDoC · Исследовательский",title:"Транзодиагностический исследовательский конструкт",src:"NIMH RDoC: Acute Threat (Fear) &mdash; <a href='https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/acute-threat-fear' target='_blank' rel='noopener'>nimh.nih.gov/rdoc</a>",
+               quote:"Острая угроза (страх) — активация оборонительной мотивационной системы мозга с целью продвижения поведений, защищающих организм от воспринимаемой опасности.",
+               text:"RDoC определяет страх не через симптомы, а через измеримые биомаркеры: потенцированный стартл-рефлекс, кожную проводимость, активацию амигдалы, изменения ЧСС. Этот конструкт трансдиагностичен — он релевантен для тревожных расстройств, ПТСР и других патологий. Цель RDoC: создать систему измерений, независимую от диагностических категорий DSM."},
+              {color:"#185FA5",pill:"Вычислительная нейронаука",title:"Байесовская / предиктивная модель",src:"Yamamori & Robinson, Neurosci. Biobehav. Rev., 2023 &mdash; <a href='https://doi.org/10.1016/j.neubiorev.2022.104959' target='_blank' rel='noopener'>doi:10.1016/j.neubiorev.2022.104959</a>",
+               quote:"Страх — сигнал ошибки предсказания: мозг обнаруживает расхождение между ожидаемой безопасностью и воспринятой угрозой.",
+               text:"В рамках теории активного вывода (active inference) мозг непрерывно предсказывает вероятность угрозы. Страх — не реакция на стимул, а результат байесовского обновления: ошибка предсказания (неожиданная угроза) вызывает всплеск. Патологический страх = нарушение механизма обновления: мозг не обновляет предсказание даже при безопасном исходе — именно так устроена ПТСР-петля."},
+              {color:"#5F5E5A",pill:"Интегративное",title:"Многоуровневое интегративное определение",src:"Разработано на основе 12 призм",
+               quote:"Страх — многоуровневое состояние живого существа, возникающее в ответ на воспринятую угрозу его существованию, целостности или значимым связям.",
+               text:"Это определение не редуцирует страх к одному уровню. Оно утверждает, что страх реализуется одновременно на молекулярном, нейронном, поведенческом, феноменальном, межличностном и смысловом уровнях — каждый из которых реален, ни один из которых не является исчерпывающим. Единое определение страха невозможно по той же причине, по которой невозможно единое определение «жизни» — это объект с несколькими онтологическими слоями."},
+            ];
+            var acc=document.getElementById('def-accordion');
+            DEFS.forEach(function(d,i){
+              var card=document.createElement('div');
+              card.className='def-card';card.id='def-card-'+i;
+              card.innerHTML='<div class="def-hdr" onclick="defToggle('+i+')"><div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px"><span class="def-pill" style="color:'+d.color+';border-color:'+d.color+'60">'+d.pill+'</span><span class="def-chev">▾</span></div><div class="def-card-title">'+d.title+'</div><div class="def-card-src">'+d.src+'</div></div><div class="def-body"><div class="def-body-in"><div class="def-body-content"><div class="def-quote" style="border-color:'+d.color+'">'+d.quote+'</div><div class="def-text">'+d.text+'</div></div></div></div>';
+              acc.appendChild(card);
+            });
+          })();
+          function defToggle(i){
+            var c=document.getElementById('def-card-'+i);
+            var was=c.classList.contains('def-open');
+            document.querySelectorAll('.def-card').forEach(function(x){x.classList.remove('def-open')});
+            if(!was)c.classList.add('def-open');
+          }
+          </script>
+        </div>
+          </div></div></div>
+        </div>
+
+        <!-- 02 КАК ПРОТЕКАЕТ -->
+        <div class="ac-item" id="ac-flow">
+          <div class="ac-hdr" onclick="acToggle('ac-flow')">
+            <span class="ac-num">02</span>
+            <span class="ac-title">Как протекает страх</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+            <div style="margin:24px 0 32px">
+          <style>
+            .flow-item{display:flex;gap:16px;position:relative;padding-bottom:20px}
+            .flow-item:not(:last-child)::before{content:'';position:absolute;left:19px;top:38px;bottom:0;width:1px;background:#e0e0e0}
+            .flow-dot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor}
+            .flow-body{flex:1;padding-top:6px}
+            .flow-time{font-size:11px;font-weight:500;letter-spacing:.05em;margin-bottom:4px}
+            .flow-heading{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px}
+            .flow-desc{font-size:13px;line-height:1.7;color:#555}
+            @media(prefers-color-scheme:dark){.flow-heading{color:#e8e4d8}.flow-desc{color:#888}.flow-item:not(:last-child)::before{background:#333}}
+          </style>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#0f6e56;background:#e1f5ee">1</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#0f6e56">0 мс — Триггер</div>
+              <div class="flow-heading">Сенсорный стимул достигает рецепторов</div>
+              <div class="flow-desc">Зрение, слух, запах, интероцепция или память регистрируют потенциальную угрозу. Качество сигнала зависит от качества сенсорного канала.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#993c1d;background:#faece7">2</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#993c1d">12–88 мс — Нижний путь</div>
+              <div class="flow-heading">Рецепторы → таламус → <span class="term" data-term="амигдала">амигдала</span>: тело реагирует без сознания</div>
+              <div class="flow-desc">Таламус получает сигнал и немедленно отправляет его в амигдалу (БЛА), минуя кору. Тело начинает реагировать: симпатика, адреналин, замирание.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#993c1d;background:#faece7">3</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#993c1d">100–200 мс — Три выхода</div>
+              <div class="flow-heading">Амигдала → гипоталамус, ствол мозга, ПФК одновременно</div>
+              <div class="flow-desc">Центральное ядро амигдалы (ЦЯ) одновременно активирует: гипоталамус (ВНС + ось ГГН), ствол / ПАВ (замирание, бегство, борьба) и запускает оценку в ПФК.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#185fa5;background:#e6f1fb">4</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#185fa5">150–300 мс — Верхний путь</div>
+              <div class="flow-heading">ПФК получает точный сигнал и уточняет оценку амигдалы</div>
+              <div class="flow-desc">Параллельно нижнему пути кора проводит точный анализ и передаёт результат обратно в амигдалу. Верхний путь может подтвердить или отменить тревогу нижнего пути.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#534ab7;background:#eeedfe">5</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#534ab7">300–500 мс — Осознание</div>
+              <div class="flow-heading">Уточнённая оценка ПФК + сигнал тела → рабочая память → «я боюсь»</div>
+              <div class="flow-desc">ПФК, гиппокамп (контекст) и инсула (тело) собирают сигналы в рабочей памяти. Именно здесь появляется субъективное переживание страха.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#ba7517;background:#faeeda">6</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#ba7517">1–20 мин — Гормональная волна</div>
+              <div class="flow-heading">«Я боюсь» → ось ГГН → кортизол нарастает</div>
+              <div class="flow-desc">Субъективное осознание угрозы усиливает ось ГГН. Адреналин пикует на 1–3 мин, кортизол нарастает 10–20 мин. ПФК начинает активно тормозить амигдалу.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#0f6e56;background:#e1f5ee">7</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#0f6e56">20–60 мин — Разрешение (норма)</div>
+              <div class="flow-heading">Кортизол на пике → ПФК тормозит амигдалу → страх угасает</div>
+              <div class="flow-desc">Кортизол достигает пика и начинает снижаться. ПФК подавляет амигдалу. Гиппокамп сигнализирует о безопасности контекста. Страховой эпизод завершён.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-dot" style="color:#5f5e5a;background:#f1efe8">8</div>
+            <div class="flow-body">
+              <div class="flow-time" style="color:#5f5e5a">4–6 часов — Консолидация</div>
+              <div class="flow-heading">Угасший страх → консолидация памяти угрозы</div>
+              <div class="flow-desc">BDNF, NMDA-рецепторы и кортизол завершают консолидацию памяти угрозы. Реконсолидация делает память уязвимой при повторной активации — именно в это окно работает пропранолол.</div>
+            </div>
+          </div>
+        </div>ang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Что такое «Страх» - ЦКИ</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a;
+  line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+main { flex-grow: 1; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0;
+  background-color: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 1000; display: flex; justify-content: space-between;
+  align-items: center; padding: 20px; border-bottom: 1px solid #f0f0f0;
+}
+.logo { font-size: 24px; font-weight: 600; color: #1a1a1a; }
+.nav-container { display: flex; align-items: center; gap: 20px; }
+nav a {
+  font-family: inherit !important; text-decoration: none !important;
+  color: #1a1a1a !important; margin-left: 20px; font-size: 16px;
+  padding-bottom: 4px; border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+nav a.active-link { font-weight: 600; border-bottom-color: #1a1a1a; }
+nav a:not(.active-link):hover { border-bottom-color: #ccc; }
+
+.language-selector { position: relative; margin-left: 20px; }
+.current-language {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  padding: 8px 12px; border-radius: 8px;
+  transition: background-color 0.3s; user-select: none;
+}
+.current-language:hover { background-color: #f5f5f5; }
+.language-code { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.language-dropdown {
+  position: absolute; top: 100%; right: 0; margin-top: 8px;
+  background: white; border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0; visibility: hidden; transform: translateY(-10px);
+  transition: all 0.3s ease; min-width: 100px; overflow: hidden;
+}
+.language-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.language-option {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  cursor: pointer; transition: background-color 0.2s; text-decoration: none; color: #1a1a1a;
+}
+.language-option:hover { background-color: #f5f5f5; }
+.language-option.current { background-color: #f0f0f0; font-weight: 600; }
+
+/* Article */
+.article-section { padding: 60px 0; }
+.article-title { font-size: 52px; font-weight: 300; margin: 0 0 25px 0; line-height: 1.2; }
+.intro-block { font-size: 18px; color: #555; margin-bottom: 50px; }
+.intro-block p { margin: 10px 0; }
+.article-section h2 {
+  font-size: 32px; font-weight: 500; margin: 60px 0 20px 0;
+  border-top: 1px solid #e0e0e0; padding-top: 40px;
+}
+.article-section p { font-size: 18px; color: #333; margin-bottom: 20px; }
+
+/* MAP */
+.map-wrap { margin: 40px 0 60px; }
+.master-q {
+  background: #f7f7f7; border-top: 2px solid #1a1a1a;
+  padding: 24px 28px; margin-bottom: 32px;
+}
+.master-q .mq-label {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: #888; margin-bottom: 8px;
+}
+.master-q p { font-size: 17px; color: #1a1a1a; margin: 0; line-height: 1.65; }
+
+.level-card {
+  border: 1px solid #e8e8e8; margin-bottom: 6px;
+  transition: border-color .2s;
+}
+.level-card:hover { border-color: #bbb; }
+.level-card.open { border-color: #1a1a1a; }
+
+.level-header {
+  display: grid; grid-template-columns: 36px 1fr auto;
+  align-items: center; gap: 14px;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  background: #fff;
+}
+.level-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  border: 1.5px solid #1a1a1a; color: #1a1a1a;
+  flex-shrink: 0; transition: background .2s, color .2s;
+}
+.level-card.open .level-num { background: #1a1a1a; color: #fff; }
+.level-meta { min-width: 0; }
+.level-title { font-size: 16px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
+.level-sub { font-size: 12px; color: #888; margin-top: 2px; }
+.level-badge {
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 10px; border: 1px solid #e0e0e0;
+  color: #888; white-space: nowrap;
+}
+.chev {
+  font-size: 12px; color: #aaa; transition: transform .2s;
+  margin-left: 8px; display: inline-block;
+}
+.level-card.open .chev { transform: rotate(180deg); }
+
+.level-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s ease; }
+.level-card.open .level-body { grid-template-rows: 1fr; }
+.level-body-inner { overflow: hidden; }
+.level-content { padding: 0 20px 24px 70px; border-top: 1px solid #f0f0f0; }
+
+.tabs { display: flex; margin: 16px 0 18px; border-bottom: 1px solid #e8e8e8; }
+.tab-btn {
+  background: none; border: none; color: #aaa;
+  font-family: inherit; font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; padding: 6px 14px 8px;
+  cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: color .15s, border-color .15s;
+}
+.tab-btn:hover { color: #1a1a1a; }
+.tab-btn.act { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+
+.tab-panel { display: none; }
+.tab-panel.act { display: block; }
+
+.def-q { font-style: italic; font-size: 15px; color: #888; margin-bottom: 12px; }
+.def-text { font-size: 16px; color: #333; line-height: 1.75; }
+
+.comp-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
+  gap: 8px; margin-top: 4px;
+}
+.comp-item { background: #f9f9f9; border-left: 3px solid #1a1a1a; padding: 10px 14px; }
+.comp-name { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+.comp-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+.mech-block { background: #f7f7f7; padding: 20px 24px; }
+.mech-text { font-size: 16px; color: #333; line-height: 1.75; }
+.mech-source { margin-top: 14px; font-size: 11px; color: #aaa; border-top: 1px solid #e8e8e8; padding-top: 10px; }
+
+.trans-block { padding: 18px 22px; border-left: 3px solid #1a1a1a; background: #f9f9f9; }
+.trans-q { font-style: italic; font-size: 16px; color: #333; line-height: 1.7; margin-bottom: 12px; }
+.trans-next-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #aaa; margin-bottom: 4px; }
+.trans-next-name { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+
+.open-next-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px; font-size: 13px; padding: 7px 14px;
+  border: 1.5px solid #1a1a1a; background: none; color: #1a1a1a;
+  cursor: pointer; transition: background .15s, color .15s; font-family: inherit;
+}
+.open-next-btn:hover { background: #1a1a1a; color: #fff; }
+
+.connector { height: 24px; display: flex; align-items: center; padding-left: 54px; opacity: .3; }
+.conn-line { width: 1px; height: 100%; background: #1a1a1a; }
+
+.progress-bar { position: sticky; top: 0; z-index: 999; height: 2px; background: #f0f0f0; overflow: hidden; }
+.progress-fill { height: 100%; background: #1a1a1a; width: 0%; transition: width .3s ease; }
+
+.navigation-links {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 40px; padding: 30px 0; border-top: 1px solid #e0e0e0;
+}
+.nav-link {
+  display: flex; align-items: center;
+  text-decoration: none; color: #1a1a1a !important;
+  font-size: 18px; font-weight: 500; transition: color 0.3s ease;
+}
+.nav-link:hover { color: #666 !important; }
+.nav-link.prev { flex-direction: row; }
+.nav-link.next { flex-direction: row-reverse; }
+.nav-arrow { font-size: 20px; margin: 0 10px; }
+.mobile-nav-list { display: none; }
+
+.site-footer {
+  background-color: #ffffff !important; padding: 40px 0 !important;
+  margin-top: 0 !important; font-size: 14px !important;
+  color: #555 !important; border-top: none !important;
+}
+.site-footer .footer-container {
+  display: flex !important; justify-content: space-between !important;
+  align-items: flex-end !important; width: 100% !important;
+  padding: 0 40px !important; box-sizing: border-box !important;
+}
+.site-footer .footer-copyright { flex-basis: auto !important; align-self: flex-end !important; }
+.site-footer .footer-nav { display: flex !important; gap: 60px !important; align-items: flex-start !important; }
+.site-footer .footer-column { text-align: left !important; }
+.site-footer .footer-column h4 {
+  font-size: 16px !important; font-weight: 600 !important; color: #1a1a1a !important;
+  margin: 0 0 15px 0 !important; padding: 0 !important;
+}
+.site-footer .footer-column h4 a { text-decoration: none !important; color: #1a1a1a !important; }
+.site-footer .footer-column ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+.site-footer .footer-column li { margin: 0 0 10px 0 !important; list-style: none !important; }
+.site-footer .footer-column a { text-decoration: none !important; color: #555 !important; }
+.site-footer .footer-column a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 768px) {
+  .site-header { flex-direction: column; gap: 15px; }
+  .article-title { font-size: 36px; }
+  .level-content { padding: 0 16px 20px 16px; }
+  .navigation-links { display: none; }
+  .mobile-nav-list { display: block; margin-top: 40px; padding: 0; list-style: none; border-top: 1px solid #e0e0e0; padding-top: 30px; }
+  .mobile-nav-item { margin-bottom: 15px; font-size: 16px; }
+  .mobile-nav-item::before { content: "- "; color: #1a1a1a; margin-right: 5px; }
+  .mobile-nav-item a { color: #1a1a1a !important; text-decoration: none !important; font-weight: 500; }
+  .site-footer .footer-container { flex-direction: column; gap: 30px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<header class="site-header">
+  <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div>
+  <div class="nav-container">
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="basics_en.html">Основы</a>
+      <a href="blog_en.html" class="active-link">Блог</a>
+      <a href="tests_en.html">Тесты</a>
+    </nav>
+    <div class="language-selector">
+      <div class="current-language" id="language-toggle">
+        <span class="language-code">RU</span>
+      </div>
+      <div class="language-dropdown" id="language-dropdown">
+        <a href="pfactor_identity_en.html" class="language-option"><span class="language-code">EN</span></a>
+        <a href="pfactor_identity_ru.html" class="language-option current"><span class="language-code">RU</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="article-section">
+
+      <h1 class="article-title">Что такое «Страх»</h1>
+      <div class="intro-block">
+        <p>Как биологическая функция формирует личность</p>
+      </div>
+
+      <!-- ACCORDION STYLES -->
+      <style>
+        .ac-wrap { display:flex; flex-direction:column; gap:0; margin:40px 0 48px; }
+        .ac-item { border:0.5px solid #e0e0e0; overflow:hidden; transition:border-color .18s; }
+        .ac-item:first-child { border-radius:10px 10px 0 0; }
+        .ac-item:last-child  { border-radius:0 0 10px 10px; }
+        .ac-item + .ac-item  { border-top:none; }
+        .ac-item.ac-open     { border-color:#1a1a1a; position:relative; z-index:1; }
+        .ac-item:hover:not(.ac-open) { border-color:#aaa; }
+
+        .ac-hdr {
+          display:flex; align-items:center; gap:14px;
+          padding:18px 22px; cursor:pointer; user-select:none;
+          background:#fff; transition:background .15s;
+        }
+        .ac-item.ac-open .ac-hdr { background:#fff; }
+
+        .ac-num {
+          font-size:11px; font-weight:500; color:#aaa;
+          min-width:22px; font-variant-numeric:tabular-nums;
+          letter-spacing:.04em;
+        }
+        .ac-item.ac-open .ac-num { color:#1a1a1a; }
+
+        .ac-title {
+          flex:1; font-size:16px; font-weight:500; color:#1a1a1a; line-height:1.3;
+        }
+        .ac-chev {
+          font-size:18px; color:#ccc; transition:transform .22s; flex-shrink:0;
+          line-height:1;
+        }
+
+        /* ── TERM TOOLTIPS ── */
+        .term {
+          border-bottom: 1.5px dotted currentColor;
+          cursor: help;
+          position: relative;
+          display: inline;
+          white-space: nowrap;
+        }
+        .term-popup {
+          display: none;
+          position: fixed;
+          z-index: 9999;
+          max-width: 320px;
+          background: #fff;
+          border: 0.5px solid #1a1a1a;
+          border-radius: 10px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+          padding: 14px 16px;
+          pointer-events: auto;
+          animation: tp-in .15s ease;
+        }
+        @keyframes tp-in {
+          from { opacity:0; transform:translateY(4px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+        .term-popup.tp-show { display: block; }
+        .tp-term-name {
+          font-size: 13px; font-weight: 600; color: #1a1a1a;
+          margin-bottom: 6px;
+        }
+        .tp-def {
+          font-size: 12px; line-height: 1.65; color: #555;
+          margin-bottom: 10px;
+        }
+        .tp-source {
+          font-size: 11px; color: #aaa;
+          border-top: 0.5px solid #e8e8e8;
+          padding-top: 8px;
+          display: flex; align-items: center; gap: 6px;
+        }
+        .tp-source a {
+          color: #1a1a1a; text-decoration: none;
+          border-bottom: 0.5px solid #ccc;
+          transition: border-color .15s;
+          font-size: 11px;
+        }
+        .tp-source a:hover { border-bottom-color: #1a1a1a; }
+        @media (prefers-color-scheme: dark) {
+          .term-popup { background: #1c1c19; border-color: #e0e0e0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+          .tp-term-name { color: #e8e4d8; }
+          .tp-def { color: #9b9990; }
+          .tp-source { border-top-color: #2a2a28; color: #666; }
+          .tp-source a { color: #e8e4d8; border-bottom-color: #555; }
+          .tp-source a:hover { border-bottom-color: #e8e4d8; }
+        }
+
+        .ac-item.ac-open .ac-chev { transform:rotate(180deg); color:#1a1a1a; }
+
+        .ac-body {
+          display:grid; grid-template-rows:0fr;
+          transition:grid-template-rows .3s ease;
+        }
+        .ac-item.ac-open .ac-body { grid-template-rows:1fr; }
+        .ac-body-inner { overflow:hidden; }
+        .ac-content { padding:0 22px 28px 22px; border-top:0.5px solid #f0f0f0; }
+
+        @media(prefers-color-scheme:dark){
+          .ac-item { border-color:#2a2a28; }
+          .ac-item.ac-open { border-color:#e0e0e0; }
+          .ac-item:hover:not(.ac-open) { border-color:#555; }
+          .ac-hdr { background:#141412; }
+          .ac-title { color:#e8e4d8; }
+          .ac-num { color:#555; }
+          .ac-item.ac-open .ac-num { color:#e8e4d8; }
+          .ac-item.ac-open .ac-chev { color:#e8e4d8; }
+          .ac-body-inner { background:#141412; }
+          .ac-content { border-top-color:#2a2a28; }
+        }
+      </style>
+
+      <div class="ac-wrap">
+
+        <!-- 01 ОПРЕДЕЛЕНИЕ -->
+        <div class="ac-item" id="ac-definition">
+          <div class="ac-hdr" onclick="acToggle('ac-definition')">
+            <span class="ac-num">01</span>
+            <span class="ac-title">Определение страха</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+            <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0 32px" id="def-accordion">
+          <style>
+            .def-card{border:0.5px solid #e8e8e8;border-radius:10px;overflow:hidden;transition:border-color .18s}
+            .def-card:hover{border-color:#bbb}
+            .def-card.def-open{border-color:#1a1a1a}
+            .def-hdr{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:12px 16px;cursor:pointer;user-select:none;background:#fff}
+            .def-pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:20px;border:0.5px solid currentColor;white-space:nowrap;flex-shrink:0}
+            .def-title-wrap{flex:1}
+            .def-card-title{font-size:14px;font-weight:500;color:#1a1a1a}
+            .def-card-src{font-size:11px;color:#888;margin-top:1px}.def-card-src a{color:inherit;text-decoration:none;border-bottom:0.5px solid #ccc;transition:color .15s,border-color .15s}.def-card-src a:hover{color:#1a1a1a;border-bottom-color:#1a1a1a}
+            .def-chev{font-size:13px;color:#aaa;transition:transform .2s;flex-shrink:0}
+            .def-card.def-open .def-chev{transform:rotate(180deg)}
+            .def-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+            .def-card.def-open .def-body{grid-template-rows:1fr}
+            .def-body-in{overflow:hidden}
+            .def-body-content{padding:0 16px 16px 16px;border-top:0.5px solid #f0f0f0}
+            .def-text{font-size:14px;line-height:1.75;color:#333;margin-top:12px}
+            .def-quote{font-style:italic;font-size:14px;line-height:1.7;color:#555;border-left:3px solid currentColor;padding-left:14px;margin:12px 0}
+            @media(prefers-color-scheme:dark){
+              .def-card{border-color:#333}.def-card:hover{border-color:#666}.def-card.def-open{border-color:#e0e0e0}
+              .def-hdr{background:#1c1c19}.def-card-title{color:#e8e4d8}.def-card-src{color:#666}
+              .def-body-content{border-top-color:#2a2a28}.def-text{color:#a8a6a0}.def-quote{color:#888}
+            }
+          </style>
+          <script>
+          (function(){
+            var DEFS=[
+              {color:"#854F0B",pill:"DSM-5-TR · Клинический",title:"Официальное клиническое определение",src:"APA, DSM-5-TR, 2022 &mdash; <a href='https://doi.org/10.1176/appi.books.9780890425787' target='_blank' rel='noopener'>psychiatryonline.org</a>",
+               quote:"Страх — эмоциональный ответ на реальную или воспринимаемую непосредственную угрозу.",
+               text:"Страх связан со всплесками автономного возбуждения, необходимыми для реакции «бей или беги», мыслями о немедленной опасности и поведением побега или избегания. Он отличается от тревоги (предвосхищение будущей угрозы) по временно́му горизонту: страх = сейчас, тревога = потом. Это единственное операциональное определение, используемое в диагностике."},
+              {color:"#0F6E56",pill:"Нейронаука · LeDoux",title:"Двухсистемная нейронаучная модель",src:"LeDoux & Pine, Am. J. Psychiatry, 2016 &mdash; <a href='https://doi.org/10.1176/appi.ajp.2016.16030353' target='_blank' rel='noopener'>doi:10.1176/appi.ajp.2016.16030353</a>",
+               quote:"Страх обозначает сознательное субъективное переживание, связанное с непосредственной угрозой. Он принципиально отличается от защитных реакций.",
+               text:"По LeDoux, «страх» = то, что человек переживает осознанно (кора). «Защитные реакции» (замирание, бегство, учащение пульса) = то, что тело делает автоматически (амигдала, ствол мозга). Они могут идти параллельно или независимо. Это означает: фармакология, убирающая телесные симптомы, не обязательно убирает субъективный страх — и наоборот."},
+              {color:"#534AB7",pill:"Феноменология",title:"Экзистенциально-феноменологическое определение",src:"Хайдеггер, Sein und Zeit, §30 &mdash; <a href='https://plato.stanford.edu/entries/heidegger/' target='_blank' rel='noopener'>Stanford Encyclopedia of Philosophy</a>",
+               quote:"Furcht — это аффективный ответ на конкретную угрозу в мире. Angst направлена на ничто — на собственную конечность.",
+               text:"Хайдеггер разграничивает Furcht (страх перед конкретным объектом) и Angst (экзистенциальная тревога без объекта). Страх «обнаруживает» угрожающую вещь и одновременно «забирает» широту бытия-в-мире: мир сужается до угрозы. Это различие принципиальнее, чем DSM-разграничение, поскольку описывает структуру переживания, а не симптоматику."},
+              {color:"#993C1D",pill:"RDoC · Исследовательский",title:"Транзодиагностический исследовательский конструкт",src:"NIMH RDoC: Acute Threat (Fear) &mdash; <a href='https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/acute-threat-fear' target='_blank' rel='noopener'>nimh.nih.gov/rdoc</a>",
+               quote:"Острая угроза (страх) — активация оборонительной мотивационной системы мозга с целью продвижения поведений, защищающих организм от воспринимаемой опасности.",
+               text:"RDoC определяет страх не через симптомы, а через измеримые биомаркеры: потенцированный стартл-рефлекс, кожную проводимость, активацию амигдалы, изменения ЧСС. Этот конструкт трансдиагностичен — он релевантен для тревожных расстройств, ПТСР и других патологий. Цель RDoC: создать систему измерений, независимую от диагностических категорий DSM."},
+              {color:"#185FA5",pill:"Вычислительная нейронаука",title:"Байесовская / предиктивная модель",src:"Yamamori & Robinson, Neurosci. Biobehav. Rev., 2023 &mdash; <a href='https://doi.org/10.1016/j.neubiorev.2022.104959' target='_blank' rel='noopener'>doi:10.1016/j.neubiorev.2022.104959</a>",
+               quote:"Страх — сигнал ошибки предсказания: мозг обнаруживает расхождение между ожидаемой безопасностью и воспринятой угрозой.",
+               text:"В рамках теории активного вывода (active inference) мозг непрерывно предсказывает вероятность угрозы. Страх — не реакция на стимул, а результат байесовского обновления: ошибка предсказания (неожиданная угроза) вызывает всплеск. Патологический страх = нарушение механизма обновления: мозг не обновляет предсказание даже при безопасном исходе — именно так устроена ПТСР-петля."},
+              {color:"#5F5E5A",pill:"Интегративное",title:"Многоуровневое интегративное определение",src:"Разработано на основе 12 призм",
+               quote:"Страх — многоуровневое состояние живого существа, возникающее в ответ на воспринятую угрозу его существованию, целостности или значимым связям.",
+               text:"Это определение не редуцирует страх к одному уровню. Оно утверждает, что страх реализуется одновременно на молекулярном, нейронном, поведенческом, феноменальном, межличностном и смысловом уровнях — каждый из которых реален, ни один из которых не является исчерпывающим. Единое определение страха невозможно по той же причине, по которой невозможно единое определение «жизни» — это объект с несколькими онтологическими слоями."},
+            ];
+            var acc=document.getElementById('def-accordion');
+            DEFS.forEach(function(d,i){
+              var card=document.createElement('div');
+              card.className='def-card';card.id='def-card-'+i;
+              card.innerHTML='<div class="def-hdr" onclick="defToggle('+i+')"><div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px"><span class="def-pill" style="color:'+d.color+';border-color:'+d.color+'60">'+d.pill+'</span><span class="def-chev">▾</span></div><div class="def-card-title">'+d.title+'</div><div class="def-card-src">'+d.src+'</div></div><div class="def-body"><div class="def-body-in"><div class="def-body-content"><div class="def-quote" style="border-color:'+d.color+'">'+d.quote+'</div><div class="def-text">'+d.text+'</div></div></div></div>';
+              acc.appendChild(card);
+            });
+          })();
+          function defToggle(i){
+            var c=document.getElementById('def-card-'+i);
+            var was=c.classList.contains('def-open');
+            document.querySelectorAll('.def-card').forEach(function(x){x.classList.remove('def-open')});
+            if(!was)c.classList.add('def-open');
+          }
+          </script>
+        </div>
+          </div></div></div>
+        </div>
+
+        <!-- 02 КАК ПРОТЕКАЕТ -->
+        <div class="ac-item" id="ac-flow">
+          <div class="ac-hdr" onclick="acToggle('ac-flow')">
+            <span class="ac-num">02</span>
+            <span class="ac-title">Как протекает страх</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
             <div style="margin:24px 0 32px">
           <style>
             .flow-item{display:flex;gap:16px;position:relative;padding-bottom:20px}
