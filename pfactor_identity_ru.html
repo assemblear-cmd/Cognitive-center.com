@@ -706,140 +706,9 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
           </div></div></div>
         </div>
 
-      </div>
-
-      <script>
-        function acToggle(id) {
-          var el = document.getElementById(id);
-          var wasOpen = el.classList.contains('ac-open');
-          // Close all
-          document.querySelectorAll('.ac-item').forEach(function(item) {
-            item.classList.remove('ac-open');
-          });
-          // Open clicked if it was closed
-          if (!wasOpen) {
-            el.classList.add('ac-open');
-          }
-        }
-
-        // Open from URL hash
-        (function(){
-          var hash = window.location.hash;
-          var map = {
-            '#sec-definition': 'ac-definition',
-            '#sec-flow': 'ac-flow',
-            '#sec-measurement': 'ac-measurement',
-            '#sec-disorders': 'ac-disorders'
-          };
-          if (map[hash]) {
-            var el = document.getElementById(map[hash]);
-            if (el) {
-              el.classList.add('ac-open');
-              setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
-            }
-          }
-        })();
-      </script>
 
 
-      <!-- TOOLTIP ENGINE -->
-      <div id="term-popup" class="term-popup" role="tooltip" aria-live="polite">
-        <div class="tp-term-name" id="tp-name"></div>
-        <div class="tp-def" id="tp-def"></div>
-        <div class="tp-source">
-          <span>Источник:</span>
-          <a id="tp-link" href="#" target="_blank" rel="noopener"></a>
-        </div>
-      </div>
-      <script>
-      (function(){
-        var TERMS = {
-          "амигдала": {
-            name: "Амигдала (миндалевидное тело)",
-            def: "Парная структура медиальной височной доли, состоящая из ~13 ядер. Базолатеральный комплекс (БЛА) — центр ассоциативного обусловливания страха; центральное ядро (ЦЯ) — главный выход для координации защитных реакций. Реагирует на угрозу за 88–170 мс — до осознания стимула корой.",
-            src: "Amunts et al. (2005) Anatomy and Functions of the Human Amygdaloid Complex",
-            url: "https://link.springer.com/article/10.1007/s00429-005-0025-5"
-          }
-        };
-
-        var popup = document.getElementById('term-popup');
-        var tpName = document.getElementById('tp-name');
-        var tpDef  = document.getElementById('tp-def');
-        var tpLink = document.getElementById('tp-link');
-        var activeEl = null;
-        var hideTimer = null;
-
-        function showPopup(el, key) {
-          clearTimeout(hideTimer);
-          var t = TERMS[key];
-          if (!t) return;
-          tpName.textContent = t.name;
-          tpDef.textContent  = t.def;
-          tpLink.textContent = t.src;
-          tpLink.href        = t.url;
-
-          popup.classList.add('tp-show');
-          positionPopup(el);
-          activeEl = el;
-        }
-
-        function positionPopup(el) {
-          var rect = el.getBoundingClientRect();
-          var pw = 320, ph = 160;
-          var vw = window.innerWidth, vh = window.innerHeight;
-          var left = rect.left;
-          var top  = rect.bottom + 8;
-
-          if (left + pw > vw - 12) left = vw - pw - 12;
-          if (left < 12) left = 12;
-          if (top + ph > vh - 12) top = rect.top - ph - 8;
-          if (top < 12) top = 12;
-
-          popup.style.left = left + 'px';
-          popup.style.top  = top  + 'px';
-        }
-
-        function hidePopup() {
-          hideTimer = setTimeout(function(){
-            popup.classList.remove('tp-show');
-            activeEl = null;
-          }, 120);
-        }
-
-        popup.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); });
-        popup.addEventListener('mouseleave', hidePopup);
-        popup.addEventListener('touchstart', function(){ clearTimeout(hideTimer); }, {passive:true});
-
-        document.addEventListener('click', function(e){
-          if (!popup.contains(e.target) && (!activeEl || !activeEl.contains(e.target))) {
-            popup.classList.remove('tp-show');
-          }
-        });
-
-        document.querySelectorAll('.term').forEach(function(el){
-          var key = (el.dataset.term || el.textContent).toLowerCase().trim();
-          el.addEventListener('mouseenter', function(){ showPopup(el, key); });
-          el.addEventListener('mouseleave', hidePopup);
-          el.addEventListener('touchstart', function(e){
-            e.preventDefault();
-            if (popup.classList.contains('tp-show') && activeEl === el) {
-              popup.classList.remove('tp-show');
-            } else {
-              showPopup(el, key);
-            }
-          }, {passive:false});
-        });
-
-        window.addEventListener('scroll', function(){
-          if (activeEl) positionPopup(activeEl);
-        }, {passive:true});
-        window.addEventListener('resize', function(){
-          if (activeEl) positionPopup(activeEl);
-        });
-      })();
-      </script>
-
-              <!-- 05 ИССЛЕДОВАНИЯ СТРАХА -->
+        <!-- 05 ИССЛЕДОВАНИЯ СТРАХА -->
         <div class="ac-item" id="ac-research">
           <div class="ac-hdr" onclick="acToggle('ac-research')">
             <span class="ac-num">05</span>
@@ -1018,6 +887,142 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
           </div></div></div>
         </div>
+
+      </div>
+
+      <script>
+        function acToggle(id) {
+          var el = document.getElementById(id);
+          var wasOpen = el.classList.contains('ac-open');
+          // Close all
+          document.querySelectorAll('.ac-item').forEach(function(item) {
+            item.classList.remove('ac-open');
+          });
+          // Open clicked if it was closed
+          if (!wasOpen) {
+            el.classList.add('ac-open');
+          }
+        }
+
+        // Open from URL hash
+        (function(){
+          var hash = window.location.hash;
+          var map = {
+            '#sec-definition': 'ac-definition',
+            '#sec-flow': 'ac-flow',
+            '#sec-measurement': 'ac-measurement',
+            '#sec-disorders': 'ac-disorders',
+            '#sec-research': 'ac-research'
+          };
+          if (map[hash]) {
+            var el = document.getElementById(map[hash]);
+            if (el) {
+              el.classList.add('ac-open');
+              setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+            }
+          }
+        })();
+      </script>
+
+
+      <!-- TOOLTIP ENGINE -->
+      <div id="term-popup" class="term-popup" role="tooltip" aria-live="polite">
+        <div class="tp-term-name" id="tp-name"></div>
+        <div class="tp-def" id="tp-def"></div>
+        <div class="tp-source">
+          <span>Источник:</span>
+          <a id="tp-link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+      <script>
+      (function(){
+        var TERMS = {
+          "амигдала": {
+            name: "Амигдала (миндалевидное тело)",
+            def: "Парная структура медиальной височной доли, состоящая из ~13 ядер. Базолатеральный комплекс (БЛА) — центр ассоциативного обусловливания страха; центральное ядро (ЦЯ) — главный выход для координации защитных реакций. Реагирует на угрозу за 88–170 мс — до осознания стимула корой.",
+            src: "Amunts et al. (2005) Anatomy and Functions of the Human Amygdaloid Complex",
+            url: "https://link.springer.com/article/10.1007/s00429-005-0025-5"
+          }
+        };
+
+        var popup = document.getElementById('term-popup');
+        var tpName = document.getElementById('tp-name');
+        var tpDef  = document.getElementById('tp-def');
+        var tpLink = document.getElementById('tp-link');
+        var activeEl = null;
+        var hideTimer = null;
+
+        function showPopup(el, key) {
+          clearTimeout(hideTimer);
+          var t = TERMS[key];
+          if (!t) return;
+          tpName.textContent = t.name;
+          tpDef.textContent  = t.def;
+          tpLink.textContent = t.src;
+          tpLink.href        = t.url;
+
+          popup.classList.add('tp-show');
+          positionPopup(el);
+          activeEl = el;
+        }
+
+        function positionPopup(el) {
+          var rect = el.getBoundingClientRect();
+          var pw = 320, ph = 160;
+          var vw = window.innerWidth, vh = window.innerHeight;
+          var left = rect.left;
+          var top  = rect.bottom + 8;
+
+          if (left + pw > vw - 12) left = vw - pw - 12;
+          if (left < 12) left = 12;
+          if (top + ph > vh - 12) top = rect.top - ph - 8;
+          if (top < 12) top = 12;
+
+          popup.style.left = left + 'px';
+          popup.style.top  = top  + 'px';
+        }
+
+        function hidePopup() {
+          hideTimer = setTimeout(function(){
+            popup.classList.remove('tp-show');
+            activeEl = null;
+          }, 120);
+        }
+
+        popup.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); });
+        popup.addEventListener('mouseleave', hidePopup);
+        popup.addEventListener('touchstart', function(){ clearTimeout(hideTimer); }, {passive:true});
+
+        document.addEventListener('click', function(e){
+          if (!popup.contains(e.target) && (!activeEl || !activeEl.contains(e.target))) {
+            popup.classList.remove('tp-show');
+          }
+        });
+
+        document.querySelectorAll('.term').forEach(function(el){
+          var key = (el.dataset.term || el.textContent).toLowerCase().trim();
+          el.addEventListener('mouseenter', function(){ showPopup(el, key); });
+          el.addEventListener('mouseleave', hidePopup);
+          el.addEventListener('touchstart', function(e){
+            e.preventDefault();
+            if (popup.classList.contains('tp-show') && activeEl === el) {
+              popup.classList.remove('tp-show');
+            } else {
+              showPopup(el, key);
+            }
+          }, {passive:false});
+        });
+
+        window.addEventListener('scroll', function(){
+          if (activeEl) positionPopup(activeEl);
+        }, {passive:true});
+        window.addEventListener('resize', function(){
+          if (activeEl) positionPopup(activeEl);
+        });
+      })();
+      </script>
+
+      
 
 
       <div class="navigation-links">
