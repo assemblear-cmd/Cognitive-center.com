@@ -839,7 +839,177 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
       })();
       </script>
 
-            <div class="navigation-links">
+              <!-- 05 ИССЛЕДОВАНИЯ СТРАХА -->
+        <div class="ac-item" id="ac-research">
+          <div class="ac-hdr" onclick="acToggle('ac-research')">
+            <span class="ac-num">05</span>
+            <span class="ac-title">Исследования страха</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <style>
+              .rs-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+              .rs-card{border:0.5px solid #e8e8e8;border-radius:10px;overflow:hidden;transition:border-color .18s;cursor:pointer}
+              .rs-card:hover{border-color:#aaa}
+              .rs-card.rs-open{border-color:#1a1a1a}
+              .rs-hdr{padding:14px 18px;display:flex;align-items:flex-start;gap:14px}
+              .rs-meta{flex:1;min-width:0}
+              .rs-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:2px 8px;border-radius:20px;border:0.5px solid currentColor;white-space:nowrap;display:inline-block;margin-bottom:6px}
+              .rs-name{font-size:14px;font-weight:500;color:#1a1a1a;line-height:1.35;margin-bottom:3px}
+              .rs-what{font-size:12px;color:#888;line-height:1.5}
+              .rs-chev{font-size:13px;color:#ccc;transition:transform .2s;flex-shrink:0;margin-top:2px}
+              .rs-card.rs-open .rs-chev{transform:rotate(180deg);color:#1a1a1a}
+              .rs-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+              .rs-card.rs-open .rs-body{grid-template-rows:1fr}
+              .rs-body-in{overflow:hidden}
+              .rs-content{padding:0 18px 16px 18px;border-top:0.5px solid #f0f0f0}
+              .rs-text{font-size:13px;line-height:1.75;color:#555;margin-top:12px}
+              .rs-source{margin-top:12px;padding-top:10px;border-top:0.5px solid #e8e8e8;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+              .rs-source-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;font-weight:500}
+              .rs-source a{font-size:12px;color:#1a1a1a;text-decoration:none;border-bottom:0.5px solid #ccc;transition:border-color .15s;line-height:1.5}
+              .rs-source a:hover{border-bottom-color:#1a1a1a}
+              .rs-year{font-size:11px;color:#bbb}
+              @media(prefers-color-scheme:dark){
+                .rs-card{border-color:#2a2a28;background:#1c1c19}
+                .rs-card:hover{border-color:#555}
+                .rs-card.rs-open{border-color:#e0e0e0}
+                .rs-name{color:#e8e4d8}
+                .rs-what{color:#666}
+                .rs-text{color:#888}
+                .rs-body-in{background:#1c1c19}
+                .rs-content{border-top-color:#2a2a28}
+                .rs-source{border-top-color:#2a2a28}
+                .rs-source a{color:#e8e4d8;border-bottom-color:#555}
+              }
+            </style>
+
+            <div class="rs-list" id="rs-list"></div>
+
+            <script>
+            (function(){
+              var RS = [
+                {
+                  color:"#993c1d",
+                  tag:"Реконсолидация · Nature, 2010",
+                  name:"Предотвращение возврата страха через механизмы реконсолидации",
+                  what:"Что исследовали: можно ли стереть страховую память у людей, проводя угашение в узком временно́м окне реконсолидации?",
+                  text:"Schiller и соавторы показали, что если кратко реактивировать условный стимул страха, а затем в течение 10 минут (окно реконсолидации) провести угашение — память страха обновляется, а не просто тормозится. Через 24 часа и через год страх не возвращался при спонтанном восстановлении, реинстатировании и возобновлении. При угашении вне этого окна страх возвращался. Исследование открыло неинвазивный подход к стиранию страховых воспоминаний без фармакологии. Примечание: воспроизводимость была оспорена в 2020 году (Chalkia et al.), что подчёркивает сложность реконсолидации как клинического инструмента.",
+                  authors:"Schiller D., Monfils M-H., Raio C. et al.",
+                  journal:"Nature, 463, 49–53",
+                  year:"2010",
+                  doi:"https://doi.org/10.1038/nature08637"
+                },
+                {
+                  color:"#185fa5",
+                  tag:"Нейровизуализация · Science, 2012",
+                  name:"Нарушение реконсолидации стирает след страховой памяти в амигдале человека",
+                  what:"Что исследовали: подтверждается ли нейровизуализационно, что реконсолидация памяти страха — амигдало-зависимый процесс?",
+                  text:"Agren и соавторы с помощью фМРТ показали, что угашение внутри окна реконсолидации (в отличие от угашения вне окна) снижает активность амигдалы при последующем предъявлении условного стимула. Это первое прямое нейровизуализационное свидетельство того, что нарушение реконсолидации у людей действует через амигдалу — а не просто через корковое торможение, как при обычном угашении.",
+                  authors:"Agren T., Engman J., Frick A. et al.",
+                  journal:"Science, 337(6101), 1550–1552",
+                  year:"2012",
+                  doi:"https://doi.org/10.1126/science.1223006"
+                },
+                {
+                  color:"#0f6e56",
+                  tag:"Фармакология · Translational Psychiatry, 2020",
+                  name:"Пропранолол перед реактивацией US блокирует реконсолидацию всех CS-ассоциаций страха",
+                  what:"Что исследовали: можно ли одним вмешательством с пропранололом стереть страх ко всем условным стимулам одновременно?",
+                  text:"Deng и соавторы на 127 здоровых испытуемых показали, что приём пропранолола (40 мг) перед реактивацией безусловного стимула (US) — а не условного (CS) — нарушает реконсолидацию исходной памяти страха и устраняет страховые ответы на все связанные CS. Эффект сохранялся минимум 2 недели и распространялся на удалённые страховые воспоминания. Это принципиально: при ПТСР один US (травматическое событие) связан с множеством CS, и US-ориентированное вмешательство потенциально эффективнее CS-ориентированного.",
+                  authors:"Deng J., Shi L., Yuan K. et al.",
+                  journal:"Translational Psychiatry, 10(1), 353",
+                  year:"2020",
+                  doi:"https://doi.org/10.1038/s41398-020-01023-w"
+                },
+                {
+                  color:"#534ab7",
+                  tag:"Нейровизуализация · J. Neuroscience, 2021",
+                  name:"Амигдала не отвечает на условный страховой стимул при фМРТ у людей",
+                  what:"Что исследовали: действительно ли амигдала является «центром страха» у людей так же, как у грызунов?",
+                  text:"Visser и соавторы в мега-анализе трёх исследований (n=98) обнаружили, что амигдала НЕ активировалась на условный страховой стимул (CS+) при фМРТ. Вместо этого страховой ответ фиксировался в инсуле, средней поясной коре, таламусе и ядрах ложа стрии терминалис. Амигдала, напротив, сильнее реагировала на CS− (безопасный стимул). Это ставит под сомнение прямой перенос модели «амигдала = центр страха» с грызунов на людей и согласуется с двухсистемной теорией LeDoux (2016).",
+                  authors:"Visser R.M., Bathelt J., Scholte H.S., Kindt M.",
+                  journal:"Journal of Neuroscience, 41(50), 10278–10292",
+                  year:"2021",
+                  doi:"https://doi.org/10.1523/JNEUROSCI.0857-21.2021"
+                },
+                {
+                  color:"#ba7517",
+                  tag:"Клиническое испытание · Neuropsychopharmacology, 2021",
+                  name:"Реактивация травматической памяти с пропранололом при ПТСР: рандомизированное клиническое испытание",
+                  what:"Что исследовали: снижает ли пропранолол симптомы ПТСР при применении перед реактивацией травматической памяти?",
+                  text:"Roullet и соавторы провели двойное слепое плацебо-контролируемое РКИ (n=66 взрослых с хроническим ПТСР). Пропранолол или плацебо давали за 90 минут до кратких сессий реактивации памяти (6 сессий). Симптомы ПТСР снизились в обеих группах (~39% vs ~34%), без значимых различий между ними. Исследование демонстрирует, что сама реактивация памяти (независимо от пропранолола) обладает терапевтическим эффектом, и ставит под вопрос специфичность механизма блокады реконсолидации в клинической практике.",
+                  authors:"Roullet P., Vaiva G., Ferry B. et al.",
+                  journal:"Neuropsychopharmacology, 46(9), 1643–1649",
+                  year:"2021",
+                  doi:"https://doi.org/10.1038/s41386-021-00984-w"
+                },
+                {
+                  color:"#0f6e56",
+                  tag:"Клиническое испытание · Translational Psychiatry, 2022",
+                  name:"Виртуальная реальность vs. воображаемая экспозиция с D-циклосерином при боевом ПТСР",
+                  what:"Что исследовали: превосходит ли VR-экспозиция с когнитивным энхансером обычную экспозиционную терапию при ПТСР?",
+                  text:"Rothbaum и соавторы провели многоцентровое РКИ (n=192, военнослужащие с ПТСР). Сравнивались VR-экспозиция и пролонгированная экспозиция (PE), усиленные D-циклосерином (DCS) или плацебо. Обе формы экспозиции дали сопоставимое клинически значимое улучшение — различий между группами не обнаружено. DCS не дал дополнительного преимущества. Исследование подтверждает эффективность VR как равноценной альтернативы классической экспозиции, но не поддерживает фармакологическое усиление угашения DCS в реальной клинической практике.",
+                  authors:"Rothbaum B.O., Price M., Jovanovic T. et al.",
+                  journal:"Translational Psychiatry, 12(1), 299",
+                  year:"2022",
+                  doi:"https://doi.org/10.1038/s41398-022-02066-x"
+                },
+                {
+                  color:"#185fa5",
+                  tag:"Вычислительная нейронаука · Neurosci. Biobehav. Rev., 2023",
+                  name:"Вычислительные подходы к страху и тревоге у людей",
+                  what:"Что исследовали: как вычислительное моделирование объясняет механизмы патологического страха и тревоги?",
+                  text:"Yamamori & Robinson из UCL дали обзор вычислительных моделей страха и тревоги у людей. Три ключевых темы: (1) стратегии обучения предсказанию угрозы (ошибки предсказания, Байесовское обновление); (2) конфликт приближение-избегание как модель тревоги; (3) роль неопределённости в принятии решений при тревожных расстройствах. Патологический страх = дисфункция механизмов обновления: мозг не корректирует предсказания угрозы при безопасном исходе. Обзор формализует вычислительную основу для понимания того, почему экспозиционная терапия работает (и когда не работает).",
+                  authors:"Yamamori Y., Robinson O.J.",
+                  journal:"Neuroscience & Biobehavioral Reviews, 144, 104959",
+                  year:"2023",
+                  doi:"https://doi.org/10.1016/j.neubiorev.2022.104959"
+                },
+              ];
+
+              var list = document.getElementById('rs-list');
+
+              RS.forEach(function(r, i){
+                var card = document.createElement('div');
+                card.className = 'rs-card';
+                card.id = 'rs-' + i;
+                card.innerHTML =
+                  '<div class="rs-hdr" onclick="rsToggle(' + i + ')">' +
+                    '<div class="rs-meta">' +
+                      '<span class="rs-tag" style="color:' + r.color + ';border-color:' + r.color + '60">' + r.tag + '</span>' +
+                      '<div class="rs-name">' + r.name + '</div>' +
+                      '<div class="rs-what">' + r.what + '</div>' +
+                    '</div>' +
+                    '<span class="rs-chev">&#9662;</span>' +
+                  '</div>' +
+                  '<div class="rs-body"><div class="rs-body-in">' +
+                    '<div class="rs-content">' +
+                      '<div class="rs-text">' + r.text + '</div>' +
+                      '<div class="rs-source">' +
+                        '<span class="rs-source-label">Источник</span>' +
+                        '<a href="' + r.doi + '" target="_blank" rel="noopener">' + r.authors + ' ' + r.journal + '</a>' +
+                        '<span class="rs-year">' + r.year + '</span>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div></div>';
+                list.appendChild(card);
+              });
+
+              window.rsToggle = function(i){
+                var el = document.getElementById('rs-' + i);
+                var was = el.classList.contains('rs-open');
+                document.querySelectorAll('.rs-card').forEach(function(c){ c.classList.remove('rs-open'); });
+                if (!was) el.classList.add('rs-open');
+              };
+            })();
+            </script>
+
+          </div></div></div>
+        </div>
+
+
+      <div class="navigation-links">
         <a href="ptsd_recovery_en.html" class="nav-link prev">
           <span class="nav-arrow">←</span>
           <span>ПТСР: руководство по восстановлению</span>
