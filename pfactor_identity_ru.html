@@ -325,7 +325,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             .def-pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:20px;border:0.5px solid currentColor;white-space:nowrap;flex-shrink:0}
             .def-title-wrap{flex:1}
             .def-card-title{font-size:14px;font-weight:500;color:#1a1a1a}
-            .def-card-src{font-size:11px;color:#888;margin-top:1px}
+            .def-card-src{font-size:11px;color:#888;margin-top:1px}.def-card-src a{color:inherit;text-decoration:none;border-bottom:0.5px solid #ccc;transition:color .15s,border-color .15s}.def-card-src a:hover{color:#1a1a1a;border-bottom-color:#1a1a1a}
             .def-chev{font-size:13px;color:#aaa;transition:transform .2s;flex-shrink:0}
             .def-card.def-open .def-chev{transform:rotate(180deg)}
             .def-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
@@ -343,19 +343,19 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
           <script>
           (function(){
             var DEFS=[
-              {color:"#854F0B",pill:"DSM-5-TR · Клинический",title:"Официальное клиническое определение",src:"APA, DSM-5-TR, 2022",
+              {color:"#854F0B",pill:"DSM-5-TR · Клинический",title:"Официальное клиническое определение",src:"APA, DSM-5-TR, 2022 &mdash; <a href='https://doi.org/10.1176/appi.books.9780890425787' target='_blank' rel='noopener'>psychiatryonline.org</a>",
                quote:"Страх — эмоциональный ответ на реальную или воспринимаемую непосредственную угрозу.",
                text:"Страх связан со всплесками автономного возбуждения, необходимыми для реакции «бей или беги», мыслями о немедленной опасности и поведением побега или избегания. Он отличается от тревоги (предвосхищение будущей угрозы) по временно́му горизонту: страх = сейчас, тревога = потом. Это единственное операциональное определение, используемое в диагностике."},
-              {color:"#0F6E56",pill:"Нейронаука · LeDoux",title:"Двухсистемная нейронаучная модель",src:"LeDoux & Pine, Am. J. Psychiatry, 2016",
+              {color:"#0F6E56",pill:"Нейронаука · LeDoux",title:"Двухсистемная нейронаучная модель",src:"LeDoux & Pine, Am. J. Psychiatry, 2016 &mdash; <a href='https://doi.org/10.1176/appi.ajp.2016.16030353' target='_blank' rel='noopener'>doi:10.1176/appi.ajp.2016.16030353</a>",
                quote:"Страх обозначает сознательное субъективное переживание, связанное с непосредственной угрозой. Он принципиально отличается от защитных реакций.",
                text:"По LeDoux, «страх» = то, что человек переживает осознанно (кора). «Защитные реакции» (замирание, бегство, учащение пульса) = то, что тело делает автоматически (амигдала, ствол мозга). Они могут идти параллельно или независимо. Это означает: фармакология, убирающая телесные симптомы, не обязательно убирает субъективный страх — и наоборот."},
-              {color:"#534AB7",pill:"Феноменология",title:"Экзистенциально-феноменологическое определение",src:"Хайдеггер, Sein und Zeit, §30",
+              {color:"#534AB7",pill:"Феноменология",title:"Экзистенциально-феноменологическое определение",src:"Хайдеггер, Sein und Zeit, §30 &mdash; <a href='https://plato.stanford.edu/entries/heidegger/' target='_blank' rel='noopener'>Stanford Encyclopedia of Philosophy</a>",
                quote:"Furcht — это аффективный ответ на конкретную угрозу в мире. Angst направлена на ничто — на собственную конечность.",
                text:"Хайдеггер разграничивает Furcht (страх перед конкретным объектом) и Angst (экзистенциальная тревога без объекта). Страх «обнаруживает» угрожающую вещь и одновременно «забирает» широту бытия-в-мире: мир сужается до угрозы. Это различие принципиальнее, чем DSM-разграничение, поскольку описывает структуру переживания, а не симптоматику."},
-              {color:"#993C1D",pill:"RDoC · Исследовательский",title:"Транзодиагностический исследовательский конструкт",src:"NIMH RDoC: Acute Threat (Fear), 2023",
+              {color:"#993C1D",pill:"RDoC · Исследовательский",title:"Транзодиагностический исследовательский конструкт",src:"NIMH RDoC: Acute Threat (Fear) &mdash; <a href='https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/acute-threat-fear' target='_blank' rel='noopener'>nimh.nih.gov/rdoc</a>",
                quote:"Острая угроза (страх) — активация оборонительной мотивационной системы мозга с целью продвижения поведений, защищающих организм от воспринимаемой опасности.",
                text:"RDoC определяет страх не через симптомы, а через измеримые биомаркеры: потенцированный стартл-рефлекс, кожную проводимость, активацию амигдалы, изменения ЧСС. Этот конструкт трансдиагностичен — он релевантен для тревожных расстройств, ПТСР и других патологий. Цель RDoC: создать систему измерений, независимую от диагностических категорий DSM."},
-              {color:"#185FA5",pill:"Вычислительная нейронаука",title:"Байесовская / предиктивная модель",src:"Yamamori & Robinson, NBR, 2023",
+              {color:"#185FA5",pill:"Вычислительная нейронаука",title:"Байесовская / предиктивная модель",src:"Yamamori & Robinson, Neurosci. Biobehav. Rev., 2023 &mdash; <a href='https://doi.org/10.1016/j.neubiorev.2022.104959' target='_blank' rel='noopener'>doi:10.1016/j.neubiorev.2022.104959</a>",
                quote:"Страх — сигнал ошибки предсказания: мозг обнаруживает расхождение между ожидаемой безопасностью и воспринятой угрозой.",
                text:"В рамках теории активного вывода (active inference) мозг непрерывно предсказывает вероятность угрозы. Страх — не реакция на стимул, а результат байесовского обновления: ошибка предсказания (неожиданная угроза) вызывает всплеск. Патологический страх = нарушение механизма обновления: мозг не обновляет предсказание даже при безопасном исходе — именно так устроена ПТСР-петля."},
               {color:"#5F5E5A",pill:"Интегративное",title:"Многоуровневое интегративное определение",src:"Разработано на основе 12 призм",
