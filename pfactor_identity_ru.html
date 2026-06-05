@@ -282,6 +282,63 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
           font-size:18px; color:#ccc; transition:transform .22s; flex-shrink:0;
           line-height:1;
         }
+
+        /* ── TERM TOOLTIPS ── */
+        .term {
+          border-bottom: 1.5px dotted currentColor;
+          cursor: help;
+          position: relative;
+          display: inline;
+          white-space: nowrap;
+        }
+        .term-popup {
+          display: none;
+          position: fixed;
+          z-index: 9999;
+          max-width: 320px;
+          background: #fff;
+          border: 0.5px solid #1a1a1a;
+          border-radius: 10px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+          padding: 14px 16px;
+          pointer-events: auto;
+          animation: tp-in .15s ease;
+        }
+        @keyframes tp-in {
+          from { opacity:0; transform:translateY(4px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+        .term-popup.tp-show { display: block; }
+        .tp-term-name {
+          font-size: 13px; font-weight: 600; color: #1a1a1a;
+          margin-bottom: 6px;
+        }
+        .tp-def {
+          font-size: 12px; line-height: 1.65; color: #555;
+          margin-bottom: 10px;
+        }
+        .tp-source {
+          font-size: 11px; color: #aaa;
+          border-top: 0.5px solid #e8e8e8;
+          padding-top: 8px;
+          display: flex; align-items: center; gap: 6px;
+        }
+        .tp-source a {
+          color: #1a1a1a; text-decoration: none;
+          border-bottom: 0.5px solid #ccc;
+          transition: border-color .15s;
+          font-size: 11px;
+        }
+        .tp-source a:hover { border-bottom-color: #1a1a1a; }
+        @media (prefers-color-scheme: dark) {
+          .term-popup { background: #1c1c19; border-color: #e0e0e0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+          .tp-term-name { color: #e8e4d8; }
+          .tp-def { color: #9b9990; }
+          .tp-source { border-top-color: #2a2a28; color: #666; }
+          .tp-source a { color: #e8e4d8; border-bottom-color: #555; }
+          .tp-source a:hover { border-bottom-color: #e8e4d8; }
+        }
+
         .ac-item.ac-open .ac-chev { transform:rotate(180deg); color:#1a1a1a; }
 
         .ac-body {
@@ -412,7 +469,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             <div class="flow-dot" style="color:#993c1d;background:#faece7">II</div>
             <div class="flow-body">
               <div class="flow-time" style="color:#993c1d">12–88 мс — Нижний путь</div>
-              <div class="flow-heading">Амигдала реагирует до осознания</div>
+              <div class="flow-heading"><span class="term" data-term="амигдала">Амигдала</span> реагирует до осознания</div>
               <div class="flow-desc">Таламус отправляет грубую копию сигнала прямо в амигдалу (БЛА). Тело начинает реагировать: симпатика, адреналин, замирание. Сознание ещё «не знает», что происходит.</div>
             </div>
           </div>
@@ -675,7 +732,105 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
         })();
       </script>
 
-      <div class="navigation-links">
+
+      <!-- TOOLTIP ENGINE -->
+      <div id="term-popup" class="term-popup" role="tooltip" aria-live="polite">
+        <div class="tp-term-name" id="tp-name"></div>
+        <div class="tp-def" id="tp-def"></div>
+        <div class="tp-source">
+          <span>Источник:</span>
+          <a id="tp-link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+      <script>
+      (function(){
+        var TERMS = {
+          "амигдала": {
+            name: "Амигдала (миндалевидное тело)",
+            def: "Парная структура медиальной височной доли, состоящая из ~13 ядер. Базолатеральный комплекс (БЛА) — центр ассоциативного обусловливания страха; центральное ядро (ЦЯ) — главный выход для координации защитных реакций. Реагирует на угрозу за 88–170 мс — до осознания стимула корой.",
+            src: "Amunts et al. (2005) Anatomy and Functions of the Human Amygdaloid Complex",
+            url: "https://link.springer.com/article/10.1007/s00429-005-0025-5"
+          }
+        };
+
+        var popup = document.getElementById('term-popup');
+        var tpName = document.getElementById('tp-name');
+        var tpDef  = document.getElementById('tp-def');
+        var tpLink = document.getElementById('tp-link');
+        var activeEl = null;
+        var hideTimer = null;
+
+        function showPopup(el, key) {
+          clearTimeout(hideTimer);
+          var t = TERMS[key];
+          if (!t) return;
+          tpName.textContent = t.name;
+          tpDef.textContent  = t.def;
+          tpLink.textContent = t.src;
+          tpLink.href        = t.url;
+
+          popup.classList.add('tp-show');
+          positionPopup(el);
+          activeEl = el;
+        }
+
+        function positionPopup(el) {
+          var rect = el.getBoundingClientRect();
+          var pw = 320, ph = 160;
+          var vw = window.innerWidth, vh = window.innerHeight;
+          var left = rect.left;
+          var top  = rect.bottom + 8;
+
+          if (left + pw > vw - 12) left = vw - pw - 12;
+          if (left < 12) left = 12;
+          if (top + ph > vh - 12) top = rect.top - ph - 8;
+          if (top < 12) top = 12;
+
+          popup.style.left = left + 'px';
+          popup.style.top  = top  + 'px';
+        }
+
+        function hidePopup() {
+          hideTimer = setTimeout(function(){
+            popup.classList.remove('tp-show');
+            activeEl = null;
+          }, 120);
+        }
+
+        popup.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); });
+        popup.addEventListener('mouseleave', hidePopup);
+        popup.addEventListener('touchstart', function(){ clearTimeout(hideTimer); }, {passive:true});
+
+        document.addEventListener('click', function(e){
+          if (!popup.contains(e.target) && (!activeEl || !activeEl.contains(e.target))) {
+            popup.classList.remove('tp-show');
+          }
+        });
+
+        document.querySelectorAll('.term').forEach(function(el){
+          var key = (el.dataset.term || el.textContent).toLowerCase().trim();
+          el.addEventListener('mouseenter', function(){ showPopup(el, key); });
+          el.addEventListener('mouseleave', hidePopup);
+          el.addEventListener('touchstart', function(e){
+            e.preventDefault();
+            if (popup.classList.contains('tp-show') && activeEl === el) {
+              popup.classList.remove('tp-show');
+            } else {
+              showPopup(el, key);
+            }
+          }, {passive:false});
+        });
+
+        window.addEventListener('scroll', function(){
+          if (activeEl) positionPopup(activeEl);
+        }, {passive:true});
+        window.addEventListener('resize', function(){
+          if (activeEl) positionPopup(activeEl);
+        });
+      })();
+      </script>
+
+            <div class="navigation-links">
         <a href="ptsd_recovery_en.html" class="nav-link prev">
           <span class="nav-arrow">←</span>
           <span>ПТСР: руководство по восстановлению</span>
