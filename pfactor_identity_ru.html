@@ -475,14 +475,31 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                     <span style="display:block;margin-top:3px"><strong style="color:#444"><span class="term" data-term="интероцепция">Интероцепция</span></strong> → механо- и хеморецепторы органов → блуждающий нерв → ядро одиночного тракта → инсула → <span class="term" data-term="таламус">таламус</span></span>
                     <span style="display:block;margin-top:8px;color:#555">Все пути (кроме обоняния) сходятся в <span class="term" data-term="таламус">таламусе</span> — он первым решает: немедленно сигнализировать амигдале <em>(нижний путь)</em> или направить сигнал в кору для точного анализа <em>(верхний путь)</em>.</span>
                     <span style="display:block;margin-top:8px">
-                      <button onclick="(function(b){var el=document.getElementById('smell-info');var open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':'500px';el.style.opacity=open?'0':'1';b.textContent=open?'🌿 Интересно про запах':'✕ Скрыть'})(this)" style="font-size:12px;padding:4px 11px;border:0.5px solid #bbb;border-radius:6px;background:none;color:#666;cursor:pointer;font-family:inherit">🌿 Интересно про запах</button>
+                      <button onclick="(function(b){var el=document.getElementById('smell-info');var open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':'500px';el.style.opacity=open?'0':'1';b.textContent=open?'🌿 Интересно про обоняние':'✕ Скрыть'})(this)" style="font-size:12px;padding:4px 11px;border:0.5px solid #bbb;border-radius:6px;background:none;color:#666;cursor:pointer;font-family:inherit">🌿 Интересно про обоняние</button>
                       <div id="smell-info" style="max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease">
-                        <div style="margin-top:10px;padding:11px 14px;background:#fff;border-radius:8px;border:0.5px solid #e8e8e8;font-size:12px;line-height:1.8;color:#555">
-                          <p style="margin-bottom:7px"><strong style="color:#333">Эволюционный возраст.</strong> Обонятельная система — древнейшая из сенсорных. У первых позвоночных мозг состоял почти исключительно из обонятельных структур. Таламус появился значительно позже — и запах никогда не перешёл под его контроль.</p>
-                          <p style="margin-bottom:7px"><strong style="color:#333">Прямой путь к амигдале.</strong> Обонятельные нейроны → обонятельная луковица → пириформная кора и амигдала — без ретрансляции. Запах достигает эмоциональных центров быстрее и без фильтрации, которую таламус обеспечивает для остальных чувств.</p>
-                          <p style="margin-bottom:7px"><strong style="color:#333">Что это меняет.</strong> Запах — единственное чувство, вызывающее эмоциональный и мнемический отклик <em>до</em> осознания. Запах дыма активирует страх раньше, чем вы думаете «это дым». Все остальные чувства сначала проходят таламическую обработку.</p>
-                          <p style="margin-bottom:7px"><strong style="color:#333">Феномен Пруста.</strong> Непроизвольные autobiographические воспоминания, запускаемые запахом, интенсивнее и глубже по времени, чем от других чувств — прямая связь с гиппокампом и амигдалой без таламического сглаживания.</p>
-                          <p style="margin-bottom:0"><strong style="color:#333">Клинически.</strong> При ПТСР запаховые триггеры особенно устойчивы — они обходят тормозящие механизмы таламуса и ПФК и запускают страховую реакцию без оценки.</p>
+                        <div style="margin-top:10px;border-top:0.5px solid #e8e8e8;padding-top:10px">
+                          <div style="display:flex;flex-direction:column;gap:8px">
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">Эволюционный возраст</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">Обонятельная система — древнейшая из сенсорных. У первых позвоночных мозг состоял почти исключительно из обонятельных структур. Таламус появился значительно позже — и обоняние никогда не перешло под его контроль.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">Прямой путь к амигдале</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">Обонятельные нейроны → обонятельная луковица → пириформная кора и амигдала — без таламической ретрансляции. Запах достигает эмоциональных центров быстрее и без фильтрации, которую таламус обеспечивает для всех остальных чувств.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">Что это меняет в восприятии</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">Запах — единственное чувство, вызывающее эмоциональный и мнемический отклик <em>до</em> осознания стимула. Запах дыма активирует страх раньше, чем появляется мысль «это дым». Все остальные чувства сначала проходят таламическую обработку — и только потом достигают амигдалы.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">Феномен Пруста</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">Непроизвольные автобиографические воспоминания, запускаемые запахом, интенсивнее и глубже по времени, чем воспоминания от других чувств. Нейробиологическая причина — прямая связь обонятельной луковицы с гиппокампом и амигдалой без таламического сглаживания.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">Клиническое значение</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">При ПТСР обонятельные триггеры особенно устойчивы — они обходят тормозящие механизмы таламуса и <span class="term" data-term="пфк">ПФК</span> и запускают страховую реакцию без когнитивной оценки.</div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </span>
