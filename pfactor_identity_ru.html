@@ -472,13 +472,29 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                       <ul style="margin:6px 0 8px 16px;display:flex;flex-direction:column;gap:4px">
                         <li><strong style="color:#444">Свет</strong> → фоторецепторы сетчатки (палочки и колбочки) → электрохимический сигнал → зрительный нерв → ЛКТ таламуса</li>
                         <li><strong style="color:#444">Звук</strong> → волосковые клетки улитки (давление воздуха → колебание мембраны → ионный ток) → слуховой нерв → МКТ таламуса</li>
+                        <li><strong style="color:#444">Осязание</strong> → механорецепторы кожи (тельца Мейснера, Пачини, Руффини) → спинной мозг / ствол → ВПЯ таламуса</li>
+                        <li><strong style="color:#444">Вкус</strong> → вкусовые рецепторы языка → лицевой и языкоглоточный нервы → ядро одиночного тракта → ВПМ таламуса</li>
                         <li><strong style="color:#444">Запах</strong> → обонятельные рецепторы → обонятельная луковица → <em>напрямую в амигдалу</em> (единственный канал без таламуса)</li>
-                        <li><strong style="color:#444">Тело (<span class="term" data-term="интероцепция" style="font-style:normal">интероцепция</span>)</strong> → механо- и хеморецепторы органов → блуждающий нерв → ядро одиночного тракта → инсула → таламус</li>
+                        <li><strong style="color:#444">Тело (<span class="term" data-term="интероцепция">интероцепция</span>)</strong> — это восприятие сигналов <em>изнутри</em>: механо- и хеморецепторы сердца, кишечника, лёгких, мышц фиксируют изменения давления, температуры, химического состава → блуждающий нерв → ядро одиночного тракта → инсула → <span class="term" data-term="таламус">таламус</span></li>
                       </ul>
                       Все пути (кроме обоняния) сходятся в <span class="term" data-term="таламус">таламусе</span>, который первым «решает»: немедленно сигнализировать амигдале (нижний путь) или сначала направить сигнал в кору для точного анализа (верхний путь).
                     </div>
+                    <div style="margin-top:10px">
+                      <button onclick="(function(btn){var block=document.getElementById('smell-block');var open=block.style.maxHeight&&block.style.maxHeight!=='0px';block.style.maxHeight=open?'0px':'600px';block.style.opacity=open?'0':'1';btn.textContent=open?'🌿 Интересно про запах':'✕ Скрыть'})(this)" style="font-size:12px;padding:5px 12px;border:0.5px solid #bbb;border-radius:6px;background:none;color:#666;cursor:pointer;font-family:inherit;transition:all .15s">🌿 Интересно про запах</button>
+                      <div id="smell-block" style="max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease">
+                        <div style="margin-top:10px;padding:12px 14px;background:#fff;border-radius:8px;border:0.5px solid #e0e0e0">
+                          <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:8px">Почему запах минует таламус — и что это меняет</div>
+                          <div style="font-size:12px;line-height:1.8;color:#555">
+                            <p style="margin-bottom:8px"><strong style="color:#333">Эволюционный возраст.</strong> Обонятельная система — древнейшая из сенсорных. У первых позвоночных 500 млн лет назад мозг состоял почти исключительно из обонятельных структур. Таламус как «коммутатор» появился значительно позже. Обоняние сформировалось до него — и никогда не перешло под его контроль.</p>
+                            <p style="margin-bottom:8px"><strong style="color:#333">Прямой путь к амигдале и коре.</strong> Обонятельные нейроны → обонятельная луковица → пириформная кора и амигдала — без промежуточной ретрансляции. Это означает: запах достигает эмоциональных и памятных центров <em>быстрее и без фильтрации</em>, которую обеспечивает таламус для других чувств.</p>
+                            <p style="margin-bottom:8px"><strong style="color:#333">Что из этого следует для восприятия.</strong> Запах — единственное чувство, которое вызывает эмоциональный и мнемический отклик <em>до</em> того, как осознаётся. Запах горящего дерева активирует страх и воспоминания раньше, чем вы думаете «это запах дыма». Все остальные чувства сначала проходят таламическую обработку — и лишь потом достигают амигдалы.</p>
+                            <p style="margin-bottom:8px"><strong style="color:#333">Феномен Пруста.</strong> Непроизвольные автобиографические воспоминания, запускаемые запахом, обладают большей эмоциональной интенсивностью и большей временно́й глубиной, чем воспоминания от других чувств. Нейробиологическая причина — прямая связь с гиппокампом и амигдалой без таламического «сглаживания».</p>
+                            <p style="margin-bottom:0"><strong style="color:#333">Клиническое значение.</strong> При ПТСР запаховые триггеры особенно устойчивы именно потому, что обходят тормозящие механизмы таламуса и ПФК. Запах не «оценивается» перед тем как вызвать страховую реакцию — он её <em>запускает</em>.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
               </div>
 
               <div class="fi">
