@@ -462,8 +462,31 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                 <div class="fd" style="color:#0f6e56;background:#e1f5ee">1</div>
                 <div class="fb">
                   <div class="ft" style="color:#0f6e56">0 мс — Триггер</div>
-                  <div class="fh">Сенсорный стимул достигает рецепторов</div>
-                  <div class="fx">Зрение, слух, запах, <span class="term" data-term="интероцепция">интероцепция</span> или память регистрируют потенциальную угрозу. Качество сигнала зависит от качества сенсорного канала.</div>
+                  <div class="fh">Внешняя среда → органы чувств → рецепторы</div>
+                  <div class="fx">Внешняя среда воздействует на органы чувств: зрение, слух, обоняние, осязание, вкус. Отдельно — <span class="term" data-term="интероцепция">интероцепция</span>: восприятие сигналов изнутри тела (давление, температура, химический состав во внутренних органах). Качество сигнала зависит от качества сенсорного канала.
+                  <div style="margin-top:12px;padding:11px 14px;background:#f7f7f5;border-radius:8px;border-left:3px solid #ccc;font-size:12px;line-height:1.75;color:#666">
+                    <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:7px">Сенсорная трансдукция → таламус</div>
+                    Физическое воздействие преобразуется в нейронный электрохимический сигнал в специализированных рецепторах:<br>
+                    <span style="display:block;margin-top:5px"><strong style="color:#444">Свет</strong> → фоторецепторы сетчатки (палочки и колбочки) → зрительный нерв → ЛКТ <span class="term" data-term="таламус">таламуса</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Звук</strong> → волосковые клетки улитки (давление воздуха → колебание мембраны → ионный ток) → слуховой нерв → МКТ <span class="term" data-term="таламус">таламуса</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Осязание</strong> → механорецепторы кожи → спинной мозг / ствол → ВПЯ <span class="term" data-term="таламус">таламуса</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Вкус</strong> → вкусовые рецепторы языка → лицевой нерв → ядро одиночного тракта → ВПМ <span class="term" data-term="таламус">таламуса</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Запах</strong> → обонятельные рецепторы → обонятельная луковица → <em>напрямую в <span class="term" data-term="амигдала">амигдалу</span></em> (единственный канал без таламуса)</span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444"><span class="term" data-term="интероцепция">Интероцепция</span></strong> → механо- и хеморецепторы органов → блуждающий нерв → ядро одиночного тракта → инсула → <span class="term" data-term="таламус">таламус</span></span>
+                    <span style="display:block;margin-top:8px;color:#555">Все пути (кроме обоняния) сходятся в <span class="term" data-term="таламус">таламусе</span> — он первым решает: немедленно сигнализировать амигдале <em>(нижний путь)</em> или направить сигнал в кору для точного анализа <em>(верхний путь)</em>.</span>
+                    <span style="display:block;margin-top:8px">
+                      <button onclick="(function(b){var el=document.getElementById('smell-info');var open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':'500px';el.style.opacity=open?'0':'1';b.textContent=open?'🌿 Интересно про запах':'✕ Скрыть'})(this)" style="font-size:12px;padding:4px 11px;border:0.5px solid #bbb;border-radius:6px;background:none;color:#666;cursor:pointer;font-family:inherit">🌿 Интересно про запах</button>
+                      <div id="smell-info" style="max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease">
+                        <div style="margin-top:10px;padding:11px 14px;background:#fff;border-radius:8px;border:0.5px solid #e8e8e8;font-size:12px;line-height:1.8;color:#555">
+                          <p style="margin-bottom:7px"><strong style="color:#333">Эволюционный возраст.</strong> Обонятельная система — древнейшая из сенсорных. У первых позвоночных мозг состоял почти исключительно из обонятельных структур. Таламус появился значительно позже — и запах никогда не перешёл под его контроль.</p>
+                          <p style="margin-bottom:7px"><strong style="color:#333">Прямой путь к амигдале.</strong> Обонятельные нейроны → обонятельная луковица → пириформная кора и амигдала — без ретрансляции. Запах достигает эмоциональных центров быстрее и без фильтрации, которую таламус обеспечивает для остальных чувств.</p>
+                          <p style="margin-bottom:7px"><strong style="color:#333">Что это меняет.</strong> Запах — единственное чувство, вызывающее эмоциональный и мнемический отклик <em>до</em> осознания. Запах дыма активирует страх раньше, чем вы думаете «это дым». Все остальные чувства сначала проходят таламическую обработку.</p>
+                          <p style="margin-bottom:7px"><strong style="color:#333">Феномен Пруста.</strong> Непроизвольные autobiographические воспоминания, запускаемые запахом, интенсивнее и глубже по времени, чем от других чувств — прямая связь с гиппокампом и амигдалой без таламического сглаживания.</p>
+                          <p style="margin-bottom:0"><strong style="color:#333">Клинически.</strong> При ПТСР запаховые триггеры особенно устойчивы — они обходят тормозящие механизмы таламуса и ПФК и запускают страховую реакцию без оценки.</p>
+                        </div>
+                      </div>
+                    </span>
+                  </div></div>
                 </div>
               </div>
 
@@ -471,8 +494,8 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                 <div class="fd" style="color:#993c1d;background:#faece7">2</div>
                 <div class="fb">
                   <div class="ft" style="color:#993c1d">12–88 мс — Нижний путь</div>
-                  <div class="fh">Рецепторы → <span class="term" data-term="таламус">таламус</span> → <span class="term" data-term="амигдала">амигдала</span>: тело реагирует без осознания</div>
-                  <div class="fx"><span class="term" data-term="таламус">Таламус</span> получает сигнал и немедленно отправляет его в амигдалу (БЛА), минуя кору. Тело начинает реагировать: симпатика, адреналин, замирание.</div>
+                  <div class="fh"><span class="term" data-term="таламус">Таламус</span> → <span class="term" data-term="амигдала">амигдала</span>: тело реагирует раньше сознания</div>
+                  <div class="fx">Нейронный сигнал от рецепторов достиг <span class="term" data-term="таламус">таламуса</span> — и тот немедленно отправляет его копию напрямую в амигдалу (БЛА), минуя кору. Это «нижний путь»: за 12–88 мс тело уже реагирует — <span class="term" data-term="внс">ВНС</span> активирована, адреналин выброшен, замирание запущено.</div>
                 </div>
               </div>
 
