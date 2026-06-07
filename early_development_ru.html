@@ -150,9 +150,9 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 /* Timeline (fi2 pattern) */
 .fi2 { display:block; width:100%; margin-bottom:0; }
 .fi2-inner { display:flex; flex-direction:row; gap:14px; padding-bottom:20px; position:relative; }
-.fi2-line { position:absolute; left:18px; top:36px; bottom:0; width:1px; background:#e0e0e0; }
-.fi2-dot { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0; border:1.5px solid currentColor; }
-.fi2-body { flex:1; padding-top:5px; }
+.fi2-line { position:absolute; left:22px; top:48px; bottom:0; width:1px; background:#e0e0e0; }
+.fi2-dot { width:44px; height:44px; min-width:44px; min-height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-size:10px; font-weight:600; flex-shrink:0; border:1.5px solid currentColor; line-height:1.25; padding:4px; }
+.fi2-body { flex:1; padding-top:6px; }
 .fi2-time { font-size:11px; font-weight:500; letter-spacing:.04em; margin-bottom:3px; }
 .fi2-h { font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:4px; line-height:1.4; }
 .fi2-x { font-size:13px; line-height:1.7; color:#555; }
@@ -375,7 +375,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
             <div class="info-box" style="margin-top:20px">
               <div class="info-box-label">Центральный вопрос</div>
-              <div class="info-box-text">Почему двое людей, попав в одинаково угрожающую ситуацию, реагируют радикально по-разному — один разворачивается в сторону роста, другой — в сторону расстройства?</div>
+              <div class="info-box-text">Почему двое людей, попав в одинаково угрожающую ситуацию, реагируют радикально по-разному — один разворачивается в сторону расстройства, другой — делает шаг вперёд?</div>
             </div>
 
             <p style="font-size:14px;color:#555;line-height:1.75;margin-bottom:16px">Ответ не лежит в самом стрессоре. Он лежит в том, что происходило до него — в первые годы жизни, когда нервная система ещё не завершила архитектуру своих основных регуляторных цепей.</p>
@@ -534,7 +534,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#0F6E56;background:#e1f5ee;font-size:9px">B</div>
+                  <div class="fi2-dot" style="color:#0F6E56;background:#e1f5ee">B</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#0F6E56">Надёжная привязанность (тип B)</div>
                     <div class="fi2-h">Воспитатель — надёжная «безопасная база»</div>
@@ -546,7 +546,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#BA7517;background:#faeeda;font-size:9px">A</div>
+                  <div class="fi2-dot" style="color:#BA7517;background:#faeeda">A</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#BA7517">Избегающая привязанность (тип A)</div>
                     <div class="fi2-h">Воспитатель — эмоционально недоступен или отвергает аффект</div>
@@ -558,7 +558,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#993C1D;background:#faece7;font-size:9px">C</div>
+                  <div class="fi2-dot" style="color:#993C1D;background:#faece7">C</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#993C1D">Тревожно-амбивалентная привязанность (тип C)</div>
                     <div class="fi2-h">Воспитатель — непредсказуем: иногда доступен, иногда нет</div>
@@ -569,7 +569,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
               <div class="fi2">
                 <div class="fi2-inner">
-                  <div class="fi2-dot" style="color:#534AB7;background:#eeedfe;font-size:9px">D</div>
+                  <div class="fi2-dot" style="color:#534AB7;background:#eeedfe">D</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#534AB7">Дезорганизованная привязанность (тип D)</div>
                     <div class="fi2-h">Воспитатель — одновременно источник страха и единственная защита от него</div>
@@ -656,7 +656,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#534AB7;background:#eeedfe;font-size:9px">1</div>
+                  <div class="fi2-dot" style="color:#534AB7;background:#eeedfe">1</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#534AB7">Незрелость гиппокампа</div>
                     <div class="fi2-h">Травматические воспоминания не могут стать «прошлым»</div>
@@ -668,7 +668,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#993C1D;background:#faece7;font-size:9px">2</div>
+                  <div class="fi2-dot" style="color:#993C1D;background:#faece7">2</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#993C1D">ACEs — накопительный эффект</div>
                     <div class="fi2-h">Неблагоприятный детский опыт действует по принципу дозы</div>
@@ -680,7 +680,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#854F0B;background:#f9eddf;font-size:9px">3</div>
+                  <div class="fi2-dot" style="color:#854F0B;background:#f9eddf">3</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#854F0B">Реляционная травма</div>
                     <div class="fi2-h">Травма через отношения хуже травмы через события</div>
@@ -691,7 +691,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
               <div class="fi2">
                 <div class="fi2-inner">
-                  <div class="fi2-dot" style="color:#185FA5;background:#e6f1fb;font-size:9px">4</div>
+                  <div class="fi2-dot" style="color:#185FA5;background:#e6f1fb">4</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#185FA5">Окна нейропластичности</div>
                     <div class="fi2-h">Критические периоды — точки максимальной уязвимости и максимального потенциала</div>
@@ -808,7 +808,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8;font-size:9px">1</div>
+                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8">1</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#5F5E5A">Маркированное зеркалирование (0–12 мес)</div>
                     <div class="fi2-h">Родитель отражает аффект ребёнка — слегка видоизмененно</div>
@@ -820,7 +820,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <div class="fi2">
                 <div class="fi2-inner">
                   <div class="fi2-line"></div>
-                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8;font-size:9px">2</div>
+                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8">2</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#5F5E5A">Называние состояний (1–3 года)</div>
                     <div class="fi2-h">Язык становится инструментом переработки аффекта</div>
@@ -831,7 +831,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
               <div class="fi2">
                 <div class="fi2-inner">
-                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8;font-size:9px">3</div>
+                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8">3</div>
                   <div class="fi2-body">
                     <div class="fi2-time" style="color:#5F5E5A">Нарративная функция (3–6 лет)</div>
                     <div class="fi2-h">Опыт помещается в связную историю</div>
