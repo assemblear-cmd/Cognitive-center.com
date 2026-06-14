@@ -28,6 +28,25 @@
     margin-bottom: 10px;
 }
 
+/* Table of contents — keep the ORIGINAL Tilda style, exclude from body restyle.
+   The TOC <li> live inside .article-section, so the body rules above leak into
+   them; these higher-specificity rules restore the original look.            */
+.article-navigation .nav-title,
+.article-navigation .nav-list,
+.article-navigation .nav-list li,
+.article-navigation .nav-list a {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: normal;
+    -webkit-font-smoothing: auto;
+}
+
+.article-navigation .nav-list li {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #1a1a1a;
+    margin-bottom: 0;
+}
+
 /* Bold emphasis — clearly heavier, Neuralink-style */
 .article-section p strong,
 .article-section li strong,
