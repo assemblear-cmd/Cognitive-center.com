@@ -55,7 +55,13 @@ body {
     line-height: 1.65;
     color: #1a1a1a;
     margin-bottom: 28px;
-    font-weight: 400;
+    font-weight: 300;
+}
+
+.article-section p strong,
+.article-section li strong,
+.article-section b {
+    font-weight: 500;
 }
 
 .article-section li {
@@ -110,6 +116,7 @@ body {
     font-size: 20px;
     line-height: 1.65;
     color: #1a1a1a;
+    font-weight: 300;
 }
 
 .article-navigation {
