@@ -4,7 +4,9 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #2e2e2e;
-    letter-spacing: -0.011em;
+    letter-spacing: -0.006em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -49,10 +51,10 @@ body {
 
 .article-section p,
 .article-section li {
-    font-size: 18px;
-    line-height: 1.5;
-    color: #2e2e2e;
-    margin-bottom: 24px;
+    font-size: 20px;
+    line-height: 1.65;
+    color: #1a1a1a;
+    margin-bottom: 28px;
     font-weight: 400;
 }
 
@@ -105,9 +107,9 @@ body {
 
 .highlight-box p,
 .highlight-box li {
-    font-size: 18px;
-    line-height: 1.5;
-    color: #2e2e2e;
+    font-size: 20px;
+    line-height: 1.65;
+    color: #1a1a1a;
 }
 
 .article-navigation {
@@ -214,6 +216,7 @@ body {
 
     .article-section p,
     .article-section li {
-        font-size: 16px;
+        font-size: 17px;
+        line-height: 1.6;
     }
 }
