@@ -11,150 +11,11 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* General styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #1a1a1a;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        main {
-            flex-grow: 1;
-        }
-
-        /* --- 1. Sticky header styles --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(247, 247, 247, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-        
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-        
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-        
-        /* Language selector styles */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        
-        .current-language:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-        }
-        
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        
-        .language-option:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        /* --- 2. "Screening Tests" Section Styles --- */
-        .screening-section {
+.screening-section {
             padding: 80px 0;
         }
 
-        .screening-section .section-title {
+.screening-section .section-title {
             font-size: 42px;
             font-weight: 500;
             margin-top: 0;
@@ -163,7 +24,7 @@
             color: #1a1a1a;
         }
 
-        .screening-section .section-subtitle {
+.screening-section .section-subtitle {
             font-size: 18px;
             font-weight: 300;
             color: #666;
@@ -172,18 +33,18 @@
             line-height: 1.5;
             text-align: center;
         }
-        
-        .screening-section .section-subtitle strong {
+
+.screening-section .section-subtitle strong {
             font-weight: 500;
         }
 
-        .screening-list {
+.screening-list {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .screening-test-item {
+.screening-test-item {
             background-color: #ffffff;
             border: 1px solid #e9e9e9;
             border-radius: 12px;
@@ -195,49 +56,39 @@
             color: inherit;
             display: block;
         }
-        
-        .screening-test-item:hover {
+
+.screening-test-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
         }
 
-        .screening-test-item .item-title {
+.screening-test-item .item-title {
             font-size: 20px;
             font-weight: 500;
             margin: 0 0 8px 0;
             color: #1a1a1a;
         }
 
-        .screening-test-item .item-description {
+.screening-test-item .item-description {
             font-size: 16px;
             color: #555;
             line-height: 1.6;
             margin: 0;
         }
 
-        /* --- 3. Media Queries --- */
-        @media (max-width: 767px) {
-            .site-header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .screening-section {
+@media (max-width: 767px) {
+.screening-section {
                 padding: 40px 0;
             }
-            .screening-section .section-title {
+.screening-section .section-title {
                 font-size: 32px;
             }
-            .screening-section .section-subtitle {
+.screening-section .section-subtitle {
                  font-size: 16px;
                  margin-bottom: 40px;
             }
-        }
-    </style>
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index.html">Home</a> <a href="basics_en.html">Basics</a> <a href="blog_en.html">Blog</a> <a href="tests_en.html" class="active-link">Tests</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">EN</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="tests_stress_en.html" class="language-option current"> <span class="language-code">EN</span> </a> <a href="tests_stress.html" class="language-option"> <span class="language-code">RU</span> </a> <a href="tests_stress_es.html" class="language-option"> <span class="language-code">ES</span> </a> </div> </div> </div> </header> <main> <div class="container"> <section class="screening-section"> <h1 class="section-title">Psychological Screening Tests</h1> <p class="section-subtitle">

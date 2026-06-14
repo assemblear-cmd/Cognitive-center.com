@@ -11,144 +11,11 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* General styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #1a1a1a;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- 1. Header Styles --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(247, 247, 247, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-        
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-        
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-        
-        /* Language selector styles */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        
-        .current-language:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-        }
-        
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        
-        .language-option:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        /* --- 2. Test Page Styles --- */
-        .test-section {
+.test-section {
             padding: 60px 0;
         }
 
-        .test-section h1 {
+.test-section h1 {
             font-size: 36px;
             font-weight: 500;
             text-align: center;
@@ -156,18 +23,18 @@
             margin-bottom: 15px;
         }
 
-        .test-section .test-instruction {
+.test-section .test-instruction {
             font-size: 18px;
             color: #666;
             text-align: center;
             margin-bottom: 50px;
         }
-        
-        .question-container {
+
+.question-container {
             margin-bottom: 10px;
         }
-        
-        .checkbox-label {
+
+.checkbox-label {
             display: flex;
             align-items: center;
             padding: 15px;
@@ -178,19 +45,19 @@
             transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .checkbox-label:hover {
+.checkbox-label:hover {
             border-color: #ccc;
             box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
-        
-        .checkbox-label input[type="checkbox"] {
+
+.checkbox-label input[type="checkbox"] {
             opacity: 0;
             position: absolute;
             width: 1px;
             height: 1px;
         }
 
-        .checkbox-label .custom-checkbox {
+.checkbox-label .custom-checkbox {
             display: inline-block;
             flex-shrink: 0;
             width: 20px;
@@ -201,8 +68,8 @@
             transition: background-color 0.2s, border-color 0.2s;
             position: relative;
         }
-        
-        .checkbox-label .custom-checkbox::after {
+
+.checkbox-label .custom-checkbox::after {
             content: '\2713';
             font-size: 16px;
             color: white;
@@ -214,29 +81,29 @@
             transition: opacity 0.2s;
         }
 
-        .checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
             background-color: #1a1a1a;
             border-color: #1a1a1a;
         }
-        
-        .checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
+
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
             opacity: 1;
         }
 
-        .checkbox-label:has(input[type="checkbox"]:checked) {
+.checkbox-label:has(input[type="checkbox"]:checked) {
             background-color: #f0f0f0;
             border-color: #1a1a1a;
         }
-        
-        .question-text {
+
+.question-text {
             font-size: 16px;
         }
 
-        .hidden {
+.hidden {
             display: none;
         }
 
-        #submit-button {
+#submit-button {
             background-color: #1a1a1a;
             color: #fff;
             border: none;
@@ -249,11 +116,11 @@
             width: 100%;
         }
 
-        #submit-button:hover {
+#submit-button:hover {
             background-color: #333;
         }
 
-        #results {
+#results {
             margin-top: 40px;
             padding: 30px;
             background-color: #ffffff;
@@ -261,28 +128,25 @@
             border-radius: 12px;
         }
 
-        #results h3 {
+#results h3 {
             font-size: 24px;
             margin-top: 0;
         }
-        
-        #results p {
+
+#results p {
             font-size: 18px;
         }
 
-        #helplines h4 {
+#helplines h4 {
             font-size: 18px;
             margin-top: 30px;
         }
 
-        /* Media Queries */
-        @media (max-width: 767px) {
-            .site-header { flex-direction: column; gap: 15px; }
-            .nav-container { flex-wrap: wrap; justify-content: center; }
-            .test-section { padding: 40px 0; }
-            .test-section h1 { font-size: 28px; }
-        }
-    </style>
+@media (max-width: 767px) {
+.test-section { padding: 40px 0; }
+.test-section h1 { font-size: 28px; }
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index.html">Home</a> <a href="basics_en.html">Basics</a> <a href="blog_en.html">Blog</a> <a href="tests_en.html" class="active-link">Tests</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">EN</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="kids_2-6_en.html" class="language-option current"> <span class="language-code">EN</span> </a> <a href="test_kids_1.html" class="language-option"> <span class="language-code">RU</span> </a> </div> </div> </div> </header> <main class="container"> <section class="test-section"> <h1>Questionnaire for Assessing the Mental State of a Child (2-6 years)</h1> <p class="test-instruction">Instructions: Please check the items that correspond to the child's behavior or condition observed recently.</p> <form id="child-assessment-form"> <!-- Questions 1-14 --> <div class="question-container" id="q1-container"> <label class="checkbox-label"> <input type="checkbox" id="q1" value="1"> <span class="custom-checkbox"></span> <span class="question-text">1. Irritability, aggression</span> </label> </div> <div class="question-container" id="q2-container"> <label class="checkbox-label"> <input type="checkbox" id="q2" value="1"> <span class="custom-checkbox"></span> <span class="question-text">2. Whimsicality, tearfulness, disobedience, rule-breaking</span> </label> </div> <div class="question-container" id="q3-container"> <label class="checkbox-label"> <input type="checkbox" id="q3" value="1"> <span class="custom-checkbox"></span> <span class="question-text">3. Passivity, helplessness</span> </label> </div> <div class="question-container" id="q4-container"> <label class="checkbox-label"> <input type="checkbox" id="q4" value="1"> <span class="custom-checkbox"></span> <span class="question-text">4. Unmotivated anxiety</span> </label> </div> <div class="question-container" id="q5-container"> <label class="checkbox-label"> <input type="checkbox" id="q5" value="1"> <span class="custom-checkbox"></span> <span class="question-text">5. Difficulty concentrating, attention problems not previously characteristic of the child</span> </label> </div> <div class="question-container" id="q6-container"> <label class="checkbox-label"> <input type="checkbox" id="q6" value="1"> <span class="custom-checkbox"></span> <span class="question-text">6. Anxious attachment (unwillingness to let go of a close adult..., fear when an adult leaves home)</span> </label> </div> <div class="question-container" id="q7-container"> <label class="checkbox-label"> <input type="checkbox" id="q7" value="1"> <span class="custom-checkbox"></span> <span class="question-text">7. Refusal to speak (mutism), stuttering, monotonous speech, unusual changes in speech volume</span> </label> </div> <div class="question-container" id="q8-container"> <label class="checkbox-label"> <input type="checkbox" id="q8" value="1"> <span class="custom-checkbox"></span> <span class="question-text">8. Compulsive actions, rituals, repetitive questions about safety ("will everything be okay?", "are we going to die?", etc.)</span> </label> </div> <div class="question-container" id="q9-container"> <label class="checkbox-label"> <input type="checkbox" id="q9" value="1"> <span class="custom-checkbox"></span> <span class="question-text">9. Refusal to play, interact with children</span> </label> </div> <div class="question-container" id="q10-container"> <label class="checkbox-label"> <input type="checkbox" id="q10" value="1"> <span class="custom-checkbox"></span> <span class="question-text">10. Regressive behavior (behavior characteristic of a younger age – thumb sucking, enuresis, encopresis, babbling, speech disorders)</span> </label> </div> <div class="question-container" id="q11-container"> <label class="checkbox-label"> <input type="checkbox" id="q11" value="1"> <span class="custom-checkbox"></span> <span class="question-text">11. Somatic manifestations: nausea, sweating, tremors, stool disorders, headaches, dizziness, enuresis, encopresis, tics</span> </label> </div> <div class="question-container" id="q12-container"> <label class="checkbox-label"> <input type="checkbox" id="q12" value="1"> <span class="custom-checkbox"></span> <span class="question-text">12. Physical manifestations: freezing, startling, stiffness of posture and movements, slowness of movements, sad or frightened facial expression, mask-like face, motor stereotypies (rocking, etc.)</span> </label> </div> <div class="question-container" id="q13-container"> <label class="checkbox-label"> <input type="checkbox" id="q13" value="1"> <span class="custom-checkbox"></span> <span class="question-text">13. Sleep disturbances (frequent awakenings, nightmares, night terrors, hypersomnia (excessively long sleep), fear of falling asleep)</span> </label> </div> <div class="question-container" id="q14-container"> <label class="checkbox-label"> <input type="checkbox" id="q14" value="1"> <span class="custom-checkbox"></span> <span class="question-text">14. Appetite disturbances (increased, refusal to eat, nausea with meals)</span> </label> </div> <button type="button" id="submit-button" onclick="calculateResults()">Show Results</button> </form> <div id="results" class="hidden"> <h3>Child's State Assessment Results:</h3> <p>Total score: <strong id="score">0</strong></p> <p>Interpretation: <strong id="interpretation"></strong></p> <p>Recommended course of action: <strong id="route"></strong></p> <div id="helplines" class="hidden"> <h4>Mental Health Support</h4> <p>Please seek professional help if the result indicates a risk or if you are experiencing difficulties. Contact a local emergency service or a mental health helpline for parents and children.</p> </div> </div> </section> </main> <script>

@@ -11,144 +11,11 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* General styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #1a1a1a;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- 1. Header Styles --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(247, 247, 247, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-
-        /* Language selector styles */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-
-        .current-language:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-        }
-
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-
-        .language-option:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        /* --- 2. Test Page Styles --- */
-        .test-section {
+.test-section {
             padding: 60px 0;
         }
 
-        .test-section h1 {
+.test-section h1 {
             font-size: 36px;
             font-weight: 500;
             text-align: center;
@@ -156,14 +23,14 @@
             margin-bottom: 15px;
         }
 
-        .test-section .test-instruction {
+.test-section .test-instruction {
             font-size: 18px;
             color: #666;
             text-align: center;
             margin-bottom: 50px;
         }
 
-        .question-container {
+.question-container {
             background-color: #ffffff;
             border: 1px solid #e9e9e9;
             border-radius: 12px;
@@ -172,18 +39,18 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .question-container.active {
+.question-container.active {
             border-color: #1a1a1a;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .question-text {
+.question-text {
             font-size: 18px;
             margin: 0 0 20px 0;
             font-weight: 500;
         }
 
-        .answer-options label {
+.answer-options label {
             display: block;
             margin-bottom: 10px;
             padding: 12px 15px;
@@ -195,11 +62,11 @@
             font-size: 16px;
         }
 
-        .answer-options label:last-child {
+.answer-options label:last-child {
             margin-bottom: 0;
         }
 
-        .answer-options input[type="radio"] {
+.answer-options input[type="radio"] {
             margin-right: 12px;
             vertical-align: middle;
             appearance: none;
@@ -214,11 +81,11 @@
             top: -1px;
         }
 
-        .answer-options input[type="radio"]:checked {
+.answer-options input[type="radio"]:checked {
           border-color: #1a1a1a;
         }
 
-        .answer-options input[type="radio"]:checked::before {
+.answer-options input[type="radio"]:checked::before {
             content: '';
             display: block;
             width: 10px;
@@ -231,21 +98,21 @@
             transform: translate(-50%, -50%);
         }
 
-        .answer-options label:has(input[type="radio"]:checked) {
+.answer-options label:has(input[type="radio"]:checked) {
             background-color: #e9e9e9;
             border-color: #1a1a1a;
         }
 
-        .answer-options label:hover {
+.answer-options label:hover {
             background-color: #efefef;
             border-color: #ccc;
         }
 
-        .hidden {
+.hidden {
             display: none;
         }
 
-        #submit-button {
+#submit-button {
             background-color: #1a1a1a;
             color: #fff;
             border: none;
@@ -258,17 +125,17 @@
             width: 100%;
         }
 
-        #submit-button:hover {
+#submit-button:hover {
             background-color: #333;
         }
 
-        #submit-button:disabled {
+#submit-button:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
             opacity: 0.7;
         }
 
-        #results {
+#results {
             margin-top: 40px;
             padding: 30px;
             background-color: #ffffff;
@@ -276,50 +143,47 @@
             border-radius: 12px;
         }
 
-        #results h3 {
+#results h3 {
             font-size: 24px;
             margin-top: 0;
         }
 
-        #results table {
+#results table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
             font-size: 16px;
         }
 
-        #results th, #results td {
+#results th, #results td {
             border: 1px solid #e0e0e0;
             padding: 12px 15px;
             text-align: left;
         }
 
-        #results th {
+#results th {
             background-color: #f7f7f7;
         }
 
-        #results td:nth-child(2) { /* Center scores */
+#results td:nth-child(2) { /* Center scores */
             text-align: center;
             font-weight: 500;
         }
 
-        #helplines h4 {
+#helplines h4 {
             font-size: 18px;
             margin-top: 30px;
         }
 
-        #helplines p {
+#helplines p {
             font-size: 16px;
         }
 
-        /* Media Queries */
-        @media (max-width: 767px) {
-            .site-header { flex-direction: column; gap: 15px; }
-            .nav-container { flex-wrap: wrap; justify-content: center; }
-            .test-section { padding: 40px 0; }
-            .test-section h1 { font-size: 28px; }
-        }
-    </style>
+@media (max-width: 767px) {
+.test-section { padding: 40px 0; }
+.test-section h1 { font-size: 28px; }
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index_es.html">Inicio</a> <a href="basics_es.html">Fundamentos</a> <a href="blog_es.html">Blog</a> <a href="tests_es.html" class="active-link">Tests</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">ES</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="anxiety_es.html" class="language-option current"> <span class="language-code">ES</span> </a> <a href="anxiety_en.html" class="language-option"> <span class="language-code">EN</span> </a> <a href="anxiety.html" class="language-option"> <span class="language-code">RU</span> </a> </div> </div> </div> </header> <main class="container"> <section class="test-section"> <h1>Escala Hospitalaria de Ansiedad y Depresión (HADS)</h1> <p class="test-instruction">Seleccione la respuesta que mejor describa cómo se ha sentido durante la <strong>última semana</strong>. No piense demasiado en sus respuestas.</p> <form id="hads-form"> <!-- Questions 1-14 --> <div class="question-container active" id="q1-container"> <p class="question-text">1. Me siento tenso/a o nervioso/a:</p> <div class="answer-options"> <label><input type="radio" name="q1" value="3" onclick="selectAnswer(1)"> La mayoría del tiempo</label> <label><input type="radio" name="q1" value="2" onclick="selectAnswer(1)"> Gran parte del tiempo</label> <label><input type="radio" name="q1" value="1" onclick="selectAnswer(1)"> De vez en cuando, ocasionalmente</label> <label><input type="radio" name="q1" value="0" onclick="selectAnswer(1)"> En absoluto</label> </div> </div> <div class="question-container" id="q2-container"> <p class="question-text">2. Sigo disfrutando de las cosas que antes disfrutaba:</p> <div class="answer-options"> <label><input type="radio" name="q2" value="0" onclick="selectAnswer(2)"> Definitivamente igual que antes</label> <label><input type="radio" name="q2" value="1" onclick="selectAnswer(2)"> No tanto como antes</label> <label><input type="radio" name="q2" value="2" onclick="selectAnswer(2)"> Solo un poco</label> <label><input type="radio" name="q2" value="3" onclick="selectAnswer(2)"> Casi nada</label> </div> </div> <div class="question-container" id="q3-container"> <p class="question-text">3. Tengo una sensación de miedo, como si algo terrible fuera a pasar:</p> <div class="answer-options"> <label><input type="radio" name="q3" value="3" onclick="selectAnswer(3)"> Muy definitivamente y con bastante intensidad</label> <label><input type="radio" name="q3" value="2" onclick="selectAnswer(3)"> Sí, pero no demasiado</label> <label><input type="radio" name="q3" value="1" onclick="selectAnswer(3)"> Un poco, pero no me preocupa</label> <label><input type="radio" name="q3" value="0" onclick="selectAnswer(3)"> En absoluto</label> </div> </div> <div class="question-container" id="q4-container"> <p class="question-text">4. Puedo reírme y ver el lado divertido de las cosas:</p> <div class="answer-options"> <label><input type="radio" name="q4" value="0" onclick="selectAnswer(4)"> Igual que siempre</label> <label><input type="radio" name="q4" value="1" onclick="selectAnswer(4)"> No tanto ahora</label> <label><input type="radio" name="q4" value="2" onclick="selectAnswer(4)"> Definitivamente no tanto ahora</label> <label><input type="radio" name="q4" value="3" onclick="selectAnswer(4)"> En absoluto</label> </div> </div> <div class="question-container" id="q5-container"> <p class="question-text">5. Tengo pensamientos de preocupación que pasan por mi mente:</p> <div class="answer-options"> <label><input type="radio" name="q5" value="3" onclick="selectAnswer(5)"> La mayor parte del tiempo</label> <label><input type="radio" name="q5" value="2" onclick="selectAnswer(5)"> Gran parte del tiempo</label> <label><input type="radio" name="q5" value="1" onclick="selectAnswer(5)"> De vez en cuando, pero no muy frecuentemente</label> <label><input type="radio" name="q5" value="0" onclick="selectAnswer(5)"> Solo ocasionalmente</label> </div> </div> <div class="question-container" id="q6-container"> <p class="question-text">6. Me siento alegre:</p> <div class="answer-options"> <label><input type="radio" name="q6" value="3" onclick="selectAnswer(6)"> En absoluto</label> <label><input type="radio" name="q6" value="2" onclick="selectAnswer(6)"> No muy frecuentemente</label> <label><input type="radio" name="q6" value="1" onclick="selectAnswer(6)"> A veces</label> <label><input type="radio" name="q6" value="0" onclick="selectAnswer(6)"> La mayoría del tiempo</label> </div> </div> <div class="question-container" id="q7-container"> <p class="question-text">7. Puedo sentarme tranquilamente y sentirme relajado/a:</p> <div class="answer-options"> <label><input type="radio" name="q7" value="0" onclick="selectAnswer(7)"> Definitivamente</label> <label><input type="radio" name="q7" value="1" onclick="selectAnswer(7)"> Generalmente</label> <label><input type="radio" name="q7" value="2" onclick="selectAnswer(7)"> No muy frecuentemente</label> <label><input type="radio" name="q7" value="3" onclick="selectAnswer(7)"> En absoluto</label> </div> </div> <div class="question-container" id="q8-container"> <p class="question-text">8. Siento como si me hubiera vuelto más lento/a:</p> <div class="answer-options"> <label><input type="radio" name="q8" value="3" onclick="selectAnswer(8)"> Casi todo el tiempo</label> <label><input type="radio" name="q8" value="2" onclick="selectAnswer(8)"> Muy frecuentemente</label> <label><input type="radio" name="q8" value="1" onclick="selectAnswer(8)"> A veces</label> <label><input type="radio" name="q8" value="0" onclick="selectAnswer(8)"> En absoluto</label> </div> </div> <div class="question-container" id="q9-container"> <p class="question-text">9. Tengo una sensación de miedo como si tuviera "mariposas en el estómago":</p> <div class="answer-options"> <label><input type="radio" name="q9" value="0" onclick="selectAnswer(9)"> En absoluto</label> <label><input type="radio" name="q9" value="1" onclick="selectAnswer(9)"> Ocasionalmente</label> <label><input type="radio" name="q9" value="2" onclick="selectAnswer(9)"> Con bastante frecuencia</label> <label><input type="radio" name="q9" value="3" onclick="selectAnswer(9)"> Muy frecuentemente</label> </div> </div> <div class="question-container" id="q10-container"> <p class="question-text">10. He perdido interés en mi apariencia:</p> <div class="answer-options"> <label><input type="radio" name="q10" value="3" onclick="selectAnswer(10)"> Definitivamente</label> <label><input type="radio" name="q10" value="2" onclick="selectAnswer(10)"> No me cuido tanto como debería</label> <label><input type="radio" name="q10" value="1" onclick="selectAnswer(10)"> Puede que no me cuide tanto</label> <label><input type="radio" name="q10" value="0" onclick="selectAnswer(10)"> Me cuido igual que siempre</label> </div> </div> <div class="question-container" id="q11-container"> <p class="question-text">11. Me siento inquieto/a, como si necesitara estar en movimiento:</p> <div class="answer-options"> <label><input type="radio" name="q11" value="3" onclick="selectAnswer(11)"> Mucho</label> <label><input type="radio" name="q11" value="2" onclick="selectAnswer(11)"> Bastante</label> <label><input type="radio" name="q11" value="1" onclick="selectAnswer(11)"> No mucho</label> <label><input type="radio" name="q11" value="0" onclick="selectAnswer(11)"> En absoluto</label> </div> </div> <div class="question-container" id="q12-container"> <p class="question-text">12. Espero con ilusión las cosas:</p> <div class="answer-options"> <label><input type="radio" name="q12" value="0" onclick="selectAnswer(12)"> Igual que siempre</label> <label><input type="radio" name="q12" value="1" onclick="selectAnswer(12)"> Algo menos que antes</label> <label><input type="radio" name="q12" value="2" onclick="selectAnswer(12)"> Definitivamente menos que antes</label> <label><input type="radio" name="q12" value="3" onclick="selectAnswer(12)"> Casi nada</label> </div> </div> <div class="question-container" id="q13-container"> <p class="question-text">13. Tengo sensaciones repentinas de pánico:</p> <div class="answer-options"> <label><input type="radio" name="q13" value="3" onclick="selectAnswer(13)"> Muy frecuentemente</label> <label><input type="radio" name="q13" value="2" onclick="selectAnswer(13)"> Con bastante frecuencia</label> <label><input type="radio" name="q13" value="1" onclick="selectAnswer(13)"> No muy frecuentemente</label> <label><input type="radio" name="q13" value="0" onclick="selectAnswer(13)"> En absoluto</label> </div> </div> <div class="question-container" id="q14-container"> <p class="question-text">14. Puedo disfrutar de un buen libro o de la radio o la televisión:</p> <div class="answer-options"> <label><input type="radio" name="q14" value="0" onclick="selectAnswer(14)"> Con frecuencia</label> <label><input type="radio" name="q14" value="1" onclick="selectAnswer(14)"> A veces</label> <label><input type="radio" name="q14" value="2" onclick="selectAnswer(14)"> No muy frecuentemente</label> <label><input type="radio" name="q14" value="3" onclick="selectAnswer(14)"> Muy raramente</label> </div> </div> <button type="button" id="submit-button" onclick="calculateResults()" disabled>Ver Resultados</button> </form> <div id="results" class="hidden"> <h3>Resultados HADS:</h3> <table> <thead> <tr> <th>Escala</th> <th>Puntuación</th> <th>Interpretación</th> </tr> </thead> <tbody> <tr> <td>Ansiedad (A)</td> <td id="anxiety-score">_</td> <td id="anxiety-interpretation">_</td> </tr> <tr> <td>Depresión (D)</td> <td id="depression-score">_</td> <td id="depression-interpretation">_</td> </tr> </tbody> </table> <div id="helplines" class="hidden"> <h4>Apoyo en Salud Mental</h4> <p>Si su puntuación en alguna de las escalas indica riesgo (8 puntos o más), se recomienda encarecidamente consultar con un especialista. Por favor, busque ayuda profesional si está experimentando dificultades. Contacte con un servicio de urgencias local o una línea de ayuda en salud mental.</p> </div> </div> </section> </main> <script>

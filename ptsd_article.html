@@ -11,191 +11,25 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* Общие стили */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.7;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        /* --- 1. Стили для закрепленного меню (Header) --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-        
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-        
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-        
-        /* Language selector styles */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        
-        .current-language:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-        }
-        
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        
-        .language-option:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        /* --- 2. Стили для контента статьи --- */
-        .article-section {
-            padding: 60px 0;
-        }
-
-        .article-title {
-            font-size: 52px;
-            font-weight: 300;
-            margin: 0 0 25px 0;
-            line-height: 1.2;
-            text-align: left;
-        }
-        
-        .intro-block {
+.intro-block {
             text-align: left;
             font-size: 18px;
             color: #555;
             margin-bottom: 50px;
         }
-        
-        .intro-block p {
+
+.intro-block p {
              margin: 10px 0;
         }
-        
-        .article-section h2 {
-            font-size: 32px;
-            font-weight: 500;
-            margin: 60px 0 20px 0;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 40px;
-        }
-        
-        .article-section p {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 20px;
-        }
 
-        .conclusion-block {
+.conclusion-block {
             margin-top: 60px;
             padding: 30px;
             background-color: #f7f7f7;
             border-top: 2px solid #1a1a1a;
         }
 
-        .navigation-links {
+.navigation-links {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -204,7 +38,7 @@
             border-top: 1px solid #e0e0e0;
         }
 
-        .nav-link {
+.nav-link {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -214,48 +48,32 @@
             transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
+.nav-link:hover {
             color: #666 !important;
         }
 
-        .nav-link.prev {
+.nav-link.prev {
             flex-direction: row;
         }
 
-        .nav-link.next {
+.nav-link.next {
             flex-direction: row-reverse;
         }
 
-        .nav-arrow {
+.nav-arrow {
             font-size: 20px;
             margin: 0 10px;
         }
 
-        .mobile-nav-list {
+.mobile-nav-list {
             display: none;
         }
 
-        /* --- Медиа-запросы --- */
-        @media (max-width: 768px) {
-            .site-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .article-title {
-                font-size: 38px;
-            }
-            .article-section h2 {
-                 font-size: 28px;
-            }
-            .navigation-links {
+@media (max-width: 768px) {
+.navigation-links {
                 display: none;
             }
-            
-            .mobile-nav-list {
+.mobile-nav-list {
                 display: block;
                 margin-top: 40px;
                 padding: 0;
@@ -263,42 +81,26 @@
                 border-top: 1px solid #e0e0e0;
                 padding-top: 30px;
             }
-            
-            .mobile-nav-item {
+.mobile-nav-item {
                 margin-bottom: 15px;
                 font-size: 16px;
                 line-height: 1.5;
             }
-            
-            .mobile-nav-item::before {
+.mobile-nav-item::before {
                 content: "- ";
                 color: #1a1a1a;
                 margin-right: 5px;
             }
-            
-            .mobile-nav-item a {
+.mobile-nav-item a {
                 color: #1a1a1a !important;
                 text-decoration: none !important;
                 font-weight: 500;
             }
-            
-            .mobile-nav-item a:hover {
+.mobile-nav-item a:hover {
                 color: #666 !important;
             }
-        }
-    
-        @media (max-width: 767px) {
-            .site-header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-        </style>
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <div class="nav-container"> <nav> <a href="ru.html">Главная</a> <a href="baza.html">База</a> <a href="blog.html" class="active-link">Блог</a> <a href="tests.html">Тесты</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">RU</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="ptsd_article.html" class="language-option current"> <span class="language-code">RU</span> </a> <a href="ptsd_recovery_en.html" class="language-option"> <span class="language-code">EN</span> </a> <a href="ptsd_recovery_es.html" class="language-option"> <span class="language-code">ES</span> </a> </div> </div> </div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">ПТСР: инструкция по возвращению</h1> <div class="intro-block"> <p>Твоя задача — прочитать до конца и понять. От этого зависит твоя дальнейшая жизнь.</p> </div> <h2 id="part1">1. Что это такое: медицинский факт.</h2> <p><strong>Посттравматическое стрессовое расстройство.</strong> Код по Международной классификации болезней (МКБ-11) — 6B40.</p> <p>Это не «загон», не «слабость характера» и не «выдумка». <strong>Это диагноз.</strong> Это ранение, которое не видно на рентгене, но которое разрушает тебя изнутри.</p> <p><strong>Суть:</strong> твоя нервная система после пережитого застряла в режиме «БОЙ». Она продолжает работать на износ, даже когда вокруг тишина. Мозг и тело постоянно ждут угрозы, выбрасывая гормоны стресса, которые отравляют организм. Это сбой системы, который требует профессиональной «настройки». Само по себе это не пройдет.</p> <h2 id="part2">2. Последствия бездействия: это нужно знать.</h2> <p>Если игнорировать этот «сбой», он приведет к закономерному результату. Это не страшилки, это статистика и медицинские факты. Цена бездействия — твоя жизнь на гражданке.</p> <p><strong>Тело:</strong> Постоянная «боеготовность» изнашивает сердце и сосуды. Результат — гипертония, инфаркты, инсульты в 30–40 лет. Головные боли, проблемы с пищеварением, бессонница.</p> <p><strong>Отношения:</strong> Вспышки гнева, отстраненность, неспособность доверять — это симптомы, а не твой характер. Они разрушают семьи. Твои близкие видят не тебя, а твою боль, и не знают, как помочь. Они тоже становятся «пострадавшими».</p> <p><strong>Зависимость:</strong> Алкоголь или наркотики — это попытка «выключиться», заглушить воспоминания и тревогу. Это не работает. Это лишь временное обезболивающее, которое усугубляет сбой системы и загоняет тебя в тупик, из которого выбраться в разы сложнее.</p> <p><strong>Изоляция:</strong> В итоге — потеря работы, друзей, семьи. Ощущение, что ты чужой в этом мире. Это прямой путь к полной социальной гибели.</p> <h2 id="part3">3. Кто этим занимается: специалисты по «ремонту».</h2> <p>Забудь слово «психушка». Есть специалисты, которые решают эту задачу системно и профессионально. Это не врачи для «слабых». Это инженеры и механики для тех, кто прошел через запредельные нагрузки.</p> <p><strong>Клинический психолог / Психотерапевт:</strong> Это «инженер». Его задача — с помощью проверенных методик найти «поломку» в твоем восприятии и помочь мозгу «перепрошить» реакцию на триггеры. Он не будет тебя жалеть. Он даст инструменты, чтобы ты сам навел порядок у себя в голове.</p> <p><strong>Врач-психиатр:</strong> Это медик. Если «двигатель» работает на таком износе, что уже не справляется, он может временно прописать медикаментозную поддержку. Это не «подсаживание на таблетки». Это как дать костыли раненому, чтобы он смог дойти до операционной. Эти препараты снимут запредельную тревогу и нормализуют сон, чтобы у тебя появились силы на основную работу с психологом.</p> <p>Их общая работа — вернуть тебя в строй. Эта работа может и должна быть конфиденциальной.</p> <div class="conclusion-block"> <h2 style="border-top: none; padding-top: 0; text-align: left;">Заключение</h2> <p>Ты вернулся. Теперь задача — вернуться окончательно.</p> <p>Восстановление психического здоровья после пережитого — это не прихоть, а необходимость. Игнорирование этой проблемы ведет к предсказуемым последствиям: разрушению здоровья, семьи и карьеры. Профессиональная реабилитация — это инструмент, который позволяет этих последствий избежать.</p> <p>Этот инструмент доступен. Специалисты есть.</p> <p><strong>Твое будущее в твоих руках. Решай.</strong></p> </div> <div class="navigation-links"> <a href="article1.html" class="nav-link prev"> <span class="nav-arrow">←</span> <span>Что такое когнитивные функции</span> </a> <a href="trauma_screening.html" class="nav-link next"> <span>Тест на скрининг ПТСР</span> <span class="nav-arrow">→</span> </a> </div> <ul class="mobile-nav-list"> <li class="mobile-nav-item"> <a href="article1.html">Что такое когнитивные функции</a> </li> <li class="mobile-nav-item"> <a href="trauma_screening.html">Тест на скрининг ПТСР</a> </li> </ul> </section> </div> </main>

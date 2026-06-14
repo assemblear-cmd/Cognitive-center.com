@@ -11,69 +11,23 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* Общие стили */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #1a1a1a;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- 1. Стили для закрепленного меню (Header) --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(247, 247, 247, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-        }
-
-        nav a.clinical-trials {
+nav a.clinical-trials {
             border: 1px solid #1a1a1a !important;
             padding: 8px 12px;
             border-radius: 5px;
             transition: background-color 0.2s, color 0.2s;
         }
 
-        nav a.clinical-trials:hover {
+nav a.clinical-trials:hover {
             background-color: #1a1a1a !important;
             color: #ffffff !important;
         }
 
-        /* --- 2. Стили для страницы теста --- */
-        .test-section {
+.test-section {
             padding: 60px 0;
         }
 
-        .test-section h1 {
+.test-section h1 {
             font-size: 36px;
             font-weight: 500;
             text-align: center;
@@ -81,14 +35,14 @@
             margin-bottom: 15px;
         }
 
-        .test-section .test-instruction {
+.test-section .test-instruction {
             font-size: 18px;
             color: #666;
             text-align: center;
             margin-bottom: 50px;
         }
 
-        .question-container {
+.question-container {
             background-color: #ffffff;
             border: 1px solid #e9e9e9;
             border-radius: 12px;
@@ -96,19 +50,19 @@
             margin-bottom: 20px;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .question-container.active {
+
+.question-container.active {
             border-color: #1a1a1a;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .question-text {
+.question-text {
             font-size: 18px;
             margin: 0 0 20px 0;
             font-weight: 500;
         }
 
-        .answer-buttons button {
+.answer-buttons button {
             background-color: #f0f0f0;
             color: #1a1a1a;
             border: 1px solid #e0e0e0;
@@ -121,21 +75,21 @@
             transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         }
 
-        .answer-buttons button:hover {
+.answer-buttons button:hover {
             background-color: #e0e0e0;
         }
 
-        .answer-buttons button.selected {
+.answer-buttons button.selected {
             background-color: #1a1a1a;
             border-color: #1a1a1a;
             color: #ffffff;
         }
-        
-        .hidden {
+
+.hidden {
             display: none;
         }
 
-        #submit-button {
+#submit-button {
             background-color: #1a1a1a;
             color: #fff;
             border: none;
@@ -148,17 +102,17 @@
             width: 100%;
         }
 
-        #submit-button:hover {
+#submit-button:hover {
             background-color: #333;
         }
 
-        #submit-button:disabled {
+#submit-button:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
             opacity: 0.7;
         }
 
-        #results {
+#results {
             margin-top: 40px;
             padding: 30px;
             background-color: #ffffff;
@@ -166,130 +120,55 @@
             border-radius: 12px;
         }
 
-        #results h3 {
+#results h3 {
             color: #1a1a1a;
             font-size: 24px;
             margin-top: 0;
             margin-bottom: 15px;
         }
-        
-        #results p {
+
+#results p {
              font-size: 18px;
         }
 
-        #results #interpretation {
+#results #interpretation {
             font-weight: 500;
             background-color: #f0f0f0;
             padding: 15px;
             border-radius: 8px;
         }
-        
-        #helplines h4 {
+
+#helplines h4 {
             font-size: 18px;
             margin-top: 30px;
             margin-bottom: 15px;
         }
 
-        #helplines ul {
+#helplines ul {
             list-style-type: none;
             padding-left: 0;
         }
-        
-        #helplines li {
+
+#helplines li {
             margin-bottom: 10px;
             font-size: 16px;
             color: #555;
         }
-        
-        #helplines a {
+
+#helplines a {
             color: #0077cc;
             text-decoration: none;
         }
-        #helplines a:hover {
+
+#helplines a:hover {
             text-decoration: underline;
         }
 
-        /* Адаптация */
-        @media (max-width: 767px) {
-            .site-header { flex-direction: column; gap: 15px; }
-            .test-section { padding: 40px 0; }
-            .test-section h1 { font-size: 28px; }
-        }
-    
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        .current-language:hover { background-color: #f5f5f5; }
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-            z-index: 100;
-        }
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        .language-option:hover { background-color: #f5f5f5; }
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        @media (max-width: 767px) {
-            .site-header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-        </style>
+@media (max-width: 767px) {
+.test-section { padding: 40px 0; }
+.test-section h1 { font-size: 28px; }
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <div class="nav-container"><nav> <a href="ru.html">Главная</a> <a href="baza.html">База</a> <a href="blog.html">Блог</a> <a href="tests.html" class="clinical-trials">Тесты</a> </nav> <div class="language-selector"><div class="current-language" id="language-toggle"><span class="language-code">RU</span></div><div class="language-dropdown" id="language-dropdown"><a href="trauma_screening.html" class="language-option current"><span class="language-code">RU</span></a><a href="trauma_en.html" class="language-option"><span class="language-code">EN</span></a><a href="trauma_es.html" class="language-option"><span class="language-code">ES</span></a></div></div></div> </header> <main> <div class="container"> <section class="test-section"> <h1>Опросник на скрининг ПТСР (TSQ)</h1> <p class="test-instruction">Эта анкета связана с Вашими личными реакциями на стрессовое травматическое событие. Пожалуйста, ответьте «да», если Вы отмечали перечисленные реакции у себя по крайней мере дважды на прошлой неделе (в течение последних 7 дней).</p> <form id="tsq-form"> <div class="question-container active" id="q1-container"> <p class="question-text">1. Тягостные мысли или воспоминания о событии приходили мне в голову против моей воли.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(1, true)">ДА</button> <button type="button" onclick="selectAnswer(1, false)">НЕТ</button> </div> </div> <div class="question-container" id="q2-container"> <p class="question-text">2. Мне снились тягостные сны о том, что со мной случилось.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(2, true)">ДА</button> <button type="button" onclick="selectAnswer(2, false)">НЕТ</button> </div> </div> <div class="question-container" id="q3-container"> <p class="question-text">3. Я вдруг замечал(а), что действую и чувствую себя так, как будто бы ситуация повторяется снова.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(3, true)">ДА</button> <button type="button" onclick="selectAnswer(3, false)">НЕТ</button> </div> </div> <div class="question-container" id="q4-container"> <p class="question-text">4. Когда что-то напоминает мне об этом событии, я чувствую себя подавленным.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(4, true)">ДА</button> <button type="button" onclick="selectAnswer(4, false)">НЕТ</button> </div> </div> <div class="question-container" id="q5-container"> <p class="question-text">5. Когда что-то напоминало мне о случившемся, я испытывал(а) неприятные физические ощущения (потливость, сбой дыхания, тошноту, учащение пульса и др.).</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(5, true)">ДА</button> <button type="button" onclick="selectAnswer(5, false)">НЕТ</button> </div> </div> <div class="question-container" id="q6-container"> <p class="question-text">6. У меня нарушен сон (трудности засыпания или частые пробуждения).</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(6, true)">ДА</button> <button type="button" onclick="selectAnswer(6, false)">НЕТ</button> </div> </div> <div class="question-container" id="q7-container"> <p class="question-text">7. Я испытывал(а) постоянное раздражение и вспышки гнева.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(7, true)">ДА</button> <button type="button" onclick="selectAnswer(7, false)">НЕТ</button> </div> </div> <div class="question-container" id="q8-container"> <p class="question-text">8. Мне было сложно сосредоточиться.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(8, true)">ДА</button> <button type="button" onclick="selectAnswer(8, false)">НЕТ</button> </div> </div> <div class="question-container" id="q9-container"> <p class="question-text">9. Я стал испытывать повышенное чувство опасности для себя и других.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(9, true)">ДА</button> <button type="button" onclick="selectAnswer(9, false)">НЕТ</button> </div> </div> <div class="question-container" id="q10-container"> <p class="question-text">10. Я все время был(а) нервным (ой) и вздрагивал(а), если что-то внезапно пугало меня.</p> <div class="answer-buttons"> <button type="button" onclick="selectAnswer(10, true)">ДА</button> <button type="button" onclick="selectAnswer(10, false)">НЕТ</button> </div> </div> <button type="button" id="submit-button" onclick="calculateResults()" disabled>Показать результат</button> </form> <div id="results" class="hidden"> <h3>Результаты скрининга ПТСР:</h3> <p>Ваш результат: <strong id="score">0</strong> баллов.</p> <p id="interpretation"></p> <div id="helplines" class="hidden"> <h4>Телефоны доверия и психологической помощи в России (бесплатно, анонимно):</h4> <ul> <li><strong>8 800 2000 122</strong> - Единый общероссийский детский телефон доверия (для детей, подростков и родителей).</li> <li><strong>8 (495) 989 50 50</strong> - Горячая линия центра экстренной психологической помощи МЧС России (круглосуточно). <a href="https://psi.mchs.gov.ru/" target="_blank">Сайт</a></li> <li><strong>8 800 100 49 94</strong> - Единый телефон доверия психологической помощи для взрослых и детей (круглосуточно).</li> <li><strong>8 800 333 44 34</strong> - Бесплатная кризисная линия доверия по России.</li> <li><strong>051</strong> (с городского) или <strong>+7 495 051</strong> (с мобильного) - Телефон неотложной психологической помощи (Москва).</li> </ul> <p>Пожалуйста, обратитесь за профессиональной помощью, если результат указывает на риск или вы испытываете трудности.</p> </div> </div> </section> </div> </main> <script>

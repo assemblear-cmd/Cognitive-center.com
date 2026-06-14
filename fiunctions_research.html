@@ -11,89 +11,31 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* Общие стили */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #1a1a1a;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- 1. Стили для закрепленного меню (Header) --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        /* ИСПРАВЛЕНО: Стили для ссылок меню */
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-        
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-        
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-
-        nav a.clinical-trials {
+nav a.clinical-trials {
             border: 1px solid #1a1a1a !important;
             padding: 8px 12px;
             border-radius: 5px;
             transition: background-color 0.2s, color 0.2s;
         }
 
-        nav a.clinical-trials:hover {
+nav a.clinical-trials:hover {
             background-color: #1a1a1a !important;
             color: #ffffff !important;
             border-bottom-color: transparent !important;
         }
 
-        /* --- 2. Стили для контента страницы --- */
-        .page-title-section {
+.page-title-section {
             padding: 60px 0;
             text-align: left;
         }
 
-        .page-title-section h1 {
+.page-title-section h1 {
             font-size: 32px;
             font-weight: 400;
             margin: 0;
         }
 
-        .main-content-section {
+.main-content-section {
             display: flex;
             justify-content: space-between;
             gap: 40px;
@@ -101,47 +43,22 @@
             align-items: flex-start; 
         }
 
-        .post-details {
-            flex: 1;
-        }
-        
-        .post-title {
-            font-size: 28px;
-            font-weight: 300;
-            margin: 0;
-            line-height: 1.3;
-        }
-
-        .post-excerpt {
-            flex: 1;
-            max-width: 500px;
-        }
-
-        .post-excerpt p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-            margin: 0 0 24px 0;
-        }
-        .post-excerpt p:last-child {
+.post-excerpt p:last-child {
             margin-bottom: 0;
         }
 
-        /* --- 3. "Бесконечная" разделительная полоса --- */
-        .full-width-divider {
+.full-width-divider {
             width: 100%;
             height: 1px;
             background-color: #e0e0e0;
         }
 
-        /* --- 4. Блок новостей --- */
-        .news-section {
+.news-section {
             padding: 60px 0;
             position: relative;
         }
 
-        /* Полноширинный контейнер для новостей */
-        .news-full-width {
+.news-full-width {
             width: 100vw;
             position: relative;
             left: 50%;
@@ -150,14 +67,14 @@
             margin-right: -50vw;
         }
 
-        .news-container {
+.news-container {
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .news-block {
+.news-block {
             background-color: #f8f9fa;
             border: 1px solid #e0e0e0;
             border-radius: 12px;
@@ -168,13 +85,12 @@
             max-width: 600px;
         }
 
-        .news-block:hover {
+.news-block:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
-        /* Стрелки навигации */
-        .news-arrow {
+.news-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -192,24 +108,24 @@
             z-index: 10;
         }
 
-        .news-arrow:hover {
+.news-arrow:hover {
             transform: translateY(-50%) scale(1.2);
         }
 
-        .news-container:hover .news-arrow {
+.news-container:hover .news-arrow {
             opacity: 1;
             visibility: visible;
         }
 
-        .news-arrow-left {
+.news-arrow-left {
             left: 15px;
         }
 
-        .news-arrow-right {
+.news-arrow-right {
             right: 15px;
         }
 
-        .news-arrow::before {
+.news-arrow::before {
             content: '';
             width: 0;
             height: 0;
@@ -218,42 +134,42 @@
             filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
         }
 
-        .news-arrow-left::before {
+.news-arrow-left::before {
             border-width: 8px 12px 8px 0;
             border-color: transparent #ffffff transparent transparent;
         }
 
-        .news-arrow-right::before {
+.news-arrow-right::before {
             border-width: 8px 0 8px 12px;
             border-color: transparent transparent transparent #ffffff;
         }
 
-        .news-arrow:hover::before {
+.news-arrow:hover::before {
             filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
         }
 
-        .news-item {
+.news-item {
             display: none;
             text-decoration: none;
             color: inherit;
         }
 
-        .news-item.active {
+.news-item.active {
             display: block;
         }
 
-        .news-image {
+.news-image {
             width: 100%;
             height: 250px;
             object-fit: cover;
             display: block;
         }
 
-        .news-content {
+.news-content {
             padding: 25px;
         }
 
-        .news-title {
+.news-title {
             font-size: 20px;
             font-weight: 600;
             margin: 0 0 10px 0;
@@ -261,14 +177,14 @@
             line-height: 1.3;
         }
 
-        .news-description {
+.news-description {
             font-size: 14px;
             color: #666;
             margin: 0;
             line-height: 1.5;
         }
 
-        .news-category {
+.news-category {
             display: inline-block;
             background-color: #1a1a1a;
             color: white;
@@ -281,148 +197,43 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- 5. Адаптация под планшеты и мобильные устройства --- */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 30px;
-            }
-            .main-content-section {
+@media (max-width: 1024px) {
+.main-content-section {
                  gap: 30px;
             }
-        }
-        
-        @media (max-width: 767px) {
-            .site-header {
-                padding: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
+}
 
-            nav {
+@media (max-width: 767px) {
+nav {
                 margin-top: 10px;
             }
-
-            nav a {
-                margin-left: 15px;
-                font-size: 14px;
-            }
-            
-            nav a.clinical-trials {
+nav a.clinical-trials {
                 padding: 6px 10px;
             }
-
-            .page-title-section,
+.page-title-section,
             .main-content-section,
             .news-section {
                 padding: 40px 0;
             }
-
-            .page-title-section h1 {
+.page-title-section h1 {
                 font-size: 28px;
             }
-            
-            .main-content-section {
+.main-content-section {
                 flex-direction: column;
                 align-items: stretch;
                 gap: 20px;
             }
-
-            .post-title {
-                font-size: 24px;
-            }
-
-            .post-excerpt {
-                max-width: 100%;
-            }
-
-            .news-image {
+.news-image {
                 height: 200px;
             }
-
-            .news-content {
+.news-content {
                 padding: 20px;
             }
-
-            .news-title {
+.news-title {
                 font-size: 18px;
             }
-        }
-    
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        .current-language:hover { background-color: #f5f5f5; }
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-            z-index: 100;
-        }
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        .language-option:hover { background-color: #f5f5f5; }
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        @media (max-width: 767px) {
-            .site-header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-        </style>
+}
+</style>
 </head>
 <body>
 <!-- Меню, которое движется вместе со скроллом --> <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <div class="nav-container"><nav> <a href="ru.html" class="active-link">Главная</a> <a href="baza.html">База</a> <a href="blog.html">Блог</a> <a href="tests.html">Тесты</a> </nav> <div class="language-selector"><div class="current-language" id="language-toggle"><span class="language-code">RU</span></div><div class="language-dropdown" id="language-dropdown"><a href="fiunctions_research.html" class="language-option current"><span class="language-code">RU</span></a><a href="index.html" class="language-option"><span class="language-code">EN</span></a><a href="functions_es.html" class="language-option"><span class="language-code">ES</span></a></div></div></div> </header> <main> <div class="container"> <section class="page-title-section"> <h1>Центр когнитивных исследований</h1> </section> </div> <!-- Разделительная полоса между заголовком и контентом --> <div class="full-width-divider"></div> <div class="container"> <article class="main-content-section"> <!-- Левая колонка --> <div class="post-details"> <h2 class="post-title">Мозг, здоровье, общество</h2> </div> <!-- Правая колонка --> <div class="post-excerpt"> <p>Мы предоставляем свободный доступ к знаниям, нейротехнологиям и практикам для здоровья, образования и решения общественно-значимых задач.</p> </div> </article> </div> <!-- Блок новостей --> <section class="news-section"> <div class="news-full-width"> <div class="news-container" id="newsContainer"> <div class="news-block" id="newsBlock"> <!-- Новость 1: Нейроинтерфейсы --> <a href="cognitive_bias.html" class="news-item active"> <img src="https://avatars.mds.yandex.net/i?id=91b7fd9701148a4e638cfc2eb8a334c9_l-5232106-images-thumbs&n=13" 

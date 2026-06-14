@@ -11,152 +11,7 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* General Styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- 1. Header Styles --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-
-        /* Language selector styles */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-
-        .current-language:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-        }
-
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-
-        .language-option:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        /* --- 2. Article Content Styles --- */
-        .article-section {
-            padding: 60px 0;
-        }
-
-        .article-title {
-            font-size: 48px;
-            font-weight: 300;
-            margin: 0 0 10px 0;
-            line-height: 1.2;
-        }
-
-        .article-subtitle {
+.article-subtitle {
             font-size: 24px;
             font-weight: 300;
             color: #555;
@@ -164,7 +19,7 @@
             line-height: 1.4;
         }
 
-        .article-intro {
+.article-intro {
             font-size: 18px;
             color: #555;
             margin-top: 40px;
@@ -173,305 +28,32 @@
             padding-left: 20px;
         }
 
-        .article-section h2 {
-            font-size: 32px;
-            font-weight: 500;
-            margin: 60px 0 20px 0;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 40px;
-        }
-
-        .article-section h3 {
-             font-size: 24px;
-             font-weight: 500;
-             margin: 40px 0 15px 0;
-        }
-
-        .article-section p, .article-section li {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .article-section a {
-             color: #0077cc;
-             text-decoration: none;
-        }
-
-        .article-section a:hover {
-            text-decoration: underline;
-        }
-
-        .simple-explanation-link {
+.simple-explanation-link {
             color: #555 !important;
             text-decoration: underline !important;
             font-weight: normal !important;
         }
-         .simple-explanation-link:hover {
+
+.simple-explanation-link:hover {
             color: #1a1a1a !important;
         }
 
-        .article-section ol, .article-section ul {
+.article-section ol, .article-section ul {
             padding-left: 25px;
         }
 
-        /* --- Media Queries --- */
-        @media (max-width: 768px) {
-            .site-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .article-title {
-                font-size: 36px;
-            }
-            .article-subtitle {
+@media (max-width: 768px) {
+.article-subtitle {
                 font-size: 20px;
             }
-            .article-section h2 {
-                 font-size: 28px;
-            }
-        }
-
-        .site-footer {
-            background-color: #ffffff !important;
-            padding: 40px 0 !important;
-            margin-top: 0 !important;
-            font-size: 14px !important;
-            color: #555 !important;
-            border-top: none !important;
-        }
-
-        .site-footer .footer-container {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: flex-end !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 40px !important;
-            box-sizing: border-box !important;
-        }
-
-        .site-footer .footer-copyright {
-            flex-basis: auto !important;
-            align-self: flex-end !important;
-        }
-
-        .site-footer .footer-nav {
-            display: flex !important;
-            gap: 60px !important;
-            align-items: flex-start !important;
-        }
-
-        .site-footer .footer-column {
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 {
-            font-size: 16px !important;
-            font-weight: 600 !important;
-            color: #1a1a1a !important;
-            margin: 0 0 15px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 a {
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-        }
-
-        .site-footer .footer-column ul {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column li {
-            margin: 0 0 10px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-            list-style: none !important;
-        }
-
-        .site-footer .footer-column a {
-            text-decoration: none !important;
-            color: #555 !important;
-            transition: color 0.3s;
-            display: inline-block !important;
-        }
-
-        .site-footer .footer-column a:hover {
-            color: #1a1a1a !important;
-        }
-
-        @media (max-width: 767px) {
-            .site-footer .footer-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .site-footer .footer-nav {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 40px;
-            }
-        }
-    </style>
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index_es.html">Inicio</a> <a href="basics_es.html" class="active-link">Fundamentos</a> <a href="blog_es.html">Blog</a> <a href="tests_es.html">Tests</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">ES</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="ptsd_es.html" class="language-option current"> <span class="language-code">ES</span> </a> <a href="ptsd_en.html" class="language-option"> <span class="language-code">EN</span> </a> <a href="ptsd.html" class="language-option"> <span class="language-code">RU</span> </a> </div> </div> </div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">Trastorno de Estrés Postraumático (TEPT)</h1> <p class="article-subtitle">Etiología, Diagnóstico y Principios de Terapia</p> <p>Para una guía más sencilla para veteranos: <a href="ptsd_recovery_es.html" class="simple-explanation-link">TEPT: Una Guía para la Recuperación</a>.</p> <p class="article-intro">El Trastorno de Estrés Postraumático (TEPT) es una respuesta tardía o prolongada a un evento o situación estresante (de corta o larga duración) de naturaleza excepcionalmente amenazante o catastrófica. Este artículo examina la historia de la entidad diagnóstica, los enfoques modernos de diagnóstico, el tratamiento y los factores que influyen en el pronóstico de rehabilitación.</p> <h2 id="part1">1. Desarrollo del Concepto y Etiología</h2> <p>El fenómeno del TEPT como entidad diagnóstica formalizada surgió de la necesidad de sistematizar y validar los trastornos mentales que se desarrollan en personas que han experimentado un estrés extremo. Históricamente, condiciones similares se describían bajo varios términos: "corazón de soldado" (Guerra Civil Americana), "shock de proyectil" (Primera Guerra Mundial), "fatiga de combate" (Segunda Guerra Mundial). Sin embargo, estos términos a menudo connotaban debilidad de carácter y no reflejaban el cuadro clínico completo.</p> <p>Un momento clave fue el estudio de las consecuencias de la Guerra de Vietnam. La extensión de los trastornos psicológicos tardíos entre los veteranos, que no encajaban en los marcos diagnósticos existentes (como los trastornos de ansiedad o del estado de ánimo), requirió una revisión de las clasificaciones.</p> <p>En 1980, el diagnóstico de TEPT fue incluido oficialmente en la clasificación estadounidense de trastornos mentales (DSM-III). Esto supuso el reconocimiento de que la causa del trastorno no es una predisposición interna del individuo, sino el impacto de un factor traumático externo que supera las capacidades adaptativas de la psique. El concepto moderno extiende la etiología del TEPT mucho más allá del combate, incluyendo desastres naturales, ataques terroristas, violencia sexual y física, accidentes de tráfico graves y otros eventos que amenazan la vida.</p> <h2 id="part2">2. Diagnóstico</h2> <p>El diagnóstico de TEPT se basa en una entrevista clínica y cuestionarios estandarizados. Los principales manuales diagnósticos son la Clasificación Internacional de Enfermedades, 11.ª Revisión (CIE-11, código 6B40) y el Manual Diagnóstico y Estadístico de los Trastornos Mentales, 5.ª Edición (DSM-5).</p> <p>Según el DSM-5, el diagnóstico requiere la presencia de síntomas de cuatro grupos principales, que duren más de un mes y causen malestar clínicamente significativo o deterioro en el funcionamiento social y laboral:</p> <ul> <li><strong>Síntomas de Intrusión:</strong> Recuerdos perturbadores recurrentes, involuntarios e intrusivos (flashbacks), pesadillas, angustia psicológica o fisiológica intensa en respuesta a desencadenantes que recuerdan al trauma.</li> <li><strong>Síntomas de Evitación:</strong> Intentos deliberados de evitar pensamientos, sentimientos, recuerdos, así como personas, lugares y circunstancias asociadas con el evento traumático.</li> <li><strong>Alteraciones Negativas en la Cognición y el Estado de Ánimo:</strong> Incapacidad para recordar aspectos importantes del trauma, creencias negativas persistentes sobre uno mismo y el mundo, cogniciones distorsionadas sobre la causa o las consecuencias del trauma, anhedonia (pérdida de interés en actividades significativas), sentimientos de distanciamiento.</li> <li><strong>Alteraciones Marcadas en la Excitación y la Reactividad:</strong> Irritabilidad y arrebatos de ira, comportamiento temerario o autodestructivo, hipervigilancia, respuesta de sobresalto exagerada, problemas de concentración y alteraciones del sueño.</li> </ul> <p>El diagnóstico se confirma solo si la sintomatología no puede explicarse por los efectos de una sustancia u otra condición médica.</p> <h2 id="part3">3. Enfoques de Tratamiento</h2> <p>El estándar moderno de atención para el TEPT implica un enfoque integral, cuyos principales componentes son la psicoterapia y, si es necesario, la farmacoterapia.</p> <h3>1. Psicoterapia</h3> <p>Es el tratamiento de primera línea. Los siguientes métodos tienen la base de evidencia más sólida:</p> <ul> <li><strong>Terapia Cognitivo-Conductual Centrada en el Trauma (TCC-CT):</strong> Considerada el "estándar de oro". Incluye psicoeducación, entrenamiento en habilidades de relajación y manejo del estrés, reestructuración cognitiva (trabajo con pensamientos y creencias disfuncionales) y terapia de exposición (confrontación gradual y controlada con los recuerdos traumáticos en un entorno seguro).</li> <li><strong>Desensibilización y Reprocesamiento por Movimientos Oculares (EMDR):</strong> Un método que utiliza estimulación bilateral (por ejemplo, movimientos oculares, golpecitos alternos) para facilitar el reprocesamiento de los recuerdos traumáticos y reducir su carga emocional.</li> </ul> <h3>2. Farmacoterapia</h3> <p>Se utiliza para controlar los síntomas más graves (ansiedad, depresión, insomnio) y para potenciar la eficacia de la psicoterapia.</p> <ul> <li><strong>Antidepresivos:</strong> Los medicamentos de primera línea son los inhibidores selectivos de la recaptación de serotonina (ISRS), en particular la sertralina y la paroxetina. Ayudan a estabilizar el estado de ánimo, reducir la ansiedad y los síntomas de hiperexcitación.</li> <li><strong>Otros Medicamentos:</strong> Para síntomas específicos, como las pesadillas, se puede usar prazosina (un alfabloqueante). El uso de otras clases de fármacos (por ejemplo, antipsicóticos atípicos) se considera de forma individualizada.</li> </ul> <h2 id="part4">4. Factores que Influyen en la Rehabilitación</h2> <p>El pronóstico y el éxito de la rehabilitación para el TEPT dependen de una combinación de factores, que pueden dividirse en tres grupos:</p> <h3>1. Factores Pretraumáticos (antes del evento):</h3> <ul> <li>Historial de trastornos mentales previos.</li> <li>Experiencias traumáticas anteriores, especialmente en la infancia.</li> <li>Bajo nivel educativo y estatus socioeconómico.</li> <li>Predisposición genética a los trastornos de ansiedad y del estado de ánimo.</li> </ul> <h3>2. Factores Peritraumáticos (durante el evento):</h3> <ul> <li>Gravedad e intensidad del trauma: Amenaza directa a la vida, lesiones físicas graves.</li> <li>Tipo de trauma: La violencia interpersonal (violación, tortura, combate) es un predictor más poderoso de TEPT que los eventos impersonales (por ejemplo, desastres naturales).</li> <li>Nivel de disociación: Sensación de irrealidad o distanciamiento del propio cuerpo en el momento del trauma.</li> </ul> <h3>3. Factores Postraumáticos (después del evento):</h3> <ul> <li>Apoyo social: La presencia o ausencia de apoyo de la familia, los amigos y la comunidad es uno de los factores pronósticos clave.</li> <li>Oportunidad y adecuación de la ayuda: El acceso temprano a la atención especializada mejora significativamente los resultados.</li> <li>Estresores secundarios: Dificultades vitales posteriores (problemas económicos, pérdida de empleo, procedimientos legales).</li> <li>Estrategias de afrontamiento: El uso de estrategias destructivas, como la evitación o el abuso de sustancias, empeora significativamente el pronóstico. Por el contrario, las estrategias activas de resolución de problemas favorecen la recuperación.</li> </ul> </section> </div> </main>
 <!-- HTML structure for the footer --> <footer class="site-footer"> <div class="container footer-container"> <div class="footer-copyright">
             © Todos los derechos reservados. Centro de Investigación Cognitiva
         </div> <div class="footer-nav"> <div class="footer-column"> <h4>Menú</h4> <ul> <li><a href="index_es.html">Inicio</a></li> <li><a href="basics_es.html">Fundamentos</a></li> <li><a href="blog_es.html">Blog</a></li> <li><a href="tests_es.html">Tests</a></li> </ul> </div> <div class="footer-column"> <h4><a href="about_es.html">Sobre Nosotros</a></h4> <ul> <li><a href="about_es.html#who-we-are">Quiénes somos</a></li> <li><a href="about_es.html#mission">Misión</a></li> <li><a href="about_es.html#tasks">Objetivos</a></li> <li><a href="about_es.html#contacts">Contacto</a></li> </ul> </div> </div> </div> </footer> <!-- CSS styles for the footer --> <style>
-.site-footer {
-    background-color: #ffffff;
-    padding: 40px 0;
-    margin-top: 60px;
-    font-size: 14px;
-    color: #555;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    border-top: 1px solid #e0e0e0;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: flex-start;
-            gap: 60px;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-copyright {
-    flex-basis: auto;
-    align-self: flex-end;
-        }
-
-.footer-nav {
-    display: flex;
-    gap: 60px;
-}
-
-.footer-column {
-    text-align: left;
-    position: relative;
-}
-
-.footer-column h4 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 0 0 15px 0;
-    padding: 0 !important;
-    text-align: left;
-    position: relative;
-    left: 0 !important;
-}
-
-.footer-column h4 a {
-    text-decoration: none;
-    color: #1a1a1a !important;
-    font-weight: 600;
-    transition: color 0.3s;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-.footer-column h4 a:hover {
-    color: #555 !important;
-}
-
-.footer-column ul {
-    list-style: none !important;
-    list-style-type: none !important;
-    padding: 0 !important;
-    padding-left: 0 !important;
-    margin: 0 !important;
-    margin-left: 0 !important;
-    text-align: left !important;
-    position: relative;
-    left: 0 !important;
-}
-
-.footer-column li {
-    margin: 0 !important;
-    margin-bottom: 10px !important;
-    padding: 0 !important;
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-    text-align: left !important;
-    list-style: none !important;
-    list-style-type: none !important;
-    position: relative !important;
-    left: 0 !important;
-}
-
-.footer-column li::before,
-.footer-column li::marker {
-    content: none !important;
-    display: none !important;
-    width: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.footer-column a {
-    text-decoration: none;
-    color: #555 !important;
-    transition: color 0.3s;
-    display: inline-block;
-    padding: 0 !important;
-    padding-left: 0 !important;
-    margin: 0 !important;
-    margin-left: 0 !important;
-    text-indent: 0 !important;
-    position: relative;
-    left: 0 !important;
-}
-
-.footer-column a:hover {
-    color: #1a1a1a !important;
-}
-
-/* Additional styles to override Tilda */
-.footer-column * {
-    text-indent: 0 !important;
-}
-
-.footer-column ul li,
-.footer-column ul li a {
-    text-indent: 0 !important;
-    padding-inline-start: 0 !important;
-    -webkit-padding-start: 0 !important;
-    -moz-padding-start: 0 !important;
-}
-
-/* Media queries for mobile adaptation */
-@media (max-width: 1024px) {
-    .footer-container {
-        padding: 0 30px;
-    }
-}
-
-@media (max-width: 767px) {
-    .footer-container {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .footer-nav {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 40px;
-    }
-
-    .footer-copyright {
-        flex-basis: 100%;
-        align-self: flex-end;
-        }
-}
 </style>
 <script src="js/common.js"></script>
 </body>

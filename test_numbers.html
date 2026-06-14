@@ -11,30 +11,11 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* CSS styles are copied from the previous examples for consistency */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f7f7f7;
-            color: #1a1a1a;
-            margin: 0;
-            font-weight: 400;
-        }
-
-        .hidden {
+.hidden {
             display: none;
         }
 
-        .container {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        main {
-            padding: 60px 0;
-        }
-
-        #wechsler-test-container {
+#wechsler-test-container {
             background-color: #ffffff;
             border: 1px solid #e9e9e9;
             border-radius: 12px;
@@ -42,33 +23,33 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
-        
-        h1 {
+
+h1 {
             font-size: 36px;
             font-weight: 500;
             margin: 0 0 20px 0;
         }
-        
-        h2 {
+
+h2 {
             font-size: 24px;
             font-weight: 500;
         }
 
-        h3 {
+h3 {
             font-size: 22px;
             font-weight: 500;
             margin-top: 40px;
             margin-bottom: 20px;
         }
-        
-        p.intro-text {
+
+p.intro-text {
             font-size: 18px;
             color: #555;
             line-height: 1.6;
             margin-bottom: 30px;
         }
 
-        #digit-sequence {
+#digit-sequence {
             font-size: 48px;
             font-weight: 500;
             letter-spacing: 10px;
@@ -78,24 +59,14 @@
             align-items: center;
             justify-content: center;
         }
-        
-        #question-instruction {
+
+#question-instruction {
             font-size: 18px;
             color: #666;
             margin-bottom: 10px;
         }
 
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background-color: rgba(247, 247, 247, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid #e9e9e9;
-        }
-
-        .header-container {
+.header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -104,13 +75,8 @@
             margin: 0 auto;
             padding: 20px;
         }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-        }
-        
-        .site-header nav a {
+
+.site-header nav a {
             text-decoration: none;
             color: #1a1a1a;
             margin-left: 20px;
@@ -119,22 +85,22 @@
             border-radius: 8px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
-        .site-header nav a:hover {
+
+.site-header nav a:hover {
             background-color: #e0e0e0;
         }
-        
-        .site-header nav a.clinical-trials {
+
+.site-header nav a.clinical-trials {
             text-decoration: underline;
             text-underline-offset: 4px;
         }
-        
-        .site-header nav a.clinical-trials:hover {
+
+.site-header nav a.clinical-trials:hover {
             background-color: #1a1a1a;
             color: #fff;
         }
-        
-        .button, .score-button {
+
+.button, .score-button {
             background-color: #1a1a1a;
             color: #fff;
             border: none;
@@ -149,46 +115,49 @@
             max-width: 450px;
             margin-top: 10px;
         }
-        
-        .button:hover, .score-button:hover {
+
+.button:hover, .score-button:hover {
             background-color: #333;
         }
 
-        .score-button-container {
+.score-button-container {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-top: 20px;
         }
 
-        .score-button {
+.score-button {
             width: auto;
             max-width: 200px;
         }
 
-        .score-button.correct {
+.score-button.correct {
             background-color: #2ecc71;
         }
-        .score-button.correct:hover {
+
+.score-button.correct:hover {
             background-color: #27ae60;
         }
 
-        .score-button.incorrect {
+.score-button.incorrect {
             background-color: #e74c3c;
         }
-        .score-button.incorrect:hover {
+
+.score-button.incorrect:hover {
             background-color: #c0392b;
         }
 
-        #result-screen h2 {
+#result-screen h2 {
             font-size: 36px;
         }
-        #result-screen > p {
+
+#result-screen > p {
             color: #666;
             margin-bottom: 30px;
         }
-        
-        #calculation-block {
+
+#calculation-block {
             margin-top: 40px;
             padding: 20px;
             background-color: #f7f7f7;
@@ -196,7 +165,7 @@
             border: 1px solid #e9e9e9;
         }
 
-        #age-select {
+#age-select {
             padding: 10px;
             font-size: 16px;
             border-radius: 8px;
@@ -204,35 +173,39 @@
             margin-bottom: 20px;
         }
 
-        #score-interpretation-block {
+#score-interpretation-block {
             margin-top: 20px;
             padding: 25px;
             background-color: #f0f0f0;
             border-radius: 12px;
             text-align: left;
         }
-        #score-interpretation-block p {
+
+#score-interpretation-block p {
             font-size: 17px;
             margin: 10px 0;
         }
-        #score-interpretation-block span {
+
+#score-interpretation-block span {
             font-weight: 500;
         }
 
-        .scale-container {
+.scale-container {
             position: relative;
             width: 100%;
             margin: 25px 0 35px 0;
             padding: 0 10px;
             box-sizing: border-box;
         }
-        .scale-bar {
+
+.scale-bar {
             width: 100%;
             height: 8px;
             background: linear-gradient(to right, #e74c3c, #f1c40f, #2ecc71);
             border-radius: 4px;
         }
-        .scale-indicator {
+
+.scale-indicator {
             position: absolute;
             top: -25px;
             left: 0;
@@ -242,7 +215,8 @@
             align-items: center;
             transition: left 0.5s ease;
         }
-        .indicator-value {
+
+.indicator-value {
             background-color: #1a1a1a;
             color: #fff;
             padding: 3px 8px;
@@ -251,7 +225,8 @@
             font-weight: 500;
             margin-bottom: 4px;
         }
-        .scale-indicator::after {
+
+.scale-indicator::after {
             content: '';
             width: 0;
             height: 0;
@@ -259,7 +234,8 @@
             border-right: 6px solid transparent;
             border-top: 6px solid #1a1a1a;
         }
-        .scale-labels {
+
+.scale-labels {
             display: flex;
             justify-content: space-between;
             width: 100%;
@@ -267,22 +243,25 @@
             font-size: 14px;
             color: #666;
         }
-        .scale-labels span:nth-child(2) {
+
+.scale-labels span:nth-child(2) {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
         }
-        
-        .instructions-container {
+
+.instructions-container {
             margin-bottom: 30px;
             border: 1px solid #e9e9e9;
             border-radius: 12px;
             text-align: left;
         }
-        details {
+
+details {
             padding: 15px 20px;
         }
-        summary {
+
+summary {
             font-weight: 500;
             font-size: 18px;
             cursor: pointer;
@@ -291,35 +270,43 @@
             justify-content: space-between;
             align-items: center;
         }
-        summary::-webkit-details-marker {
+
+summary::-webkit-details-marker {
             display: none;
         }
-        summary::after {
+
+summary::after {
             content: '▼';
             font-size: 12px;
             transition: transform 0.3s ease;
         }
-        details[open] summary::after {
+
+details[open] summary::after {
             transform: rotate(180deg);
         }
-        .instructions-content {
+
+.instructions-content {
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid #e9e9e9;
             color: #555;
             line-height: 1.7;
         }
-        .instructions-content ul {
+
+.instructions-content ul {
             padding-left: 20px;
             margin: 0;
         }
-        .instructions-content li {
+
+.instructions-content li {
             margin-bottom: 10px;
         }
-        .instructions-content strong {
+
+.instructions-content strong {
             color: #1a1a1a;
         }
-        .interpretation-notes {
+
+.interpretation-notes {
             margin-top: 30px;
             padding: 25px;
             background-color: #f0f0f0;
@@ -328,83 +315,20 @@
             line-height: 1.6;
             text-align: left;
         }
-        .interpretation-notes h4 {
+
+.interpretation-notes h4 {
             font-size: 20px;
             font-weight: 500;
             margin: 0 0 10px 0;
         }
 
-        @media (max-width: 767px) {
-            .site-header { padding: 15px 0; }
-            .header-container { flex-direction: column; gap: 15px; padding: 0 20px; }
-            .site-header nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
-            .site-header nav a { margin-left: 0; }
-            main { padding: 40px 0; }
-            #wechsler-test-container { padding: 30px 20px; }
-            h1, #result-screen h2 { font-size: 28px; }
-        }
-    
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        .current-language:hover { background-color: #f5f5f5; }
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-            z-index: 100;
-        }
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        .language-option:hover { background-color: #f5f5f5; }
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
+@media (max-width: 767px) {
+.header-container { flex-direction: column; gap: 15px; padding: 0 20px; }
+.site-header nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+.site-header nav a { margin-left: 0; }
+#wechsler-test-container { padding: 30px 20px; }
+h1, #result-screen h2 { font-size: 28px; }
+}
 </style>
 </head>
 <body>

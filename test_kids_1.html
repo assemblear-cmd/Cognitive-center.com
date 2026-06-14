@@ -11,69 +11,23 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-    /* Общие стили */
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f7f7f7;
-        color: #1a1a1a;
-        line-height: 1.6;
-    }
-
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    /* --- 1. Стили для закрепленного меню (Header) --- */
-    .site-header {
-        position: sticky;
-        top: 0;
-        background-color: rgba(247, 247, 247, 0.85);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        z-index: 1000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    .logo {
-        font-size: 24px;
-        font-weight: 600;
-        color: #1a1a1a;
-    }
-
-    nav a {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-        text-decoration: none !important;
-        color: #1a1a1a !important;
-        margin-left: 20px;
-        font-size: 16px;
-    }
-
-    nav a.clinical-trials {
+nav a.clinical-trials {
         border: 1px solid #1a1a1a !important;
         padding: 8px 12px;
         border-radius: 5px;
         transition: background-color 0.2s, color 0.2s;
     }
 
-    nav a.clinical-trials:hover {
+nav a.clinical-trials:hover {
         background-color: #1a1a1a !important;
         color: #ffffff !important;
     }
 
-    /* --- 2. Стили для страницы теста --- */
-    .test-section {
+.test-section {
         padding: 60px 0;
     }
 
-    .test-section h1 {
+.test-section h1 {
         font-size: 36px;
         font-weight: 500;
         text-align: center;
@@ -81,18 +35,18 @@
         margin-bottom: 15px;
     }
 
-    .test-section .test-instruction {
+.test-section .test-instruction {
         font-size: 18px;
         color: #666;
         text-align: center;
         margin-bottom: 50px;
     }
-    
-    .question-container {
+
+.question-container {
         margin-bottom: 10px;
     }
-    
-    .checkbox-label {
+
+.checkbox-label {
         display: flex;
         align-items: center;
         padding: 15px;
@@ -103,20 +57,19 @@
         transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .checkbox-label:hover {
+.checkbox-label:hover {
         border-color: #ccc;
         box-shadow: 0 4px 10px rgba(0,0,0,0.04);
     }
-    
-    .checkbox-label input[type="checkbox"] {
+
+.checkbox-label input[type="checkbox"] {
         opacity: 0;
         position: absolute;
         width: 1px;
         height: 1px;
     }
 
-    /* Кастомный вид чекбокса */
-    .checkbox-label .custom-checkbox {
+.checkbox-label .custom-checkbox {
         display: inline-block;
         flex-shrink: 0;
         width: 20px;
@@ -127,9 +80,8 @@
         transition: background-color 0.2s, border-color 0.2s;
         position: relative;
     }
-    
-    /* Галочка внутри чекбокса */
-    .checkbox-label .custom-checkbox::after {
+
+.checkbox-label .custom-checkbox::after {
         content: '\2713';
         font-size: 16px;
         color: white;
@@ -141,29 +93,29 @@
         transition: opacity 0.2s;
     }
 
-    .checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
         background-color: #1a1a1a;
         border-color: #1a1a1a;
     }
-    
-    .checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
+
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
         opacity: 1;
     }
 
-    .checkbox-label:has(input[type="checkbox"]:checked) {
+.checkbox-label:has(input[type="checkbox"]:checked) {
         background-color: #f0f0f0;
         border-color: #1a1a1a;
     }
-    
-    .question-text {
+
+.question-text {
         font-size: 16px;
     }
 
-    .hidden {
+.hidden {
         display: none;
     }
 
-    #submit-button {
+#submit-button {
         background-color: #1a1a1a;
         color: #fff;
         border: none;
@@ -176,11 +128,11 @@
         width: 100%;
     }
 
-    #submit-button:hover {
+#submit-button:hover {
         background-color: #333;
     }
 
-    #results {
+#results {
         margin-top: 40px;
         padding: 30px;
         background-color: #ffffff;
@@ -188,108 +140,44 @@
         border-radius: 12px;
     }
 
-    #results h3 {
+#results h3 {
         font-size: 24px;
         margin-top: 0;
     }
-    
-    #results p {
+
+#results p {
         font-size: 18px;
     }
 
-    #helplines h4 {
+#helplines h4 {
         font-size: 18px;
         margin-top: 30px;
     }
 
-    #helplines ul {
+#helplines ul {
         list-style-type: none;
         padding-left: 0;
     }
-    
-    #helplines li {
+
+#helplines li {
         margin-bottom: 10px;
         font-size: 16px;
         color: #555;
     }
-    
-    #helplines a {
+
+#helplines a {
         color: #0077cc;
         text-decoration: none;
     }
-    
-    #helplines a:hover {
+
+#helplines a:hover {
         text-decoration: underline;
     }
 
-    /* Адаптация */
-    @media (max-width: 767px) {
-        .site-header { flex-direction: column; gap: 15px; }
-        .test-section { padding: 40px 0; }
-        .test-section h1 { font-size: 28px; }
-    }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        .current-language:hover { background-color: #f5f5f5; }
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-            z-index: 100;
-        }
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        .language-option:hover { background-color: #f5f5f5; }
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
+@media (max-width: 767px) {
+.test-section { padding: 40px 0; }
+.test-section h1 { font-size: 28px; }
+}
 </style>
 </head>
 <body>

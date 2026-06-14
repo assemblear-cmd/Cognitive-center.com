@@ -11,159 +11,7 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* General styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.7;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        /* --- 1. Sticky header styles --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-
-        /* Language selector styles */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-
-        .current-language:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-        }
-
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-
-        .language-option:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        /* --- 2. Article Content Styles --- */
-        .article-section {
-            padding: 60px 0;
-        }
-
-        .article-title {
-            font-size: 48px;
-            font-weight: 300;
-            margin: 0 0 25px 0;
-            line-height: 1.2;
-        }
-
-        .article-intro {
+.article-intro {
             font-size: 18px;
             color: #555;
             margin-bottom: 50px;
@@ -171,13 +19,7 @@
             padding-left: 20px;
         }
 
-        .article-section h2 {
-            font-size: 28px;
-            font-weight: 500;
-            margin: 50px 0 30px 0;
-        }
-
-        .section-subtitle {
+.section-subtitle {
             font-size: 18px;
             color: #555;
             margin: -15px 0 30px 0;
@@ -186,35 +28,29 @@
             line-height: 1.6;
         }
 
-        .article-section p {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .example-content p {
+.example-content p {
             font-size: 16px;
         }
 
-        .article-section ol {
+.article-section ol {
             padding-left: 0;
             list-style: none;
         }
 
-        .article-section ol > li {
+.article-section ol > li {
             font-size: 18px;
             margin-bottom: 20px;
             border-top: 1px solid #e0e0e0;
             padding-top: 30px;
         }
 
-        .bias-title {
+.bias-title {
             font-size: 24px;
             font-weight: 500;
             margin-bottom: 15px;
         }
 
-        .example-toggle {
+.example-toggle {
             background-color: #e9e9e9;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -227,11 +63,11 @@
             transition: background-color 0.2s;
         }
 
-        .example-toggle:hover {
+.example-toggle:hover {
             background-color: #dcdcdc;
         }
 
-        .example-content {
+.example-content {
             background-color: #f7f7f7;
             border: 1px solid #e9e9e9;
             border-radius: 8px;
@@ -242,13 +78,13 @@
             padding: 0 25px;
         }
 
-        .example-content.open {
+.example-content.open {
             max-height: 1500px;
             padding: 25px;
             transition: max-height 0.5s ease-in, padding 0.5s ease-in;
         }
 
-        .example-image {
+.example-image {
             width: 100%;
             height: auto;
             border-radius: 8px;
@@ -256,23 +92,25 @@
             display: block;
         }
 
-        .example-source-link {
+.example-source-link {
             text-decoration: underline !important;
             color: #1a1a1a !important;
             font-size: 15px;
             margin-top: 20px;
             display: block;
         }
-        .example-source-link:hover {
+
+.example-source-link:hover {
             color: #555 !important;
         }
 
-        .example-tabs {
+.example-tabs {
             overflow: hidden;
             border-bottom: 1px solid #ccc;
             margin-bottom: 20px;
         }
-        .tab-link {
+
+.tab-link {
             background-color: inherit;
             float: left;
             border: none;
@@ -284,23 +122,26 @@
             font-weight: 500;
             border-bottom: 3px solid transparent;
         }
-        .tab-link:hover {
+
+.tab-link:hover {
             background-color: #f1f1f1;
         }
-        .tab-link.active {
+
+.tab-link.active {
             border-bottom-color: #1a1a1a;
             font-weight: 600;
         }
-        .tab-content {
+
+.tab-content {
             display: none;
         }
 
-        /* --- Search Styles --- */
-        .search-container {
+.search-container {
             position: relative;
             margin: 30px 0;
         }
-        .search-icon {
+
+.search-icon {
             position: absolute;
             left: 15px;
             top: 50%;
@@ -309,7 +150,8 @@
             height: 20px;
             color: #888;
         }
-        .search-input {
+
+.search-input {
             width: 100%;
             padding: 12px 20px 12px 45px;
             border: 1px solid #e0e0e0;
@@ -318,16 +160,17 @@
             box-sizing: border-box;
             transition: border-color 0.3s;
         }
-        .search-input:focus {
+
+.search-input:focus {
             outline: none;
             border-color: #1a1a1a;
         }
-        .search-input::placeholder {
+
+.search-input::placeholder {
             color: #aaa;
         }
 
-        /* --- Interactive Menu Styles --- */
-        #cognitive-bias-menu {
+#cognitive-bias-menu {
             font-family: 'Arial', sans-serif;
             max-width: 800px;
             margin: 20px auto 40px auto;
@@ -337,14 +180,14 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        .menu-description-header {
+.menu-description-header {
             font-size: 28px;
             font-weight: 500;
             margin: 50px 0 15px 0;
             text-align: left;
         }
 
-        .cbm-category-header {
+.cbm-category-header {
             background-color: #f7f7f7;
             padding: 18px 25px;
             cursor: pointer;
@@ -356,18 +199,18 @@
             transition: background-color 0.3s;
         }
 
-        .cbm-category-header:hover {
+.cbm-category-header:hover {
             background-color: #efefef;
         }
 
-        .cbm-category-header h3 {
+.cbm-category-header h3 {
             margin: 0;
             font-size: 18px;
             font-weight: 600;
             color: #333;
         }
 
-        .cbm-distortion-count {
+.cbm-distortion-count {
             background-color: #e0e0e0;
             color: #555;
             padding: 4px 10px;
@@ -378,7 +221,7 @@
             margin-left: 15px;
         }
 
-        .cbm-category-header::after {
+.cbm-category-header::after {
             content: '+';
             font-size: 24px;
             font-weight: bold;
@@ -386,12 +229,12 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        .cbm-category-header.active::after {
+.cbm-category-header.active::after {
             transform: rotate(45deg);
             content: '×';
         }
 
-        .cbm-category-content {
+.cbm-category-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
@@ -399,14 +242,16 @@
             padding: 0 25px;
         }
 
-        .cbm-subcategory {
+.cbm-subcategory {
             padding: 15px 0;
             border-bottom: 1px dashed #eee;
         }
-        .cbm-subcategory:last-child {
+
+.cbm-subcategory:last-child {
             border-bottom: none;
         }
-        .cbm-subcategory p {
+
+.cbm-subcategory p {
             margin: 0 0 10px 0;
             font-style: italic;
             color: #555;
@@ -414,7 +259,7 @@
             font-size: 16px;
         }
 
-        .cbm-bias-list {
+.cbm-bias-list {
             list-style: none;
             padding-left: 0;
             margin: 0;
@@ -423,7 +268,7 @@
             gap: 8px;
         }
 
-        .cbm-bias-item {
+.cbm-bias-item {
             padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
@@ -433,12 +278,13 @@
             flex-grow: 1;
             font-size: 15px;
         }
-        .cbm-bias-item:hover {
+
+.cbm-bias-item:hover {
             background-color: #f1f1f1;
             border-color: #ddd;
         }
 
-        .cbm-bias-definition {
+.cbm-bias-definition {
             display: none;
             margin-top: 10px;
             padding: 12px;
@@ -449,118 +295,22 @@
             line-height: 1.5;
         }
 
-        .cbm-bias-definition.visible {
+.cbm-bias-definition.visible {
             display: block;
         }
 
-        .disclaimer {
+.disclaimer {
             font-style: italic;
             color: #666;
             font-size: 13px;
         }
 
-        /* --- Footer Styles --- */
-
-        /* --- Media Queries --- */
-        @media (max-width: 768px) {
-            .site-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .article-title {
-                font-size: 36px;
-            }
-            .bias-title {
+@media (max-width: 768px) {
+.bias-title {
                 font-size: 22px;
             }
-        }
-
-        .site-footer {
-            background-color: #ffffff !important;
-            padding: 40px 0 !important;
-            margin-top: 0 !important;
-            font-size: 14px !important;
-            color: #555 !important;
-            border-top: none !important;
-        }
-
-        .site-footer .footer-container {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: flex-end !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 40px !important;
-            box-sizing: border-box !important;
-        }
-
-        .site-footer .footer-copyright {
-            flex-basis: auto !important;
-            align-self: flex-end !important;
-        }
-
-        .site-footer .footer-nav {
-            display: flex !important;
-            gap: 60px !important;
-            align-items: flex-start !important;
-        }
-
-        .site-footer .footer-column {
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 {
-            font-size: 16px !important;
-            font-weight: 600 !important;
-            color: #1a1a1a !important;
-            margin: 0 0 15px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 a {
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-        }
-
-        .site-footer .footer-column ul {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column li {
-            margin: 0 0 10px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-            list-style: none !important;
-        }
-
-        .site-footer .footer-column a {
-            text-decoration: none !important;
-            color: #555 !important;
-            transition: color 0.3s;
-            display: inline-block !important;
-        }
-
-        .site-footer .footer-column a:hover {
-            color: #1a1a1a !important;
-        }
-
-        @media (max-width: 767px) {
-            .site-footer .footer-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .site-footer .footer-nav {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 40px;
-            }
-        }
-    </style>
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index_es.html">Inicio</a> <a href="basics_es.html" class="active-link">Fundamentos</a> <a href="blog_es.html">Blog</a> <a href="tests_es.html">Pruebas</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">ES</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="bias_es.html" class="language-option current"> <span class="language-code">ES</span> </a> <a href="bias_en.html" class="language-option"> <span class="language-code">EN</span> </a> <a href="cognitive_bias.html" class="language-option"> <span class="language-code">RU</span> </a> </div> </div> </div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">Qué Son los Sesgos Cognitivos</h1> <div class="article-intro"> <p><strong>Los sesgos cognitivos</strong> son patrones sistemáticos de desviación de la norma o la racionalidad en el juicio, que conducen a juicios y decisiones erróneas.</p> </div> <div class="search-container"> <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path></svg> <input type="text" id="bias-search" class="search-input" placeholder="Buscar un sesgo cognitivo"> </div> <div class="searchable-block"> <h2>15 Sesgos Cognitivos Más Estudiados e Ilustrativos:</h2> <ol> <!-- Bias 1 --> <li class="searchable-item"> <h3 class="bias-title">1. Sesgo de Confirmación</h3> <p>La tendencia a buscar, interpretar, favorecer y recordar información de una manera que confirma o apoya las creencias o hipótesis preexistentes.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <div class="example-tabs"> <button class="tab-link active" onclick="openTab(event, 'society-1')">En la Sociedad</button> <button class="tab-link" onclick="openTab(event, 'daily-1')">En la Vida Cotidiana</button> </div> <div id="society-1" class="tab-content" style="display: block;"> <img src="https://media.nngroup.com/media/editor/2022/03/10/confirmationbias-09.png" alt="Feed de redes sociales" class="example-image"> <p><strong>Situación y Manipulación:</strong> Los algoritmos de las redes sociales crean una "burbuja de filtro" mostrándote contenido que se alinea con tus puntos de vista existentes, reforzando tus creencias y filtrando la información contraria.</p> </div> <div id="daily-1" class="tab-content"> <img src="https://avatars.dzeninfra.ru/get-zen_doc/5372100/pub_63cc233b7775357d8654dc36_63cc248b4f09cf41b3d982ec/scale_1200" alt="Cena familiar" class="example-image"> <p><strong>Situación:</strong> Un padre que valora la estabilidad y un hijo que valora el cambio democrático interpretarán de forma diferente las noticias sobre protestas extranjeras, cada uno viendo la confirmación de su propia visión del mundo y reforzando sus posiciones individuales.</p> </div> </div> </li> <!-- Bias 2 --> <li class="searchable-item"> <h3 class="bias-title">2. Efecto Dunning-Kruger</h3> <p>Las personas con poca habilidad en una tarea sobreestiman su capacidad. Por el contrario, los individuos muy competentes pueden subestimar su competencia relativa.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <div class="example-tabs"> <button class="tab-link active" onclick="openTab(event, 'society-2')">En la Sociedad</button> <button class="tab-link" onclick="openTab(event, 'daily-2')">En la Vida Cotidiana</button> </div> <div id="society-2" class="tab-content" style="display: block;"> <img src="https://img.fruugo.com/product/0/27/99881270_max.jpg" alt="Sociedad de la Tierra Plana" class="example-image"> <p><strong>La Sociedad de la "Tierra Plana":</strong> El auge de las redes sociales ha dado plataforma a teorías como la tierra plana, donde individuos con una comprensión superficial de la física y la astronomía desafían con confianza siglos de evidencia científica. Su confianza surge de la incapacidad de reconocer su propia falta de conocimiento.</p> </div> <div id="daily-2" class="tab-content"> <p><strong>"Virólogo de Sofá":</strong> Durante una pandemia, alguien que ha leído unos pocos artículos en línea podría argumentar con confianza con epidemiólogos, sin ser consciente de la vasta complejidad del tema. Su confianza no proviene del conocimiento, sino de la falta del mismo.</p> </div> </div> </li> <!-- Bias 3 --> <li class="searchable-item"> <h3 class="bias-title">3. Maldición del Conocimiento</h3> <p>Un sesgo cognitivo por el que las personas mejor informadas encuentran extremadamente difícil pensar en los problemas desde la perspectiva de las personas menos informadas.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p><strong>Situación:</strong> Un médico le dice a un paciente: "Tiene hipertensión idiopática con riesgo de hipertrofia ventricular izquierda. Le receto un inhibidor de la ECA para reducir la poscarga." El paciente escucha una serie de términos aterradores e incomprensibles. El médico ha olvidado lo que es no conocer estos términos y no logra traducirlos en analogías simples.</p> </div> </li> <!-- Bias 4 --> <li class="searchable-item"> <h3 class="bias-title">4. Sesgo de Supervivencia</h3> <p>El error lógico de concentrarse en las personas o cosas que "sobrevivieron" a algún proceso e inadvertidamente pasar por alto las que no lo hicieron por su falta de visibilidad.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p>Durante la Segunda Guerra Mundial, los investigadores analizaron los daños en los bombarderos que regresaban para reforzar su armadura. Propusieron reforzar las zonas con más agujeros de bala. El matemático Abraham Wald objetó: reforzar las zonas SIN agujeros, porque los aviones impactados en esos puntos críticos (motor, cabina) simplemente no regresaban.</p> </div> </li> <!-- Bias 5 --> <li class="searchable-item"> <h3 class="bias-title">5. Hipótesis del Mundo Justo</h3> <p>La creencia de que el mundo es fundamentalmente justo y que las personas obtienen lo que merecen: las cosas buenas les ocurren a las personas buenas y las malas a las malas. Este sesgo puede llevar a culpar a las víctimas.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p>Al escuchar sobre una víctima de robo, alguien podría pensar: "Probablemente lo provocó al caminar por una calle oscura." Este pensamiento los protege de la comprensión de que las cosas malas pueden ocurrirle a cualquiera sin razón aparente.</p> </div> </li> <!-- Bias 6 --> <li class="searchable-item"> <h3 class="bias-title">6. Razonamiento Emocional</h3> <p>Tomar las propias emociones como evidencia de la verdad objetiva. El pensamiento sigue la fórmula: "Lo siento, por lo tanto debe ser verdad", llevando a conclusiones basadas en sentimientos en lugar de datos objetivos.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Cigarette_ad_cyclist_1900.jpg/500px-Cigarette_ad_cyclist_1900.jpg" alt="Antorchas de la Libertad" class="example-image"> <p><strong>Situación y Manipulación:</strong> En 1929, el genio de las relaciones públicas Edward Bernays fue contratado para romper el tabú social contra que las mujeres fumaran. En lugar de argumentos racionales, organizó el evento "Antorchas de la Libertad", donde las debutantes fumaban cigarrillos en un desfile público, llamándolos símbolos de su independencia. La conexión emocional ("Me siento moderna y libre cuando fumo") anuló las preocupaciones racionales sobre la salud.</p> </div> </li> <!-- Bias 7 --> <li class="searchable-item"> <h3 class="bias-title">7. Sobregeneralización</h3> <p>Formular una regla o conclusión general basada en uno o pocos eventos aislados y luego aplicar incorrectamente esta regla a otras situaciones no relacionadas. El <strong>etiquetado</strong> es una forma extrema de sobregeneralización.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <img src="https://s0.rbk.ru/v6_top_pics/resized/800xH/media/img/6/33/346989238976336.webp" alt="Culto a la carga" class="example-image"> <p><strong>Cultos a la Carga:</strong> Después de la Segunda Guerra Mundial, algunos islenos de Melanesia observaron que los soldados americanos realizaban rituales (marchar, llamadas de radio) y luego recibían mercancías ("carga") de los aviones. Sobregeneralizaron esta única observación en una regla universal, creyendo que imitar estos rituales les traería carga, lo que los llevó a descuidar la agricultura y la pesca.</p> </div> </li> <!-- Bias 8 --> <li class="searchable-item"> <h3 class="bias-title">8. Efecto Bandwagon (Efecto de Arrastre)</h3> <p>La probabilidad de que una persona adopte una creencia o comportamiento aumenta en función del número de personas que ya mantienen esa creencia o participan en ese comportamiento.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p><strong>Retos de TikTok:</strong> ¿Por qué millones de personas empiezan a realizar la misma acción extraña, como un baile específico? ¡Porque todos los demás lo hacen! El deseo de ser parte del grupo y el miedo a perderse algo (FOMO) puede ser más fuerte que el pensamiento racional.</p> </div> </li> <!-- Bias 9 --> <li class="searchable-item"> <h3 class="bias-title">9. Pensamiento Todo o Nada (Pensamiento Dicotómico)</h3> <p>La tendencia a evaluar cualidades personales, situaciones o eventos en categorías binarias mutuamente excluyentes (p. ej., bueno/malo, éxito/fracaso) en lugar de verlos en un continuo.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p><strong>Juicio de Figuras Históricas:</strong> Las personas a menudo debaten si una figura como César era un "héroe" o un "tirano". El pensamiento todo o nada nos impide aceptar que podría ser ambas cosas: un brillante estratega que también fue un conquistador despiadado. La realidad es compleja, pero las etiquetas son simples.</p> </div> </li> <!-- Bias 10 --> <li class="searchable-item"> <h3 class="bias-title">10. Abstracción Selectiva</h3> <p>Sacar conclusiones basadas en un único detalle sacado de contexto ignorando otras partes más importantes del panorama general. El enfoque en este detalle (ya sea positivo o negativo) distorsiona la percepción de toda la situación.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <img src="https://history.snauka.ru/wp-content/uploads/2014/12/Risunok3.jpg" alt="Hundimiento del Lusitania" class="example-image"> <p><strong>El Hundimiento del Lusitania:</strong> Antes de la entrada de EE. UU. en la Primera Guerra Mundial, la propaganda se centró únicamente en las muertes de civiles en el Lusitania, presentando a Alemania como un asesino despiadado. Este enfoque selectivo ignoró el contexto de que el barco transportaba municiones militares, convirtiéndolo en un objetivo legítimo bajo las leyes de la guerra.</p> </div> </li> <!-- Bias 11 --> <li class="searchable-item"> <h3 class="bias-title">11. Descalificar lo Positivo</h3> <p>Un proceso mental activo en el que las experiencias o datos que contradicen las creencias fundamentales son rechazados, ignorados o transformados para no perturbar dichas creencias.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p><strong>Situación:</strong> Una persona con baja autoestima recibe un cumplido pero piensa: "Solo están siendo amables." Descalifica el feedback positivo para que no contradiga su creencia en su propia falta de valía.</p> </div> </li> <!-- Bias 12 --> <li class="searchable-item"> <h3 class="bias-title">12. Sacar Conclusiones Precipitadas</h3> <p>La tendencia a sacar conclusiones sin evidencia suficiente que las sustente. Esto incluye dos formas principales: "Lectura de Mente" y "Predicción del Futuro".</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p><strong>Lectura de Mente:</strong> "Mi amigo no respondió mi mensaje, así que debe estar enfadado conmigo." <strong>Predicción del Futuro:</strong> "Definitivamente voy a suspender esta entrevista, no tiene sentido prepararme."</p> </div> </li> <!-- Bias 13 --> <li class="searchable-item"> <h3 class="bias-title">13. Magnificación y Minimización</h3> <p>Evaluar un evento, cualidad personal o situación en una escala distorsionada, exagerando significativamente o minimizando su importancia o magnitud real. A menudo se manifiesta como "catastrofización".</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p><strong>Magnificación (Catastrofización):</strong> "Cometí un error tipográfico en el correo electrónico, ¡definitivamente me van a despedir!" <strong>Minimización:</strong> "Sí, me ascendieron, pero fue solo suerte, nada especial."</p> </div> </li> <!-- Bias 14 --> <li class="searchable-item"> <h3 class="bias-title">14. Etiquetado y Mala Etiquetación</h3> <p>Una forma extrema de sobregeneralización en la que en lugar de describir un comportamiento o error específico, una persona se asigna a sí misma o a otros una etiqueta global, estática y generalmente cargada emocionalmente.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p><strong>Odio Político:</strong> En los debates en línea, en lugar de responder a los argumentos del oponente, las personas a menudo aplican una etiqueta: "liberal", "conservador", "boomer", "zoomer". Una vez aplicada la etiqueta, las palabras reales de la persona pueden ignorarse en favor de argumentar contra una caricatura.</p> </div> </li> <!-- Bias 15 --> <li class="searchable-item"> <h3 class="bias-title">15. Personalización</h3> <p>La tendencia a relacionar eventos externos con uno mismo sin base para tales conclusiones. Verse a uno mismo como la causa de eventos sobre los que no se tuvo ninguna influencia significativa.</p> <button class="example-toggle">Ejemplo</button> <div class="example-content"> <p>Un niño tiene dificultades en la escuela y la madre piensa: "Es mi culpa, soy una mala madre", sin considerar múltiples factores (características del niño, entorno escolar, profesores).</p> </div> </li> </ol> </div> </section> </div> </main> <footer class="site-footer"> <div class="container footer-container"> <div class="footer-copyright">

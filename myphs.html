@@ -11,155 +11,49 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* Общие стили */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.7;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        main {
-            flex-grow: 1;
-        }
-
-        /* --- 1. Стили для закрепленного меню (Header) --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-        
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-        
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-
-        /* --- 2. Стили для контента статьи --- */
-        .article-section {
-            padding: 60px 0;
-        }
-
-        .article-title {
-            font-size: 52px;
-            font-weight: 300;
-            margin: 0 0 25px 0;
-            line-height: 1.2;
-            text-align: left;
-        }
-        
-        .intro-block {
+.intro-block {
             text-align: left;
             font-size: 18px;
             color: #555;
             margin-bottom: 50px;
         }
-        
-        .intro-block p {
+
+.intro-block p {
              margin: 10px 0;
         }
-        
-        .article-section h2 {
-            font-size: 32px;
-            font-weight: 500;
-            margin: 60px 0 20px 0;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 40px;
-        }
-        
-        .article-section h3 {
-             font-size: 24px;
-             font-weight: 500;
-             margin: 40px 0 15px 0;
-        }
 
-        .article-section p {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .myth-item {
+.myth-item {
             padding: 20px 0;
             margin: 0;
             border-bottom: 1px solid #e9e9e9;
         }
 
-        .myth-item:last-child {
+.myth-item:last-child {
             border-bottom: none;
         }
 
-        .myth-title {
+.myth-title {
             font-size: 20px;
             font-weight: 600;
             color: #1a1a1a;
             margin-bottom: 15px;
         }
 
-        .myth-description {
+.myth-description {
             font-size: 18px;
             line-height: 1.6;
             color: #333;
             margin-bottom: 12px;
         }
 
-        .highlight-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #1a1a1a;
-            padding: 25px 30px;
-            margin: 40px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .highlight-text {
+.highlight-text {
             font-size: 18px;
             line-height: 1.6;
             color: #333;
             margin: 0;
         }
 
-        .warning-box {
+.warning-box {
             background-color: #fff3cd;
             border: 1px solid #ffeaa7;
             border-radius: 8px;
@@ -170,26 +64,26 @@
             color: #856404;
         }
 
-        .movie-images {
+.movie-images {
             display: flex;
             gap: 20px;
             margin: 20px 0;
             justify-content: center;
         }
 
-        .movie-image {
+.movie-image {
             max-width: 300px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .movie-image img {
+.movie-image img {
             width: 100%;
             height: auto;
             border-radius: 8px;
         }
 
-        .navigation-links {
+.navigation-links {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -199,7 +93,7 @@
             border-top: 1px solid #e0e0e0;
         }
 
-        .nav-link {
+.nav-link {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -209,222 +103,44 @@
             transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
+.nav-link:hover {
             color: #666 !important;
         }
 
-        .nav-link.prev {
+.nav-link.prev {
             flex-direction: row;
         }
 
-        .nav-link.next {
+.nav-link.next {
             flex-direction: row-reverse;
         }
 
-        .nav-arrow {
+.nav-arrow {
             font-size: 20px;
             margin: 0 10px;
         }
 
-        .conclusion-block {
+.conclusion-block {
             margin-top: 40px;
             padding: 30px;
             background-color: #f7f7f7;
             border-top: 2px solid #1a1a1a;
         }
 
-        /* --- Стили для футера --- */
-        
-        /* Дополнительные стили для переопределения Tilda */
-
-        /* --- Медиа-запросы --- */
-        @media (max-width: 768px) {
-            .site-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .article-title {
-                font-size: 38px;
-            }
-            .article-section h2 {
-                 font-size: 28px;
-            }
-            .container {
-                padding: 0 15px;
-            }
-            .movie-images {
+@media (max-width: 768px) {
+.movie-images {
                 flex-direction: column;
                 align-items: center;
             }
-            .movie-image {
+.movie-image {
                 max-width: 250px;
             }
-            .navigation-links {
+.navigation-links {
                 flex-direction: column;
                 gap: 20px;
             }
-        }
-    
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-        .current-language:hover { background-color: #f5f5f5; }
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-            z-index: 100;
-        }
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-        .language-option:hover { background-color: #f5f5f5; }
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        @media (max-width: 767px) {
-            .site-header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-container {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        .site-footer {
-            background-color: #ffffff !important;
-            padding: 40px 0 !important;
-            margin-top: 0 !important;
-            font-size: 14px !important;
-            color: #555 !important;
-            border-top: none !important;
-        }
-
-        .site-footer .footer-container {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: flex-end !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 40px !important;
-            box-sizing: border-box !important;
-        }
-
-        .site-footer .footer-copyright {
-            flex-basis: auto !important;
-            align-self: flex-end !important;
-        }
-
-        .site-footer .footer-nav {
-            display: flex !important;
-            gap: 60px !important;
-            align-items: flex-start !important;
-        }
-
-        .site-footer .footer-column {
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 {
-            font-size: 16px !important;
-            font-weight: 600 !important;
-            color: #1a1a1a !important;
-            margin: 0 0 15px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 a {
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-        }
-
-        .site-footer .footer-column ul {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column li {
-            margin: 0 0 10px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-            list-style: none !important;
-        }
-
-        .site-footer .footer-column a {
-            text-decoration: none !important;
-            color: #555 !important;
-            transition: color 0.3s;
-            display: inline-block !important;
-        }
-
-        .site-footer .footer-column a:hover {
-            color: #1a1a1a !important;
-        }
-
-        @media (max-width: 767px) {
-            .site-footer .footer-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .site-footer .footer-nav {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 40px;
-            }
-        }
-    </style>
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div> <div class="nav-container"><nav> <a href="ru.html">Главная</a> <a href="baza.html">База</a> <a href="blog.html" class="active-link">Блог</a> <a href="tests.html">Тесты</a> </nav> <div class="language-selector"><div class="current-language" id="language-toggle"><span class="language-code">RU</span></div><div class="language-dropdown" id="language-dropdown"><a href="myphs.html" class="language-option current"><span class="language-code">RU</span></a><a href="myths_en.html" class="language-option"><span class="language-code">EN</span></a><a href="myths_es.html" class="language-option"><span class="language-code">ES</span></a></div></div></div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">5 самых популярных мифов о мозге</h1> <div class="highlight-box"> <p class="highlight-text"><strong>Нейромиф</strong> — это ошибочное убеждение о том, как работает мозг, которого придерживается большое количество людей.</p> </div> <div class="myth-item"> <h3 class="myth-title">Миф 1. Мы используем только 10% нашего мозга</h3> <p class="myth-description">Этот нейромиф лег в основу как минимум двух научно-фантастических фильмов: «Области тьмы» Нила Бургера с Брэдли Купером и «Люси» Люка Бессона со Скарлетт Йоханссон.</p> <div class="movie-images"> <div class="movie-image"> <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_664317dd960efa7b082fe475_664318c8d91ca37bce3af6d1/scale_1200" alt="Области тьмы"> </div> <div class="movie-image"> <img src="https://www.dvhab.ru/kino/kino/images/big_760326.jpg" alt="Люси"> </div> </div> <p class="myth-description">Людям нравится этот миф, потому что он заставляет их чувствовать себя хорошо. Это означает, что у вас может быть огромный неиспользованный потенциал, который можно разблокировать, используя правильные техники или инструменты. Маркетологи также любят этот миф, потому что он помогает им продавать сомнительные продукты, которые якобы позволяют получить доступ к оставшимся 90% возможностей мозга.</p> <p class="myth-description"><strong>Почему это неверно:</strong> Существует множество доказательств того, что независимо от того, что делает человек — даже если ему говорят просто лежать в сканере и ничего не делать — практически все области мозга активны. Во-вторых, с эволюционной точки зрения не имеет смысла иметь орган, который на 90% не используется. Особенно когда речь идет о мозге, который потребляет ошеломляющие 20% энергии тела, несмотря на то, что составляет только 2% его веса.</p> </div> <div class="myth-item"> <h3 class="myth-title">Миф 2. Мы либо правополушарные, либо левополушарные</h3> <p class="myth-description">Каждый день есть компании, которые платят за семинары, обучающие своих сотрудников тому, что они либо правополушарные (художественное выражение и творчество), либо левополушарные (логическое мышление и вычисления).</p> <p class="myth-description"><strong>Почему это неверно:</strong> Исследования с использованием нейровизуализации показывают, что обе части мозга активны, когда люди занимаются творческими задачами. Нет абсолютно никаких оснований думать, что определенные формы мышления — скажем, творческое против рационального мышления — локализованы в определенном полушарии мозга.</p> </div> <div class="myth-item"> <h3 class="myth-title">Миф 3. У нас есть множественные виды интеллекта</h3> <p class="myth-description">Психолог Гарварда Говард Гарднер выдвинул теорию множественного интеллекта в 1980-х годах — и я говорю «выдвинул», потому что никаких реальных данных в этой теории не было: это было просто мнение Гарднера о том, что существует множественный интеллект с различными уровнями у людей.</p> <p class="myth-description">Он начал со списка из семи «видов интеллекта»: музыкально-ритмический, визуально-пространственный, словесно-лингвистический, логико-математический, телесно-кинестетический, межличностный и внутриличностный. Но поскольку этого было недостаточно, он добавил еще несколько (все еще без каких-либо данных в поддержку своих утверждений): натуралистический, экзистенциальный и моральный интеллект.</p> <p class="myth-description"><strong>Почему это неверно:</strong> Во-первых, то, что Гарднер называет интеллектом, можно просто назвать навыками. Во-вторых, исследования показывают, что наши навыки не являются широко независимыми друг от друга. Люди, которые, как правило, хорошо справляются с одним типом теста, как правило, хорошо справляются со всеми ними. Это называется «общий интеллект», и у него гораздо больше материальных доказательств в его поддержку, чем у теории множественного интеллекта.</p> </div> <div class="myth-item"> <h3 class="myth-title">Миф 4. Тесты IQ просто говорят вам, насколько хорошо вы проходите тесты IQ</h3> <p class="myth-description">Это было одним из самых удивительных для меня, потому что я действительно верил в этот нейромиф до написания этой статьи. Хотя тесты IQ, безусловно, имеют недостатки во всех отношениях, они являются одними из самых надежных и предсказательных тестов, которые существуют во всей психологической науке.</p> <p class="myth-description"><strong>Почему это неверно:</strong> Исследование с почти миллионом мужчин, которые прошли тест IQ в рамках военной службы в Швеции, показало, что чем выше IQ, тем дольше они жили. Многие исследования показали, что тесты IQ действительно предсказывают смертность, а также образовательные достижения, успех в работе, физическое и психическое здоровье и многие другие вещи.</p> </div> <div class="myth-item"> <h3 class="myth-title">Миф 5. У людей разные стили обучения</h3> <p class="myth-description">Теория стилей обучения утверждает, что люди различаются в том, как они учатся, что обусловлено некоторым врожденным свойством их мозга, и что обучение должно быть адаптировано к их конкретному стилю обучения. Согласно этой теории, у некоторых людей больше визуальный стиль обучения, у других — слуховой и т.д.</p> <p class="myth-description"><strong>Почему это неверно:</strong> Исследования показывают, что изменение метода обучения не влияет на успех учащихся на основе их предпочитаемого стиля обучения. Короче говоря, у нас действительно есть предпочитаемый стиль обучения — тот, который кажется более комфортным — но использование другого не влияет на нашу производительность. У нас нет разных стилей обучения, у нас просто разные предпочтения в обучении.</p> </div> <h2>Проблема распространения нейромифов</h2> <p>Существует множество других нейромифов. Но что удивительно, так это то, что в них верят не только широкая общественность.</p> <div class="warning-box"> <p><strong>Тревожная статистика:</strong> Исследования показывают, что 59% широкой общественности, 55% педагогов и 43% людей с высоким уровнем знаний нейронауки верят в «Эффект Моцарта» — теорию, которая предполагает, что прослушивание классической музыки может повысить наш интеллект. Что является ложным.</p> <p>Еще более удручающе то, что 14% людей с высоким уровнем знаний нейронауки верят, что мы используем только 10% нашего мозга. В целом исследование показало, что в среднем 46% наиболее образованных людей в области мозга верили в эти нейромифы.</p> </div> <p>Хуже всего то, что исследования показывают: больше образования может не исправить это. Прохождение курса педагогической психологии улучшает общие знания нейронауки, но не уменьшает веру в нейромифы. Нейромифы действительно кажутся липкими. Они питают наше желание верить в то, что каждый может быть в чем-то хорош, что у нас есть неиспользованный потенциал, что мы уникальны.</p> <div class="conclusion-block"> <h2 style="border-top: none; padding-top: 0; text-align: left;">Заключение</h2> <p>Хотя было показано, что невероятно трудно изменить мнение людей, когда дело доходит до нейромифов, я надеюсь, что эта статья станет небольшим вкладом, который может просветить людей, готовых отказаться от некоторых твердо укоренившихся убеждений о том, как работает их мозг.</p> <p>Понимание того, как на самом деле работает наш мозг, не делает нас менее особенными или менее способными. Наоборот, это помогает нам лучше использовать наши реальные возможности и избегать ложных обещаний.</p> <p><strong>Критическое мышление и научная грамотность — наши лучшие инструменты против дезинформации.</strong></p> </div> <div class="navigation-links"> <a href="article1.html" class="nav-link prev"> <span class="nav-arrow">←</span> <span>Что такое когнитивные функции</span> </a> <a href="cognitive_bias.html" class="nav-link next"> <span>Что такое когнитивные искажения</span> <span class="nav-arrow">→</span> </a> </div> </section> </div> </main> <footer class="site-footer"> <div class="container footer-container"> <div class="footer-copyright">

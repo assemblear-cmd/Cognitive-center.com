@@ -11,197 +11,25 @@
  
 <link rel="stylesheet" href="css/common.css">
 <style>
-        /* General Styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.7;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        /* --- 1. Header Styles --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-            margin-left: 20px;
-            font-size: 16px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        nav a.active-link {
-            font-weight: 600;
-            border-bottom-color: #1a1a1a;
-        }
-
-        nav a:not(.active-link):hover {
-             border-bottom-color: #ccc;
-        }
-
-        /* Language selector styles */
-        .language-selector {
-            position: relative;
-            margin-left: 20px;
-        }
-
-        .current-language {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-
-        .current-language:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-code {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 100px;
-            overflow: hidden;
-        }
-
-        .language-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .language-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-
-        .language-option:hover {
-            background-color: #f5f5f5;
-        }
-
-        .language-option.current {
-            background-color: #f0f0f0;
-            font-weight: 600;
-        }
-
-        /* --- 2. Article Content Styles --- */
-        .article-section {
-            padding: 60px 0;
-        }
-
-        .article-title {
-            font-size: 52px;
-            font-weight: 300;
-            margin: 0 0 25px 0;
-            line-height: 1.2;
-            text-align: left;
-        }
-
-        .intro-block {
+.intro-block {
             text-align: left;
             font-size: 18px;
             color: #555;
             margin-bottom: 50px;
         }
 
-        .intro-block p {
+.intro-block p {
              margin: 10px 0;
         }
 
-        .article-section h2 {
-            font-size: 32px;
-            font-weight: 500;
-            margin: 60px 0 20px 0;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 40px;
-        }
-
-        .article-section h3 {
-             font-size: 24px;
-             font-weight: 500;
-             margin: 40px 0 15px 0;
-        }
-
-        .article-section p {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .conclusion-block {
+.conclusion-block {
             margin-top: 40px;
             padding: 30px;
             background-color: #f7f7f7;
             border-top: 2px solid #1a1a1a;
         }
 
-        .navigation-links {
+.navigation-links {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -210,7 +38,7 @@
             border-top: 1px solid #e0e0e0;
         }
 
-        .nav-link {
+.nav-link {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -220,46 +48,32 @@
             transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
+.nav-link:hover {
             color: #666 !important;
         }
 
-        .nav-link.prev {
+.nav-link.prev {
             flex-direction: row;
         }
 
-        .nav-link.next {
+.nav-link.next {
             flex-direction: row-reverse;
         }
 
-        .nav-arrow {
+.nav-arrow {
             font-size: 20px;
             margin: 0 10px;
         }
 
-        .mobile-nav-list {
+.mobile-nav-list {
             display: none;
         }
 
-        /* --- Footer Styles --- */
-
-        /* --- Media Queries --- */
-        @media (max-width: 768px) {
-            .site-header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .article-title {
-                font-size: 38px;
-            }
-            .article-section h2 {
-                 font-size: 28px;
-            }
-            .navigation-links {
+@media (max-width: 768px) {
+.navigation-links {
                 display: none;
             }
-
-            .mobile-nav-list {
+.mobile-nav-list {
                 display: block;
                 margin-top: 40px;
                 padding: 0;
@@ -267,116 +81,26 @@
                 border-top: 1px solid #e0e0e0;
                 padding-top: 30px;
             }
-
-            .mobile-nav-item {
+.mobile-nav-item {
                 margin-bottom: 15px;
                 font-size: 16px;
                 line-height: 1.5;
             }
-
-            .mobile-nav-item::before {
+.mobile-nav-item::before {
                 content: "- ";
                 color: #1a1a1a;
                 margin-right: 5px;
             }
-
-            .mobile-nav-item a {
+.mobile-nav-item a {
                 color: #1a1a1a !important;
                 text-decoration: none !important;
                 font-weight: 500;
             }
-
-            .mobile-nav-item a:hover {
+.mobile-nav-item a:hover {
                 color: #666 !important;
             }
-        }
-
-        .site-footer {
-            background-color: #ffffff !important;
-            padding: 40px 0 !important;
-            margin-top: 0 !important;
-            font-size: 14px !important;
-            color: #555 !important;
-            border-top: none !important;
-        }
-
-        .site-footer .footer-container {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: flex-end !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 40px !important;
-            box-sizing: border-box !important;
-        }
-
-        .site-footer .footer-copyright {
-            flex-basis: auto !important;
-            align-self: flex-end !important;
-        }
-
-        .site-footer .footer-nav {
-            display: flex !important;
-            gap: 60px !important;
-            align-items: flex-start !important;
-        }
-
-        .site-footer .footer-column {
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 {
-            font-size: 16px !important;
-            font-weight: 600 !important;
-            color: #1a1a1a !important;
-            margin: 0 0 15px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column h4 a {
-            text-decoration: none !important;
-            color: #1a1a1a !important;
-        }
-
-        .site-footer .footer-column ul {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            text-align: left !important;
-        }
-
-        .site-footer .footer-column li {
-            margin: 0 0 10px 0 !important;
-            padding: 0 !important;
-            text-align: left !important;
-            list-style: none !important;
-        }
-
-        .site-footer .footer-column a {
-            text-decoration: none !important;
-            color: #555 !important;
-            transition: color 0.3s;
-            display: inline-block !important;
-        }
-
-        .site-footer .footer-column a:hover {
-            color: #1a1a1a !important;
-        }
-
-        @media (max-width: 767px) {
-            .site-footer .footer-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .site-footer .footer-nav {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 40px;
-            }
-        }
-    </style>
+}
+</style>
 </head>
 <body>
 <header class="site-header"> <div class="logo"><a href="index_es.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index_es.html">Inicio</a> <a href="basics_es.html">Fundamentos</a> <a href="blog_es.html" class="active-link">Blog</a> <a href="tests_es.html">Tests</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">ES</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="ptsd_recovery_en.html" class="language-option"> <span class="language-code">EN</span> </a> <a href="ptsd_article.html" class="language-option"> <span class="language-code">RU</span> </a> <a href="ptsd_recovery_es.html" class="language-option current"> <span class="language-code">ES</span> </a> </div> </div> </div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">TEPT: Guía para la Recuperación</h1> <div class="intro-block"> <p>Tu tarea es leer esto hasta el final y entenderlo. Tu vida futura depende de ello.</p> </div> <h2 id="part1">1. Hecho médico.</h2> <p><strong>Trastorno de Estrés Postraumático.</strong> El código en la Clasificación Internacional de Enfermedades (CIE-11) es 6B40.</p> <p>Esto no es una "obsesión", ni una "debilidad de carácter", ni una "invención". <strong>Es un diagnóstico.</strong> Es una lesión que no se ve en una radiografía, pero que te destruye por dentro.</p> <p><strong>La esencia:</strong> después de lo que has vivido, tu sistema nervioso está atascado en modo "COMBATE". Continúa funcionando hasta el agotamiento, incluso cuando todo está en calma a tu alrededor. El cerebro y el cuerpo anticipan constantemente una amenaza, liberando hormonas de estrés que envenenan el organismo. Se trata de un fallo del sistema que requiere un "ajuste" profesional. No desaparecerá por sí solo.</p> <h2 id="part2">2. Las consecuencias de la inacción: lo que necesitas saber.</h2> <p>Si ignoras este "fallo", llevará a un resultado predecible. Esto no es un relato de terror; son estadísticas y hechos médicos. El precio de la inacción es tu vida civil.</p> <p><strong>El cuerpo:</strong> El constante "estado de alerta de combate" desgasta el corazón y los vasos sanguíneos. El resultado: hipertensión, infartos y derrames cerebrales a los 30-40 años. Dolores de cabeza, problemas digestivos, insomnio.</p> <p><strong>Las relaciones:</strong> Estallidos de ira, distanciamiento, incapacidad de confiar: son síntomas, no tu carácter. Destruyen las familias. Tus seres queridos no te ven a ti, sino tu dolor, y no saben cómo ayudar. Ellos también se convierten en "víctimas".</p> <p><strong>La adicción:</strong> El alcohol o las drogas son un intento de "apagarse", de ahogar los recuerdos y la ansiedad. No funciona. Es solo un analgésico temporal que empeora el fallo del sistema y te lleva a un callejón sin salida del que es mucho más difícil salir.</p> <p><strong>El aislamiento:</strong> Al final, pérdida del trabajo, amigos, familia. La sensación de ser un extraño en este mundo. Es el camino directo hacia la muerte social completa.</p> <h2 id="part3">3. Quiénes se encargan de esto: los especialistas en "reparación".</h2> <p>Olvida la palabra "manicomio". Hay especialistas que resuelven este problema de forma sistemática y profesional. No son médicos para los "débiles". Son ingenieros y mecánicos para quienes han atravesado un estrés extremo.</p> <p><strong>Psicólogo clínico / Psicoterapeuta:</strong> Este es el "ingeniero". Su tarea es utilizar métodos probados para encontrar el "punto de quiebre" en tu percepción y ayudar a tu cerebro a "reprogramar" su reacción a los desencadenantes. No te tendrá lástima. Te dará las herramientas para poner tu propia cabeza en orden.</p> <p><strong>Psiquiatra:</strong> Este es el médico. Si el "motor" está tan deteriorado que ya no puede funcionar, puede recetar medicación temporalmente. Esto no es "engancharse a pastillas". Es como dar muletas a una persona lesionada para que pueda llegar al quirófano. Estos fármacos aliviarán la ansiedad extrema y normalizarán el sueño para que tengas fuerzas para el trabajo principal con el psicólogo.</p> <p>Su trabajo conjunto es reincorporarte. Este trabajo puede y debe ser confidencial.</p> <div class="conclusion-block"> <h2 style="border-top: none; padding-top: 0; text-align: left;">Conclusión</h2> <p>Has vuelto. Ahora la tarea es volver por completo.</p> <p>Restaurar la salud mental después de lo que has vivido no es un capricho, sino una necesidad. Ignorar este problema lleva a consecuencias predecibles: la destrucción de la salud, la familia y la carrera. La rehabilitación profesional es una herramienta que permite evitar estas consecuencias.</p> <p>Esta herramienta está disponible. Hay especialistas.</p> <p><strong>Tu futuro está en tus manos. Decide.</strong></p> </div> <div class="navigation-links"> <a href="functions_es.html" class="nav-link prev"> <span class="nav-arrow">←</span> <span>Qué son las Funciones Cognitivas</span> </a> <a href="trauma_es.html" class="nav-link next"> <span>Test de Detección del TEPT</span> <span class="nav-arrow">→</span> </a> </div> <ul class="mobile-nav-list"> <li class="mobile-nav-item"> <a href="functions_es.html">Qué son las Funciones Cognitivas</a> </li> <li class="mobile-nav-item"> <a href="trauma_es.html">Test de Detección del TEPT</a> </li> </ul> </section> </div> </main> <footer class="site-footer"> <div class="container footer-container"> <div class="footer-copyright">
