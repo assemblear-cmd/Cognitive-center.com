@@ -1,0 +1,58 @@
+/* Neuralink-style body text for articles — HEADINGS LEFT UNTOUCHED */
+/* Only paragraphs, list items, blockquotes and callouts are restyled.   */
+/* Font: Inter (≈ Untitled Sans used on neuralink.com).                   */
+
+.article-section p,
+.article-section li,
+.article-section blockquote,
+.intro-block,
+.intro-block p,
+.highlight-box p,
+.highlight-box li,
+.conclusion-block p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.65;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.006em;
+}
+
+.article-section p,
+.conclusion-block p {
+    margin-bottom: 28px;
+}
+
+.article-section li {
+    margin-bottom: 10px;
+}
+
+/* Bold emphasis — clearly heavier, Neuralink-style */
+.article-section p strong,
+.article-section li strong,
+.article-section strong,
+.article-section b,
+.highlight-box strong {
+    font-weight: 700;
+}
+
+/* Italic emphasis */
+.article-section em,
+.article-section i {
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .article-section p,
+    .article-section li,
+    .article-section blockquote,
+    .intro-block,
+    .intro-block p,
+    .highlight-box p,
+    .highlight-box li,
+    .conclusion-block p {
+        font-size: 17px;
+        line-height: 1.6;
+    }
+}
