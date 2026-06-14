@@ -11,12 +11,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/common.css">
 <style>
 body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #111;
+            color: #2e2e2e;
             letter-spacing: -0.011em;
         }
 
@@ -29,18 +29,21 @@ body {
         }
 
 .article-title {
-            font-size: 44px;
+            font-family: 'Source Serif 4', 'Georgia', 'Times New Roman', serif;
+            font-size: 52px;
             font-weight: 300;
-            letter-spacing: -0.03em;
-            line-height: 1.15;
+            letter-spacing: 0.02em;
+            line-height: 1.19;
             margin: 0 0 32px 0;
             color: #000;
         }
 
 .article-section h2 {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
+            font-family: 'Source Serif 4', 'Georgia', 'Times New Roman', serif;
+            font-size: 30px;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.23;
             margin: 72px 0 24px 0;
             padding-top: 48px;
             border-top: 1px solid #e5e5e5;
@@ -48,18 +51,19 @@ body {
         }
 
 .article-section h3 {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
-            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
             margin: 48px 0 16px 0;
-            color: #000;
+            color: #2e2e2e;
         }
 
 .article-section p,
         .article-section li {
-            font-size: 17px;
-            line-height: 1.8;
-            color: #333;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #2e2e2e;
             margin-bottom: 24px;
             font-weight: 400;
         }
@@ -69,16 +73,16 @@ body {
         }
 
 .article-section a {
-            color: #666 !important;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            text-decoration-color: #ccc;
-            transition: color 0.2s, text-decoration-color 0.2s;
+            color: #858585 !important;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 1px;
+            transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
         }
 
 .article-section a:hover {
             color: #000 !important;
-            text-decoration-color: #000;
+            border-color: #000;
         }
 
 .article-image-container {
@@ -86,13 +90,13 @@ body {
         }
 
 .article-image-container img {
-            border-radius: 4px;
+            border-radius: 0;
             box-shadow: none;
         }
 
 .article-image-container figcaption {
-            font-size: 13px;
-            color: #999;
+            font-size: 14px;
+            color: #858585;
             margin-top: 12px;
             font-style: normal;
             letter-spacing: 0;
@@ -100,32 +104,34 @@ body {
 
 .highlight-box {
             background-color: #fafafa;
-            border-left: 3px solid #000;
+            border-left: 2px solid #000;
             padding: 28px 32px;
             margin: 48px 0;
-            border-radius: 0 4px 4px 0;
+            border-radius: 0;
         }
 
 .article-navigation {
-            background-color: #fafafa;
-            border: 1px solid #eee;
-            border-radius: 4px;
-            padding: 20px 24px;
+            background-color: #f9f9f9;
+            border: none;
+            border-top: 1px solid #e5e5e5;
+            border-radius: 0;
+            padding: 24px 0;
             margin: 40px 0;
         }
 
 .nav-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #999;
-            margin-bottom: 12px;
+            letter-spacing: 0.08em;
+            color: #858585;
+            margin-bottom: 14px;
         }
 
 .nav-list a {
             font-size: 14px;
-            color: #555 !important;
+            color: #858585 !important;
+            border-bottom: none;
         }
 
 .nav-list a:hover {
@@ -134,27 +140,26 @@ body {
 
 .external-link-gray a {
             font-size: 14px;
-            color: #999 !important;
-            text-decoration-color: #ddd;
+            color: #858585 !important;
+            border-bottom-color: #ddd;
         }
 
 @media (max-width: 768px) {
 .article-title {
-                font-size: 32px;
+                font-size: 36px;
             }
 .article-section h2 {
-                font-size: 24px;
+                font-size: 26px;
                 margin: 56px 0 20px 0;
                 padding-top: 36px;
             }
 .article-section h3 {
-                font-size: 18px;
+                font-size: 16px;
                 margin: 36px 0 12px 0;
             }
 .article-section p,
             .article-section li {
                 font-size: 16px;
-                line-height: 1.75;
             }
 }
 </style>
