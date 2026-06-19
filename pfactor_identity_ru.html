@@ -517,24 +517,42 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             <span class="ac-chev">&#9662;</span>
           </div>
           <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
-            <div style="margin:16px 0 8px">
+            <div style="margin:16px 0 0">
               <style>
-                .fi{display:flex;gap:14px;position:relative;padding-bottom:18px}
-                .fi:not(:last-child)::before{content:'';position:absolute;left:18px;top:36px;bottom:0;width:1px;background:#e0e0e0}
-                .fd{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor}
-                .fb{flex:1;padding-top:5px}
-                .ft{font-size:11px;font-weight:500;letter-spacing:.04em;margin-bottom:3px}
-                .fh{font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:4px;line-height:1.4}
-                .fx{font-size:13px;line-height:1.7;color:#555}
-                @media(prefers-color-scheme:dark){.fh{color:#e8e4d8}.fx{color:#888}.fi:not(:last-child)::before{background:#333}}
+                .fac-item{display:flex;gap:14px;position:relative;padding-bottom:0;cursor:pointer}
+                .fac-item:not(:last-child)::before{content:'';position:absolute;left:18px;top:36px;bottom:0;width:1px;background:#e0e0e0}
+                .fac-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor;margin-bottom:18px}
+                .fac-body{flex:1;padding-top:5px;padding-bottom:18px}
+                .fac-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+                .fac-hdr-text{flex:1;min-width:0}
+                .fac-time{font-size:11px;font-weight:500;letter-spacing:.04em;margin-bottom:3px}
+                .fac-title{font-size:13px;font-weight:500;color:#1a1a1a;line-height:1.4}
+                .fac-chev{font-size:13px;color:#ccc;transition:transform .2s;flex-shrink:0;margin-top:2px}
+                .fac-item.fac-open .fac-chev{transform:rotate(180deg);color:#1a1a1a}
+                .fac-desc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+                .fac-item.fac-open .fac-desc{grid-template-rows:1fr}
+                .fac-desc-in{overflow:hidden}
+                .fac-x{font-size:13px;line-height:1.7;color:#555;padding-top:8px}
+                @media(prefers-color-scheme:dark){
+                  .fac-title{color:#e8e4d8}
+                  .fac-x{color:#888}
+                  .fac-item:not(:last-child)::before{background:#333}
+                  .fac-chev{color:#555}
+                  .fac-item.fac-open .fac-chev{color:#e8e4d8}
+                }
               </style>
 
-              <div class="fi">
-                <div class="fd" style="color:#0f6e56;background:#e1f5ee">1</div>
-                <div class="fb">
-                  <div class="ft" style="color:#0f6e56">0 мс — Триггер</div>
-                  <div class="fh">Внешняя среда → органы чувств → рецепторы</div>
-                  <div class="fx">Внешняя среда воздействует на органы чувств: зрение, слух, обоняние, осязание, вкус. Отдельно — <span class="term" data-term="интероцепция">интероцепция</span>: восприятие сигналов изнутри тела (давление, температура, химический состав во внутренних органах). Качество сигнала зависит от качества сенсорного канала.
+              <div class="fac-item" id="fac-1" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#0f6e56;background:#e1f5ee">1</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#0f6e56">0 мс — Триггер</div>
+                      <div class="fac-title">Внешняя среда → органы чувств → рецепторы</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x">Внешняя среда воздействует на органы чувств: зрение, слух, обоняние, осязание, вкус. Отдельно — <span class="term" data-term="интероцепция">интероцепция</span>: восприятие сигналов изнутри тела (давление, температура, химический состав во внутренних органах). Качество сигнала зависит от качества сенсорного канала.
                   <div style="margin-top:12px;padding:11px 14px;background:#f7f7f5;border-radius:8px;border-left:3px solid #ccc;font-size:12px;line-height:1.75;color:#666">
                     <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:7px">Сенсорная трансдукция → таламус</div>
                     Физическое воздействие преобразуется в нейронный электрохимический сигнал в специализированных рецепторах:<br>
@@ -574,78 +592,112 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                         </div>
                       </div>
                     </span>
-                  </div></div>
+                  </div></div></div></div>
                 </div>
               </div>
-
-              <div class="fi">
-                <div class="fd" style="color:#993c1d;background:#faece7">2</div>
-                <div class="fb">
-                  <div class="ft" style="color:#993c1d">12–88 мс — Нижний путь</div>
-                  <div class="fh"><span class="term" data-term="таламус">Таламус</span> → <span class="term" data-term="амигдала">амигдала</span>: тело реагирует раньше сознания</div>
-                  <div class="fx">Нейронный сигнал от рецепторов достиг <span class="term" data-term="таламус">таламуса</span> — и тот немедленно отправляет его копию напрямую в амигдалу (БЛА), минуя кору. Это «нижний путь»: за 12–88 мс тело уже реагирует — <span class="term" data-term="внс">ВНС</span> активирована, адреналин выброшен, замирание запущено.</div>
+              <div class="fac-item" id="fac-2" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#993c1d;background:#faece7">2</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#993c1d">12–88 мс — Нижний путь</div>
+                      <div class="fac-title"><span class="term" data-term="таламус">Таламус</span> → <span class="term" data-term="амигдала">амигдала</span>: тело реагирует раньше сознания</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x">Нейронный сигнал от рецепторов достиг <span class="term" data-term="таламус">таламуса</span> — и тот немедленно отправляет его копию напрямую в амигдалу (БЛА), минуя кору. Это «нижний путь»: за 12–88 мс тело уже реагирует — <span class="term" data-term="внс">ВНС</span> активирована, адреналин выброшен, замирание запущено.</div></div></div>
                 </div>
               </div>
-
-              <div class="fi">
-                <div class="fd" style="color:#993c1d;background:#faece7">3</div>
-                <div class="fb">
-                  <div class="ft" style="color:#993c1d">100–200 мс — Три выхода</div>
-                  <div class="fh">Амигдала → <span class="term" data-term="гипоталамус">гипоталамус</span>, ствол мозга и <span class="term" data-term="пфк">ПФК</span> одновременно</div>
-                  <div class="fx">Центральное ядро амигдалы (ЦЯ) активирует три параллельных выхода: <span class="term" data-term="гипоталамус">гипоталамус</span> (<span class="term" data-term="внс">ВНС</span> + <span class="term" data-term="ось ггн">ось ГГН</span>), ствол / ПАВ (замирание, бегство, борьба) и запускает оценку в <span class="term" data-term="пфк">ПФК</span>.</div>
+              <div class="fac-item" id="fac-3" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#993c1d;background:#faece7">3</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#993c1d">100–200 мс — Три выхода</div>
+                      <div class="fac-title">Амигдала → <span class="term" data-term="гипоталамус">гипоталамус</span>, ствол мозга и <span class="term" data-term="пфк">ПФК</span> одновременно</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x">Центральное ядро амигдалы (ЦЯ) активирует три параллельных выхода: <span class="term" data-term="гипоталамус">гипоталамус</span> (<span class="term" data-term="внс">ВНС</span> + <span class="term" data-term="ось ггн">ось ГГН</span>), ствол / ПАВ (замирание, бегство, борьба) и запускает оценку в <span class="term" data-term="пфк">ПФК</span>.</div></div></div>
                 </div>
               </div>
-
-              <div class="fi">
-                <div class="fd" style="color:#185fa5;background:#e6f1fb">4</div>
-                <div class="fb">
-                  <div class="ft" style="color:#185fa5">150–300 мс — Верхний путь</div>
-                  <div class="fh"><span class="term" data-term="пфк">ПФК</span> получает точный сигнал и уточняет оценку амигдалы</div>
-                  <div class="fx">Параллельно нижнему пути кора проводит точный анализ и передаёт результат обратно в амигдалу. Верхний путь может подтвердить или отменить тревогу нижнего пути.</div>
+              <div class="fac-item" id="fac-4" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#185fa5;background:#e6f1fb">4</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#185fa5">150–300 мс — Верхний путь</div>
+                      <div class="fac-title"><span class="term" data-term="пфк">ПФК</span> получает точный сигнал и уточняет оценку амигдалы</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x">Параллельно нижнему пути кора проводит точный анализ и передаёт результат обратно в амигдалу. Верхний путь может подтвердить или отменить тревогу нижнего пути.</div></div></div>
                 </div>
               </div>
-
-              <div class="fi">
-                <div class="fd" style="color:#534ab7;background:#eeedfe">5</div>
-                <div class="fb">
-                  <div class="ft" style="color:#534ab7">300–500 мс — Осознание</div>
-                  <div class="fh">Уточнённая оценка <span class="term" data-term="пфк">ПФК</span> + сигнал тела → рабочая память → «я боюсь»</div>
-                  <div class="fx"><span class="term" data-term="пфк">ПФК</span>, гиппокамп (контекст) и инсула (тело) собирают сигналы в рабочей памяти. Именно здесь появляется субъективное переживание страха.</div>
+              <div class="fac-item" id="fac-5" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#534ab7;background:#eeedfe">5</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#534ab7">300–500 мс — Осознание</div>
+                      <div class="fac-title">Уточнённая оценка <span class="term" data-term="пфк">ПФК</span> + сигнал тела → рабочая память → «я боюсь»</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x"><span class="term" data-term="пфк">ПФК</span>, гиппокамп (контекст) и инсула (тело) собирают сигналы в рабочей памяти. Именно здесь появляется субъективное переживание страха.</div></div></div>
                 </div>
               </div>
-
-              <div class="fi">
-                <div class="fd" style="color:#ba7517;background:#faeeda">6</div>
-                <div class="fb">
-                  <div class="ft" style="color:#ba7517">1–20 мин — Гормональная волна</div>
-                  <div class="fh">«Я боюсь» → <span class="term" data-term="ось ггн">ось ГГН</span> → кортизол нарастает</div>
-                  <div class="fx">Субъективное осознание угрозы усиливает <span class="term" data-term="ось ггн">ось ГГН</span>. Адреналин пикует на 1–3 мин, кортизол нарастает 10–20 мин. <span class="term" data-term="пфк">ПФК</span> начинает активно тормозить амигдалу.</div>
+              <div class="fac-item" id="fac-6" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#ba7517;background:#faeeda">6</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#ba7517">1–20 мин — Гормональная волна</div>
+                      <div class="fac-title">«Я боюсь» → <span class="term" data-term="ось ггн">ось ГГН</span> → кортизол нарастает</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x">Субъективное осознание угрозы усиливает <span class="term" data-term="ось ггн">ось ГГН</span>. Адреналин пикует на 1–3 мин, кортизол нарастает 10–20 мин. <span class="term" data-term="пфк">ПФК</span> начинает активно тормозить амигдалу.</div></div></div>
                 </div>
               </div>
-
-              <div class="fi">
-                <div class="fd" style="color:#0f6e56;background:#e1f5ee">7</div>
-                <div class="fb">
-                  <div class="ft" style="color:#0f6e56">20–60 мин — Разрешение (норма)</div>
-                  <div class="fh">Кортизол на пике → <span class="term" data-term="пфк">ПФК</span> тормозит амигдалу → страх угасает</div>
-                  <div class="fx">Кортизол достигает пика и начинает снижаться. <span class="term" data-term="пфк">ПФК</span> подавляет амигдалу. Гиппокамп сигнализирует о безопасности контекста. Страховой эпизод завершён.</div>
+              <div class="fac-item" id="fac-7" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#0f6e56;background:#e1f5ee">7</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#0f6e56">20–60 мин — Разрешение (норма)</div>
+                      <div class="fac-title">Кортизол на пике → <span class="term" data-term="пфк">ПФК</span> тормозит амигдалу → страх угасает</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x">Кортизол достигает пика и начинает снижаться. <span class="term" data-term="пфк">ПФК</span> подавляет амигдалу. Гиппокамп сигнализирует о безопасности контекста. Страховой эпизод завершён.</div></div></div>
                 </div>
               </div>
-
-              <div class="fi">
-                <div class="fd" style="color:#5f5e5a;background:#f1efe8">8</div>
-                <div class="fb">
-                  <div class="ft" style="color:#5f5e5a">4–6 часов — Консолидация</div>
-                  <div class="fh">Угасший страх → консолидация памяти угрозы</div>
-                  <div class="fx"><span class="term" data-term="bdnf">BDNF</span>, <span class="term" data-term="nmda-рецепторы"><span class="term" data-term="nmda-рецепторы">NMDA-рецептор</span>ы</span> и кортизол завершают консолидацию памяти угрозы. Реконсолидация делает память уязвимой при повторной активации — именно в это окно работает пропранолол.</div>
+              <div class="fac-item" id="fac-8" onclick="facToggle(this, event)">
+                <div class="fac-dot" style="color:#5f5e5a;background:#f1efe8">8</div>
+                <div class="fac-body">
+                  <div class="fac-hdr">
+                    <div class="fac-hdr-text">
+                      <div class="fac-time" style="color:#5f5e5a">4–6 часов — Консолидация</div>
+                      <div class="fac-title">Угасший страх → консолидация памяти угрозы</div>
+                    </div>
+                    <span class="fac-chev">&#9662;</span>
+                  </div>
+                  <div class="fac-desc"><div class="fac-desc-in"><div class="fac-x"><span class="term" data-term="bdnf">BDNF</span>, <span class="term" data-term="nmda-рецепторы">NMDA-рецепторы</span> и кортизол завершают консолидацию памяти угрозы. Реконсолидация делает память уязвимой при повторной активации — именно в это окно работает пропранолол.</div></div></div>
                 </div>
               </div>
-
             </div>
-          </div></div></div>
-        </div>
 
-        <!-- 03 КАК ФИКСИРУЕТСЯ -->
+              <script>
+              function facToggle(el, e){
+                // Prevent toggling when clicking inside the description (e.g. links, smell button)
+                if (e && e.target.closest('.fac-desc')) return;
+                var wasOpen = el.classList.contains('fac-open');
+                document.querySelectorAll('.fac-item').forEach(function(item){ item.classList.remove('fac-open'); });
+                if (!wasOpen) el.classList.add('fac-open');
+              }
+              </script>
+          <!-- 03 КАК ФИКСИРУЕТСЯ -->
         <div class="ac-item" id="ac-measurement">
           <div class="ac-hdr" onclick="acToggle('ac-measurement')">
             <span class="ac-num">03</span>
