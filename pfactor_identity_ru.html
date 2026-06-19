@@ -420,7 +420,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             DEFS.forEach(function(d,i){
               var card=document.createElement('div');
               card.className='def-card';card.id='def-card-'+i;
-              card.innerHTML='<div class="def-hdr" onclick="defToggle('+i+')"><div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px"><span class="def-pill" style="color:'+d.color+';border-color:'+d.color+'60">'+d.pill+'</span><span class="def-chev">▾</span></div><div class="def-card-title">'+d.title+'</div><div class="def-card-src">'+d.src+'</div></div><div class="def-body"><div class="def-body-in"><div class="def-body-content"><div class="def-quote" style="border-color:'+d.color+'">'+d.quote+'</div><div class="def-text">'+d.text+'</div></div></div></div>';
+              card.innerHTML='<div class="def-hdr" onclick="defToggle('+i+')"><div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px"><span class="def-pill" style="color:'+d.color+';border-color:'+d.color+'60">'+d.pill+'</span><span class="def-chev">▾</span></div><div class="def-card-title">'+d.title+'</div></div><div class="def-body"><div class="def-body-in"><div class="def-body-content"><div class="def-quote" style="border-color:'+d.color+'">'+d.quote+'</div><div class="def-text">'+d.text+'</div><div class="def-card-src" style="margin-top:10px">'+d.src+'</div></div></div></div>';
               acc.appendChild(card);
             });
           })();
