@@ -519,7 +519,8 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
           <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
             <div style="margin:16px 0 0">
               <style>
-                .fac-item{display:flex;gap:14px;position:relative;padding-bottom:0;cursor:pointer}
+                .fac-item{display:flex;gap:14px;position:relative;padding-bottom:0;cursor:pointer;border-radius:8px;padding-left:8px;padding-right:8px;margin-left:-8px;margin-right:-8px;transition:background .15s}
+                .fac-item:hover{background:#f7f7f5}
                 .fac-item:not(:last-child)::before{content:'';position:absolute;left:18px;top:36px;bottom:0;width:1px;background:#e0e0e0}
                 .fac-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor;margin-bottom:18px}
                 .fac-body{flex:1;padding-top:5px;padding-bottom:18px}
@@ -527,7 +528,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                 .fac-hdr-text{flex:1;min-width:0}
                 .fac-time{font-size:11px;font-weight:500;letter-spacing:.04em;margin-bottom:3px}
                 .fac-title{font-size:13px;font-weight:500;color:#1a1a1a;line-height:1.4}
-                .fac-chev{font-size:13px;color:#ccc;transition:transform .2s;flex-shrink:0;margin-top:2px}
+                .fac-chev{font-size:39px;line-height:0.5;color:#ccc;transition:transform .2s;flex-shrink:0;margin-top:2px}
                 .fac-item.fac-open .fac-chev{transform:rotate(180deg);color:#1a1a1a}
                 .fac-desc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
                 .fac-item.fac-open .fac-desc{grid-template-rows:1fr}
@@ -539,6 +540,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                   .fac-item:not(:last-child)::before{background:#333}
                   .fac-chev{color:#555}
                   .fac-item.fac-open .fac-chev{color:#e8e4d8}
+                  .fac-item:hover{background:#1c1c19}
                 }
               </style>
 
