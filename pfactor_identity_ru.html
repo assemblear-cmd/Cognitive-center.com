@@ -691,8 +691,8 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
               <script>
               function facToggle(el, e){
-                // Prevent toggling when clicking inside the description (e.g. links, smell button)
-                if (e && e.target.closest('.fac-desc')) return;
+                // Allow clicking anywhere to close, but not on interactive elements (links, smell button)
+                if (e && e.target.closest('a, button')) return;
                 var wasOpen = el.classList.contains('fac-open');
                 document.querySelectorAll('.fac-item').forEach(function(item){ item.classList.remove('fac-open'); });
                 if (!wasOpen) el.classList.add('fac-open');
