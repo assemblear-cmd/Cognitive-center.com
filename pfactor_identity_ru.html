@@ -405,42 +405,36 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               </style>
 
               <div style="position:relative;max-width:480px;margin:0 auto">
-                <svg viewBox="0 0 560 560" style="width:100%;display:block">
+                <svg viewBox="0 0 560 560" style="width:100%;display:block;overflow:visible">
 
-                  <g onclick="dwOpen(0)">
+                  <g class="dw-seg-group" onclick="dwOpen(0)" style="transform-origin:280px 280px">
                     <path class="dw-seg" d="M 280 280 L 280 40 A 240 240 0 0 1 508.4 207.9 Z" fill="#FAEEDA" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
+                    <text x="395" y="135" text-anchor="middle" class="dw-lbl-title" style="fill:#412402">DSM-5-TR</text>
+                    <text x="395" y="151" text-anchor="middle" class="dw-lbl-sub" style="fill:#633806">Клинический</text>
                   </g>
-                  <g onclick="dwOpen(1)">
+                  <g class="dw-seg-group" onclick="dwOpen(1)" style="transform-origin:280px 280px">
                     <path class="dw-seg" d="M 280 280 L 508.4 207.9 A 240 240 0 0 1 421.9 484.6 Z" fill="#E1F5EE" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
+                    <text x="445" y="350" text-anchor="middle" class="dw-lbl-title" style="fill:#085041">LeDoux</text>
+                    <text x="445" y="366" text-anchor="middle" class="dw-lbl-sub" style="fill:#0F6E56">Нейронаука</text>
                   </g>
-                  <g onclick="dwOpen(2)">
+                  <g class="dw-seg-group" onclick="dwOpen(2)" style="transform-origin:280px 280px">
                     <path class="dw-seg" d="M 280 280 L 421.9 484.6 A 240 240 0 0 1 138.1 484.6 Z" fill="#FAECE7" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
+                    <text x="280" y="430" text-anchor="middle" class="dw-lbl-title" style="fill:#4A1B0C">RDoC</text>
+                    <text x="280" y="446" text-anchor="middle" class="dw-lbl-sub" style="fill:#712B13">Исследовательский</text>
                   </g>
-                  <g onclick="dwOpen(3)">
+                  <g class="dw-seg-group" onclick="dwOpen(3)" style="transform-origin:280px 280px">
                     <path class="dw-seg" d="M 280 280 L 138.1 484.6 A 240 240 0 0 1 51.6 207.9 Z" fill="#E6F1FB" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
+                    <text x="115" y="350" text-anchor="middle" class="dw-lbl-title" style="fill:#042C53">Байесовская</text>
+                    <text x="115" y="366" text-anchor="middle" class="dw-lbl-sub" style="fill:#0C447C">модель</text>
                   </g>
-                  <g onclick="dwOpen(4)">
+                  <g class="dw-seg-group" onclick="dwOpen(4)" style="transform-origin:280px 280px">
                     <path class="dw-seg" d="M 280 280 L 51.6 207.9 A 240 240 0 0 1 280 40 Z" fill="#EEEDFE" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
+                    <text x="165" y="135" text-anchor="middle" class="dw-lbl-title" style="fill:#26215C">Хайдеггер</text>
+                    <text x="165" y="151" text-anchor="middle" class="dw-lbl-sub" style="fill:#3C3489">Философия</text>
                   </g>
 
-                  <circle cx="280" cy="280" r="92" fill="var(--color-background-primary,#fff)" stroke="#e0e0e0" stroke-width="0.5"/>
-                  <text x="280" y="278" text-anchor="middle" class="dw-center-title" style="font-size:17px">Определения</text>
-                  
-
-                  <text x="395" y="135" text-anchor="middle" class="dw-lbl-title" style="fill:#412402">DSM-5-TR</text>
-                  <text x="395" y="151" text-anchor="middle" class="dw-lbl-sub" style="fill:#633806">Клинический</text>
-
-                  <text x="445" y="350" text-anchor="middle" class="dw-lbl-title" style="fill:#085041">LeDoux</text>
-                  <text x="445" y="366" text-anchor="middle" class="dw-lbl-sub" style="fill:#0F6E56">Нейронаука</text>
-
-                  <text x="280" y="430" text-anchor="middle" class="dw-lbl-title" style="fill:#4A1B0C">RDoC</text>
-                  <text x="280" y="446" text-anchor="middle" class="dw-lbl-sub" style="fill:#712B13">Исследовательский</text>
-
-                  <text x="115" y="350" text-anchor="middle" class="dw-lbl-title" style="fill:#042C53">Байесовская</text>
-                  <text x="115" y="366" text-anchor="middle" class="dw-lbl-sub" style="fill:#0C447C">модель</text>
-
-                  <text x="165" y="135" text-anchor="middle" class="dw-lbl-title" style="fill:#26215C">Хайдеггер</text>
-                  <text x="165" y="151" text-anchor="middle" class="dw-lbl-sub" style="fill:#3C3489">Философия</text>
+                  <circle cx="280" cy="280" r="92" fill="var(--color-background-primary,#fff)" stroke="#e0e0e0" stroke-width="0.5" style="pointer-events:none"/>
+                  <text x="280" y="278" text-anchor="middle" class="dw-center-title" style="font-size:17px;pointer-events:none">Определения</text>
 
                 </svg>
               </div>
