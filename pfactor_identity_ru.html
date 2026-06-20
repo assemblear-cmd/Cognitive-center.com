@@ -373,136 +373,104 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             <span class="ac-chev">&#9662;</span>
           </div>
           <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
-            <div style="margin:24px 0 16px">
 
-              <style>
-                .dw-seg-group{cursor:pointer;transition:transform .15s cubic-bezier(.4,0,.2,1)}
-                .dw-seg{transition:filter .15s}
-                .dw-seg-group:hover{transform:scale(0.97)}
-                .dw-seg-group:hover .dw-seg{filter:brightness(0.96)}
-                .dw-seg-group:active{transform:scale(0.93)}
-                .dw-lbl-title{font-size:13px;font-weight:500}
-                .dw-lbl-sub{font-size:11px}
-                .dw-center-title{font-size:15px;font-weight:500;fill:#1a1a1a}
-                .dw-center-sub{font-size:11px;fill:#888}
-                @media(prefers-color-scheme:dark){.dw-center-title{fill:#e8e4d8}.dw-center-sub{fill:#888780}}
-                .dw-card{border:0.5px solid #e8e8e8;border-radius:10px;overflow:hidden;margin-top:16px;display:none}
-                .dw-card.dw-open{display:block}
-                .dw-card-hdr{padding:12px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-                .dw-card-pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:20px;border:0.5px solid currentColor;white-space:nowrap;flex-shrink:0;font-weight:500}
-                .dw-card-title{font-size:14px;font-weight:500;color:#1a1a1a;margin-top:6px}
-                .dw-card-close{font-size:13px;color:#aaa;cursor:pointer;flex-shrink:0;background:none;border:none;font-family:inherit;padding:2px}
-                .dw-card-body{padding:0 16px 16px 16px;border-top:0.5px solid #f0f0f0}
-                .dw-quote{font-style:italic;font-size:14px;line-height:1.7;color:#555;border-left:3px solid currentColor;padding-left:14px;margin:12px 0}
-                .dw-text{font-size:14px;line-height:1.75;color:#333;margin-top:12px}
-                .dw-src{margin-top:12px;font-size:12px;color:#888}
-                .dw-src a{color:#1a1a1a;text-decoration:none;border-bottom:0.5px solid #ccc}
-                .dw-src a:hover{border-bottom-color:#1a1a1a}
-                @media(prefers-color-scheme:dark){
-                  .dw-card{border-color:#2a2a28;background:#1c1c19}
-                  .dw-card-title{color:#e8e4d8}
-                  .dw-text{color:#a8a6a0}
-                  .dw-card-body{border-top-color:#2a2a28}
-                  .dw-src a{color:#e8e4d8;border-bottom-color:#555}
-                }
-              </style>
+            <style>
+              .def-pill2{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:20px;border:0.5px solid #854F0B60;color:#854F0B;font-weight:500;margin-bottom:10px}
+              .def-quote2{font-style:italic;font-size:15px;line-height:1.7;color:#444;border-left:3px solid #854F0B;padding-left:16px;margin:14px 0}
+              .def-text2{font-size:14px;line-height:1.8;color:#333}
+              .def-src2{margin-top:14px;font-size:12px;color:#888}
+              .def-src2 a{color:#1a1a1a;text-decoration:none;border-bottom:0.5px solid #ccc}
+              .def-src2 a:hover{border-bottom-color:#1a1a1a}
 
-              <div style="position:relative;max-width:480px;margin:0 auto">
-                <svg viewBox="0 0 560 560" style="width:100%;display:block;overflow:visible">
+              .more-btn{margin-top:18px;font-size:13px;padding:7px 16px;border:1px solid #1a1a1a;border-radius:8px;background:none;color:#1a1a1a;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px;transition:background .15s,color .15s}
+              .more-btn:hover{background:#1a1a1a;color:#fff}
+              .more-chev{font-size:11px;transition:transform .2s}
+              .more-btn.more-open .more-chev{transform:rotate(180deg)}
 
-                  <g class="dw-seg-group" onclick="dwOpen(0)" style="transform-origin:280px 280px">
-                    <path class="dw-seg" d="M 280 280 L 280 40 A 240 240 0 0 1 508.4 207.9 Z" fill="#FAEEDA" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
-                    <text x="395" y="135" text-anchor="middle" class="dw-lbl-title" style="fill:#412402">DSM-5-TR</text>
-                    <text x="395" y="151" text-anchor="middle" class="dw-lbl-sub" style="fill:#633806">Клинический</text>
-                  </g>
-                  <g class="dw-seg-group" onclick="dwOpen(1)" style="transform-origin:280px 280px">
-                    <path class="dw-seg" d="M 280 280 L 508.4 207.9 A 240 240 0 0 1 421.9 484.6 Z" fill="#E1F5EE" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
-                    <text x="445" y="350" text-anchor="middle" class="dw-lbl-title" style="fill:#085041">LeDoux</text>
-                    <text x="445" y="366" text-anchor="middle" class="dw-lbl-sub" style="fill:#0F6E56">Нейронаука</text>
-                  </g>
-                  <g class="dw-seg-group" onclick="dwOpen(2)" style="transform-origin:280px 280px">
-                    <path class="dw-seg" d="M 280 280 L 421.9 484.6 A 240 240 0 0 1 138.1 484.6 Z" fill="#FAECE7" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
-                    <text x="280" y="430" text-anchor="middle" class="dw-lbl-title" style="fill:#4A1B0C">RDoC</text>
-                    <text x="280" y="446" text-anchor="middle" class="dw-lbl-sub" style="fill:#712B13">Исследовательский</text>
-                  </g>
-                  <g class="dw-seg-group" onclick="dwOpen(3)" style="transform-origin:280px 280px">
-                    <path class="dw-seg" d="M 280 280 L 138.1 484.6 A 240 240 0 0 1 51.6 207.9 Z" fill="#E6F1FB" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
-                    <text x="115" y="350" text-anchor="middle" class="dw-lbl-title" style="fill:#042C53">Байесовская</text>
-                    <text x="115" y="366" text-anchor="middle" class="dw-lbl-sub" style="fill:#0C447C">модель</text>
-                  </g>
-                  <g class="dw-seg-group" onclick="dwOpen(4)" style="transform-origin:280px 280px">
-                    <path class="dw-seg" d="M 280 280 L 51.6 207.9 A 240 240 0 0 1 280 40 Z" fill="#EEEDFE" stroke="var(--color-background-primary,#fff)" stroke-width="3"/>
-                    <text x="165" y="135" text-anchor="middle" class="dw-lbl-title" style="fill:#26215C">Хайдеггер</text>
-                    <text x="165" y="151" text-anchor="middle" class="dw-lbl-sub" style="fill:#3C3489">Философия</text>
-                  </g>
+              .more-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;margin-top:4px}
+              .more-panel.more-panel-open{grid-template-rows:1fr}
+              .more-panel-inner{overflow:hidden}
+              .more-content{padding-top:18px}
 
-                  <circle cx="280" cy="280" r="92" fill="var(--color-background-primary,#fff)" stroke="#e0e0e0" stroke-width="0.5" style="pointer-events:none"/>
-                  <text x="280" y="278" text-anchor="middle" class="dw-center-title" style="font-size:17px;pointer-events:none">Определения</text>
+              .more-card{border:0.5px solid #e8e8e8;border-radius:10px;padding:14px 16px;margin-bottom:10px}
+              .more-card-label{font-size:11px;font-weight:600;letter-spacing:.04em;color:#888;text-transform:uppercase;margin-bottom:8px}
+              .more-card-text{font-size:13px;line-height:1.75;color:#333}
 
-                </svg>
-              </div>
+              .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+              .compare-col{border-radius:9px;padding:12px 14px}
+              .compare-col-fear{background:#FAECE7;border:0.5px solid #993C1D40}
+              .compare-col-anx{background:#E6F1FB;border:0.5px solid #185FA540}
+              .compare-title{font-size:12px;font-weight:600;margin-bottom:6px}
+              .compare-text{font-size:12.5px;line-height:1.65;color:#444}
 
-              <div id="dw-card" class="dw-card">
-                <div class="dw-card-hdr">
-                  <div>
-                    <span id="dw-pill" class="dw-card-pill"></span>
-                    <div id="dw-title" class="dw-card-title"></div>
+              @media(prefers-color-scheme:dark){
+                .def-quote2{color:#bbb}
+                .def-text2{color:#a8a6a0}
+                .def-src2 a{color:#e8e4d8;border-bottom-color:#555}
+                .more-btn{border-color:#e0e0e0;color:#e8e4d8}
+                .more-btn:hover{background:#e8e4d8;color:#1a1a1a}
+                .more-card{border-color:#2a2a28;background:#1c1c19}
+                .more-card-text{color:#a8a6a0}
+                .compare-col-fear{background:#2a1810;border-color:#993C1D60}
+                .compare-col-anx{background:#0d2438;border-color:#185FA560}
+                .compare-text{color:#a8a6a0}
+              }
+              @media(max-width:480px){.compare-grid{grid-template-columns:1fr}}
+            </style>
+
+            <div style="margin:16px 0">
+              <span class="def-pill2">DSM-5-TR · Клинический</span>
+              <div class="def-quote2">«Страх — эмоциональный ответ на реальную или воспринимаемую непосредственную угрозу.»</div>
+              <div class="def-text2">Страх связан со всплесками автономного возбуждения, необходимыми для реакции «бей или беги», мыслями о немедленной опасности и поведением побега или избегания. Он отличается от тревоги (предвосхищение будущей угрозы) по временно́му горизонту: страх = сейчас, тревога = потом. Это единственное операциональное определение, используемое в диагностике.</div>
+              <div class="def-src2">APA, DSM-5-TR, 2022 &mdash; <a href="https://doi.org/10.1176/appi.books.9780890425787" target="_blank" rel="noopener">psychiatryonline.org</a></div>
+
+              <button class="more-btn" id="more-btn" onclick="moreToggle()">
+                <span>Дополнительно</span>
+                <span class="more-chev">&#9662;</span>
+              </button>
+
+              <div class="more-panel" id="more-panel">
+                <div class="more-panel-inner">
+                  <div class="more-content">
+
+                    <div class="more-card">
+                      <div class="more-card-label">Чем отличается тревога от страха</div>
+                      <div class="compare-grid">
+                        <div class="compare-col compare-col-fear">
+                          <div class="compare-title" style="color:#712B13">СТРАХ</div>
+                          <div class="compare-text">Угроза здесь и сейчас. Идентифицируемый объект. Пропорциональная интенсивность. Разрешается при устранении угрозы.</div>
+                        </div>
+                        <div class="compare-col compare-col-anx">
+                          <div class="compare-title" style="color:#0C447C">ТРЕВОГА</div>
+                          <div class="compare-text">Угроза там и потом. Неопределённый или воображаемый объект. Хроническая фоновая. Не разрешается устранением конкретного стимула.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="more-card">
+                      <div class="more-card-label">RDoC: транзодиагностический исследовательский конструкт</div>
+                      <div class="more-card-text">«Острая угроза (страх) — активация оборонительной мотивационной системы мозга с целью продвижения поведений, защищающих организм от воспринимаемой опасности.» RDoC определяет страх не через симптомы, а через измеримые биомаркеры: потенцированный стартл-рефлекс, кожную проводимость, активацию амигдалы, изменения ЧСС. Цель — создать систему измерений, независимую от диагностических категорий DSM.<br><span style="display:block;margin-top:8px;font-size:11px;color:#888">NIMH RDoC: Acute Threat (Fear) &mdash; <a href="https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/acute-threat-fear" target="_blank" rel="noopener" style="color:inherit;border-bottom:0.5px solid #ccc;text-decoration:none">nimh.nih.gov/rdoc</a></span></div>
+                    </div>
+
+                    <div class="more-card">
+                      <div class="more-card-label">Согласно байесовской модели</div>
+                      <div class="more-card-text">Страх — не реакция на стимул, а результат байесовского обновления: ошибка предсказания (неожиданная угроза) вызывает всплеск. Патологический страх = нарушение механизма обновления: мозг не обновляет предсказание даже при безопасном исходе — именно так устроена ПТСР-петля.<br><span style="display:block;margin-top:8px;font-size:11px;color:#888">Yamamori & Robinson, Neurosci. Biobehav. Rev., 2023 &mdash; <a href="https://doi.org/10.1016/j.neubiorev.2022.104959" target="_blank" rel="noopener" style="color:inherit;border-bottom:0.5px solid #ccc;text-decoration:none">doi:10.1016/j.neubiorev.2022.104959</a></span></div>
+                    </div>
+
                   </div>
-                  <button class="dw-card-close" onclick="dwClose()">&#10005;</button>
-                </div>
-                <div class="dw-card-body">
-                  <div id="dw-quote" class="dw-quote"></div>
-                  <div id="dw-text" class="dw-text"></div>
-                  <div id="dw-src" class="dw-src"></div>
                 </div>
               </div>
-
-              <script>
-              (function(){
-                var DW = [
-                  {color:"#854F0B",pill:"DSM-5-TR · Клинический",title:"Официальное клиническое определение",
-                   src:"APA, DSM-5-TR, 2022 &mdash; <a href='https://doi.org/10.1176/appi.books.9780890425787' target='_blank' rel='noopener'>psychiatryonline.org</a>",
-                   quote:"Страх — эмоциональный ответ на реальную или воспринимаемую непосредственную угрозу.",
-                   text:"Страх связан со всплесками автономного возбуждения, необходимыми для реакции «бей или беги», мыслями о немедленной опасности и поведением побега или избегания. Он отличается от тревоги (предвосхищение будущей угрозы) по временно́му горизонту: страх = сейчас, тревога = потом. Это единственное операциональное определение, используемое в диагностике."},
-                  {color:"#0F6E56",pill:"Нейронаука · LeDoux",title:"Двухсистемная нейронаучная модель",
-                   src:"LeDoux & Pine, Am. J. Psychiatry, 2016 &mdash; <a href='https://doi.org/10.1176/appi.ajp.2016.16030353' target='_blank' rel='noopener'>doi:10.1176/appi.ajp.2016.16030353</a>",
-                   quote:"Страх обозначает сознательное субъективное переживание, связанное с непосредственной угрозой. Он принципиально отличается от защитных реакций.",
-                   text:"По LeDoux, «страх» = то, что человек переживает осознанно (кора). «Защитные реакции» (замирание, бегство, учащение пульса) = то, что тело делает автоматически (амигдала, ствол мозга). Они могут идти параллельно или независимо. Это означает: фармакология, убирающая телесные симптомы, не обязательно убирает субъективный страх — и наоборот."},
-                  {color:"#993C1D",pill:"RDoC · Исследовательский",title:"Транзодиагностический исследовательский конструкт",
-                   src:"NIMH RDoC: Acute Threat (Fear) &mdash; <a href='https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/acute-threat-fear' target='_blank' rel='noopener'>nimh.nih.gov/rdoc</a>",
-                   quote:"Острая угроза (страх) — активация оборонительной мотивационной системы мозга с целью продвижения поведений, защищающих организм от воспринимаемой опасности.",
-                   text:"RDoC определяет страх не через симптомы, а через измеримые биомаркеры: потенцированный стартл-рефлекс, кожную проводимость, активацию амигдалы, изменения ЧСС. Этот конструкт трансдиагностичен — он релевантен для тревожных расстройств, ПТСР и других патологий. Цель RDoC: создать систему измерений, независимую от диагностических категорий DSM."},
-                  {color:"#185FA5",pill:"Вычислительная нейронаука",title:"Байесовская / предиктивная модель",
-                   src:"Yamamori & Robinson, Neurosci. Biobehav. Rev., 2023 &mdash; <a href='https://doi.org/10.1016/j.neubiorev.2022.104959' target='_blank' rel='noopener'>doi:10.1016/j.neubiorev.2022.104959</a>",
-                   quote:"Страх — сигнал ошибки предсказания: мозг обнаруживает расхождение между ожидаемой безопасностью и воспринятой угрозой.",
-                   text:"В рамках теории активного вывода (active inference) мозг непрерывно предсказывает вероятность угрозы. Страх — не реакция на стимул, а результат байесовского обновления: ошибка предсказания (неожиданная угроза) вызывает всплеск. Патологический страх = нарушение механизма обновления: мозг не обновляет предсказание даже при безопасном исходе — именно так устроена ПТСР-петля."},
-                  {color:"#534AB7",pill:"Философия",title:"Экзистенциально-философское определение",
-                   src:"Хайдеггер, Sein und Zeit, §30 &mdash; <a href='https://plato.stanford.edu/entries/heidegger/' target='_blank' rel='noopener'>Stanford Encyclopedia of Philosophy</a>",
-                   quote:"Furcht — это аффективный ответ на конкретную угрозу в мире. Angst направлена на ничто — на собственную конечность.",
-                   text:"Хайдеггер разграничивает Furcht (страх перед конкретным объектом) и Angst (экзистенциальная тревога без объекта). Страх «обнаруживает» угрожающую вещь и одновременно «забирает» широту бытия-в-мире: мир сужается до угрозы. Это определение дало фундамент для клинических определений. Его ценность в том, что оно различает направленность переживания на объект ещё до того, как страх становится измеримым симптомом."},
-                ];
-
-                window.dwOpen = function(i){
-                  var d = DW[i];
-                  document.getElementById('dw-pill').textContent = d.pill;
-                  document.getElementById('dw-pill').style.color = d.color;
-                  document.getElementById('dw-pill').style.borderColor = d.color + '60';
-                  document.getElementById('dw-title').textContent = d.title;
-                  document.getElementById('dw-quote').textContent = d.quote;
-                  document.getElementById('dw-quote').style.borderColor = d.color;
-                  document.getElementById('dw-text').textContent = d.text;
-                  document.getElementById('dw-src').innerHTML = d.src;
-                  var card = document.getElementById('dw-card');
-                  card.classList.add('dw-open');
-                  card.scrollIntoView({behavior:'smooth', block:'nearest'});
-                };
-                window.dwClose = function(){
-                  document.getElementById('dw-card').classList.remove('dw-open');
-                };
-              })();
-              </script>
-
             </div>
+
+            <script>
+            function moreToggle(){
+              var btn = document.getElementById('more-btn');
+              var panel = document.getElementById('more-panel');
+              btn.classList.toggle('more-open');
+              panel.classList.toggle('more-panel-open');
+            }
+            </script>
+
           </div></div></div>
         </div>
 
