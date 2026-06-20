@@ -521,7 +521,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <style>
                 .fac-item{display:flex;gap:14px;position:relative;padding-bottom:0;cursor:pointer;border-radius:8px;padding-left:8px;padding-right:8px;margin-left:-8px;margin-right:-8px;transition:background .15s}
                 .fac-item:hover{background:#f7f7f5}
-                .fac-item:not(:last-child)::before{content:'';position:absolute;left:18px;top:36px;bottom:0;width:1px;background:#e0e0e0}
+                .fac-item:not(:last-child)::before{content:'';position:absolute;left:18px;top:36px;bottom:8px;width:1px;background:#ccc}.fac-item:not(:last-child)::after{content:'';position:absolute;left:13px;bottom:0px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #ccc}
                 .fac-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor;margin-bottom:18px}
                 .fac-body{flex:1;padding-top:5px;padding-bottom:18px}
                 .fac-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
@@ -537,7 +537,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                 @media(prefers-color-scheme:dark){
                   .fac-title{color:#e8e4d8}
                   .fac-x{color:#888}
-                  .fac-item:not(:last-child)::before{background:#333}
+                  .fac-item:not(:last-child)::before{background:#444}.fac-item:not(:last-child)::after{border-top-color:#444}
                   .fac-chev{color:#555}
                   .fac-item.fac-open .fac-chev{color:#e8e4d8}
                   .fac-item:hover{background:#1c1c19}
