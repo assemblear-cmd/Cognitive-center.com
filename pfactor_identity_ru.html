@@ -376,8 +376,11 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
             <div style="margin:24px 0 16px">
 
               <style>
-                .dw-seg{cursor:pointer;transition:opacity .15s}
-                .dw-seg:hover{opacity:.85}
+                .dw-seg-group{cursor:pointer;transition:transform .15s cubic-bezier(.4,0,.2,1);transform-box:fill-box}
+                .dw-seg{transition:filter .15s}
+                .dw-seg-group:hover{transform:scale(0.97)}
+                .dw-seg-group:hover .dw-seg{filter:brightness(0.96)}
+                .dw-seg-group:active{transform:scale(0.93)}
                 .dw-lbl-title{font-size:13px;font-weight:500}
                 .dw-lbl-sub{font-size:11px}
                 .dw-center-title{font-size:15px;font-weight:500;fill:#1a1a1a}
