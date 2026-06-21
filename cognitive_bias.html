@@ -333,17 +333,6 @@ nav a.clinical-trials:hover {
         // Скрипт для раскрывающихся примеров
         document.addEventListener('DOMContentLoaded', function() {
 
-            const languageToggle = document.getElementById('language-toggle');
-            const languageDropdown = document.getElementById('language-dropdown');
-            if (languageToggle) {
-                languageToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    languageDropdown.classList.toggle('active');
-                });
-                document.addEventListener('click', function() {
-                    languageDropdown.classList.remove('active');
-                });
-            }
             const toggleButtons = document.querySelectorAll('.example-toggle');
 
             toggleButtons.forEach(button => {

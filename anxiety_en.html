@@ -263,21 +263,6 @@
     }
     checkCompletion();
     
-    document.addEventListener('DOMContentLoaded', function() {
-        // Language selector
-        const languageToggle = document.getElementById('language-toggle');
-        const languageDropdown = document.getElementById('language-dropdown');
-        
-        languageToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            languageDropdown.classList.toggle('active');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function() {
-            languageDropdown.classList.remove('active');
-        });
-    });
 </script>
 <script src="js/common.js"></script>
 </body>
