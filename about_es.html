@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Sobre Nosotros - Centro de Investigación Cognitiva</title>
+<link rel="shortcut icon" href="images/tild3633-3838-4263-b033-616238336237__i.jpg" type="image/x-icon">
+<meta property="og:url" content="https://cognitive-center.com/about_es" />
+<meta property="og:title" content="Sobre Nosotros - Centro de Investigación Cognitiva" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<link rel="canonical" href="about_es.html">
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/article.css">
+<style>
+#about-us-accordion {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+.cbm-category-header {
+            background-color: #f7f7f7;
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.3s;
+        }
+
+#about-us-accordion .cbm-category:last-child .cbm-category-header {
+            border-bottom: none;
+        }
+
+.cbm-category-header:hover {
+            background-color: #efefef;
+        }
+
+.cbm-category-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+.cbm-category-header::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: bold;
+            color: #888;
+            transition: transform 0.3s ease-in-out;
+        }
+
+.cbm-category-header.active::after {
+            transform: rotate(45deg);
+            content: '×';
+        }
+
+.cbm-category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            background-color: #fff;
+            padding: 0 25px;
+            font-size: 18px;
+            color: #333;
+        }
+
+.cbm-category-content .content-wrapper {
+             padding: 20px 0;
+        }
+
+.cbm-category-content ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+.cbm-category-content li {
+            margin-bottom: 10px;
+        }
+
+.internal-link {
+            text-decoration: underline;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+.internal-link:hover {
+            text-decoration: none;
+        }
+
+.contact-form {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+.contact-form h4 {
+            margin: 0 0 20px 0;
+            font-size: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+.form-group {
+            margin-bottom: 20px;
+        }
+
+.form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+            font-size: 16px;
+        }
+
+.form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+.form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+.form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+.submit-btn {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+.submit-btn:hover {
+            background-color: #333;
+        }
+
+.submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+.form-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+.form-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+.form-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+.success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+.success-modal.show {
+            display: flex;
+        }
+
+.success-modal-content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+@keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+}
+
+        .success-modal h3 {
+            color: #155724;
+            margin: 0 0 15px 0;
+            font-size: 24px;
+        }
+
+.success-modal p {
+            color: #333;
+            margin: 0 0 25px 0;
+            line-height: 1.5;
+        }
+
+.success-modal-close {
+            background-color: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+.success-modal-close:hover {
+            background-color: #333;
+        }
+</style>
+</head>
+<body>
+<header class="site-header"> <div class="logo"><a href="index_es.html" style="text-decoration:none;color:inherit;">CRC</a></div> <div class="nav-container"> <nav> <a href="index_es.html">Inicio</a> <a href="basics_es.html">Fundamentos</a> <a href="blog_es.html">Blog</a> <a href="tests_es.html">Pruebas</a> </nav> <div class="language-selector"> <div class="current-language" id="language-toggle"> <span class="language-code">ES</span> </div> <div class="language-dropdown" id="language-dropdown"> <a href="about_es.html" class="language-option current"> <span class="language-code">ES</span> </a> <a href="about_en.html" class="language-option"> <span class="language-code">EN</span> </a> <a href="about_ru.html" class="language-option"> <span class="language-code">RU</span> </a> </div> </div> </div> </header> <main> <div class="container"> <section class="article-section"> <h1 class="article-title">Sobre Nosotros</h1> <div id="about-us-accordion"> <!-- Block 1: Mission --> <div class="cbm-category"> <div class="cbm-category-header" id="mission-header"> <h3>Misión</h3> </div> <div class="cbm-category-content"> <div class="content-wrapper"> <p>Nuestra misión es la singularidad segura de la inteligencia artificial y natural.</p> </div> </div> </div> <!-- Block 2: Tasks --> <div class="cbm-category"> <div class="cbm-category-header" id="tasks-header"> <h3>Objetivos</h3> </div> <div class="cbm-category-content"> <div class="content-wrapper"> <p>Nuestros objetivos en el camino hacia una singularidad segura:</p> <ol> <li>Desarrollo sistemático e integración de la educación cognitiva</li> <li>Investigación y prevención de la "Inmunidad Cognitiva"</li> <li>Apoyo a la educación en inteligencia artificial</li> <li>Garantizar la accesibilidad de las herramientas de IA para una amplia gama de personas</li> <li>Fomentar el uso de neurointerfases para una amplia gama de personas</li> </ol> </div> </div> </div> <!-- Block 3: Who We Are --> <div class="cbm-category"> <div class="cbm-category-header" id="who-we-are-header"> <h3>Quiénes Somos</h3> </div> <div class="cbm-category-content"> <div class="content-wrapper"> <p>Somos un grupo de investigadores y profesionales en los campos de la IA, la bioingeniería, la psiquiatría y la educación, unidos en torno a la <a class="internal-link" data-target="mission-header">misión</a> y para resolver los <a class="internal-link" data-target="tasks-header">objetivos</a> del Centro.</p> </div> </div> </div> <!-- Block 4: Contacts --> <div class="cbm-category"> <div class="cbm-category-header" id="contacts-header"> <h3>Contactos</h3> </div> <div class="cbm-category-content"> <div class="content-wrapper"> <p><strong>Sergei Stepanov</strong><br>Director del Centro de Investigación Cognitiva<br><a href="mailto:serg.stepmail@gmail.com">serg.stepmail@gmail.com</a></p></div> </div> </div>  </div> </section> </div> </main> <footer class="site-footer"> <div class="container footer-container"> <div class="footer-copyright">
+                © Todos los derechos reservados. Centro de Investigación Cognitiva
+            </div> <div class="footer-nav"> <div class="footer-column"> <h4>Menú</h4> <ul> <li><a href="index_es.html">Inicio</a></li> <li><a href="basics_es.html">Fundamentos</a></li> <li><a href="blog_es.html">Blog</a></li> <li><a href="tests_es.html">Pruebas</a></li> </ul> </div> <div class="footer-column"> <h4><a href="about_es.html">Sobre Nosotros</a></h4> <ul> <li><a href="about_es.html#who-we-are">Quiénes somos</a></li> <li><a href="about_es.html#mission">Misión</a></li> <li><a href="about_es.html#tasks">Objetivos</a></li> <li><a href="about_es.html#contacts">Contactos</a></li> </ul> </div> </div> </div> </footer>
+<script src="js/common.js"></script>
+</body>
+</html>

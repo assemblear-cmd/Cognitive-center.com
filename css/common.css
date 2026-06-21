@@ -1,0 +1,570 @@
+/* ==========================================================================
+   common.css - Shared styles for Cognitive Research Center (CRC)
+   Extracted from: index.html, blog_en.html, basics_en.html,
+                   ptsd_vr_en.html, tests_en.html, about_en.html
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. GENERAL / BODY / CONTAINER STYLES
+   ========================================================================== */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main {
+    flex-grow: 1;
+}
+
+
+/* ==========================================================================
+   2. STICKY HEADER
+   ========================================================================== */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* ==========================================================================
+   3. NAVIGATION LINKS
+   ========================================================================== */
+
+nav a {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    text-decoration: none !important;
+    color: #1a1a1a !important;
+    margin-left: 20px;
+    font-size: 16px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+nav a.active-link {
+    font-weight: 600;
+    border-bottom-color: #1a1a1a;
+}
+
+nav a:not(.active-link):hover {
+    border-bottom-color: #ccc;
+}
+
+
+/* ==========================================================================
+   4. LANGUAGE SELECTOR
+   ========================================================================== */
+
+.language-selector {
+    position: relative;
+    margin-left: 20px;
+}
+
+.current-language {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    user-select: none;
+}
+
+.current-language:hover {
+    background-color: #f5f5f5;
+}
+
+.language-code {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    min-width: 100px;
+    overflow: hidden;
+}
+
+.language-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+.language-option:hover {
+    background-color: #f5f5f5;
+}
+
+.language-option.current {
+    background-color: #f0f0f0;
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   5. BLOG / LIST-PAGE STYLES (blog, basics)
+   ========================================================================== */
+
+.blog-header {
+    padding: 140px 0 60px;
+}
+
+.blog-header h1 {
+    font-size: 52px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.blog-post {
+    border-top: 1px solid #e0e0e0;
+    padding: 40px 0;
+}
+
+.blog-post:last-child {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 60px;
+}
+
+.post-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.post-details {
+    flex-basis: 50%;
+    padding-right: 40px;
+}
+
+.post-title {
+    font-size: 29px;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+}
+
+.post-tags .tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.post-tags .tag-gray {
+    background-color: #e0e0e0;
+    color: #666;
+}
+
+.post-tags .tag-green {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.post-excerpt {
+    flex-basis: 50%;
+    max-width: 450px;
+}
+
+.post-excerpt p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 0;
+}
+
+.keep-reading {
+    text-decoration: none;
+    color: #1a1a1a !important;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 2px;
+}
+
+.keep-reading span {
+    margin-left: 5px;
+    transition: margin-left 0.3s;
+}
+
+.keep-reading:hover span {
+    margin-left: 10px;
+}
+
+
+/* ==========================================================================
+   6. ARTICLE STYLES (ptsd_vr, about, and similar article pages)
+   ========================================================================== */
+
+.article-section {
+    padding: 60px 0;
+}
+
+.article-title {
+    font-size: 48px;
+    font-weight: 300;
+    margin: 0 0 25px 0;
+    line-height: 1.2;
+}
+
+.article-section a {
+    color: #888 !important;
+    text-decoration: underline;
+}
+
+.article-section a:hover {
+    color: #666 !important;
+}
+
+.article-section h2 {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 60px 0 20px 0;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 40px;
+}
+
+.article-section h3 {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 40px 0 15px 0;
+}
+
+.article-section p,
+.article-section li {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.article-section ol,
+.article-section ul {
+    padding-left: 25px;
+}
+
+/* Article image */
+.article-image-container {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.article-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.article-image-container figcaption {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Highlight box */
+.highlight-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #1a1a1a;
+    padding: 25px 30px;
+    margin: 40px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.highlight-box p,
+.highlight-box ul,
+.highlight-box li {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+}
+
+.highlight-box ul {
+    margin-top: 15px;
+}
+
+/* External link (gray style) */
+.external-link-gray a {
+    color: #888 !important;
+    text-decoration: underline;
+}
+
+.external-link-gray a:hover {
+    color: #666 !important;
+}
+
+/* Article in-page navigation */
+.article-navigation {
+    background-color: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 30px 0;
+}
+
+.nav-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-list li {
+    margin-bottom: 0;
+}
+
+.nav-list a {
+    color: #888 !important;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 4px 0;
+    transition: color 0.3s ease;
+    line-height: 1.4;
+}
+
+.nav-list a:hover {
+    color: #666 !important;
+}
+
+
+/* ==========================================================================
+   7. FOOTER STYLES (with !important overrides for Tilda defaults)
+   ========================================================================== */
+
+.site-footer {
+    background-color: #ffffff !important;
+    padding: 40px 0 !important;
+    margin-top: 0 !important;
+    font-size: 14px !important;
+    color: #555 !important;
+    border-top: none !important;
+}
+
+.site-footer .footer-container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 40px !important;
+    box-sizing: border-box !important;
+}
+
+.site-footer .footer-copyright {
+    flex-basis: auto !important;
+    align-self: flex-end !important;
+}
+
+.site-footer .footer-nav {
+    display: flex !important;
+    gap: 60px !important;
+    align-items: flex-start !important;
+}
+
+.site-footer .footer-column {
+    text-align: left !important;
+}
+
+.site-footer .footer-column h4 {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #1a1a1a !important;
+    margin: 0 0 15px 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+}
+
+.site-footer .footer-column h4 a {
+    text-decoration: none !important;
+    color: #1a1a1a !important;
+}
+
+.site-footer .footer-column ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.site-footer .footer-column li {
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    list-style: none !important;
+}
+
+.site-footer .footer-column a {
+    text-decoration: none !important;
+    color: #555 !important;
+    transition: color 0.3s;
+    display: inline-block !important;
+}
+
+.site-footer .footer-column a:hover {
+    color: #1a1a1a !important;
+}
+
+
+/* ==========================================================================
+   8. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* --- Tablet (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+}
+
+/* --- Mobile (max-width: 768px) --- */
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Blog / list-page responsive */
+    .blog-header {
+        padding-top: 60px;
+    }
+
+    .blog-header h1 {
+        font-size: 36px;
+    }
+
+    .post-content {
+        flex-direction: column;
+    }
+
+    .post-details,
+    .post-excerpt {
+        flex-basis: 100%;
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .post-excerpt {
+        margin-top: 20px;
+    }
+
+    .post-title {
+        font-size: 24px;
+    }
+
+    /* Article responsive */
+    .article-title {
+        font-size: 38px;
+    }
+
+    .article-section h2 {
+        font-size: 28px;
+    }
+}
+
+/* --- Mobile (max-width: 767px) --- */
+@media (max-width: 767px) {
+    .site-header {
+        padding: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .language-selector {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    /* Footer responsive */
+    .site-footer .footer-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .site-footer .footer-nav {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 40px;
+    }
+}

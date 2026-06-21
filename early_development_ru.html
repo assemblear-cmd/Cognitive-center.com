@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Страх и раннее развитие - ЦКИ</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a;
+  line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+main { flex-grow: 1; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0;
+  background-color: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 1000; display: flex; justify-content: space-between;
+  align-items: center; padding: 20px; border-bottom: 1px solid #f0f0f0;
+}
+.logo { font-size: 24px; font-weight: 600; color: #1a1a1a; }
+.nav-container { display: flex; align-items: center; gap: 20px; }
+nav a {
+  font-family: inherit !important; text-decoration: none !important;
+  color: #1a1a1a !important; margin-left: 20px; font-size: 16px;
+  padding-bottom: 4px; border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+nav a.active-link { font-weight: 600; border-bottom-color: #1a1a1a; }
+nav a:not(.active-link):hover { border-bottom-color: #ccc; }
+
+.language-selector { position: relative; margin-left: 20px; }
+.current-language {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  padding: 8px 12px; border-radius: 8px;
+  transition: background-color 0.3s; user-select: none;
+}
+.current-language:hover { background-color: #f5f5f5; }
+.language-code { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.language-dropdown {
+  position: absolute; top: 100%; right: 0; margin-top: 8px;
+  background: white; border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0; visibility: hidden; transform: translateY(-10px);
+  transition: all 0.3s ease; min-width: 100px; overflow: hidden;
+}
+.language-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.language-option {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  cursor: pointer; transition: background-color 0.2s; text-decoration: none; color: #1a1a1a;
+}
+.language-option:hover { background-color: #f5f5f5; }
+.language-option.current { background-color: #f0f0f0; font-weight: 600; }
+
+/* Article */
+.article-section { padding: 60px 0; }
+.article-title { font-size: 52px; font-weight: 300; margin: 0 0 25px 0; line-height: 1.2; }
+.intro-block { font-size: 18px; color: #555; margin-bottom: 50px; }
+.intro-block p { margin: 10px 0; }
+.article-section h2 {
+  font-size: 32px; font-weight: 500; margin: 60px 0 20px 0;
+  border-top: 1px solid #e0e0e0; padding-top: 40px;
+}
+.article-section p { font-size: 18px; color: #333; margin-bottom: 20px; }
+
+/* Term tooltips */
+.term {
+  border-bottom: 1.5px dotted currentColor;
+  cursor: help;
+  position: relative;
+  display: inline;
+  white-space: nowrap;
+}
+.term-popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  max-width: 320px;
+  background: #fff;
+  border: 0.5px solid #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+  padding: 14px 16px;
+  pointer-events: auto;
+  animation: tp-in .15s ease;
+}
+@keyframes tp-in {
+  from { opacity:0; transform:translateY(4px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.term-popup.tp-show { display: block; }
+.tp-term-name { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+.tp-def { font-size: 12px; line-height: 1.65; color: #555; margin-bottom: 10px; }
+.tp-source {
+  font-size: 11px; color: #aaa;
+  border-top: 0.5px solid #e8e8e8;
+  padding-top: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.tp-source a {
+  color: #1a1a1a; text-decoration: none;
+  border-bottom: 0.5px solid #ccc;
+  transition: border-color .15s;
+  font-size: 11px;
+}
+.tp-source a:hover { border-bottom-color: #1a1a1a; }
+
+/* Accordion */
+.ac-wrap { display:flex; flex-direction:column; gap:0; margin:40px 0 48px; }
+.ac-item { border:0.5px solid #e0e0e0; overflow:hidden; transition:border-color .18s; }
+.ac-item:first-child { border-radius:10px 10px 0 0; }
+.ac-item:last-child  { border-radius:0 0 10px 10px; }
+.ac-item + .ac-item  { border-top:none; }
+.ac-item.ac-open     { border-color:#1a1a1a; position:relative; z-index:1; }
+.ac-item:hover:not(.ac-open) { border-color:#aaa; }
+
+.ac-hdr {
+  display:flex; align-items:center; gap:14px;
+  padding:18px 22px; cursor:pointer; user-select:none;
+  background:#fff; transition:background .15s;
+}
+
+.ac-num {
+  font-size:11px; font-weight:500; color:#aaa;
+  min-width:22px; font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+}
+.ac-item.ac-open .ac-num { color:#1a1a1a; }
+
+.ac-title {
+  flex:1; font-size:16px; font-weight:500; color:#1a1a1a; line-height:1.3;
+}
+.ac-chev {
+  font-size:18px; color:#ccc; transition:transform .22s; flex-shrink:0;
+  line-height:1;
+}
+.ac-item.ac-open .ac-chev { transform:rotate(180deg); color:#1a1a1a; }
+
+.ac-body {
+  display:grid; grid-template-rows:0fr;
+  transition:grid-template-rows .3s ease;
+}
+.ac-item.ac-open .ac-body { grid-template-rows:1fr; }
+.ac-body-inner { overflow:hidden; }
+.ac-content { padding:0 22px 28px 22px; border-top:0.5px solid #f0f0f0; }
+
+/* Timeline (fi2 pattern) */
+.fi2 { display:block; width:100%; margin-bottom:0; }
+.fi2-inner { display:flex; flex-direction:row; gap:14px; padding-bottom:20px; position:relative; }
+.fi2-line { position:absolute; left:22px; top:48px; bottom:0; width:1px; background:#e0e0e0; }
+.fi2-dot { width:44px; height:44px; min-width:44px; min-height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-size:10px; font-weight:600; flex-shrink:0; border:1.5px solid currentColor; line-height:1.25; padding:4px; }
+.fi2-body { flex:1; padding-top:6px; }
+.fi2-time { font-size:11px; font-weight:500; letter-spacing:.04em; margin-bottom:3px; }
+.fi2-h { font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:4px; line-height:1.4; }
+.fi2-x { font-size:13px; line-height:1.7; color:#555; }
+
+/* Factor cards */
+.factor-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin:20px 0 28px; }
+.factor-card { border:0.5px solid #e8e8e8; border-radius:10px; padding:16px 18px; transition:border-color .18s; }
+.factor-card:hover { border-color:#bbb; }
+.factor-label { font-size:10px; letter-spacing:.1em; text-transform:uppercase; padding:2px 9px; border-radius:20px; border:0.5px solid currentColor; display:inline-block; margin-bottom:10px; }
+.factor-title { font-size:14px; font-weight:600; color:#1a1a1a; margin-bottom:5px; }
+.factor-desc { font-size:12px; color:#666; line-height:1.6; }
+
+/* Window cards (vulnerability pathways) */
+.window-card { border:0.5px solid #e8e8e8; border-left:3px solid #1a1a1a; padding:16px 20px; margin-bottom:10px; border-radius:0 8px 8px 0; }
+.window-card-title { font-size:14px; font-weight:600; color:#1a1a1a; margin-bottom:4px; }
+.window-card-sub { font-size:11px; color:#888; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px; }
+.window-card-text { font-size:13px; color:#555; line-height:1.7; }
+
+/* Spectrum bar */
+.spectrum-row { display:flex; align-items:center; gap:12px; margin:8px 0; }
+.spectrum-label { font-size:12px; color:#555; min-width:110px; }
+.spectrum-bar-wrap { flex:1; height:6px; background:#f0f0f0; border-radius:3px; overflow:hidden; }
+.spectrum-bar { height:100%; border-radius:3px; }
+.spectrum-val { font-size:11px; color:#aaa; min-width:36px; text-align:right; }
+
+/* Research cards (rs pattern) */
+.rs-card { border:0.5px solid #e8e8e8; margin-bottom:6px; border-radius:8px; overflow:hidden; transition:border-color .18s; }
+.rs-card:hover { border-color:#bbb; }
+.rs-card.rs-open { border-color:#1a1a1a; }
+.rs-hdr { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:14px 18px; cursor:pointer; user-select:none; background:#fff; }
+.rs-meta { flex:1; }
+.rs-tag { font-size:10px; letter-spacing:.08em; text-transform:uppercase; border:0.5px solid currentColor; padding:2px 8px; border-radius:20px; display:inline-block; margin-bottom:6px; }
+.rs-name { font-size:13px; font-weight:500; color:#1a1a1a; margin-bottom:2px; }
+.rs-what { font-size:11px; color:#888; font-style:italic; }
+.rs-chev { font-size:13px; color:#aaa; transition:transform .2s; flex-shrink:0; margin-top:2px; }
+.rs-card.rs-open .rs-chev { transform:rotate(180deg); color:#1a1a1a; }
+.rs-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows .28s ease; }
+.rs-card.rs-open .rs-body { grid-template-rows:1fr; }
+.rs-body-in { overflow:hidden; }
+.rs-content { padding:0 18px 18px 18px; border-top:0.5px solid #f0f0f0; }
+.rs-text { font-size:13px; line-height:1.75; color:#333; margin-top:12px; }
+.rs-source { margin-top:12px; font-size:11px; color:#aaa; border-top:0.5px solid #e8e8e8; padding-top:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.rs-source a { color:#1a1a1a; text-decoration:none; border-bottom:0.5px solid #ccc; font-size:11px; }
+.rs-source a:hover { border-bottom-color:#1a1a1a; }
+.rs-year { background:#f5f5f5; padding:1px 6px; border-radius:4px; font-size:10px; }
+
+/* Info box */
+.info-box { background:#f7f7f5; border-radius:10px; padding:20px 24px; margin:16px 0 24px; }
+.info-box-label { font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#aaa; margin-bottom:8px; font-weight:500; }
+.info-box-text { font-size:14px; line-height:1.75; color:#333; }
+
+/* Quote block */
+.pull-quote { border-left:3px solid #1a1a1a; padding:14px 20px; margin:20px 0; background:#fafafa; }
+.pull-quote-text { font-style:italic; font-size:15px; color:#444; line-height:1.7; }
+.pull-quote-src { font-size:11px; color:#aaa; margin-top:8px; }
+
+/* Navigation */
+.progress-bar { position:sticky; top:0; z-index:999; height:2px; background:#f0f0f0; overflow:hidden; }
+.progress-fill { height:100%; background:#1a1a1a; width:0%; transition:width .3s ease; }
+
+.navigation-links {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 40px; padding: 30px 0; border-top: 1px solid #e0e0e0;
+}
+.nav-link {
+  display: flex; align-items: center;
+  text-decoration: none; color: #1a1a1a !important;
+  font-size: 18px; font-weight: 500; transition: color 0.3s ease;
+}
+.nav-link:hover { color: #666 !important; }
+.nav-link.prev { flex-direction: row; }
+.nav-link.next { flex-direction: row-reverse; }
+.nav-arrow { font-size: 20px; margin: 0 10px; }
+.mobile-nav-list { display: none; }
+
+/* Footer */
+.site-footer {
+  background-color: #ffffff !important; padding: 40px 0 !important;
+  margin-top: 0 !important; font-size: 14px !important;
+  color: #555 !important; border-top: none !important;
+}
+.site-footer .footer-container {
+  display: flex !important; justify-content: space-between !important;
+  align-items: flex-end !important; width: 100% !important;
+  padding: 0 40px !important; box-sizing: border-box !important;
+}
+.site-footer .footer-copyright { flex-basis: auto !important; align-self: flex-end !important; }
+.site-footer .footer-nav { display: flex !important; gap: 60px !important; align-items: flex-start !important; }
+.site-footer .footer-column { text-align: left !important; }
+.site-footer .footer-column h4 {
+  font-size: 16px !important; font-weight: 600 !important; color: #1a1a1a !important;
+  margin: 0 0 15px 0 !important; padding: 0 !important;
+}
+.site-footer .footer-column h4 a { text-decoration: none !important; color: #1a1a1a !important; }
+.site-footer .footer-column ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+.site-footer .footer-column li { margin: 0 0 10px 0 !important; list-style: none !important; }
+.site-footer .footer-column a { text-decoration: none !important; color: #555 !important; }
+.site-footer .footer-column a:hover { color: #1a1a1a !important; }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body { background:#0d0d0b; color:#e8e4d8; }
+  .site-header { background:rgba(13,13,11,0.95); border-bottom-color:#222; }
+  .logo { color:#e8e4d8; }
+  nav a { color:#e8e4d8 !important; }
+  .language-code { color:#e8e4d8; }
+  .current-language:hover { background:#1c1c19; }
+  .language-dropdown { background:#1c1c19; box-shadow:0 4px 20px rgba(0,0,0,0.5); }
+  .language-option { color:#e8e4d8; }
+  .language-option:hover { background:#252522; }
+  .language-option.current { background:#2a2a28; }
+  .article-section p { color:#a8a6a0; }
+  .intro-block { color:#7a7670; }
+  .ac-item { border-color:#2a2a28; }
+  .ac-item.ac-open { border-color:#e0e0e0; }
+  .ac-item:hover:not(.ac-open) { border-color:#555; }
+  .ac-hdr { background:#141412; }
+  .ac-title { color:#e8e4d8; }
+  .ac-num { color:#555; }
+  .ac-item.ac-open .ac-num { color:#e8e4d8; }
+  .ac-item.ac-open .ac-chev { color:#e8e4d8; }
+  .ac-body-inner { background:#141412; }
+  .ac-content { border-top-color:#2a2a28; }
+  .fi2-h { color:#e8e4d8; }
+  .fi2-x { color:#888; }
+  .fi2-line { background:#333; }
+  .factor-card { border-color:#2a2a28; background:#141412; }
+  .factor-card:hover { border-color:#555; }
+  .factor-title { color:#e8e4d8; }
+  .factor-desc { color:#888; }
+  .window-card { border-color:#2a2a28; border-left-color:#e0e0e0; background:#141412; }
+  .window-card-title { color:#e8e4d8; }
+  .window-card-text { color:#888; }
+  .info-box { background:#1c1c19; }
+  .info-box-text { color:#a8a6a0; }
+  .pull-quote { background:#1a1a18; border-left-color:#e0e0e0; }
+  .pull-quote-text { color:#aaa; }
+  .rs-card { border-color:#2a2a28; background:#141412; }
+  .rs-card:hover { border-color:#555; }
+  .rs-card.rs-open { border-color:#e0e0e0; }
+  .rs-hdr { background:#141412; }
+  .rs-name { color:#e8e4d8; }
+  .rs-content { border-top-color:#2a2a28; }
+  .rs-text { color:#a8a6a0; }
+  .rs-year { background:#252522; }
+  .spectrum-bar-wrap { background:#252522; }
+  .term-popup { background:#1c1c19; border-color:#e0e0e0; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
+  .tp-term-name { color:#e8e4d8; }
+  .tp-def { color:#9b9990; }
+  .tp-source { border-top-color:#2a2a28; color:#666; }
+  .tp-source a { color:#e8e4d8; border-bottom-color:#555; }
+  .navigation-links { border-top-color:#2a2a28; }
+  .nav-link { color:#e8e4d8 !important; }
+  .nav-link:hover { color:#888 !important; }
+  .site-footer { background:#0d0d0b !important; color:#888 !important; }
+  .site-footer .footer-column h4 { color:#e8e4d8 !important; }
+  .site-footer .footer-column h4 a { color:#e8e4d8 !important; }
+  .site-footer .footer-column a { color:#888 !important; }
+  .site-footer .footer-column a:hover { color:#e8e4d8 !important; }
+}
+
+@media (max-width: 768px) {
+  .site-header { flex-direction: column; gap: 15px; }
+  .article-title { font-size: 36px; }
+  .ac-content { padding: 0 16px 20px 16px; }
+  .navigation-links { display: none; }
+  .mobile-nav-list { display: block; margin-top: 40px; padding: 0; list-style: none; border-top: 1px solid #e0e0e0; padding-top: 30px; }
+  .mobile-nav-item { margin-bottom: 15px; font-size: 16px; }
+  .mobile-nav-item::before { content: "- "; color: #1a1a1a; margin-right: 5px; }
+  .mobile-nav-item a { color: #1a1a1a !important; text-decoration: none !important; font-weight: 500; }
+  .site-footer .footer-container { flex-direction: column; gap: 30px; }
+  .factor-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<header class="site-header">
+  <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div>
+  <div class="nav-container">
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="basics_en.html">Основы</a>
+      <a href="blog_en.html" class="active-link">Блог</a>
+      <a href="tests_en.html">Тесты</a>
+    </nav>
+    <div class="language-selector">
+      <div class="current-language" id="language-toggle">
+        <span class="language-code">RU</span>
+      </div>
+      <div class="language-dropdown" id="language-dropdown">
+        <a href="early_development_en.html" class="language-option"><span class="language-code">EN</span></a>
+        <a href="early_development_ru.html" class="language-option current"><span class="language-code">RU</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="article-section">
+
+      <h1 class="article-title">Страх и раннее развитие</h1>
+      <div class="intro-block">
+        <p>Как опыт первых лет жизни формирует психологическую уязвимость — и способность проживать стресс</p>
+      </div>
+
+      <div class="ac-wrap">
+
+        <!-- 01 ЦЕНТРАЛЬНЫЙ ВОПРОС -->
+        <div class="ac-item" id="ac-intro">
+          <div class="ac-hdr" onclick="acToggle('ac-intro')">
+            <span class="ac-num">01</span>
+            <span class="ac-title">Почему раннее детство решает всё</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Центральный вопрос</div>
+              <div class="info-box-text">Почему двое людей, попав в одинаково угрожающую ситуацию, реагируют радикально по-разному — один разворачивается в сторону расстройства, другой — делает шаг вперёд?</div>
+            </div>
+
+            <p style="font-size:14px;color:#555;line-height:1.75;margin-bottom:16px">Семь конструктов ниже — страх, тревога, паника, травма, резистентность, рефлексия и интроспекция — это не просто слова из клинического словаря. Это точки, в которых ранний опыт оставляет след, измеримый десятилетия спустя: в реактивности амигдалы, толщине ПФК, уровне базального кортизола и способности называть то, что происходит внутри.</p>
+
+            <div style="margin:24px 0">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Семь окон уязвимости и устойчивости</div>
+              <div class="factor-grid">
+                <div class="factor-card">
+                  <span class="factor-label" style="color:#854F0B;border-color:#854F0B60">Аффект</span>
+                  <div class="factor-title">Страх</div>
+                  <div class="factor-desc">Базовая защитная реакция — первой формируется, первой нарушается</div>
+                </div>
+                <div class="factor-card">
+                  <span class="factor-label" style="color:#0F6E56;border-color:#0F6E5660">Аффект</span>
+                  <div class="factor-title">Тревога</div>
+                  <div class="factor-desc">Предвосхищение угрозы — зависит от качества ранней привязанности</div>
+                </div>
+                <div class="factor-card">
+                  <span class="factor-label" style="color:#993C1D;border-color:#993C1D60">Физиология</span>
+                  <div class="factor-title">Паника</div>
+                  <div class="factor-desc">Сбой интероцептивной обработки — корни в нарушении телесного контакта</div>
+                </div>
+                <div class="factor-card">
+                  <span class="factor-label" style="color:#534AB7;border-color:#534AB760">Память</span>
+                  <div class="factor-title">Травма</div>
+                  <div class="factor-desc">Патологическая консолидация страховой памяти в незрелом мозге</div>
+                </div>
+                <div class="factor-card">
+                  <span class="factor-label" style="color:#185FA5;border-color:#185FA560">Ресурс</span>
+                  <div class="factor-title">Резистентность</div>
+                  <div class="factor-desc">Способность возвращаться к балансу — строится через защитные отношения</div>
+                </div>
+                <div class="factor-card">
+                  <span class="factor-label" style="color:#5F5E5A;border-color:#5F5E5A60">Метакогниция</span>
+                  <div class="factor-title">Рефлексия</div>
+                  <div class="factor-desc">Ментализация — возникает из зеркальных отношений с ранними фигурами</div>
+                </div>
+                <div class="factor-card">
+                  <span class="factor-label" style="color:#BA7517;border-color:#BA751760">Метакогниция</span>
+                  <div class="factor-title">Интроспекция</div>
+                  <div class="factor-desc">Доступ к внутренним состояниям — требует безопасной среды для развития</div>
+                </div>
+              </div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 02 СТРАХ -->
+        <div class="ac-item" id="ac-fear">
+          <div class="ac-hdr" onclick="acToggle('ac-fear')">
+            <span class="ac-num">02</span>
+            <span class="ac-title">Страх — первая система, которая формируется</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Нейробиологический факт</div>
+              <div class="info-box-text">Амигдала — структура, отвечающая за детекцию угрозы, — функционально активна уже на 8-й неделе эмбрионального развития. Она созревает раньше гиппокампа и значительно раньше ПФК, которая полностью завершает миелинизацию лишь к 25 годам.</div>
+            </div>
+
+            <div style="margin:20px 0">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Как формируется страховая система в 0–5 лет</div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#854F0B;background:#f9eddf">0–6 мес</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#854F0B">Пренатальный и неонатальный период</div>
+                    <div class="fi2-h">Амигдала активна, ПФК ещё не регулирует</div>
+                    <div class="fi2-x">Новорождённый реагирует на угрозу чисто амигдалярно — без коркового торможения. Страх полностью зависит от внешней регуляции: тело матери, её голос и контакт становятся биологическим эквивалентом безопасности. Кортизол матери проникает через плаценту и перепрограммирует ось ГГН плода — хронический пренатальный стресс повышает реактивность амигдалы у ребёнка измеримо.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#0F6E56;background:#e1f5ee">6–18 мес</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#0F6E56">Первичное обусловливание</div>
+                    <div class="fi2-h">Страх начинает кодироваться в имплицитную память</div>
+                    <div class="fi2-x">Гиппокамп ещё недостаточно зрел для эксплицитной памяти, но <span class="term" data-term="амигдала">амигдала</span> активно кодирует имплицитные ассоциации. Повторяющиеся эпизоды угрозы в этом окне не образуют нарратива («я помню, что боялся»), но оставляют биологический след: пониженный порог активации амигдалы, изменённую чувствительность <span class="term" data-term="ось ггн">оси ГГН</span>. Именно здесь закладывается «молчаливый» ПТСР — без доступных воспоминаний, но с выраженной реактивностью тела.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#534AB7;background:#eeedfe">18 мес – 3 года</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#534AB7">Символическое мышление и социальный страх</div>
+                    <div class="fi2-h">Страх распространяется на воображаемые угрозы</div>
+                    <div class="fi2-x">С развитием символического мышления ребёнок начинает бояться того, чего нет рядом. Это эволюционный скачок — и точка уязвимости: если фигура привязанности сама является источником страха (жестокость, непредсказуемость), возникает <span class="term" data-term="дезорганизованная привязанность">дезорганизованная привязанность</span> — паттерн, наиболее сильно связанный с будущей психопатологией.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-dot" style="color:#185FA5;background:#e6f1fb">3–5 лет</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#185FA5">Начало корковой регуляции</div>
+                    <div class="fi2-h"><span class="term" data-term="пфк">ПФК</span> начинает тормозить амигдалу — при наличии безопасной среды</div>
+                    <div class="fi2-x">Орбитофронтальная кора (ОФК) формирует первые тормозящие связи с амигдалой. Этот процесс — опыт-зависимый: он требует повторяющихся эпизодов со-регуляции с воспитателем. Ребёнок, чьи аффективные состояния систематически отражались, называлсь и успокаивались, развивает более плотные ПФК–амигдала связи. Ребёнок в среде с хроническим неконтролируемым стрессом — нет.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pull-quote">
+              <div class="pull-quote-text">«Страх в раннем детстве — это не эмоция, которую ребёнок переживает. Это нейробиологический опыт, который строит мозг.»</div>
+              <div class="pull-quote-src">Bessel van der Kolk, The Body Keeps the Score, 2014</div>
+            </div>
+
+            <div class="window-card">
+              <div class="window-card-sub">Ключевой механизм</div>
+              <div class="window-card-title">Эпигенетика страха: как опыт переписывает ген</div>
+              <div class="window-card-text">Хронический ранний стресс изменяет метилирование промотора гена рецептора глюкокортикоидов (NR3C1) в гиппокампе. Эти эпигенетические маркеры снижают чувствительность к кортизолу — ось ГГН становится менее управляемой. Landmark-исследование McGowan et al. (2009) обнаружило это у людей, переживших жестокое обращение в детстве, — и у крыс с депривированным материнским уходом. Одна и та же молекула. Один и тот же механизм.</div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 03 ТРЕВОГА -->
+        <div class="ac-item" id="ac-anxiety">
+          <div class="ac-hdr" onclick="acToggle('ac-anxiety')">
+            <span class="ac-num">03</span>
+            <span class="ac-title">Тревога — страх без объекта, рождённый из отношений</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Ключевое различие</div>
+              <div class="info-box-text">Страх — реакция на конкретную угрозу здесь и сейчас. Тревога — предвосхищение угрозы в будущем при её отсутствии в настоящем. Это различие не просто семантическое: у них разные нейронные субстраты и разные точки формирования в онтогенезе.</div>
+            </div>
+
+            <p style="font-size:14px;color:#555;line-height:1.75;margin:16px 0">Тревога у ребёнка рождается из качества отношений с первичными фигурами привязанности. Джон Боулби был первым, кто описал это систематически: надёжная привязанность — это биологически обоснованная система регуляции аффекта, и тревога возникает тогда, когда эта система ненадёжна.</p>
+
+            <div style="margin:20px 0">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Типы привязанности и тревожный профиль</div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#0F6E56;background:#e1f5ee">B</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#0F6E56">Надёжная привязанность (тип B)</div>
+                    <div class="fi2-h">Воспитатель — надёжная «безопасная база»</div>
+                    <div class="fi2-x">Ребёнок знает: при угрозе фигура привязанности доступна и отзывчива. Это знание — не убеждение, а биологически закодированная рабочая модель. Результат: нормативная тревога (адаптивная), быстрое успокоение, готовность к исследованию. Во взрослом возрасте: тревога как сигнал, а не как состояние.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#BA7517;background:#faeeda">A</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#BA7517">Избегающая привязанность (тип A)</div>
+                    <div class="fi2-h">Воспитатель — эмоционально недоступен или отвергает аффект</div>
+                    <div class="fi2-x">Ребёнок научается подавлять аффективные сигналы — эмоции становятся «невыгодны». Внешне — спокоен, независим. Физиологически — уровень кортизола при сепарации такой же, как у тревожных детей, но поведение не сигнализирует об этом. Тревога уходит «вниз», в тело: соматизация, алекситимия, диффузное физическое напряжение.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#993C1D;background:#faece7">C</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#993C1D">Тревожно-амбивалентная привязанность (тип C)</div>
+                    <div class="fi2-h">Воспитатель — непредсказуем: иногда доступен, иногда нет</div>
+                    <div class="fi2-x">Непредсказуемость — сильнейший генератор тревоги. Ребёнок гиперактивирует привязанческое поведение: плач, цепляние, невозможность успокоиться. Система обнаружения угрозы постоянно «включена». Взрослый паттерн: тревожность как черта, <span class="term" data-term="интолерантность к неопределённости">интолерантность к неопределённости</span>, хроническое беспокойство.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-dot" style="color:#534AB7;background:#eeedfe">D</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#534AB7">Дезорганизованная привязанность (тип D)</div>
+                    <div class="fi2-h">Воспитатель — одновременно источник страха и единственная защита от него</div>
+                    <div class="fi2-x">Это биологический парадокс: система привязанности и система страха активируются одновременно и дают противоположные команды. Мозг ребёнка не может разрешить это противоречие. Результат — дезорганизованные, хаотичные паттерны поведения. Наиболее сильный предиктор будущих расстройств личности, диссоциации и ПТСР из всех типов.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="window-card">
+              <div class="window-card-sub">Нейронный след</div>
+              <div class="window-card-title">Как тип привязанности отражается в мозге</div>
+              <div class="window-card-text">Исследования фМРТ показывают: взрослые с надёжной привязанностью демонстрируют более высокую активацию вентромедиальной ПФК и более эффективное подавление амигдалы при эмоционально угрожающих стимулах. У взрослых с небезопасной привязанностью — обратная картина: амигдала реагирует сильнее, ПФК — слабее. Это не метафора психологии. Это измеримая нейронная архитектура, сформированная в первые годы жизни.</div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 04 ПАНИКА -->
+        <div class="ac-item" id="ac-panic">
+          <div class="ac-hdr" onclick="acToggle('ac-panic')">
+            <span class="ac-num">04</span>
+            <span class="ac-title">Паника — когда тело становится триггером</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Определение</div>
+              <div class="info-box-text">Паника — внезапный эпизод интенсивного страха, запускаемый не внешней угрозой, а интероцептивными сигналами самого тела. Сердцебиение читается как сердечный приступ, головокружение — как потеря сознания, нехватка воздуха — как удушье. Тело атакует само себя.</div>
+            </div>
+
+            <p style="font-size:14px;color:#555;line-height:1.75;margin:16px 0">Паническое расстройство — не болезнь взрослых. Её корни уходят в то, как в раннем детстве формировалась <span class="term" data-term="интероцепция">интероцепция</span> — способность замечать и интерпретировать телесные сигналы. Качество этого навыка определяется тем, как на телесные сигналы ребёнка реагировали взрослые.</p>
+
+            <div style="margin:20px 0 24px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Факторы раннего развития, предрасполагающие к панике</div>
+
+              <div class="window-card" style="border-left-color:#993C1D">
+                <div class="window-card-sub">Фактор 1 · Физиологический</div>
+                <div class="window-card-title">Нарушение раннего телесного контакта</div>
+                <div class="window-card-text">Кожный контакт с матерью — первичный регулятор вегетативной нервной системы новорождённого. Исследования на крысах (Meaney, 2001) показали: высокое материнское облизывание-груминг напрямую снижает реактивность ВНС и ось ГГН. У людей — аналог: физическое тепло, ношение, укачивание. Дефицит раннего тактильного контакта (недоношенность в инкубаторе, депрессия матери, институциональное воспитание) нарушает базовую вегетативную настройку.</div>
+              </div>
+
+              <div class="window-card" style="border-left-color:#993C1D">
+                <div class="window-card-sub">Фактор 2 · Когнитивный</div>
+                <div class="window-card-title">Тревожная сенситивность как усвоенная интерпретация тела</div>
+                <div class="window-card-text">Тревожная сенситивность — страх перед симптомами тревоги — является сильнейшим предиктором панических атак и в значительной мере усваивается из семьи. Ребёнок, чей родитель при каждом учащённом сердцебиении говорит «тебе плохо?» и вызывает «скорую», учится интерпретировать телесные сигналы как опасные. Повторяющийся нарратив «симптом = угроза» буквально перепрограммирует интероцептивный предиктор — инсулу.</div>
+              </div>
+
+              <div class="window-card" style="border-left-color:#993C1D">
+                <div class="window-card-sub">Фактор 3 · Средовой</div>
+                <div class="window-card-title">Хроническая непредсказуемая угроза</div>
+                <div class="window-card-text">Среда с хроническим непредсказуемым стрессом (алкоголизм родителя, бытовое насилие, тяжёлая болезнь) формирует постоянно «включённую» систему оповещения. Порог активации паники снижается, потому что организм буквально переключается в режим ожидания катастрофы. Нейробиологически — это снижение тонического ингибирования амигдалы со стороны ПФК и ГАМК-ергических цепей.</div>
+              </div>
+            </div>
+
+            <div class="pull-quote">
+              <div class="pull-quote-text">«Паника — это страховая цепь, срабатывающая без реального хищника. Но когда-то в истории организма хищник был. Просто он не был внешним.»</div>
+              <div class="pull-quote-src">David Barlow, Anxiety and Its Disorders, 2002</div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 05 ТРАВМА -->
+        <div class="ac-item" id="ac-trauma">
+          <div class="ac-hdr" onclick="acToggle('ac-trauma')">
+            <span class="ac-num">05</span>
+            <span class="ac-title">Травма — когда страх не завершается</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Нейробиологическое определение</div>
+              <div class="info-box-text">Травма — не событие. Травма — это то, что происходит в нервной системе, когда страховой эпизод не может завершиться нормально: ПФК не гасит амигдалу, гиппокамп не помещает угрозу в контекст прошлого, и тело остаётся в режиме защиты — бессрочно.</div>
+            </div>
+
+            <p style="font-size:14px;color:#555;line-height:1.75;margin:16px 0">Детская травма — особая категория. Не потому что дети «нежнее». А потому что травма происходит в мозге, который ещё строит сам себя. Незрелая ПФК не может регулировать амигдалу — эту функцию выполняет воспитатель. Если воспитатель сам является источником угрозы, или просто недоступен после события, — нет никого, кто мог бы выполнить эту со-регуляцию.</p>
+
+            <div style="margin:20px 0 24px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Почему детский мозг особенно уязвим к травме</div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#534AB7;background:#eeedfe">1</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#534AB7">Незрелость гиппокампа</div>
+                    <div class="fi2-h">Травматические воспоминания не могут стать «прошлым»</div>
+                    <div class="fi2-x">Гиппокамп — структура, которая помещает воспоминание в контекст времени («это было тогда, сейчас безопасно»). У детей до 3–4 лет он незрел и не способен выполнять эту функцию. Страховые воспоминания кодируются амигдалой как имплицитные — без временно́й метки. Они не «вспоминаются» — они активируются как настоящее, запускаясь похожими стимулами. Отсюда — феномен детского «молчаливого» ПТСР.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#993C1D;background:#faece7">2</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#993C1D">ACEs — накопительный эффект</div>
+                    <div class="fi2-h">Неблагоприятный детский опыт действует по принципу дозы</div>
+                    <div class="fi2-x">Исследование ACEs (Felitti et al., 1998) обследовало более 17 000 человек и показало: каждый дополнительный тип неблагоприятного детского опыта (жестокость, пренебрежение, домашнее насилие, психические расстройства в семье) статистически увеличивает риск депрессии, тревожных расстройств, зависимостей, сердечно-сосудистых заболеваний и ранней смерти. 4+ ACE — риск ПТСР возрастает в 7 раз. Нет линейного порога безвредности.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#854F0B;background:#f9eddf">3</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#854F0B">Реляционная травма</div>
+                    <div class="fi2-h">Травма через отношения хуже травмы через события</div>
+                    <div class="fi2-x">Однократная катастрофа (авария, стихийное бедствие) при наличии поддерживающей фигуры привязанности после неё — значительно менее патогенна, чем хроническая реляционная травма: пренебрежение, эмоциональная недоступность, словесная жестокость. Парадокс: слова ранят глубже, потому что нарушают базовое ожидание безопасности, заложенное в биологии привязанности. Из фигур привязанности мозг не умеет «убегать» — даже когда они источник угрозы.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-dot" style="color:#185FA5;background:#e6f1fb">4</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#185FA5">Окна нейропластичности</div>
+                    <div class="fi2-h">Критические периоды — точки максимальной уязвимости и максимального потенциала</div>
+                    <div class="fi2-x">Разные структуры мозга имеют разные критические периоды пластичности. Визуальная кора — до 6–8 лет. Языковые зоны — до 12 лет. ПФК и регуляция аффекта — вся юность и ранняя взрослость. Травма в критический период структуры оставляет более глубокий след, чем та же травма после его закрытия. Это же работает в обратную сторону: терапевтическое вмешательство в критический период эффективнее.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pull-quote">
+              <div class="pull-quote-text">«Детская травма — это не просто плохое воспоминание. Это архитектурное изменение в мозге, который продолжает строиться.»</div>
+              <div class="pull-quote-src">Bruce Perry, The Boy Who Was Raised as a Dog, 2006</div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 06 РЕЗИСТЕНТНОСТЬ -->
+        <div class="ac-item" id="ac-resilience">
+          <div class="ac-hdr" onclick="acToggle('ac-resilience')">
+            <span class="ac-num">06</span>
+            <span class="ac-title">Резистентность — как строится способность возвращаться</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Переосмысление понятия</div>
+              <div class="info-box-text">Резистентность (resilience) — не черта характера и не врождённое свойство. Это динамический процесс адаптации перед лицом значимых угроз, который строится через конкретные отношения и конкретные нейронные цепи. «Устойчивые» дети — не те, кто не чувствует боли. Это те, у кого есть ресурс вернуться.</div>
+            </div>
+
+            <p style="font-size:14px;color:#555;line-height:1.75;margin:16px 0">Главный парадокс резистентности: она строится через умеренный, контролируемый стресс — но разрушается хроническим, неконтролируемым. Разница между «прокачивающим» и «ломающим» стрессом — это, прежде всего, разница в наличии поддерживающих отношений.</p>
+
+            <div style="margin:20px 0 24px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Четыре источника детской резистентности</div>
+
+              <div class="window-card" style="border-left-color:#185FA5">
+                <div class="window-card-sub">Источник 1 · Самый важный</div>
+                <div class="window-card-title">Хотя бы одна стабильная, поддерживающая фигура</div>
+                <div class="window-card-text">Кросс-культурные исследования устойчивых детей из неблагополучных сред (Garmezy, Werner, Rutter) неизменно обнаруживают один общий фактор: наличие хотя бы одного взрослого, который последовательно верил в ребёнка. Учитель, бабушка, тренер — роль не обязательно родительская. Но функция — со-регуляция, безопасная база, зеркало — обязательна.</div>
+              </div>
+
+              <div class="window-card" style="border-left-color:#185FA5">
+                <div class="window-card-sub">Источник 2 · Нейробиологический</div>
+                <div class="window-card-title">Умеренный, завершаемый стресс («прививка стрессом»)</div>
+                <div class="window-card-text">Позитивный стресс — умеренное, кратковременное возбуждение в контексте поддержки — необходим для развития систем регуляции. Исследования показывают: дети, получавшие дозированные вызовы (новые задачи, разумный риск, преодолимые препятствия) при наличии поддерживающего взрослого, развивают более эффективную ось ГГН: быстрый подъём кортизола в ответ на угрозу и быстрое его снижение после. «Ломающий» стресс — хронический, неконтролируемый, без поддержки — нарушает именно этот механизм.</div>
+              </div>
+
+              <div class="window-card" style="border-left-color:#185FA5">
+                <div class="window-card-sub">Источник 3 · Когнитивный</div>
+                <div class="window-card-title">Атрибутивный стиль — «это поддаётся изменению»</div>
+                <div class="window-card-text">Seligman показал: дети, усваивающие объяснительный стиль «неудачи временны, конкретны и управляемы», значительно более устойчивы к депрессии при встрече со стрессом. Этот стиль не возникает из ниоткуда — он транслируется через язык родителя. «Ты плохой» vs «ты сейчас плохо поступил». «Ты никогда не можешь» vs «сейчас не получилось, попробуем иначе». Атрибутивный стиль — это выученная нейронная программа интерпретации трудности.</div>
+              </div>
+
+              <div class="window-card" style="border-left-color:#185FA5">
+                <div class="window-card-sub">Источник 4 · Социальный</div>
+                <div class="window-card-title">Принадлежность к смысловому сообществу</div>
+                <div class="window-card-text">Дети, имеющие устойчивое чувство принадлежности — семья, культурная группа, школьное сообщество, религиозная традиция — более устойчивы к психопатологии при стрессе. Не само по себе содержание ценностей, а структура принадлежности: «есть люди, для которых я важен» и «есть смысл, который больше одного эпизода».</div>
+              </div>
+            </div>
+
+            <div style="margin:16px 0 8px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;font-weight:500">Как разные условия раннего развития влияют на резистентность</div>
+              <div class="spectrum-row">
+                <div class="spectrum-label" style="font-size:11px">Надёжная привязанность</div>
+                <div class="spectrum-bar-wrap"><div class="spectrum-bar" style="width:90%;background:#0F6E56"></div></div>
+                <div class="spectrum-val">высокая</div>
+              </div>
+              <div class="spectrum-row">
+                <div class="spectrum-label" style="font-size:11px">Избегающая привязанность</div>
+                <div class="spectrum-bar-wrap"><div class="spectrum-bar" style="width:55%;background:#BA7517"></div></div>
+                <div class="spectrum-val">средняя</div>
+              </div>
+              <div class="spectrum-row">
+                <div class="spectrum-label" style="font-size:11px">Тревожная привязанность</div>
+                <div class="spectrum-bar-wrap"><div class="spectrum-bar" style="width:38%;background:#993C1D"></div></div>
+                <div class="spectrum-val">низкая</div>
+              </div>
+              <div class="spectrum-row">
+                <div class="spectrum-label" style="font-size:11px">Дезорганизованная</div>
+                <div class="spectrum-bar-wrap"><div class="spectrum-bar" style="width:18%;background:#534AB7"></div></div>
+                <div class="spectrum-val">очень низкая</div>
+              </div>
+              <div class="spectrum-row">
+                <div class="spectrum-label" style="font-size:11px">ACE 4+ без поддержки</div>
+                <div class="spectrum-bar-wrap"><div class="spectrum-bar" style="width:8%;background:#1a1a1a"></div></div>
+                <div class="spectrum-val">минимальная</div>
+              </div>
+            </div>
+            <div style="font-size:11px;color:#aaa;margin-bottom:20px">*Условная визуализация на основе метааналитических данных. Индивидуальные вариации значительны.</div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 07 РЕФЛЕКСИЯ -->
+        <div class="ac-item" id="ac-reflection">
+          <div class="ac-hdr" onclick="acToggle('ac-reflection')">
+            <span class="ac-num">07</span>
+            <span class="ac-title">Рефлексия — ментализация как защита от страха</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Ключевой конструкт</div>
+              <div class="info-box-text">Рефлексивное функционирование (RF) — способность понимать, что за поведением людей стоят внутренние состояния: желания, убеждения, эмоции, намерения. Фонаги и Таргет называют это ментализацией. Это не просто когнитивный навык — это фундаментальный буфер между стрессором и дистрессом.</div>
+            </div>
+
+            <p style="font-size:14px;color:#555;line-height:1.75;margin:16px 0">Способность к ментализации формируется через особое качество ранних взаимодействий: воспитатель, который сам способен думать о психических состояниях ребёнка и называть их — «ты сейчас расстроен, потому что…» — буквально передаёт ребёнку нейронный инструмент для обработки эмоционального опыта.</p>
+
+            <div style="margin:20px 0 24px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Как рефлексия строится через ранний опыт</div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8">1</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#5F5E5A">Маркированное зеркалирование (0–12 мес)</div>
+                    <div class="fi2-h">Родитель отражает аффект ребёнка — слегка видоизмененно</div>
+                    <div class="fi2-x">Когда мать «отзеркаливает» лицо плачущего ребёнка с соответствующим, но чуть преувеличенным выражением — и добавляет вокализацию, — она передаёт ребёнку нечто критически важное: «твоё внутреннее состояние реально, оно видимо, с ним можно что-то сделать». Это маркированное зеркалирование — первая форма ментализации. Его отсутствие — родитель не реагирует, реагирует плоско или хаотично — нарушает самый ранний этап формирования способности к рефлексии.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-line"></div>
+                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8">2</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#5F5E5A">Называние состояний (1–3 года)</div>
+                    <div class="fi2-h">Язык становится инструментом переработки аффекта</div>
+                    <div class="fi2-x">«Ты злишься, потому что Ваня взял твою игрушку». «Ты боишься, потому что громко». Называние аффективного состояния активирует вентролатеральную ПФК и снижает возбуждение амигдалы — это показано в фМРТ-исследованиях у взрослых. Дети, чьи аффекты систематически назывались, развивают более богатый аффективный словарь и более высокое рефлексивное функционирование во взрослом возрасте.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fi2">
+                <div class="fi2-inner">
+                  <div class="fi2-dot" style="color:#5F5E5A;background:#f1efe8">3</div>
+                  <div class="fi2-body">
+                    <div class="fi2-time" style="color:#5F5E5A">Нарративная функция (3–6 лет)</div>
+                    <div class="fi2-h">Опыт помещается в связную историю</div>
+                    <div class="fi2-x">«Расскажи мне, что случилось». Способность выстроить нарратив о пережитом — это не просто память. Это акт реорганизации нейронных репрезентаций: гиппокамп и медиальная ПФК объединяют разрозненные фрагменты в связное целое. Дети, у которых есть взрослые, готовые совместно конструировать нарратив об их трудном опыте, значительно лучше интегрируют его. Неинтегрированный опыт — фрагментированный, лишённый нарратива — остаётся в теле как бессловесный страх.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="window-card">
+              <div class="window-card-sub">Клиническое значение</div>
+              <div class="window-card-title">Рефлексивное функционирование как модератор трансгенерационной передачи</div>
+              <div class="window-card-text">Фонаги показал: высокий RF матери — более мощный предиктор надёжной привязанности ребёнка, чем сам факт её неблагоприятного детства. Травматизированная мать, но с высоким рефлексивным функционированием, с высокой вероятностью воспитает надёжно привязанного ребёнка. Именно здесь разрывается цикл трансгенерационной передачи психопатологии. Рефлексия — буквально защитная трансмиссия между поколениями.</div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 08 ИНТРОСПЕКЦИЯ -->
+        <div class="ac-item" id="ac-introspection">
+          <div class="ac-hdr" onclick="acToggle('ac-introspection')">
+            <span class="ac-num">08</span>
+            <span class="ac-title">Интроспекция — как доступ к себе становится возможным</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div class="info-box" style="margin-top:20px">
+              <div class="info-box-label">Различие понятий</div>
+              <div class="info-box-text">Рефлексия — думать о психических состояниях: своих и чужих. Интроспекция — способность в данный момент замечать и описывать, что происходит внутри. Рефлексия смотрит назад и вовне. Интроспекция — внутрь и сейчас. Обе строятся через ранний опыт, но разными путями.</div>
+            </div>
+
+            <p style="font-size:14px;color:#555;line-height:1.75;margin:16px 0">Интроспекция — это не просто когнитивный навык. Это результат того, насколько безопасно было замечать собственные внутренние состояния в раннем детстве. Ребёнок, чья злость систематически отрицалась («ты не злишься, ты просто устал»), чья тревога обесценивалась («не выдумывай»), чьи телесные сигналы игнорировались — учится не замечать то, что происходит внутри. Это не слабость — это адаптация.</p>
+
+            <div style="margin:20px 0 24px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:14px;font-weight:500">Как среда раннего детства формирует интроспективный доступ</div>
+
+              <div class="window-card" style="border-left-color:#BA7517">
+                <div class="window-card-sub">Паттерн A — Подавляющая среда</div>
+                <div class="window-card-title">«Не чувствуй то, что чувствуешь»</div>
+                <div class="window-card-text">Систематическое отрицание, обесценивание или наказание за аффективные состояния ребёнка. Результат: алекситимия — неспособность идентифицировать и описывать собственные эмоции. Alexithymia встречается у 10% населения и в 3–5 раз чаще у людей с психосоматическими заболеваниями, расстройствами пищевого поведения и зависимостями. Это не органический дефицит — это усвоенное отчуждение от собственной внутренней жизни.</div>
+              </div>
+
+              <div class="window-card" style="border-left-color:#BA7517">
+                <div class="window-card-sub">Паттерн B — Тревожно-усиливающая среда</div>
+                <div class="window-card-title">«Твои ощущения катастрофичны»</div>
+                <div class="window-card-text">Родитель, который сам гиперреагирует на аффект ребёнка, передаёт ему паттерн тревожной сенситивности: любое внутреннее ощущение читается как сигнал катастрофы. Интроспекция становится опасной: смотреть внутрь — значит находить новую угрозу. Результат — избегание интроспекции, внутренняя слепота другого рода: не потому что внутри ничего нет, а потому что смотреть туда страшно.</div>
+              </div>
+
+              <div class="window-card" style="border-left-color:#0F6E56">
+                <div class="window-card-sub">Паттерн C — Регулирующая среда</div>
+                <div class="window-card-title">«Твои ощущения реальны и с ними можно справиться»</div>
+                <div class="window-card-text">Воспитатель называет, принимает и помогает регулировать аффективные состояния — не устраняя их, а сопровождая. Ребёнок усваивает: внутренние состояния поддаются наблюдению, не являются угрозой и могут быть изменены. Этот паттерн формирует основу для здоровой интроспекции — способности видеть внутрь с любопытством, а не тревогой. Это же основа будущей способности к психотерапии и самопознанию.</div>
+              </div>
+            </div>
+
+            <div class="pull-quote">
+              <div class="pull-quote-text">«Способность называть то, что происходит внутри, — не украшение психологического здоровья. Это его предпосылка.»</div>
+              <div class="pull-quote-src">Peter Fonagy, Affect Regulation, Mentalization, and the Development of the Self, 2002</div>
+            </div>
+
+            <div style="margin:8px 0 4px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;font-weight:500">Интроспекция и стрессовые триггеры: связь</div>
+              <p style="font-size:14px;color:#555;line-height:1.75;margin-bottom:12px">Способность замечать собственные внутренние состояния — это не просто самопознание. Это механизм раннего предупреждения: человек с высокой интроспективной точностью замечает нарастание аффекта до того, как он достигает уровня дистресса, и может вмешаться раньше. Это та же разница, что между пожарной сигнализацией в рабочем состоянии и той, которую давно отключили.</p>
+              <p style="font-size:14px;color:#555;line-height:1.75">И это — возможно — самый важный вывод всей этой страницы: уязвимость к стрессовым триггерам и способность их проживать определяются не столько силой стрессора, сколько тем, насколько человек способен его заметить, назвать, поместить в контекст и обратиться за помощью. Все четыре эти способности строятся в первые годы жизни — через конкретных людей, в конкретных отношениях.</p>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <!-- 09 ИССЛЕДОВАНИЯ -->
+        <div class="ac-item" id="ac-research">
+          <div class="ac-hdr" onclick="acToggle('ac-research')">
+            <span class="ac-num">09</span>
+            <span class="ac-title">Ключевые исследования</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <div id="rs-list" style="margin-top:16px;display:flex;flex-direction:column;gap:6px"></div>
+
+            <script>
+            (function(){
+              var RS = [
+                {
+                  color:"#854F0B",
+                  tag:"ACE · Felitti et al., 1998 · Pediatrics",
+                  name:"Adverse Childhood Experiences — неблагоприятный детский опыт и здоровье взрослых",
+                  what:"Что исследовали: существует ли связь между количеством типов неблагоприятного детского опыта и психическим и физическим здоровьем взрослых?",
+                  text:"Обследовано более 17 000 застрахованных взрослых в Kaiser Permanente. Каждый дополнительный тип ACE (физическое, сексуальное, эмоциональное насилие; пренебрежение; домашнее насилие; психические расстройства, тюремное заключение или злоупотребление ПАВ в семье) статистически значимо увеличивал риск депрессии, попыток суицида, алкоголизма, употребления наркотиков, ИБС, ожирения и ранней смерти. При 4+ ACE риск ПТСР возрастает в 7 раз, риск ишемической болезни сердца — в 2,2 раза. Исследование фундаментально сместило понимание психических расстройств: не «что с тобой не так», а «что с тобой случилось».",
+                  authors:"Felitti VJ et al.",
+                  journal:"American Journal of Preventive Medicine, 14(4), 245–258",
+                  year:"1998",
+                  doi:"https://doi.org/10.1016/S0749-3797(98)00017-8"
+                },
+                {
+                  color:"#0F6E56",
+                  tag:"Привязанность · Ainsworth, 1978 · Монография",
+                  name:"Strange Situation Procedure — типология привязанности и её предикторы",
+                  what:"Что исследовали: существуют ли устойчивые индивидуальные различия в организации привязанности у младенцев — и чем они определяются?",
+                  text:"Мэри Эйнсворт разработала парадигму «странной ситуации» — стандартизированную процедуру сепарации и воссоединения младенца с матерью. Исследование выявило четыре устойчивых паттерна: B (надёжный), A (избегающий), C (тревожно-амбивалентный) и позднее — D (дезорганизованный, Main & Hesse, 1990). Тип привязанности предсказывает социально-эмоциональное функционирование в дошкольном, школьном возрасте и взрослости. Дезорганизованная привязанность — наиболее сильный ранний предиктор диссоциации, пограничного расстройства личности и ПТСР.",
+                  authors:"Ainsworth MDS et al.",
+                  journal:"Patterns of Attachment, Erlbaum",
+                  year:"1978",
+                  doi:"https://doi.org/10.4324/9781315802428"
+                },
+                {
+                  color:"#534AB7",
+                  tag:"Эпигенетика · McGowan et al., 2009 · Nature Neuroscience",
+                  name:"Жестокое обращение в детстве изменяет метилирование гена рецептора глюкокортикоидов",
+                  what:"Что исследовали: оставляет ли детский стресс измеримый эпигенетический след в мозге человека?",
+                  text:"Посмертное исследование гиппокампа людей, переживших жестокое обращение в детстве (суициды), по сравнению с контрольными группами. Обнаружено повышенное метилирование промотора NR3C1 (ген рецептора глюкокортикоидов) и сниженная экспрессия этого гена в гиппокампе жертв жестокого обращения. Те же изменения были обнаружены у крыс с депривированным материнским уходом (Weaver et al., 2004). Это первое прямое доказательство того, что ранний стресс у людей оставляет молекулярный след, изменяющий регуляцию оси ГГН — потенциально на всю жизнь.",
+                  authors:"McGowan PO et al.",
+                  journal:"Nature Neuroscience, 12(3), 342–348",
+                  year:"2009",
+                  doi:"https://doi.org/10.1038/nn.2270"
+                },
+                {
+                  color:"#185FA5",
+                  tag:"Рефлексивное функционирование · Fonagy et al., 1991",
+                  name:"Материнский рефлексивный функционирование предсказывает привязанность ребёнка",
+                  what:"Что исследовали: можно ли предсказать тип привязанности ребёнка по когнитивным характеристикам матери ещё до рождения?",
+                  text:"Беременным матерям проводили Интервью о привязанности взрослых (AAI) — оценивали качество нарратива о собственном детстве и способность думать о психических состояниях. Через 12 месяцев после рождения проводили странную ситуацию с ребёнком. RF матери (рефлексивное функционирование) предсказывало тип привязанности ребёнка точнее, чем история самого детства матери. Травматизированная мать с высоким RF — с высокой вероятностью воспитает надёжно привязанного ребёнка. Это механизм разрыва трансгенерационного цикла.",
+                  authors:"Fonagy P et al.",
+                  journal:"Child Development, 62(4), 891–905",
+                  year:"1991",
+                  doi:"https://doi.org/10.2307/1131141"
+                },
+                {
+                  color:"#993C1D",
+                  tag:"Стресс и мозг · Meaney, 2001 · Annual Review of Neuroscience",
+                  name:"Материнский уход программирует ось ГГН и поведенческий ответ на стресс",
+                  what:"Что исследовали: как вариации в качестве материнского ухода влияют на нейробиологию стресса у потомства?",
+                  text:"Крысы, получавшие высокое материнское облизывание и груминг (LG) в первые дни жизни, во взрослом возрасте демонстрировали: более низкую реактивность ГГН на стресс, более высокую экспрессию рецепторов глюкокортикоидов в гиппокампе, более спокойное поведение в новой среде. Эффекты передавались эпигенетически, но не генетически — крысята с высоким LG от нелактирующих матерей демонстрировали тот же профиль. Перекрёстный эксперимент подтвердил: это среда, а не гены. Материнский уход буквально программирует биологию стресса потомства.",
+                  authors:"Meaney MJ.",
+                  journal:"Annual Review of Neuroscience, 24, 1161–1192",
+                  year:"2001",
+                  doi:"https://doi.org/10.1146/annurev.neuro.24.1.1161"
+                },
+                {
+                  color:"#5F5E5A",
+                  tag:"Резистентность · Werner & Smith, 1982",
+                  name:"Kauai Longitudinal Study — что защищает детей из группы риска",
+                  what:"Что исследовали: какие факторы позволяют части детей из неблагополучных сред развиваться без психопатологии?",
+                  text:"Лонгитюдное исследование 700 детей с Гавайского острова Кауаи от рождения до 40 лет. Треть детей росла в условиях бедности, семейных конфликтов, психических расстройств родителей — «высокий риск». Треть из этой трети выросла без психических расстройств и развила здоровые социальные и профессиональные функции. Общий фактор у устойчивых детей: хотя бы один стабильный, поддерживающий взрослый в раннем детстве. Резистентность — не врождённое свойство личности, а результат реляционной защиты.",
+                  authors:"Werner EE, Smith RS.",
+                  journal:"Vulnerable but Invincible: A Longitudinal Study of Resilient Children and Youth, McGraw-Hill",
+                  year:"1982",
+                  doi:"https://psycnet.apa.org/record/1982-06741-000"
+                },
+              ];
+
+              var list = document.getElementById('rs-list');
+
+              RS.forEach(function(r, i){
+                var card = document.createElement('div');
+                card.className = 'rs-card';
+                card.id = 'rs-' + i;
+                card.innerHTML =
+                  '<div class="rs-hdr" onclick="rsToggle(' + i + ')">' +
+                    '<div class="rs-meta">' +
+                      '<span class="rs-tag" style="color:' + r.color + ';border-color:' + r.color + '60">' + r.tag + '</span>' +
+                      '<div class="rs-name">' + r.name + '</div>' +
+                      '<div class="rs-what">' + r.what + '</div>' +
+                    '</div>' +
+                    '<span class="rs-chev">&#9662;</span>' +
+                  '</div>' +
+                  '<div class="rs-body"><div class="rs-body-in">' +
+                    '<div class="rs-content">' +
+                      '<div class="rs-text">' + r.text + '</div>' +
+                      '<div class="rs-source">' +
+                        '<span style="color:#aaa">Источник:</span>' +
+                        '<a href="' + r.doi + '" target="_blank" rel="noopener">' + r.authors + ' ' + r.journal + '</a>' +
+                        '<span class="rs-year">' + r.year + '</span>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div></div>';
+                list.appendChild(card);
+              });
+
+              window.rsToggle = function(i){
+                var el = document.getElementById('rs-' + i);
+                var was = el.classList.contains('rs-open');
+                document.querySelectorAll('.rs-card').forEach(function(c){ c.classList.remove('rs-open'); });
+                if (!was) el.classList.add('rs-open');
+              };
+            })();
+            </script>
+
+          </div></div></div>
+        </div>
+
+      </div>
+      <!-- /ac-wrap -->
+
+      <script>
+        function acToggle(id) {
+          var el = document.getElementById(id);
+          var wasOpen = el.classList.contains('ac-open');
+          document.querySelectorAll('.ac-item').forEach(function(item) {
+            item.classList.remove('ac-open');
+          });
+          if (!wasOpen) {
+            el.classList.add('ac-open');
+          }
+        }
+
+        // Open from URL hash
+        (function(){
+          var hash = window.location.hash;
+          var map = {
+            '#sec-intro': 'ac-intro',
+            '#sec-fear': 'ac-fear',
+            '#sec-anxiety': 'ac-anxiety',
+            '#sec-panic': 'ac-panic',
+            '#sec-trauma': 'ac-trauma',
+            '#sec-resilience': 'ac-resilience',
+            '#sec-reflection': 'ac-reflection',
+            '#sec-introspection': 'ac-introspection',
+            '#sec-research': 'ac-research'
+          };
+          if (map[hash]) {
+            var el = document.getElementById(map[hash]);
+            if (el) {
+              el.classList.add('ac-open');
+              setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+            }
+          }
+        })();
+
+        // Progress bar
+        window.addEventListener('scroll', function(){
+          var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+          document.getElementById('prog').style.width = progress + '%';
+        }, {passive: true});
+      </script>
+
+      <!-- TOOLTIP ENGINE -->
+      <div id="term-popup" class="term-popup" role="tooltip" aria-live="polite">
+        <div class="tp-term-name" id="tp-name"></div>
+        <div class="tp-def" id="tp-def"></div>
+        <div class="tp-source">
+          <span>Источник:</span>
+          <a id="tp-link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+      <script>
+      (function(){
+        var TERMS = {
+          "амигдала": {
+            name: "Амигдала (миндалевидное тело)",
+            def: "Парная структура медиальной височной доли. Центр детекции угрозы и ассоциативного обусловливания страха. Функционально активна с 8-й недели эмбрионального развития — значительно раньше ПФК. Реагирует на угрозу за 88–170 мс до осознания.",
+            src: "LeDoux JE. (2000) Emotion circuits in the brain. Annual Review of Neuroscience",
+            url: "https://doi.org/10.1146/annurev.neuro.23.1.155"
+          },
+          "ось ггн": {
+            name: "Ось ГГН (гипоталамус — гипофиз — надпочечники)",
+            def: "Нейроэндокринная ось стрессового ответа. Гипоталамус → КРГ → гипофиз → АКТГ → кора надпочечников → кортизол. Хронический ранний стресс нарушает калибровку этой оси, изменяя чувствительность рецепторов глюкокортикоидов в гиппокампе.",
+            src: "Meaney MJ. (2001) Maternal Care, Gene Expression, and the Transmission of Individual Differences in Stress Reactivity. Annual Review of Neuroscience",
+            url: "https://doi.org/10.1146/annurev.neuro.24.1.1161"
+          },
+          "интероцепция": {
+            name: "Интероцепция",
+            def: "Восприятие сигналов от внутренней среды тела: сердечный ритм, дыхание, ЖКТ, мышечное напряжение. Путь: блуждающий нерв → ядро одиночного тракта → инсула → амигдала. При панических атаках — именно интероцептивные сигналы становятся ложными триггерами страха.",
+            src: "Craig AD. (2009) How do you feel — now? Nature Reviews Neuroscience",
+            url: "https://doi.org/10.1038/nrn2555"
+          },
+          "пфк": {
+            name: "ПФК (префронтальная кора)",
+            def: "Структуры лобной доли, отвечающие за регуляцию аффекта, принятие решений и рефлексию. Полностью миелинизируется лишь к 25 годам. В контексте раннего развития: именно воспитатель выполняет функцию незрелой ПФК, со-регулируя аффективные состояния ребёнка.",
+            src: "Quirk GJ, Beer JS. (2006) Prefrontal involvement in the regulation of emotion. Current Opinion in Neurobiology",
+            url: "https://doi.org/10.1016/j.conb.2006.03.032"
+          },
+          "дезорганизованная привязанность": {
+            name: "Дезорганизованная привязанность (тип D)",
+            def: "Паттерн привязанности, при котором фигура привязанности одновременно является источником страха и единственной возможной защитой. Системы привязанности и страха активируются одновременно, создавая биологический парадокс. Наиболее сильный ранний предиктор диссоциации, ПТСР и расстройств личности.",
+            src: "Main M, Hesse E. (1990) Parents' unresolved traumatic experiences are related to infant disorganized attachment status. In Greenberg MT et al. (Eds.)",
+            url: "https://doi.org/10.1017/CBO9780511752582.011"
+          },
+          "интолерантность к неопределённости": {
+            name: "Интолерантность к неопределённости",
+            def: "Склонность воспринимать неопределённые ситуации как угрожающие, независимо от их реальной вероятности. Основная когнитивная уязвимость при ГТР. Формируется в среде с непредсказуемой доступностью фигуры привязанности: непредсказуемость = постоянная фоновая угроза.",
+            src: "Dugas MJ, Robichaud M. (2007) Cognitive-Behavioral Treatment for Generalized Anxiety Disorder. Routledge",
+            url: "https://www.routledge.com/9780415951364"
+          }
+        };
+
+        var popup = document.getElementById('term-popup');
+        var tpName = document.getElementById('tp-name');
+        var tpDef  = document.getElementById('tp-def');
+        var tpLink = document.getElementById('tp-link');
+        var activeEl = null;
+        var hideTimer = null;
+
+        function showPopup(el, key) {
+          clearTimeout(hideTimer);
+          var t = TERMS[key];
+          if (!t) return;
+          tpName.textContent = t.name;
+          tpDef.textContent  = t.def;
+          tpLink.textContent = t.src;
+          tpLink.href        = t.url;
+          popup.classList.add('tp-show');
+          positionPopup(el);
+          activeEl = el;
+        }
+
+        function positionPopup(el) {
+          var rect = el.getBoundingClientRect();
+          var pw = 320, ph = 160;
+          var vw = window.innerWidth, vh = window.innerHeight;
+          var left = rect.left;
+          var top  = rect.bottom + 8;
+          if (left + pw > vw - 12) left = vw - pw - 12;
+          if (left < 12) left = 12;
+          if (top + ph > vh - 12) top = rect.top - ph - 8;
+          if (top < 12) top = 12;
+          popup.style.left = left + 'px';
+          popup.style.top  = top  + 'px';
+        }
+
+        function hidePopup() {
+          hideTimer = setTimeout(function(){
+            popup.classList.remove('tp-show');
+            activeEl = null;
+          }, 120);
+        }
+
+        popup.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); });
+        popup.addEventListener('mouseleave', hidePopup);
+
+        document.addEventListener('click', function(e){
+          if (!popup.contains(e.target) && (!activeEl || !activeEl.contains(e.target))) {
+            popup.classList.remove('tp-show');
+          }
+        });
+
+        document.querySelectorAll('.term').forEach(function(el){
+          var key = (el.dataset.term || el.textContent).toLowerCase().trim();
+          el.addEventListener('mouseenter', function(){ showPopup(el, key); });
+          el.addEventListener('mouseleave', hidePopup);
+          el.addEventListener('touchstart', function(e){
+            e.preventDefault();
+            if (popup.classList.contains('tp-show') && activeEl === el) {
+              popup.classList.remove('tp-show');
+            } else {
+              showPopup(el, key);
+            }
+          }, {passive:false});
+        });
+
+        window.addEventListener('scroll', function(){
+          if (activeEl) positionPopup(activeEl);
+        }, {passive:true});
+        window.addEventListener('resize', function(){
+          if (activeEl) positionPopup(activeEl);
+        });
+      })();
+      </script>
+
+      <!-- Language selector JS -->
+      <script>
+        var lt = document.getElementById('language-toggle');
+        var ld = document.getElementById('language-dropdown');
+        if (lt && ld) {
+          lt.addEventListener('click', function(e){ e.stopPropagation(); ld.classList.toggle('active'); });
+          document.addEventListener('click', function(){ ld.classList.remove('active'); });
+        }
+      </script>
+
+      <div class="navigation-links">
+        <a href="pfactor_identity_ru.html" class="nav-link prev">
+          <span class="nav-arrow">←</span>
+          <span>Что такое «Страх»</span>
+        </a>
+        <a href="trauma_en.html" class="nav-link next">
+          <span>Скрининг ПТСР</span>
+          <span class="nav-arrow">→</span>
+        </a>
+      </div>
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="pfactor_identity_ru.html">Что такое «Страх»</a></li>
+        <li class="mobile-nav-item"><a href="trauma_en.html">Скрининг ПТСР</a></li>
+      </ul>
+
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-copyright">© Все права защищены. Центр когнитивных исследований</div>
+    <div class="footer-nav">
+      <div class="footer-column">
+        <h4>Меню</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="basics_en.html">Основы</a></li>
+          <li><a href="blog_en.html">Блог</a></li>
+          <li><a href="tests_en.html">Тесты</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4><a href="about_ru.html">О нас</a></h4>
+        <ul>
+          <li><a href="about_ru.html#who-we-are">Кто мы</a></li>
+          <li><a href="about_ru.html#mission">Миссия</a></li>
+          <li><a href="about_ru.html#tasks">Задачи</a></li>
+          <li><a href="about_ru.html#contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
