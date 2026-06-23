@@ -486,7 +486,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <style>
                 .fsimple{border-radius:8px;transition:background .15s;cursor:pointer;overflow:hidden}
                 .fsimple:hover{background:#f7f7f5}
-                .fsimple-hdr{display:flex;align-items:center;gap:14px;padding:11px 8px}
+                .fsimple-hdr{display:flex;align-items:center;gap:14px;padding:11px 8px;cursor:pointer}
                 .fsimple-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor}
                 .fsimple-time{font-size:11px;font-weight:500;flex-shrink:0;min-width:78px}
                 .fsimple-title{font-size:13.5px;color:#1a1a1a;line-height:1.5;flex:1}
@@ -505,8 +505,8 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                 }
               </style>
 
-              <div class="fsimple" id="fs-1" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-1">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#0f6e56;background:#e1f5ee">1</div>
                   <div class="fsimple-title">Внешняя среда → органы чувств → рецепторы</div>
                   <span class="fsimple-chev">&#9662;</span>
@@ -553,56 +553,56 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
                     </span>
                   </div></div></div></div>
               </div>
-              <div class="fsimple" id="fs-2" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-2">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#993c1d;background:#faece7">2</div>
                   <div class="fsimple-title">Рецепторы → <span class="term" data-term="таламус">таламус</span> → <span class="term" data-term="амигдала">амигдала</span></div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>12–88 мс.</strong> Нейронный сигнал от рецепторов достиг <span class="term" data-term="таламус">таламуса</span> — и тот немедленно отправляет его копию напрямую в амигдалу (БЛА), минуя кору. Это «нижний путь»: тело реагирует на угрозу раньше любого осознания. За эти миллисекунды тело уже отвечает — <span class="term" data-term="внс">ВНС</span> активирована, адреналин выброшен, замирание запущено.</div></div></div>
               </div>
-              <div class="fsimple" id="fs-3" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-3">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#993c1d;background:#faece7">3</div>
                   <div class="fsimple-title"><span class="term" data-term="амигдала">Амигдала</span> → <span class="term" data-term="гипоталамус">гипоталамус</span>, ствол мозга и <span class="term" data-term="пфк">ПФК</span> одновременно</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>100–200 мс.</strong> Центральное ядро амигдалы (ЦЯ) активирует три параллельных выхода: <span class="term" data-term="гипоталамус">гипоталамус</span> (<span class="term" data-term="внс">ВНС</span> + <span class="term" data-term="ось ггн">ось ГГН</span>), ствол / ПАВ (замирание, бегство, борьба) и запускает оценку в <span class="term" data-term="пфк">ПФК</span>.</div></div></div>
               </div>
-              <div class="fsimple" id="fs-4" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-4">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#185fa5;background:#e6f1fb">4</div>
                   <div class="fsimple-title"><span class="term" data-term="пфк">ПФК</span> получает точный сигнал и уточняет оценку <span class="term" data-term="амигдала">амигдалы</span></div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>150–300 мс.</strong> Это «верхний путь»: параллельно быстрому нижнему пути кора проводит медленный, но точный анализ и передаёт результат обратно в амигдалу. Верхний путь может подтвердить тревогу нижнего пути или отменить её — например, распознав, что палка на дороге не змея.</div></div></div>
               </div>
-              <div class="fsimple" id="fs-5" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-5">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#534ab7;background:#eeedfe">5</div>
                   <div class="fsimple-title">Уточнённая оценка <span class="term" data-term="пфк">ПФК</span> + сигнал тела → рабочая память → «я боюсь»</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>300–500 мс.</strong> <span class="term" data-term="пфк">ПФК</span>, гиппокамп (контекст) и инсула (тело) собирают сигналы в рабочей памяти. Именно здесь появляется субъективное переживание страха.</div></div></div>
               </div>
-              <div class="fsimple" id="fs-6" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-6">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#ba7517;background:#faeeda">6</div>
                   <div class="fsimple-title">«Я боюсь» → <span class="term" data-term="ось ггн">ось ГГН</span> → кортизол нарастает</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>1–20 мин.</strong> Субъективное осознание угрозы усиливает <span class="term" data-term="ось ггн">ось ГГН</span>. Адреналин пикует на 1–3 мин, кортизол нарастает 10–20 мин. <span class="term" data-term="пфк">ПФК</span> начинает активно тормозить амигдалу.</div></div></div>
               </div>
-              <div class="fsimple" id="fs-7" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-7">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#0f6e56;background:#e1f5ee">7</div>
                   <div class="fsimple-title">Кортизол на пике → <span class="term" data-term="пфк">ПФК</span> тормозит <span class="term" data-term="амигдала">амигдалу</span> → страх угасает</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>20–60 мин.</strong> Кортизол достигает пика и начинает снижаться. <span class="term" data-term="пфк">ПФК</span> подавляет амигдалу. Гиппокамп сигнализирует о безопасности контекста. Страховой эпизод завершён.</div></div></div>
               </div>
-              <div class="fsimple" id="fs-8" onclick="fsToggle(this, event)">
-                <div class="fsimple-hdr">
+              <div class="fsimple" id="fs-8">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#5f5e5a;background:#f1efe8">8</div>
                   <div class="fsimple-title">Угасший страх → консолидация памяти угрозы</div>
                   <span class="fsimple-chev">&#9662;</span>
@@ -614,9 +614,11 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
               <script>
               function fsToggle(el, e){
                 if (e && e.target.closest('a, button')) return;
-                var wasOpen = el.classList.contains('fsimple-open');
-                document.querySelectorAll('.fsimple').forEach(function(item){ item.classList.remove('fsimple-open'); });
-                if (!wasOpen) el.classList.add('fsimple-open');
+                var item = el.closest('.fsimple');
+                if (!item) return;
+                var wasOpen = item.classList.contains('fsimple-open');
+                document.querySelectorAll('.fsimple').forEach(function(it){ it.classList.remove('fsimple-open'); });
+                if (!wasOpen) item.classList.add('fsimple-open');
               }
               </script>
 
