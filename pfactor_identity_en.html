@@ -241,7 +241,9 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
 /* ---- Base / typography ------------------------------------ */
 body{font-family:var(--font-untitledsans)!important;background:var(--color-paper)!important;color:var(--color-obsidian)!important;line-height:1.5!important;}
-.container{max-width:1200px!important;}
+.container{max-width:1200px!important; padding-left:64px!important; padding-right:64px!important; box-sizing:border-box!important;}
+@media (max-width:900px){ .container{padding-left:32px!important; padding-right:32px!important;} }
+@media (max-width:560px){ .container{padding-left:20px!important; padding-right:20px!important;} }
 
 /* ---- Synapse announcement bar ----------------------------- */
 .synapse-bar{
@@ -395,11 +397,6 @@ nav a.active-link::after{transform:scaleX(1)!important;}
   <div class="container">
     <section class="article-section">
 
-      <div class="article-meta">
-        <span class="meta-pill">Research</span>
-        <span class="meta-dot"></span>
-        <span class="meta-date">December 9, 2025</span>
-      </div>
       <h1 class="article-title">What Is Fear</h1>
       <div class="intro-block">
         <p>How a biological function shapes the self</p>
