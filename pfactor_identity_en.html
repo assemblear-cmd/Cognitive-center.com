@@ -3,19 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What is "Fear" - CRC</title>
+<title>What Is Fear — CCR</title>
 <style>
-/* General Styles */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #ffffff;
-  color: #1a1a1a;
-  line-height: 1.7;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a;
+  line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh;
 }
 .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
 main { flex-grow: 1; }
@@ -24,28 +17,21 @@ main { flex-grow: 1; }
 .site-header {
   position: sticky; top: 0;
   background-color: rgba(255,255,255,0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #f0f0f0;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 1000; display: flex; justify-content: space-between;
+  align-items: center; padding: 20px; border-bottom: 1px solid #f0f0f0;
 }
 .logo { font-size: 24px; font-weight: 600; color: #1a1a1a; }
 .nav-container { display: flex; align-items: center; gap: 20px; }
 nav a {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-  text-decoration: none !important; color: #1a1a1a !important;
-  margin-left: 20px; font-size: 16px; padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
+  font-family: inherit !important; text-decoration: none !important;
+  color: #1a1a1a !important; margin-left: 20px; font-size: 16px;
+  padding-bottom: 4px; border-bottom: 2px solid transparent;
   transition: border-color 0.3s, color 0.3s;
 }
 nav a.active-link { font-weight: 600; border-bottom-color: #1a1a1a; }
 nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
-/* Language selector */
 .language-selector { position: relative; margin-left: 20px; }
 .current-language {
   display: flex; align-items: center; gap: 6px; cursor: pointer;
@@ -63,9 +49,8 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 }
 .language-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
 .language-option {
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 16px; cursor: pointer;
-  transition: background-color 0.2s; text-decoration: none; color: #1a1a1a;
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  cursor: pointer; transition: background-color 0.2s; text-decoration: none; color: #1a1a1a;
 }
 .language-option:hover { background-color: #f5f5f5; }
 .language-option.current { background-color: #f0f0f0; font-weight: 600; }
@@ -81,9 +66,8 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 }
 .article-section p { font-size: 18px; color: #333; margin-bottom: 20px; }
 
-/* ── INTERACTIVE MAP ── */
+/* MAP */
 .map-wrap { margin: 40px 0 60px; }
-
 .master-q {
   background: #f7f7f7; border-top: 2px solid #1a1a1a;
   padding: 24px 28px; margin-bottom: 32px;
@@ -94,7 +78,6 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 }
 .master-q p { font-size: 17px; color: #1a1a1a; margin: 0; line-height: 1.65; }
 
-/* Level card */
 .level-card {
   border: 1px solid #e8e8e8; margin-bottom: 6px;
   transition: border-color .2s;
@@ -108,7 +91,6 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
   padding: 16px 20px; cursor: pointer; user-select: none;
   background: #fff;
 }
-
 .level-num {
   width: 36px; height: 36px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -117,40 +99,26 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
   flex-shrink: 0; transition: background .2s, color .2s;
 }
 .level-card.open .level-num { background: #1a1a1a; color: #fff; }
-
 .level-meta { min-width: 0; }
 .level-title { font-size: 16px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
 .level-sub { font-size: 12px; color: #888; margin-top: 2px; }
-
 .level-badge {
   font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
   padding: 3px 10px; border: 1px solid #e0e0e0;
   color: #888; white-space: nowrap;
 }
-
 .chev {
   font-size: 12px; color: #aaa; transition: transform .2s;
   margin-left: 8px; display: inline-block;
 }
 .level-card.open .chev { transform: rotate(180deg); }
 
-/* Body */
-.level-body {
-  display: grid; grid-template-rows: 0fr;
-  transition: grid-template-rows .28s ease;
-}
+.level-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s ease; }
 .level-card.open .level-body { grid-template-rows: 1fr; }
 .level-body-inner { overflow: hidden; }
-.level-content {
-  padding: 0 20px 24px 70px;
-  border-top: 1px solid #f0f0f0;
-}
+.level-content { padding: 0 20px 24px 70px; border-top: 1px solid #f0f0f0; }
 
-/* Tabs */
-.tabs {
-  display: flex; gap: 0; margin: 16px 0 18px;
-  border-bottom: 1px solid #e8e8e8;
-}
+.tabs { display: flex; margin: 16px 0 18px; border-bottom: 1px solid #e8e8e8; }
 .tab-btn {
   background: none; border: none; color: #aaa;
   font-family: inherit; font-size: 12px; letter-spacing: .08em;
@@ -161,40 +129,25 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 .tab-btn:hover { color: #1a1a1a; }
 .tab-btn.act { color: #1a1a1a; border-bottom-color: #1a1a1a; }
 
-/* Panels */
 .tab-panel { display: none; }
 .tab-panel.act { display: block; }
 
 .def-q { font-style: italic; font-size: 15px; color: #888; margin-bottom: 12px; }
 .def-text { font-size: 16px; color: #333; line-height: 1.75; }
 
-/* Components grid */
 .comp-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
   gap: 8px; margin-top: 4px;
 }
-.comp-item {
-  background: #f9f9f9; border-left: 3px solid #1a1a1a;
-  padding: 10px 14px;
-}
+.comp-item { background: #f9f9f9; border-left: 3px solid #1a1a1a; padding: 10px 14px; }
 .comp-name { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
 .comp-desc { font-size: 12px; color: #888; line-height: 1.5; }
 
-/* Mechanism */
-.mech-block {
-  background: #f7f7f7; padding: 20px 24px;
-}
+.mech-block { background: #f7f7f7; padding: 20px 24px; }
 .mech-text { font-size: 16px; color: #333; line-height: 1.75; }
-.mech-source {
-  margin-top: 14px; font-size: 11px; color: #aaa;
-  border-top: 1px solid #e8e8e8; padding-top: 10px;
-}
+.mech-source { margin-top: 14px; font-size: 11px; color: #aaa; border-top: 1px solid #e8e8e8; padding-top: 10px; }
 
-/* Transition */
-.trans-block {
-  padding: 18px 22px;
-  border-left: 3px solid #1a1a1a; background: #f9f9f9;
-}
+.trans-block { padding: 18px 22px; border-left: 3px solid #1a1a1a; background: #f9f9f9; }
 .trans-q { font-style: italic; font-size: 16px; color: #333; line-height: 1.7; margin-bottom: 12px; }
 .trans-next-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #aaa; margin-bottom: 4px; }
 .trans-next-name { font-size: 15px; font-weight: 500; color: #1a1a1a; }
@@ -203,29 +156,16 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
   display: inline-flex; align-items: center; gap: 6px;
   margin-top: 14px; font-size: 13px; padding: 7px 14px;
   border: 1.5px solid #1a1a1a; background: none; color: #1a1a1a;
-  cursor: pointer; transition: background .15s, color .15s;
-  font-family: inherit;
+  cursor: pointer; transition: background .15s, color .15s; font-family: inherit;
 }
 .open-next-btn:hover { background: #1a1a1a; color: #fff; }
 
-/* Connector */
-.connector {
-  height: 24px; display: flex; align-items: center;
-  padding-left: 54px; opacity: .3;
-}
+.connector { height: 24px; display: flex; align-items: center; padding-left: 54px; opacity: .3; }
 .conn-line { width: 1px; height: 100%; background: #1a1a1a; }
 
-/* Progress bar */
-.progress-bar {
-  position: sticky; top: 0; z-index: 999;
-  height: 2px; background: #f0f0f0; overflow: hidden;
-}
-.progress-fill {
-  height: 100%; background: #1a1a1a;
-  width: 0%; transition: width .3s ease;
-}
+.progress-bar { position: sticky; top: 0; z-index: 999; height: 2px; background: #f0f0f0; overflow: hidden; }
+.progress-fill { height: 100%; background: #1a1a1a; width: 0%; transition: width .3s ease; }
 
-/* Nav links */
 .navigation-links {
   display: flex; justify-content: space-between; align-items: center;
   margin-top: 40px; padding: 30px 0; border-top: 1px solid #e0e0e0;
@@ -241,64 +181,187 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 .nav-arrow { font-size: 20px; margin: 0 10px; }
 .mobile-nav-list { display: none; }
 
-/* Footer */
 .site-footer {
-  background-color: #ffffff !important; padding: 40px 0 !important;
+  background-color: #ffffff !important; padding: 56px 64px 48px !important;
   margin-top: 0 !important; font-size: 14px !important;
-  color: #555 !important; border-top: none !important;
+  color: #555 !important; border-top: 1px solid #e0e0e0 !important; position: relative !important;
 }
 .site-footer .footer-container {
-  display: flex !important; justify-content: space-between !important;
-  align-items: flex-end !important; width: 100% !important;
-  max-width: 100% !important; margin: 0 !important;
-  padding: 0 40px !important; box-sizing: border-box !important;
+  display: flex !important; justify-content: space-between !important; align-items: flex-end !important;
+  width: 100% !important; padding: 0 !important; box-sizing: border-box !important; max-width: none !important;
 }
-.site-footer .footer-copyright { flex-basis: auto !important; align-self: flex-end !important; }
-.site-footer .footer-nav { display: flex !important; gap: 60px !important; align-items: flex-start !important; }
-.site-footer .footer-column { text-align: left !important; }
+.site-footer .footer-nav { display: flex !important; gap: 100px !important; align-items: flex-start !important; }
+.site-footer .footer-column { text-align: left !important; position: relative !important; }
 .site-footer .footer-column h4 {
   font-size: 16px !important; font-weight: 600 !important; color: #1a1a1a !important;
-  margin: 0 0 15px 0 !important; padding: 0 !important; text-align: left !important;
+  margin: 0 0 22px 0 !important; padding: 0 !important; letter-spacing: 0 !important; text-transform: none !important;
 }
 .site-footer .footer-column h4 a { text-decoration: none !important; color: #1a1a1a !important; }
 .site-footer .footer-column ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
-.site-footer .footer-column li { margin: 0 0 10px 0 !important; padding: 0 !important; list-style: none !important; }
-.site-footer .footer-column a { text-decoration: none !important; color: #555 !important; }
+.site-footer .footer-column li { margin: 0 0 16px 0 !important; list-style: none !important; }
+.site-footer .footer-column li:last-child { margin-bottom: 0 !important; }
+.site-footer .footer-column a { text-decoration: none !important; color: #555 !important; font-weight: 400 !important; }
 .site-footer .footer-column a:hover { color: #1a1a1a !important; }
+.site-footer .footer-copyright {
+  flex-basis: auto !important; align-self: flex-end !important; flex-shrink: 0 !important;
+  color: #555 !important; font-size: 14px !important; font-weight: 400 !important; padding-left: 40px !important;
+}
 
 @media (max-width: 768px) {
   .site-header { flex-direction: column; gap: 15px; }
-  .article-title { font-size: 38px; }
+  .article-title { font-size: 36px; }
   .level-content { padding: 0 16px 20px 16px; }
   .navigation-links { display: none; }
   .mobile-nav-list { display: block; margin-top: 40px; padding: 0; list-style: none; border-top: 1px solid #e0e0e0; padding-top: 30px; }
   .mobile-nav-item { margin-bottom: 15px; font-size: 16px; }
   .mobile-nav-item::before { content: "- "; color: #1a1a1a; margin-right: 5px; }
   .mobile-nav-item a { color: #1a1a1a !important; text-decoration: none !important; font-weight: 500; }
-  .site-footer .footer-container { flex-direction: column; gap: 30px; }
+  .site-footer { padding: 40px 24px 32px !important; }
+  .site-footer .footer-container { flex-direction: column; align-items: flex-start !important; gap: 40px; }
+  .site-footer .footer-nav { flex-direction: column; gap: 36px !important; }
+  .site-footer .footer-copyright { padding-left: 0 !important; }
 }
+
+/* ============================================================
+   NEURALINK-DERIVED DESIGN SYSTEM — applied via tokens.json
+   "Obsidian laboratory with a single color synapse"
+   ============================================================ */
+@font-face{font-family:'UntitledSans';src:url('fonts/UntitledSans-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:'UntitledSans';src:url('fonts/UntitledSans-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'UntitledSans';src:url('fonts/UntitledSans-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:'UntitledSans';src:url('fonts/UntitledSans-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+
+:root{
+  --color-obsidian:#000000; --color-paper:#ffffff; --color-ash:#f5f5f5; --color-fog:#bababa;
+  --color-synapse:#6452d8;
+  --gradient-synapse:linear-gradient(90deg,#e486ab,#7f80b3 20%,#435a93 50%,#6452d8 95%);
+  --font-untitledsans:'UntitledSans',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --radius-cards:20px; --radius-buttons:80px; --radius-nav:16px;
+}
+
+/* ---- Base / typography ------------------------------------ */
+body{font-family:var(--font-untitledsans)!important;background:var(--color-paper)!important;color:var(--color-obsidian)!important;line-height:1.5!important;}
+.container{max-width:1200px!important;}
+
+/* ---- Synapse announcement bar ----------------------------- */
+.synapse-bar{
+  background:var(--gradient-synapse); color:#fff; font-family:var(--font-untitledsans);
+  font-size:12px; font-weight:400; letter-spacing:-0.18px; line-height:1;
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  padding:10px 20px; position:relative; text-align:center;
+}
+.synapse-bar a{color:#fff!important; text-decoration:underline; text-underline-offset:2px;}
+.synapse-bar .syn-close{position:absolute; right:18px; top:50%; transform:translateY(-50%); cursor:pointer; background:none; border:none; color:#fff; font-size:15px; line-height:1; opacity:.85;}
+.synapse-bar .syn-close:hover{opacity:1;}
+
+/* ---- Header (Paper / Fog nav) ----------------------------- */
+.site-header{
+  background:rgba(255,255,255,0.92)!important; border-bottom:1px solid #ececec!important;
+  backdrop-filter:blur(10px)!important; -webkit-backdrop-filter:blur(10px)!important; padding:18px 28px!important;
+}
+.logo{font-family:var(--font-untitledsans)!important; font-weight:500!important; font-size:20px!important; letter-spacing:-0.4px; color:var(--color-obsidian)!important;}
+nav a{
+  font-family:var(--font-untitledsans)!important; color:var(--color-fog)!important; font-weight:500!important;
+  font-size:15px!important; letter-spacing:-0.2px; border-bottom:none!important; padding-bottom:0!important;
+  transition:color .2s!important;
+}
+nav a:hover{color:var(--color-obsidian)!important; border-bottom:none!important;}
+nav a.active-link{color:var(--color-obsidian)!important; font-weight:500!important; border-bottom:none!important;}
+.language-code{font-family:var(--font-untitledsans)!important;}
+.current-language{border:1px solid var(--color-fog); border-radius:var(--radius-nav); padding:6px 12px!important;}
+.current-language:hover{background:transparent!important; border-color:var(--color-obsidian);}
+
+/* ---- Progress bar ----------------------------------------- */
+.progress-fill{background:var(--gradient-synapse)!important;}
+
+/* ---- Hero / article title --------------------------------- */
+.article-section{padding:80px 0 60px!important;}
+.article-title{
+  font-family:var(--font-untitledsans)!important; font-weight:300!important;
+  font-size:88px!important; line-height:0.98!important; letter-spacing:-0.055em!important;
+  color:var(--color-obsidian)!important; margin:0 0 28px 0!important;
+}
+.intro-block{font-size:20px!important; color:#333!important; letter-spacing:-0.4px;}
+.intro-block p{font-weight:400!important;}
+
+/* section H2/H3 — light display weight, tight tracking */
+.article-section h2{
+  font-family:var(--font-untitledsans)!important; font-weight:300!important;
+  font-size:40px!important; line-height:1.05!important; letter-spacing:-0.04em!important;
+  border-top:1px solid #e6e6e6!important; padding-top:48px!important; color:var(--color-obsidian)!important;
+}
+.article-section h3{font-family:var(--font-untitledsans)!important; font-weight:400!important; letter-spacing:-0.03em!important;}
+.article-section p{font-family:var(--font-untitledsans)!important; color:#1a1a1a!important; letter-spacing:-0.32px;}
+
+/* ---- Accordion → Paper cards, Fog hairlines --------------- */
+.ac-wrap{margin:48px 0 56px!important;}
+.ac-item{border:1px solid #e6e6e6!important; border-radius:0!important; background:var(--color-paper)!important;}
+.ac-item:first-child{border-radius:var(--radius-cards) var(--radius-cards) 0 0!important;}
+.ac-item:last-child{border-radius:0 0 var(--radius-cards) var(--radius-cards)!important;}
+.ac-item+.ac-item{border-top:none!important;}
+.ac-item.ac-open{border-color:var(--color-obsidian)!important;}
+.ac-item:hover:not(.ac-open){border-color:var(--color-fog)!important;}
+.ac-hdr{padding:26px 28px!important;}
+.ac-num{font-family:var(--font-untitledsans)!important; font-weight:300!important; letter-spacing:-0.03em!important; color:var(--color-fog)!important;}
+.ac-item.ac-open .ac-num{color:var(--color-obsidian)!important;}
+.ac-title-txt,.ac-hdr h2,.ac-hdr h3,.ac-hdr-title{font-family:var(--font-untitledsans)!important; font-weight:400!important; letter-spacing:-0.03em!important;}
+
+/* ---- Pill buttons (DESIGN.md: 80px radius) ---------------- */
+.open-next-btn,.more-btn,.smell-btn,.extra-btn,button.pill,.cta-pill{
+  border-radius:var(--radius-buttons)!important; font-family:var(--font-untitledsans)!important;
+  font-weight:500!important; letter-spacing:-0.2px!important;
+}
+.open-next-btn{border:1px solid var(--color-obsidian)!important; background:transparent!important; color:var(--color-obsidian)!important; padding:12px 24px!important;}
+.open-next-btn:hover{background:var(--color-obsidian)!important; color:var(--color-paper)!important;}
+
+/* ---- Term tooltips keep accent on the single synapse color  */
+.term{border-bottom:1px dotted var(--color-synapse)!important; cursor:help;}
+
+/* ---- Footer → Ash band ------------------------------------ */
+.site-footer{
+  background:var(--color-ash)!important; border-top:1px solid #e6e6e6!important;
+  padding:64px 28px 56px!important; font-family:var(--font-untitledsans)!important;
+  font-size:14px!important; color:#555!important;
+}
+.site-footer .footer-column h4{font-family:var(--font-untitledsans)!important; font-weight:500!important; font-size:16px!important; letter-spacing:-0.3px!important; color:var(--color-obsidian)!important;}
+.site-footer .footer-column a,.site-footer .footer-copyright{font-family:var(--font-untitledsans)!important; color:#555!important; letter-spacing:-0.21px!important;}
+.site-footer .footer-column a:hover{color:var(--color-obsidian)!important;}
+
+/* ---- Responsive display sizing ---------------------------- */
+@media (max-width:768px){
+  .article-title{font-size:48px!important; letter-spacing:-0.04em!important;}
+  .article-section h2{font-size:30px!important;}
+  .site-header{padding:14px 18px!important;}
+  .synapse-bar{font-size:11px; padding:9px 36px 9px 16px;}
+}
+
 </style>
 </head>
 <body>
 
+<div class="synapse-bar">
+  <span>Center for Cognitive Research — a popular-science project on the mind and behavior</span>
+  <button class="syn-close" aria-label="Close" onclick="this.parentElement.style.display='none'">&#215;</button>
+</div>
+
 <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
 
 <header class="site-header">
-  <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CRC</a></div>
+  <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">CCR</a></div>
   <div class="nav-container">
     <nav>
       <a href="index.html">Home</a>
-      <a href="basics_en.html">Basics</a>
-      <a href="blog_en.html" class="active-link">Blog</a>
-      <a href="tests_en.html">Tests</a>
+      <a href="baza.html">Library</a>
+      <a href="blog.html" class="active-link">Blog</a>
+      <a href="tests.html">Tests</a>
     </nav>
     <div class="language-selector">
       <div class="current-language" id="language-toggle">
-        <span class="language-code">EN</span>
+        <span class="language-code">RU</span>
       </div>
       <div class="language-dropdown" id="language-dropdown">
-        <a href="pfactor_identity_en.html" class="language-option current"><span class="language-code">EN</span></a>
-        <a href="pfactor_identity_ru.html" class="language-option"><span class="language-code">RU</span></a>
+        <a href="pfactor_identity_en.html" class="language-option"><span class="language-code">EN</span></a>
+        <a href="pfactor_identity_ru.html" class="language-option current"><span class="language-code">RU</span></a>
       </div>
     </div>
   </div>
@@ -308,34 +371,962 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
   <div class="container">
     <section class="article-section">
 
-      <h1 class="article-title">What is "Fear"</h1>
+      <h1 class="article-title">What Is Fear</h1>
       <div class="intro-block">
-        <p>A logical vertical: how biological vulnerability becomes personality.</p>
+        <p>How a biological function shapes the self</p>
       </div>
 
-      <h2 style="border-top:none;padding-top:0;margin-top:0">The central question</h2>
-      <div class="map-wrap">
-        <div class="master-q">
-          <div class="mq-label">What this map answers</div>
-          <p>How does a person's biological predisposition to negative emotions — fear, anxiety, depression — travel from genetic vulnerability to specific personality traits and the structure of self-identity?</p>
+      <!-- ACCORDION STYLES -->
+      <style>
+        .ac-wrap { display:flex; flex-direction:column; gap:0; margin:40px 0 48px; }
+        .ac-item { border:0.5px solid #e0e0e0; overflow:hidden; transition:border-color .18s; }
+        .ac-item:first-child { border-radius:10px 10px 0 0; }
+        .ac-item:last-child  { border-radius:0 0 10px 10px; }
+        .ac-item + .ac-item  { border-top:none; }
+        .ac-item.ac-open     { border-color:#1a1a1a; position:relative; z-index:1; }
+        .ac-item:hover:not(.ac-open) { border-color:#aaa; }
+
+        .ac-hdr {
+          display:flex; align-items:center; gap:14px;
+          padding:18px 22px; cursor:pointer; user-select:none;
+          background:#fff; transition:background .15s;
+        }
+        .ac-item.ac-open .ac-hdr { background:#fff; }
+
+        .ac-num {
+          font-size:11px; font-weight:500; color:#aaa;
+          min-width:22px; font-variant-numeric:tabular-nums;
+          letter-spacing:.04em;
+        }
+        .ac-item.ac-open .ac-num { color:#1a1a1a; }
+
+        .ac-title {
+          flex:1; font-size:16px; font-weight:500; color:#1a1a1a; line-height:1.3;
+        }
+        .ac-chev {
+          font-size:18px; color:#ccc; transition:transform .22s; flex-shrink:0;
+          line-height:1;
+        }
+
+        /* ── TERM TOOLTIPS ── */
+        .term {
+          border-bottom: 1.5px dotted currentColor;
+          cursor: help;
+          position: relative;
+          display: inline;
+          white-space: nowrap;
+        }
+        .term-popup {
+          display: none;
+          position: fixed;
+          z-index: 9999;
+          max-width: 320px;
+          background: #fff;
+          border: 0.5px solid #1a1a1a;
+          border-radius: 10px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+          padding: 14px 16px;
+          pointer-events: auto;
+          animation: tp-in .15s ease;
+        }
+        @keyframes tp-in {
+          from { opacity:0; transform:translateY(4px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+        .term-popup.tp-show { display: block; }
+        .tp-term-name {
+          font-size: 13px; font-weight: 600; color: #1a1a1a;
+          margin-bottom: 6px;
+        }
+        .tp-def {
+          font-size: 12px; line-height: 1.65; color: #555;
+          margin-bottom: 10px;
+        }
+        .tp-source {
+          font-size: 11px; color: #aaa;
+          border-top: 0.5px solid #e8e8e8;
+          padding-top: 8px;
+          display: flex; align-items: center; gap: 6px;
+        }
+        .tp-source a {
+          color: #1a1a1a; text-decoration: none;
+          border-bottom: 0.5px solid #ccc;
+          transition: border-color .15s;
+          font-size: 11px;
+        }
+        .tp-source a:hover { border-bottom-color: #1a1a1a; }
+        @media (prefers-color-scheme: dark) {
+          .term-popup { background: #1c1c19; border-color: #e0e0e0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+          .tp-term-name { color: #e8e4d8; }
+          .tp-def { color: #9b9990; }
+          .tp-source { border-top-color: #2a2a28; color: #666; }
+          .tp-source a { color: #e8e4d8; border-bottom-color: #555; }
+          .tp-source a:hover { border-bottom-color: #e8e4d8; }
+        }
+
+        .ac-item.ac-open .ac-chev { transform:rotate(180deg); color:#1a1a1a; }
+
+        .ac-body {
+          display:grid; grid-template-rows:0fr;
+          transition:grid-template-rows .3s ease;
+        }
+        .ac-item.ac-open .ac-body { grid-template-rows:1fr; }
+        .ac-body-inner { overflow:hidden; }
+        .ac-content { padding:0 22px 28px 22px; border-top:0.5px solid #f0f0f0; }
+
+        @media(prefers-color-scheme:dark){
+          .ac-item { border-color:#2a2a28; }
+          .ac-item.ac-open { border-color:#e0e0e0; }
+          .ac-item:hover:not(.ac-open) { border-color:#555; }
+          .ac-hdr { background:#141412; }
+          .ac-title { color:#e8e4d8; }
+          .ac-num { color:#555; }
+          .ac-item.ac-open .ac-num { color:#e8e4d8; }
+          .ac-item.ac-open .ac-chev { color:#e8e4d8; }
+          .ac-body-inner { background:#141412; }
+          .ac-content { border-top-color:#2a2a28; }
+        }
+      </style>
+
+      <div class="ac-wrap">
+
+        <!-- 01 DEFINITION -->
+        <div class="ac-item" id="ac-definition">
+          <div class="ac-hdr" onclick="acToggle('ac-definition')">
+            <span class="ac-num">01</span>
+            <span class="ac-title">Definition of fear</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <style>
+              .def-pill2{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:20px;border:0.5px solid #854F0B60;color:#854F0B;font-weight:500;margin-bottom:10px}
+              .def-quote2{font-style:italic;font-size:15px;line-height:1.7;color:#444;border-left:3px solid #854F0B;padding-left:16px;margin:14px 0}
+              .def-text2{font-size:14px;line-height:1.8;color:#333}
+              .def-src2{margin-top:14px;font-size:12px;color:#888}
+              .def-src2 a{color:#1a1a1a;text-decoration:none;border-bottom:0.5px solid #ccc}
+              .def-src2 a:hover{border-bottom-color:#1a1a1a}
+
+              .more-btn{margin-top:18px;font-size:13px;padding:7px 16px;border:1px solid #1a1a1a;border-radius:8px;background:none;color:#1a1a1a;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px;transition:background .15s,color .15s}
+              .more-btn:hover{background:#1a1a1a;color:#fff}
+              .more-chev{font-size:11px;transition:transform .2s}
+              .more-btn.more-open .more-chev{transform:rotate(180deg)}
+
+              .more-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;margin-top:4px}
+              .more-panel.more-panel-open{grid-template-rows:1fr}
+              .more-panel-inner{overflow:hidden}
+              .more-content{padding-top:18px}
+
+              .more-card{border:0.5px solid #e8e8e8;border-radius:10px;padding:14px 16px;margin-bottom:10px}
+              .more-card-label{font-size:11px;font-weight:600;letter-spacing:.04em;color:#888;text-transform:uppercase;margin-bottom:8px}
+              .more-card-text{font-size:13px;line-height:1.75;color:#333}
+
+              .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+              .compare-col{border-radius:9px;padding:12px 14px}
+              .compare-col-fear{background:#FAECE7;border:0.5px solid #993C1D40}
+              .compare-col-anx{background:#E6F1FB;border:0.5px solid #185FA540}
+              .compare-title{font-size:12px;font-weight:600;margin-bottom:6px}
+              .compare-text{font-size:12.5px;line-height:1.65;color:#444}
+
+              @media(prefers-color-scheme:dark){
+                .def-quote2{color:#bbb}
+                .def-text2{color:#a8a6a0}
+                .def-src2 a{color:#e8e4d8;border-bottom-color:#555}
+                .more-btn{border-color:#e0e0e0;color:#e8e4d8}
+                .more-btn:hover{background:#e8e4d8;color:#1a1a1a}
+                .more-card{border-color:#2a2a28;background:#1c1c19}
+                .more-card-text{color:#a8a6a0}
+                .compare-col-fear{background:#2a1810;border-color:#993C1D60}
+                .compare-col-anx{background:#0d2438;border-color:#185FA560}
+                .compare-text{color:#a8a6a0}
+              }
+              @media(max-width:480px){.compare-grid{grid-template-columns:1fr}}
+            </style>
+
+            <div style="margin:16px 0">
+              <span class="def-pill2">DSM-5-TR · Clinical</span>
+              <div class="def-quote2">“Fear is the emotional response to a real or perceived imminent threat.”</div>
+              <div class="def-text2">Fear is associated with surges of autonomic arousal needed for the “fight or flight” response, thoughts of immediate danger, and escape or avoidance behavior. It differs from anxiety (anticipation of a future threat) by its time horizon: fear = now, anxiety = later. This is the single operational definition used in diagnosis.</div>
+              <div class="def-src2">APA, DSM-5-TR, 2022 &mdash; <a href="https://doi.org/10.1176/appi.books.9780890425787" target="_blank" rel="noopener">psychiatryonline.org</a></div>
+
+              <button class="more-btn" id="more-btn" onclick="moreToggle()">
+                <span>More</span>
+                <span class="more-chev">&#9662;</span>
+              </button>
+
+              <div class="more-panel" id="more-panel">
+                <div class="more-panel-inner">
+                  <div class="more-content">
+
+                    <div class="more-card">
+                      <div class="more-card-label">How anxiety differs from fear</div>
+                      <div class="compare-grid">
+                        <div class="compare-col compare-col-fear">
+                          <div class="compare-title" style="color:#712B13">FEAR</div>
+                          <div class="compare-text">Threat here and now. An identifiable object. Proportional intensity. Resolves once the threat is removed.</div>
+                        </div>
+                        <div class="compare-col compare-col-anx">
+                          <div class="compare-title" style="color:#0C447C">ANXIETY</div>
+                          <div class="compare-text">Threat there and later. A vague or imagined object. Chronic, in the background. Does not resolve when the specific stimulus is removed.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="more-card">
+                      <div class="more-card-label">RDoC: a transdiagnostic research construct</div>
+                      <div class="more-card-text">“Acute threat (fear) is activation of the brain’s defensive motivational system to promote behaviors that protect the organism from perceived danger.” RDoC defines fear not through symptoms but through measurable biomarkers: potentiated startle reflex, skin conductance, amygdala activation, heart-rate changes. The goal is a measurement system independent of DSM diagnostic categories.<br><span style="display:block;margin-top:8px;font-size:11px;color:#888">NIMH RDoC: Acute Threat (Fear) &mdash; <a href="https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/acute-threat-fear" target="_blank" rel="noopener" style="color:inherit;border-bottom:0.5px solid #ccc;text-decoration:none">nimh.nih.gov/rdoc</a></span></div>
+                    </div>
+
+                    <div class="more-card">
+                      <div class="more-card-label">Under the Bayesian model</div>
+                      <div class="more-card-text">Fear is not a reaction to a stimulus but the result of Bayesian updating: a prediction error (an unexpected threat) triggers the surge. Pathological fear = a failure of the updating mechanism: the brain does not update its prediction even when the outcome is safe — this is exactly how the PTSD loop works.<br><span style="display:block;margin-top:8px;font-size:11px;color:#888">Yamamori & Robinson, Neurosci. Biobehav. Rev., 2023 &mdash; <a href="https://doi.org/10.1016/j.neubiorev.2022.104959" target="_blank" rel="noopener" style="color:inherit;border-bottom:0.5px solid #ccc;text-decoration:none">doi:10.1016/j.neubiorev.2022.104959</a></span></div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+            function moreToggle(){
+              var btn = document.getElementById('more-btn');
+              var panel = document.getElementById('more-panel');
+              btn.classList.toggle('more-open');
+              panel.classList.toggle('more-panel-open');
+            }
+            </script>
+
+          </div></div></div>
         </div>
 
-        <div id="levels-container"></div>
+        <!-- 02 HOW IT UNFOLDS -->
+        <div class="ac-item" id="ac-flow">
+          <div class="ac-hdr" onclick="acToggle('ac-flow')">
+            <span class="ac-num">02</span>
+            <span class="ac-title">How fear unfolds</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+            <div style="margin:16px 0 0">
+              <style>
+                .fsimple{border-radius:8px;transition:background .15s;cursor:pointer;overflow:hidden}
+                .fsimple:hover{background:#f7f7f5}
+                .fsimple-hdr{display:flex;align-items:center;gap:14px;padding:11px 8px;cursor:pointer}
+                .fsimple-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;border:1.5px solid currentColor}
+                .fsimple-time{font-size:11px;font-weight:500;flex-shrink:0;min-width:78px}
+                .fsimple-title{font-size:13.5px;color:#1a1a1a;line-height:1.5;flex:1}
+                .fsimple-chev{font-size:13px;color:#ccc;transition:transform .2s;flex-shrink:0}
+                .fsimple.fsimple-open .fsimple-chev{transform:rotate(180deg);color:#1a1a1a}
+                .fsimple-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+                .fsimple.fsimple-open .fsimple-body{grid-template-rows:1fr}
+                .fsimple-body-in{overflow:hidden}
+                .fsimple-desc{padding:0 8px 16px 58px;font-size:13px;line-height:1.75;color:#555}
+                @media(prefers-color-scheme:dark){
+                  .fsimple:hover{background:#1c1c19}
+                  .fsimple-title{color:#e8e4d8}
+                  .fsimple-chev{color:#555}
+                  .fsimple.fsimple-open .fsimple-chev{color:#e8e4d8}
+                  .fsimple-desc{color:#888}
+                }
+              </style>
+
+              <div class="fsimple" id="fs-1">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#0f6e56;background:#e1f5ee">1</div>
+                  <div class="fsimple-title">External environment → receptors</div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>0 ms.</strong> Fear begins with some event happening to us. We perceive the event through our senses: eyes, ears, nose, tongue, and skin. The sense organs convert signals from the external environment into an electrical signal that begins traveling toward the brain. At this stage, information from the outside world has been turned into an electrical signal and sent to the brain — we have not yet understood anything or felt any emotion, but the information-processing has already begun.
+                  <div style="margin-top:12px;padding:11px 14px;background:#f7f7f5;border-radius:8px;border-left:3px solid #ccc;font-size:12px;line-height:1.75;color:#666">
+                    <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:7px">Sensory transduction &#8594; thalamus</div>
+                    A physical stimulus is converted into a neural electrochemical signal in specialized receptors:<br>
+                    <span style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:5px">
+                    <span style="display:block;flex:1 1 300px;min-width:260px">
+                    <span style="display:block"><strong style="color:#444">Light</strong> &#8594; retinal photoreceptors (rods and cones) &#8594; optic nerve &#8594; LGN <span class="term" data-term="thalamus">thalamus</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Sound</strong> &#8594; cochlear hair cells (air pressure &#8594; membrane vibration &#8594; ion current) &#8594; auditory nerve &#8594; MGN <span class="term" data-term="thalamus">thalamus</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Touch</strong> &#8594; skin mechanoreceptors &#8594; spinal cord / brainstem &#8594; VPN <span class="term" data-term="thalamus">thalamus</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Taste</strong> &#8594; taste receptors of the tongue &#8594; facial nerve &#8594; nucleus of the solitary tract &#8594; VPM <span class="term" data-term="thalamus">thalamus</span></span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444">Smell</strong> &#8594; olfactory receptors &#8594; olfactory bulb &#8594; <em>directly to the <span class="term" data-term="amygdala">amygdala</span></em> (the only channel that bypasses the thalamus)</span>
+                    <span style="display:block;margin-top:3px"><strong style="color:#444"><span class="term" data-term="interoception">Interoception</span></strong> &#8594; mechano- and chemoreceptors of the organs &#8594; vagus nerve &#8594; nucleus of the solitary tract &#8594; insula &#8594; <span class="term" data-term="thalamus">thalamus</span></span>
+                    </span>
+                    <span style="display:block;flex:0 0 300px;max-width:300px;width:100%" onclick="event.stopPropagation()">
+                      <span style="display:block;border:0.5px solid #ddd;border-radius:8px;overflow:hidden;background:#000;aspect-ratio:16/9">
+                        <iframe width="100%" height="100%" style="display:block;border:0;width:100%;height:100%" src="https://www.youtube-nocookie.com/embed/3m-464MqBJY?rel=0" title="How the eye perceives light" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </span>
+                      <span style="display:block;margin-top:6px;font-size:10px;color:#999;line-height:1.4">Light → retina → optic nerve → thalamus</span>
+                    </span>
+                    </span>
+                    <span style="display:block;margin-top:8px;color:#555">All pathways (except smell) converge in the <span class="term" data-term="thalamus">thalamus</span> — it is the first to decide: signal the amygdala immediately <em>(the low road)</em> or route the signal to the cortex for precise analysis <em>(the high road)</em>.</span>
+                    <span style="display:block;margin-top:8px">
+                      <button onclick="event.stopPropagation();(function(b){var el=document.getElementById('smell-info');var open=el.style.maxHeight&&el.style.maxHeight!=='0px';el.style.maxHeight=open?'0px':'2000px';el.style.opacity=open?'0':'1';b.textContent=open?'🌿 More on the sense of smell':'✕ Hide'})(this)" style="font-size:12px;padding:4px 11px;border:0.5px solid #bbb;border-radius:6px;background:none;color:#666;cursor:pointer;font-family:inherit">🌿 More on the sense of smell</button>
+                      <div id="smell-info" style="max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .35s ease">
+                        <div style="margin-top:10px;border-top:0.5px solid #e8e8e8;padding-top:10px">
+                          <div style="display:flex;flex-direction:column;gap:8px">
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">Evolutionary age</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">The olfactory system is the oldest of the senses. In the earliest vertebrates the brain consisted almost exclusively of olfactory structures. The thalamus appeared much later — and smell never came under its control.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">A direct route to the amygdala</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">Olfactory neurons &#8594; olfactory bulb &#8594; piriform cortex and amygdala — without thalamic relay. Smell reaches the emotional centers faster and without the filtering the thalamus provides for every other sense.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">What this changes in perception</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">Smell is the only sense that evokes an emotional and mnemonic response <em>before</em> awareness of the stimulus. The smell of smoke activates fear before the thought “that’s smoke” appears. All the other senses first pass through thalamic processing — and only then reach the amygdala.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">The Proust phenomenon</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">Involuntary autobiographical memories triggered by smell are more intense and reach deeper in time than memories from other senses. The neurobiological reason is the direct connection of the olfactory bulb to the hippocampus and amygdala without thalamic smoothing.</div>
+                            </div>
+                            <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                              <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">Clinical significance</div>
+                              <div style="font-size:13px;line-height:1.65;color:#555">In PTSD, olfactory triggers are especially persistent — they bypass the inhibitory mechanisms of the thalamus and <span class="term" data-term="pfc">PFC</span> and launch the fear response without cognitive appraisal.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                  <div style="margin-top:12px;padding:11px 14px;background:#fdf6ec;border-radius:8px;border-left:3px solid #ba7517;font-size:12px;line-height:1.75;color:#666">
+                    <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#ba7517;margin-bottom:7px">Important</div>
+                    The degree of experience and response depends on the quality of the incoming information. If a person sees poorly, hears poorly, or has impaired receptor function, the brain receives less accurate data. This affects perception, appraisal of the situation, and why people may react differently to the same events.
+                  </div></div></div></div>
+              </div>
+              <div class="fsimple" id="fs-2">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#993c1d;background:#faece7">2</div>
+                  <div class="fsimple-title">Receptors → <span class="term" data-term="thalamus">thalamus</span></div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>12–88 ms.</strong> The electrical signal from the sense organs begins traveling through the nervous system. The first stop for most sensory signals is the <span class="term" data-term="thalamus">thalamus</span>. The thalamus receives signals from the sense organs and routes them down two pathways at once.
+                  <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+                    <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                      <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">The first pathway — fast</div>
+                      <div style="font-size:13px;line-height:1.65;color:#555">From the thalamus directly to the <span class="term" data-term="amygdala">amygdala</span>. It carries only the general features of the event and cannot pin down exactly what happened. Its job is to determine as fast as possible <strong>whether the event might be dangerous</strong>.</div>
+                    </div>
+                    <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
+                      <div style="font-size:11px;font-weight:600;color:#185fa5;margin-bottom:3px">The second pathway — slow</div>
+                      <div style="font-size:13px;line-height:1.65;color:#555">From the thalamus to the sensory and association cortex. There it is determined <strong>what happened</strong>, and <strong>whether this event is dangerous</strong>.</div>
+                    </div>
+                    <div style="font-size:12px;line-height:1.7;color:#666;margin-top:2px">Now the same signal travels down both pathways simultaneously. <strong style="color:#993c1d">Fast pathway:</strong> “Could this be dangerous?” &nbsp;<strong style="color:#185fa5">Slow pathway:</strong> “What exactly happened?”</div>
+                  </div></div></div></div>
+              </div>
+              <div class="fsimple" id="fs-3">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#993c1d;background:#faece7">3</div>
+                  <div class="fsimple-title"><span class="term" data-term="amygdala">Amygdala</span> → <span class="term" data-term="hypothalamus">hypothalamus</span>, brainstem, and <span class="term" data-term="pfc">PFC</span> simultaneously</div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>100–200 ms.</strong> The central nucleus of the amygdala (CeA) activates three parallel outputs: <span class="term" data-term="hypothalamus">hypothalamus</span> (<span class="term" data-term="ans">ANS</span> + <span class="term" data-term="hpa axis">HPA axis</span>), brainstem / PAG (freeze, flight, fight) and initiates appraisal in the <span class="term" data-term="pfc">PFC</span>.</div></div></div>
+              </div>
+              <div class="fsimple" id="fs-4">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#185fa5;background:#e6f1fb">4</div>
+                  <div class="fsimple-title"><span class="term" data-term="pfc">PFC</span> receives a precise signal and refines the appraisal <span class="term" data-term="amygdala">amygdala</span></div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>150–300 ms.</strong> This is the “high road”: in parallel with the fast low road, the cortex performs a slow but precise analysis and sends the result back to the amygdala. The high road can confirm the low road’s alarm or cancel it — for example, recognizing that the stick on the path is not a snake.</div></div></div>
+              </div>
+              <div class="fsimple" id="fs-5">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#534ab7;background:#eeedfe">5</div>
+                  <div class="fsimple-title">Refined appraisal <span class="term" data-term="pfc">PFC</span> + body signal → working memory → “I am afraid”</div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>300–500 ms.</strong> <span class="term" data-term="pfc">PFC</span>, the hippocampus (context), and the insula (body) gather signals in working memory. This is where the subjective experience of fear appears.</div></div></div>
+              </div>
+              <div class="fsimple" id="fs-6">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#ba7517;background:#faeeda">6</div>
+                  <div class="fsimple-title">“I am afraid” → <span class="term" data-term="hpa axis">HPA axis</span> → cortisol rises</div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>1–20 min.</strong> Subjective awareness of the threat amplifies the <span class="term" data-term="hpa axis">HPA axis</span>. Adrenaline peaks at 1–3 min; cortisol builds over 10–20 min. <span class="term" data-term="pfc">PFC</span> begins to actively inhibit the amygdala.</div></div></div>
+              </div>
+              <div class="fsimple" id="fs-7">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#0f6e56;background:#e1f5ee">7</div>
+                  <div class="fsimple-title">Cortisol at peak → <span class="term" data-term="pfc">PFC</span> inhibits the <span class="term" data-term="amygdala">amygdala</span> → fear subsides</div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>20–60 min.</strong> Cortisol reaches its peak and begins to decline. <span class="term" data-term="pfc">PFC</span> suppresses the amygdala. The hippocampus signals that the context is safe. The fear episode is over.</div></div></div>
+              </div>
+              <div class="fsimple" id="fs-8">
+                <div class="fsimple-hdr" onclick="fsToggle(this, event)">
+                  <div class="fsimple-dot" style="color:#5f5e5a;background:#f1efe8">8</div>
+                  <div class="fsimple-title">Subsided fear → consolidation of the threat memory</div>
+                  <span class="fsimple-chev">&#9662;</span>
+                </div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>4–6 hours.</strong> <span class="term" data-term="bdnf">BDNF</span>, <span class="term" data-term="nmda receptors">NMDA receptors</span> and cortisol complete the consolidation of the threat memory. Reconsolidation makes the memory vulnerable upon reactivation — this is the window in which propranolol acts.</div></div></div>
+              </div>
+            </div>
+
+              <script>
+              function fsToggle(el, e){
+                if (e && e.target.closest('a, button')) return;
+                var item = el.closest('.fsimple');
+                if (!item) return;
+                var wasOpen = item.classList.contains('fsimple-open');
+                document.querySelectorAll('.fsimple').forEach(function(it){ it.classList.remove('fsimple-open'); });
+                if (!wasOpen) item.classList.add('fsimple-open');
+              }
+              </script>
+
+          </div></div></div>
+        </div>
+
+        <!-- 03 HOW IT IS MEASURED -->
+        <div class="ac-item" id="ac-measurement">
+          <div class="ac-hdr" onclick="acToggle('ac-measurement')">
+            <span class="ac-num">03</span>
+            <span class="ac-title">How it is measured — objective and subjective</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+            <div style="margin:24px 0 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#993c1d;font-weight:500">Objective methods</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:28px">
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Fear-potentiated startle</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">FPS — fear-potentiated startle</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Amplification of the blink reflex to a loud sound in the presence of a conditioned threat stimulus. The most validated biomarker of fear. Measured with EMG electrodes below the eye.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Galvanic skin response</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">GSR / SCR / EDA</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">A change in the skin’s electrical conductance due to sweat-gland activation. The most sensitive peripheral marker: it responds to the conditioned stimulus even before the threat is consciously recognized.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Heart-rate variability / HR</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">ECG, pulse oximetry</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">In fear — tachycardia (sympathetic). In freezing — bradycardia (parasympathetic). Reduced heart-rate variability correlates with the severity of anxiety disorders and PTSD.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Amygdala activation (fMRI)</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">BOLD signal</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">The amygdala responds to threatening stimuli within 88–170 ms. fMRI captures this activation with millimeter precision. Amygdala hyperactivity is the main neuroimaging marker of PTSD and anxiety disorders.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">Cortisol and adrenaline</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">saliva / blood / urine</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Salivary cortisol is an accessible biomarker of HPA-axis activation. Elevated basal cortisol or a disrupted circadian rhythm indicate a chronic stress load.</div>
+          </div>
+          <div style="border:0.5px solid #faece7;border-radius:9px;padding:12px 14px;background:#fdf5f2">
+            <div style="font-size:13px;font-weight:500;color:#4a1b0c;margin-bottom:4px">EEG — N200, P300</div>
+            <div style="font-size:12px;color:#712b13;margin-bottom:6px;font-style:italic">event-related potentials</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">The N200 component captures early (~200 ms) cortical recognition of threat. Theta activity in the amygdala synchronizes with the hippocampus during encoding of contextual fear.</div>
+          </div>
+        </div>
+
+        <div style="margin:0 0 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#534ab7;font-weight:500">Subjective methods</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:16px">
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">Visual analog scale (VAS)</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Rating fear intensity from 0 to 100 in real time during exposure. A standard in clinical trials of exposure therapy.</div>
+          </div>
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">SUDS (subjective units of distress)</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">A 0–100 scale, developed by Wolpe for CBT and exposure therapy. The patient rates their fear level at each step of the exposure hierarchy.</div>
+          </div>
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">SAM (Self-Assessment Manikin)</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">A nonverbal instrument: pictograms for rating valence (pleasant–unpleasant), arousal, and dominance. Allows fear and anxiety to be distinguished along emotional dimensions.</div>
+          </div>
+          <div style="border:0.5px solid #eeedfe;border-radius:9px;padding:12px 14px;background:#f6f5fe">
+            <div style="font-size:13px;font-weight:500;color:#26215c;margin-bottom:4px">PCL-5, STAI, BAI</div>
+            <div style="font-size:12px;line-height:1.6;color:#555">Standardized questionnaires: PCL-5 for PTSD, STAI (state/trait anxiety), BAI (Beck Anxiety Inventory). Used in clinical diagnosis and research.</div>
+          </div>
+        </div>
+        <div style="border:0.5px dashed #e0e0e0;border-radius:8px;padding:12px 16px">
+          <div style="font-size:12px;color:#888;line-height:1.7">The key distinction: objective markers capture <strong>defensive responses</strong> (what the body does); subjective markers capture the <strong>experience of fear</strong> (what the person feels). According to LeDoux (2016), these systems dissociate: a drug may abolish the GSR without removing subjective fear — and vice versa. This is why a thorough assessment requires both kinds of measurement.</div>
+        </div>
+          </div></div></div>
+        </div>
+
+        <!-- 04 DISORDERS -->
+        <div class="ac-item" id="ac-disorders">
+          <div class="ac-hdr" onclick="acToggle('ac-disorders')">
+            <span class="ac-num">04</span>
+            <span class="ac-title">Which disorders it is linked to</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+            <div style="margin:24px 0 32px" id="disorders-tabs">
+          <style>
+            .dtabs{display:flex;gap:0;border-bottom:0.5px solid #e8e8e8;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+            .dtab{background:none;border:none;font-family:inherit;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px 9px;cursor:pointer;color:#aaa;border-bottom:2px solid transparent;margin-bottom:-0.5px;white-space:nowrap;transition:color .15s,border-color .15s}
+            .dtab:hover{color:#1a1a1a}
+            .dtab.dtab-act{color:#1a1a1a;border-bottom-color:#1a1a1a}
+            .dpanel{display:none}.dpanel.dpanel-act{display:block}
+            .dis-card{border:0.5px solid #e8e8e8;border-radius:10px;padding:14px 16px;margin-bottom:8px}
+            .dis-name{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:3px}
+            .dis-mech{font-size:12px;margin-bottom:6px;font-weight:500}
+            .dis-desc{font-size:13px;line-height:1.7;color:#555}
+            @media(prefers-color-scheme:dark){.dtabs{border-bottom-color:#333}.dtab:hover{color:#e8e4d8}.dtab.dtab-act{color:#e8e4d8;border-bottom-color:#e8e4d8}.dis-card{border-color:#333;background:#1c1c19}.dis-name{color:#e8e4d8}.dis-desc{color:#888}}
+          </style>
+          <div class="dtabs">
+            <button class="dtab dtab-act" onclick="dTab(0)">Anxiety disorders</button>
+            <button class="dtab" onclick="dTab(1)">Trauma-related</button>
+            <button class="dtab" onclick="dTab(2)">OCD-spectrum</button>
+            <button class="dtab" onclick="dTab(3)">Other links</button>
+          </div>
+          <div class="dpanel dpanel-act" id="dpanel-0">
+            <div class="dis-card">
+              <div class="dis-name">Panic disorder</div>
+              <div class="dis-mech" style="color:#993c1d">Mechanism: a hyperreactive amygdala + anxiety sensitivity</div>
+              <div class="dis-desc">Spontaneous panic attacks result from a false alarm of the low road: the amygdala launches the full fear cascade without a real threat. Anxiety sensitivity (fear of the physical symptoms of anxiety) creates a self-amplifying loop.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Specific phobias</div>
+              <div class="dis-mech" style="color:#993c1d">Mechanism: a pathologically entrenched conditioned fear memory</div>
+              <div class="dis-desc">An over-consolidated fear memory toward a specific stimulus (spiders, heights, blood). Extinction does not occur because of avoidance. Treatment: exposure therapy — forced extinction through <span class="term" data-term="pfc">PFC</span>.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Social anxiety disorder</div>
+              <div class="dis-mech" style="color:#993c1d">Mechanism: amygdala hyperreactivity to social stimuli</div>
+              <div class="dis-desc">An amplified fear response to faces, evaluation, and social interaction. The amygdala responds to neutral faces as if threatening. Top-down regulation is impaired <span class="term" data-term="pfc">PFC</span>.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Generalized anxiety disorder (GAD)</div>
+              <div class="dis-mech" style="color:#993c1d">Mechanism: a distress subfactor + impaired regulation of uncertainty</div>
+              <div class="dis-desc">Chronic activation of the potential-threat system (anxiety, not fear). Intolerance of uncertainty is the core cognitive vulnerability. Worry functions as a form of affective avoidance.</div>
+            </div>
+          </div>
+          <div class="dpanel" id="dpanel-1">
+            <div class="dis-card">
+              <div class="dis-name">PTSD (post-traumatic stress disorder)</div>
+              <div class="dis-mech" style="color:#712b13">Mechanism: impaired extinction + pathological reconsolidation</div>
+              <div class="dis-desc">The central deficit of PTSD is the inability to <span class="term" data-term="pfc">PFC</span> extinguish the amygdala in a safe context. Hippocampal atrophy impairs contextual discrimination: any similar stimulus triggers the full cascade. The HPA axis is dysregulated: basal cortisol is elevated or dexamethasone suppression is reduced.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Acute stress disorder (ASD)</div>
+              <div class="dis-mech" style="color:#712b13">Mechanism: the same neurobiology as PTSD — with a time criterion of 3 days to 1 month</div>
+              <div class="dis-desc">If symptoms normalize within a month, it is ASD. If they persist beyond a month, the diagnosis changes to PTSD. Early intervention (exposure, hydrocortisone) can prevent chronification.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Prolonged grief (a new DSM-5-TR 2022 diagnosis)</div>
+              <div class="dis-mech" style="color:#712b13">Mechanism: pathological reconsolidation of the memory of loss</div>
+              <div class="dis-desc">Intense yearning and preoccupation with the deceased ≥12 months later. Neurobiologically close to PTSD: impaired extinction of the fear memory and amygdala hyperactivation when recalling the deceased.</div>
+            </div>
+          </div>
+          <div class="dpanel" id="dpanel-2">
+            <div class="dis-card">
+              <div class="dis-name">OCD (obsessive-compulsive disorder)</div>
+              <div class="dis-mech" style="color:#534ab7">Mechanism: the orbitofrontal cortex — caudate nucleus loop — <span class="term" data-term="thalamus">thalamus</span></div>
+              <div class="dis-desc">OCD is not an anxiety disorder: neurobiologically it rests on a disrupted orbitofrontal-striatal loop, not the amygdala fear circuit. Compulsions function as an “extinction ritual” for anxiety, yet do not extinguish it — they bring temporary relief that sustains the cycle.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Body dysmorphic disorder (BDD)</div>
+              <div class="dis-mech" style="color:#534ab7">Mechanism: disrupted visual processing + orbitofrontal dysfunction</div>
+              <div class="dis-desc">Intrusive thoughts about an imagined flaw in appearance. Fear here is secondary: primary is the intrusive cognition + compulsive checking. Linked to OCD by neurobiological profile.</div>
+            </div>
+          </div>
+          <div class="dpanel" id="dpanel-3">
+            <div class="dis-card">
+              <div class="dis-name">Depression</div>
+              <div class="dis-mech" style="color:#5f5e5a">Mechanism: a distress subfactor of the internalizing spectrum</div>
+              <div class="dis-desc">Fear and depression share a common loading of the internalizing spectrum (the p-factor). Chronic amygdala hyperactivity in depression disrupts <span class="term" data-term="pfc">PFC</span>-regulation. 80% of patients with panic disorder have comorbid depression.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Eating disorders</div>
+              <div class="dis-mech" style="color:#5f5e5a">Mechanism: fear of weight gain as a conditioned fear</div>
+              <div class="dis-desc">In anorexia, fear of food and weight is neurobiologically analogous to a specific phobia. Disrupted activity of the insula (<span class="term" data-term="interoception">interoception</span>) and amygdala in response to food stimuli. The HiTOP internalizing spectrum includes eating disorders as a distinct subfactor.</div>
+            </div>
+            <div class="dis-card">
+              <div class="dis-name">Psychosis and schizophrenia</div>
+              <div class="dis-mech" style="color:#5f5e5a">Mechanism: impaired threat attribution</div>
+              <div class="dis-desc">In psychosis the fear cascade is activated by neutral stimuli because of disrupted dopaminergic signaling (aberrant salience). Paranoia is a generalized fear without an identifiable trigger.</div>
+            </div>
+          </div>
+          <script>
+          function dTab(i){
+            document.querySelectorAll('.dtab').forEach(function(t,j){t.classList.toggle('dtab-act',i===j)});
+            document.querySelectorAll('.dpanel').forEach(function(p,j){p.classList.toggle('dpanel-act',i===j)});
+          }
+          </script>
+        </div>
+          </div></div></div>
+        </div>
+
+
+
+        <!-- 05 FEAR RESEARCH -->
+        <div class="ac-item" id="ac-research">
+          <div class="ac-hdr" onclick="acToggle('ac-research')">
+            <span class="ac-num">05</span>
+            <span class="ac-title">Fear research</span>
+            <span class="ac-chev">&#9662;</span>
+          </div>
+          <div class="ac-body"><div class="ac-body-inner"><div class="ac-content">
+
+            <style>
+              .rs-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+              .rs-card{border:0.5px solid #e8e8e8;border-radius:10px;overflow:hidden;transition:border-color .18s;cursor:pointer}
+              .rs-card:hover{border-color:#aaa}
+              .rs-card.rs-open{border-color:#1a1a1a}
+              .rs-hdr{padding:14px 18px;display:flex;align-items:flex-start;gap:14px}
+              .rs-meta{flex:1;min-width:0}
+              .rs-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:2px 8px;border-radius:20px;border:0.5px solid currentColor;white-space:nowrap;display:inline-block;margin-bottom:6px}
+              .rs-name{font-size:14px;font-weight:500;color:#1a1a1a;line-height:1.35;margin-bottom:3px}
+              .rs-what{font-size:12px;color:#888;line-height:1.5}
+              .rs-chev{font-size:13px;color:#ccc;transition:transform .2s;flex-shrink:0;margin-top:2px}
+              .rs-card.rs-open .rs-chev{transform:rotate(180deg);color:#1a1a1a}
+              .rs-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+              .rs-card.rs-open .rs-body{grid-template-rows:1fr}
+              .rs-body-in{overflow:hidden}
+              .rs-content{padding:0 18px 16px 18px;border-top:0.5px solid #f0f0f0}
+              .rs-text{font-size:13px;line-height:1.75;color:#555;margin-top:12px}
+              .rs-source{margin-top:12px;padding-top:10px;border-top:0.5px solid #e8e8e8;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+              .rs-source-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;font-weight:500}
+              .rs-source a{font-size:12px;color:#1a1a1a;text-decoration:none;border-bottom:0.5px solid #ccc;transition:border-color .15s;line-height:1.5}
+              .rs-source a:hover{border-bottom-color:#1a1a1a}
+              .rs-year{font-size:11px;color:#bbb}
+              @media(prefers-color-scheme:dark){
+                .rs-card{border-color:#2a2a28;background:#1c1c19}
+                .rs-card:hover{border-color:#555}
+                .rs-card.rs-open{border-color:#e0e0e0}
+                .rs-name{color:#e8e4d8}
+                .rs-what{color:#666}
+                .rs-text{color:#888}
+                .rs-body-in{background:#1c1c19}
+                .rs-content{border-top-color:#2a2a28}
+                .rs-source{border-top-color:#2a2a28}
+                .rs-source a{color:#e8e4d8;border-bottom-color:#555}
+              }
+            </style>
+
+            <div class="rs-list" id="rs-list"></div>
+
+            <script>
+            (function(){
+              var RS = [
+                {
+                  color:"#993c1d",
+                  tag:"Learned helplessness · JPEP, 1967",
+                  name:"Failure to escape traumatic shock",
+                  what:"Question: can prior uncontrollable stress strip an animal of the ability to escape a threat even where escape is possible?",
+                  text:"Seligman and Maier split dogs into three groups: inescapable shocks, controllable shocks, and a no-shock control. The next day all were moved to a shuttle box where simply jumping a barrier was enough to escape. The first group’s dogs just lay down and whimpered — they did not try to escape. The control groups learned quickly. Conclusion: a creature deprived of control over a threat learns helplessness as a stable cognition — “I can’t change anything” — and carries it into new situations. This is neither fear of pain nor fatigue. In 2016 Maier & Seligman revised the model: helplessness is the default state; activity and control require specific learning via the PFC.",
+                  authors:"Seligman M.E.P., Maier S.F.",
+                  journal:"Journal of Experimental Psychology, 74(1), 1–9",
+                  year:"1967",
+                  doi:"https://doi.org/10.1037/h0024514"
+                },
+                {
+                  color:"#185fa5",
+                  tag:"Fear conditioning · J. Exp. Psychology, 1920",
+                  name:"Conditioned emotional reactions (“Little Albert”)",
+                  what:"Question: can a fear of a neutral stimulus be created in a human through classical conditioning?",
+                  text:"Watson and Rayner paired a neutral stimulus (a white rat) with a loud sound in a 9-month-old infant. After several pairings the infant showed fear at the sight of the rat — and then generalized it to anything white and furry. The discovery: fear is acquired through associative learning. A single pairing of a neutral stimulus with a threat is enough for a durable fear response. Fear generalization happens automatically, without awareness. The study became the foundation of the entire neurobiology of fear conditioning: nearly all modern paradigms for studying the amygdala are variations of this scheme.",
+                  authors:"Watson J.B., Rayner R.",
+                  journal:"Journal of Experimental Psychology, 3(1), 1–14",
+                  year:"1920",
+                  doi:"https://doi.org/10.1037/h0069608"
+                },
+                {
+                  color:"#0f6e56",
+                  tag:"Two-factor theory · Harvard Ed. Review, 1947",
+                  name:"On the dual nature of learning — fear and avoidance",
+                  what:"Question: why is avoidance so persistent and why does fear not extinguish on its own?",
+                  text:"Mowrer distinguished two components: (1) classically conditioned fear — an emotional reaction to the CS; (2) instrumental avoidance — behavior that reduces fear. The key finding: avoidance self-reinforces through fear reduction — each time the person avoids the CS, fear briefly drops, which strengthens avoidance. Meanwhile fear never meets safety and cannot extinguish. This loop explains the chronification of phobias and PTSD — and justifies exposure therapy as the only way to break the cycle.",
+                  authors:"Mowrer O.H.",
+                  journal:"Harvard Educational Review, 17, 102–148",
+                  year:"1947",
+                  doi:"https://psycnet.apa.org/record/1948-01920-001"
+                },
+                {
+                  color:"#534ab7",
+                  tag:"A neural map of fear · Behav. Brain Res., 1990–1996",
+                  name:"Fear pathways in the brain — the role of the amygdala",
+                  what:"Question: which brain structure is necessary and sufficient to form conditioned fear?",
+                  text:"In a series of experiments on rats, LeDoux and colleagues showed that lesioning the basolateral amygdala abolishes all behavioral and autonomic expressions of conditioned fear. They discovered the “low road” — a direct thalamus → amygdala projection that bypasses the cortex: the body responds to threat 12–88 ms before any awareness. This is “emotion without awareness.” The amygdala was established as the necessary hub for associative fear conditioning. Note: in 2016 LeDoux himself revised the interpretation — the amygdala drives defensive responses, but not subjective fear, which depends on the cortex.",
+                  authors:"LeDoux J.E.",
+                  journal:"Behavioural Brain Research, 58(1–2) / The Emotional Brain (1996)",
+                  year:"1990–1996",
+                  doi:"https://doi.org/10.1016/0166-4328(93)90091-4"
+                },
+                {
+                  color:"#ba7517",
+                  tag:"Fear extinction · Psych. Bulletin, 1993",
+                  name:"Context, time, and memory retrieval — extinction as new learning",
+                  what:"Question: does extinction erase the fear memory or create a competing one?",
+                  text:"Bouton systematically showed that fear extinction (CS without UCS) does not erase the original association. Fear returns with a change of context (renewal), with time (spontaneous recovery), and after new reinforcement (reinstatement). Extinction creates a competing “safe” association. Which of the two associations is expressed is determined by context. This finding reshaped all of exposure-therapy practice: extinction must be carried out across multiple contexts, as close to real life as possible — otherwise fear returns past the threshold of the therapist’s office.",
+                  authors:"Bouton M.E.",
+                  journal:"Psychological Bulletin, 114(1), 80–99",
+                  year:"1993",
+                  doi:"https://doi.org/10.1037/0033-2909.114.1.80"
+                },
+                {
+                  color:"#993c1d",
+                  tag:"Memory reconsolidation · Nature, 2000",
+                  name:"Fear memories require protein synthesis in the amygdala for reconsolidation",
+                  what:"Question: does a reactivated fear memory stay stable, or does it become labile again?",
+                  text:"Nader, Schafe, and LeDoux reactivated a fear memory in rats (presenting the CS) and immediately administered anisomycin — a protein-synthesis blocker — into the amygdala. The fear memory disappeared. When anisomycin was given without reactivation, the memory persisted. The discovery: a reactivated memory becomes labile for several hours and requires renewed protein synthesis (reconsolidation) to stabilize. Within this window it can be disrupted, altered, or strengthened. This opened a fundamentally new approach to treating PTSD: intervening at the moment of recall, not at the moment fear is first formed.",
+                  authors:"Nader K., Schafe G.E., LeDoux J.E.",
+                  journal:"Nature, 406, 722–726",
+                  year:"2000",
+                  doi:"https://doi.org/10.1038/35021052"
+                },
+                {
+                  color:"#0f6e56",
+                  tag:"The fear module · Psych. Review, 2001",
+                  name:"Fears, phobias, and preparedness — the evolutionary fear module",
+                  what:"Question: is fear formed equally easily toward all stimuli, or is the brain biologically prepared to fear certain classes of threat?",
+                  text:"In a series of experiments, Öhman and Mineka showed that fear of evolutionarily relevant stimuli (snakes, spiders, angry faces) forms faster, extinguishes harder, and depends less on cognitive control than fear of neutral ones (flowers, mushrooms). They proposed the “fear module” concept with four characteristics: (1) automatic activation; (2) specificity to evolutionarily relevant threats; (3) relative impenetrability to cognition; (4) neural specialization in the amygdala. It explains why phobias of snakes and spiders are thousands of times more common than of electrical outlets or cars, even though the latter are objectively more dangerous.",
+                  authors:"Öhman A., Mineka S.",
+                  journal:"Psychological Review, 108(3), 483–522",
+                  year:"2001",
+                  doi:"https://doi.org/10.1037/0033-295X.108.3.483"
+                },
+                {
+                  color:"#185fa5",
+                  tag:"A biomarker of fear · Behav. Neuroscience, 1986",
+                  name:"Fear-potentiated startle — potentiated startle as a measure of fear",
+                  what:"Question: can fear be measured objectively, without self-report, in any species?",
+                  text:"Davis showed that the amplitude of the blink (startle) reflex to a loud sound increases substantially in the presence of a conditioned fear stimulus (fear-potentiated startle, FPS). EMG electrodes below the eye capture the difference in milliseconds and microvolts. The method works across all species, is independent of language and self-report, and is reproducible in any lab. FPS became the gold standard for measuring fear in neuroscience for 40 years. It is the one used in the RDoC framework (NIMH) as the core biomarker of the “Acute threat (Fear)” construct, and it validated the transition from animal fear models to human studies.",
+                  authors:"Davis M.",
+                  journal:"Behavioural Neuroscience, 100(6), 814–824",
+                  year:"1986",
+                  doi:"https://doi.org/10.1037/0735-7044.100.6.814"
+                },
+              ];
+
+              var list = document.getElementById('rs-list');
+
+              RS.forEach(function(r, i){
+                var card = document.createElement('div');
+                card.className = 'rs-card';
+                card.id = 'rs-' + i;
+                card.innerHTML =
+                  '<div class="rs-hdr" onclick="rsToggle(' + i + ')">' +
+                    '<div class="rs-meta">' +
+                      '<span class="rs-tag" style="color:' + r.color + ';border-color:' + r.color + '60">' + r.tag + '</span>' +
+                      '<div class="rs-name">' + r.name + '</div>' +
+                      '<div class="rs-what">' + r.what + '</div>' +
+                    '</div>' +
+                    '<span class="rs-chev">&#9662;</span>' +
+                  '</div>' +
+                  '<div class="rs-body"><div class="rs-body-in">' +
+                    '<div class="rs-content">' +
+                      '<div class="rs-text">' + r.text + '</div>' +
+                      '<div class="rs-source">' +
+                        '<span class="rs-source-label">Source</span>' +
+                        '<a href="' + r.doi + '" target="_blank" rel="noopener">' + r.authors + ' ' + r.journal + '</a>' +
+                        '<span class="rs-year">' + r.year + '</span>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div></div>';
+                list.appendChild(card);
+              });
+
+              window.rsToggle = function(i){
+                var el = document.getElementById('rs-' + i);
+                var was = el.classList.contains('rs-open');
+                document.querySelectorAll('.rs-card').forEach(function(c){ c.classList.remove('rs-open'); });
+                if (!was) el.classList.add('rs-open');
+              };
+            })();
+            </script>
+
+          </div></div></div>
+        </div>
+
       </div>
+
+      <script>
+        function acToggle(id) {
+          var el = document.getElementById(id);
+          var wasOpen = el.classList.contains('ac-open');
+          // Close all
+          document.querySelectorAll('.ac-item').forEach(function(item) {
+            item.classList.remove('ac-open');
+          });
+          // Open clicked if it was closed
+          if (!wasOpen) {
+            el.classList.add('ac-open');
+          }
+        }
+
+        // Open from URL hash
+        (function(){
+          var hash = window.location.hash;
+          var map = {
+            '#sec-definition': 'ac-definition',
+            '#sec-flow': 'ac-flow',
+            '#sec-measurement': 'ac-measurement',
+            '#sec-disorders': 'ac-disorders',
+            '#sec-research': 'ac-research'
+          };
+          if (map[hash]) {
+            var el = document.getElementById(map[hash]);
+            if (el) {
+              el.classList.add('ac-open');
+              setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+            }
+          }
+        })();
+      </script>
+
+
+      <!-- TOOLTIP ENGINE -->
+      <div id="term-popup" class="term-popup" role="tooltip" aria-live="polite">
+        <div class="tp-term-name" id="tp-name"></div>
+        <div class="tp-def" id="tp-def"></div>
+        <div class="tp-source">
+          <span>Source:</span>
+          <a id="tp-link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+      <script>
+      (function(){
+        var TERMS = {
+          "amygdala": {
+            name: "Amygdala",
+            def: "A paired structure of the medial temporal lobe, ~13 nuclei. The basolateral complex (BLA) is the center of associative fear conditioning; the central nucleus (CeA) is the main output for coordinating defensive responses. Responds to threat within 88–170 ms — before the cortex is aware of the stimulus.",
+            src: "Amunts et al. (2005) Anatomy and Functions of the Human Amygdaloid Complex",
+            url: "https://link.springer.com/article/10.1007/s00429-005-0025-5"
+          },
+          "hpa axis": {
+            name: "HPA axis (hypothalamic–pituitary–adrenal)",
+            def: "The neuroendocrine axis of the stress response. Activation: hypothalamus → CRH → pituitary → ACTH → adrenal cortex → cortisol. Cortisol builds over 10–20 min, peaks at 20–60 min. Acute cortisol enhances consolidation of the fear memory; chronically high cortisol atrophies the hippocampus.",
+            src: "Herman et al. (2016) Regulation of the HPA Stress Response. Comprehensive Physiology",
+            url: "https://doi.org/10.1002/cphy.c150015"
+          },
+          "interoception": {
+            name: "Interoception",
+            def: "Perception of signals from the body’s internal environment: heart rhythm, breathing, the GI tract, muscle tension. Main route: vagus nerve → nucleus of the solitary tract → insula → amygdala. Bodily changes during fear themselves become conditioned stimuli — the mechanism of anxiety sensitivity and panic attacks.",
+            src: "Craig A.D. (2009) How do you feel — now? Nature Reviews Neuroscience",
+            url: "https://doi.org/10.1038/nrn2555"
+          },
+          "thalamus": {
+            name: "Thalamus",
+            def: "The brain’s relay center, located in the diencephalon. In fear it simultaneously sends the threat signal down the “low road” (thalamus → amygdala, 12–88 ms) and the “high road” (thalamus → cortex → amygdala, 150–300 ms). The balance between the pathways determines the trade-off between speed and accuracy of threat detection.",
+            src: "LeDoux J.E. (2000) Emotion circuits in the brain. Annual Review of Neuroscience",
+            url: "https://doi.org/10.1146/annurev.neuro.23.1.155"
+          },
+          "pfc": {
+            name: "PFC (prefrontal cortex)",
+            def: "Frontal-lobe structures responsible for higher cognitive functions. In the context of fear: the ventromedial PFC (vmPFC) handles safety appraisal and extinction via the infralimbic cortex; the dorsolateral PFC (dlPFC) supports working memory and the subjective experience of fear. A deficit of PFC activation in PTSD is the reason for the inability to inhibit the amygdala.",
+            src: "Quirk G.J., Beer J.S. (2006) Prefrontal involvement in the regulation of emotion. Current Opinion in Neurobiology",
+            url: "https://doi.org/10.1016/j.conb.2006.03.032"
+          },
+          "ans": {
+            name: "ANS (autonomic nervous system)",
+            def: "The autonomic nervous system, regulating the internal organs without conscious control. Two divisions: the sympathetic (activation: ↑HR, ↑BP, pupil dilation, blood-flow redistribution to muscles) and the parasympathetic (inhibition: ↓HR, ↓BP, freezing). In fear the sympathetic division dominates within seconds through the release of adrenaline and noradrenaline.",
+            src: "Jänig W. (2006) The Integrative Action of the Autonomic Nervous System. Cambridge University Press",
+            url: "https://doi.org/10.1017/CBO9780511541667"
+          },
+          "hypothalamus": {
+            name: "Hypothalamus",
+            def: "A diencephalic structure, the main integrator of the autonomic and endocrine response to threat. It receives a signal from the amygdala (CeA) and activates: (1) the sympathetic ANS via brainstem nuclei; (2) the HPA axis via CRH secretion. It also regulates feeding behavior, thermoregulation, and circadian rhythms — all of which are disrupted under chronic fear.",
+            src: "Ulrich-Lai Y.M., Herman J.P. (2009) Neural regulation of endocrine and autonomic stress responses. Nature Reviews Neuroscience",
+            url: "https://doi.org/10.1038/nrn2647"
+          },
+          "bdnf": {
+            name: "BDNF (Brain-derived neurotrophic factor)",
+            def: "A neurotrophin, a key modulator of synaptic plasticity. In the amygdala, BDNF acting via the TrkB receptor supports LTP during fear conditioning. The Val66Met polymorphism reduces activity-dependent BDNF secretion → impaired fear extinction → elevated risk of anxiety disorders. A target of antidepressants: SSRIs raise BDNF levels.",
+            src: "Rattiner L.M. et al. (2004) BDNF and TrkB in fear learning. Journal of Neuroscience",
+            url: "https://doi.org/10.1523/JNEUROSCI.1499-04.2004"
+          },
+          "nmda receptors": {
+            name: "NMDA receptors (N-methyl-D-aspartate)",
+            def: "Ionotropic glutamate receptors — the main “gate” of long-term potentiation (LTP) in the lateral nucleus of the amygdala. They open only when the pre- and postsynaptic neurons are excited simultaneously — this is how a conditioned stimulus is “fused” with threat into a fear memory. D-cycloserine (a partial NMDA agonist) enhances extinction during exposure therapy.",
+            src: "Bhatt D. et al. (2020) NMDA receptor function in fear learning. Trends in Neurosciences",
+            url: "https://doi.org/10.1016/j.tins.2020.02.008"
+          }
+        };
+
+        var popup = document.getElementById('term-popup');
+        var tpName = document.getElementById('tp-name');
+        var tpDef  = document.getElementById('tp-def');
+        var tpLink = document.getElementById('tp-link');
+        var activeEl = null;
+        var hideTimer = null;
+
+        function showPopup(el, key) {
+          clearTimeout(hideTimer);
+          var t = TERMS[key];
+          if (!t) return;
+          tpName.textContent = t.name;
+          tpDef.textContent  = t.def;
+          tpLink.textContent = t.src;
+          tpLink.href        = t.url;
+
+          popup.classList.add('tp-show');
+          positionPopup(el);
+          activeEl = el;
+        }
+
+        function positionPopup(el) {
+          var rect = el.getBoundingClientRect();
+          var pw = 320, ph = 160;
+          var vw = window.innerWidth, vh = window.innerHeight;
+          var left = rect.left;
+          var top  = rect.bottom + 8;
+
+          if (left + pw > vw - 12) left = vw - pw - 12;
+          if (left < 12) left = 12;
+          if (top + ph > vh - 12) top = rect.top - ph - 8;
+          if (top < 12) top = 12;
+
+          popup.style.left = left + 'px';
+          popup.style.top  = top  + 'px';
+        }
+
+        function hidePopup() {
+          hideTimer = setTimeout(function(){
+            popup.classList.remove('tp-show');
+            activeEl = null;
+          }, 120);
+        }
+
+        popup.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); });
+        popup.addEventListener('mouseleave', hidePopup);
+        popup.addEventListener('touchstart', function(){ clearTimeout(hideTimer); }, {passive:true});
+
+        document.addEventListener('click', function(e){
+          if (!popup.contains(e.target) && (!activeEl || !activeEl.contains(e.target))) {
+            popup.classList.remove('tp-show');
+          }
+        });
+
+        document.querySelectorAll('.term').forEach(function(el){
+          var key = (el.dataset.term || el.textContent).toLowerCase().trim();
+          el.addEventListener('mouseenter', function(){ showPopup(el, key); });
+          el.addEventListener('mouseleave', hidePopup);
+          el.addEventListener('touchstart', function(e){
+            e.preventDefault();
+            if (popup.classList.contains('tp-show') && activeEl === el) {
+              popup.classList.remove('tp-show');
+            } else {
+              showPopup(el, key);
+            }
+          }, {passive:false});
+        });
+
+        window.addEventListener('scroll', function(){
+          if (activeEl) positionPopup(activeEl);
+        }, {passive:true});
+        window.addEventListener('resize', function(){
+          if (activeEl) positionPopup(activeEl);
+        });
+      })();
+      </script>
+
+      
+
 
       <div class="navigation-links">
         <a href="ptsd_recovery_en.html" class="nav-link prev">
           <span class="nav-arrow">←</span>
-          <span>PTSD: A Guide to Recovery</span>
+          <span>PTSD: a recovery guide</span>
         </a>
         <a href="trauma_en.html" class="nav-link next">
-          <span>PTSD Screening Test</span>
+          <span>PTSD screening</span>
           <span class="nav-arrow">→</span>
         </a>
       </div>
       <ul class="mobile-nav-list">
-        <li class="mobile-nav-item"><a href="ptsd_recovery_en.html">PTSD: A Guide to Recovery</a></li>
-        <li class="mobile-nav-item"><a href="trauma_en.html">PTSD Screening Test</a></li>
+        <li class="mobile-nav-item"><a href="ptsd_recovery_en.html">PTSD: a recovery guide</a></li>
+        <li class="mobile-nav-item"><a href="trauma_en.html">PTSD screening</a></li>
       </ul>
 
     </section>
@@ -344,27 +1335,30 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
 <footer class="site-footer">
   <div class="container footer-container">
-    <div class="footer-copyright">© All rights reserved. Center for Cognitive Research</div>
+
     <div class="footer-nav">
       <div class="footer-column">
         <h4>Menu</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="basics_en.html">Basics</a></li>
-          <li><a href="blog_en.html">Blog</a></li>
-          <li><a href="tests_en.html">Tests</a></li>
+          <li><a href="baza.html">Library</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="tests.html">Tests</a></li>
         </ul>
       </div>
       <div class="footer-column">
-        <h4><a href="about_en.html">About Us</a></h4>
+        <h4>About</h4>
         <ul>
-          <li><a href="about_en.html#who-we-are">Who we are</a></li>
-          <li><a href="about_en.html#mission">Mission</a></li>
-          <li><a href="about_en.html#tasks">Tasks</a></li>
-          <li><a href="about_en.html#contacts">Contacts</a></li>
+          <li><a href="about_ru.html#who-we-are">Who we are</a></li>
+          <li><a href="about_ru.html#mission">Mission</a></li>
+          <li><a href="about_ru.html#tasks">Goals</a></li>
+          <li><a href="about_ru.html#contacts">Contacts</a></li>
         </ul>
       </div>
     </div>
+
+    <div class="footer-copyright">© Center for Cognitive Research 2026</div>
+
   </div>
 </footer>
 
@@ -372,38 +1366,38 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 const LEVELS = [
   {
     num:'1', badge:'superstructure',
-    title:'p-factor — general vulnerability',
+    title:'The p-factor — general vulnerability',
     sub:'Caspi et al., 2014',
-    q:'Why are some people prone to any mental disorder, while others are not?',
-    def:'There is a single latent factor — p — that explains why a person who develops one mental disorder is statistically vulnerable to all others. This is not a disease or a diagnosis. It is a measurable predisposition — a kind of "mental resistance" to breakdowns. The name "p" is a direct analogy to the g-factor of intelligence: just as a person with high g performs well on all cognitive tasks, a person with high p is vulnerable to all types of psychopathology.',
+    q:'Why are some people prone to any mental disorder, while others are prone to none?',
+    def:'There is a single latent factor — p — that explains why a person who has developed one mental disorder is statistically vulnerable to all the others. It is not a disease and not a diagnosis. It is a measurable predisposition — a kind of “mental resistance” to breakdown. The name “p” is a direct analogy to the g-factor of intelligence: just as a person with high g solves all cognitive tasks well, a person with high p is vulnerable to all types of psychopathology.',
     comps:[
-      {n:'Neurobiological vulnerability',d:'Amygdala hyperreactivity, PFC regulation impairment'},
-      {n:'Genetic component',d:'Polygenic heritability ~40–60%'},
-      {n:'Early ontogenesis',d:'Adverse experience in ages 0–5 amplifies p'},
-      {n:'Neuroticism as proxy',d:'Correlation r ≈ 0.50 with p-factor'},
-      {n:'Self-regulation deficits',d:'Deficiency in response inhibition'},
-      {n:'Cognitive vulnerabilities',d:'Intolerance of uncertainty'},
+      {n:'Neurobiological vulnerability', d:'Amygdala hyperreactivity, impaired PFC regulation'},
+      {n:'Genetic component', d:'Polygenic heritability ~40–60%'},
+      {n:'Early development', d:'Adverse experience at ages 0–5 raises p'},
+      {n:'Neuroticism as a proxy', d:'Correlation r ≈ 0.50 with the p-factor'},
+      {n:'Self-regulation deficit', d:'Impaired response inhibition'},
+      {n:'Cognitive vulnerabilities', d:'Intolerance of uncertainty'},
     ],
-    mech:'p is defined through a bifactor statistical model: symptoms of all major disorders load onto it simultaneously. High p does not mean "sick with everything" — it means that any sufficient stressor can cause a breakdown at any point in the system. The mechanism is impaired emotional regulation as a common pathway to any form of psychopathology.',
+    mech:'p is defined through a bifactor statistical model: symptoms of all major disorders load onto it simultaneously. High p does not mean “ill with everything”: it means any sufficient stressor can cause a breakdown at any point in the system. The mechanism is impaired emotional regulation as a common pathway to any form of psychopathology.',
     src:'Caspi et al. (2014), Nature Neuroscience · Lahey et al. (2012) · Caspi & Moffitt (2024)',
-    trans:'p explains general vulnerability — but does not say where it will manifest. The next level describes how p splits into types of emotional responding.',
+    trans:'p explains general vulnerability, but it does not say where exactly it will go. That requires the next level: how p breaks down into types of emotional responding.',
     nextTitle:'Emotional dysfunction'
   },
   {
     num:'2', badge:'superspectrum',
     title:'Emotional dysfunction',
     sub:'Watson et al., 2022 · HiTOP',
-    q:'What class of problems unites fear, depression, anxiety, and somatic symptoms?',
-    def:'The emotional dysfunction superspectrum is the second level after p. It unites all disorders in which distress is directed inward: anxiety, fear, depression, somatic symptoms. This superspectrum is contrasted with the externalizing superspectrum (aggression, impulsivity, addiction) and the thought disorder spectrum (psychosis). Emotional dysfunction = suffering directed at oneself, not outward.',
+    q:'What class of problems unites fear, depression, anxiety, and bodily symptoms?',
+    def:'The emotional-dysfunction superspectrum is the second level after p. It unites all disorders in which distress is directed inward: anxiety, fear, depression, somatic symptoms. This superspectrum is contrasted with the externalizing one (aggression, impulsivity, addictions) and the thought-disorder spectrum (psychosis). Emotional dysfunction = suffering directed at the self, not outward.',
     comps:[
-      {n:'Internalizing spectrum',d:'Anxiety, fear, depression, PTSD'},
-      {n:'Somatoform spectrum',d:'Physical symptoms without organic cause'},
-      {n:'Negative affect',d:'Common loading of both spectra'},
-      {n:'Neuroticism',d:'Personality axis of the superspectrum'},
+      {n:'Internalizing spectrum', d:'Anxiety, fear, depression, PTSD'},
+      {n:'Somatoform spectrum', d:'Bodily symptoms without an organic cause'},
+      {n:'Negative affect', d:'The shared loading of both spectra'},
+      {n:'Neuroticism', d:'The personality axis of the superspectrum'},
     ],
-    mech:'The superspectrum is shaped through a common pathway: high negative affect + reduced positive affect + neurobiological hyperreactivity to threats. This distinguishes it from externalization, where low impulse control dominates rather than high emotional reactivity.',
+    mech:'The superspectrum forms through a common pathway: high negative affect + reduced positive affect + neurobiological hyperreactivity to threats. This distinguishes it from externalizing, where low impulse control dominates rather than high emotional reactivity.',
     src:'Watson et al. (2022), World Psychiatry · HiTOP Consortium',
-    trans:'Within the superspectrum there is structure: not all "inward" disorders are the same. Some center on present threat, others on loss and hopelessness. The internalizing spectrum describes this distinction.',
+    trans:'There is structure within the superspectrum: not all “inner” disorders are alike. Some are centered on a here-and-now threat, others on loss and hopelessness. That distinction is described by the internalizing spectrum.',
     nextTitle:'Internalizing spectrum'
   },
   {
@@ -411,165 +1405,154 @@ const LEVELS = [
     title:'Internalizing spectrum',
     sub:'Krueger & Markon, 2006 · HiTOP',
     q:'What do fear, panic, anxiety, and depression have in common — despite their differences?',
-    def:'The internalizing spectrum is an empirically derived dimension uniting disorders in which distress is directed inward: anxiety, fear, depression, PTSD. This is not a diagnostic category but a continuous space. The DSM carved this spectrum into separate disorders for clinical convenience — not biological reality. This is your range of states.',
+    def:'The internalizing spectrum is an empirically derived dimension uniting disorders in which distress is directed inward: anxiety, fear, depression, PTSD. It is not a diagnostic category but a continuous space. The DSM cut this spectrum into separate disorders for clinical convenience — not according to biological reality. This is your range of states.',
     comps:[
-      {n:'Fear subfactor',d:'Panic, phobias, separation anxiety'},
-      {n:'Distress subfactor',d:'Depression, GAD, PTSD'},
-      {n:'Eating pathology subfactor',d:'Eating disorders'},
-      {n:'Common loading',d:'Negative affect as the spectrum axis'},
+      {n:'Fear subfactor', d:'Panic, phobias, separation anxiety'},
+      {n:'Distress subfactor', d:'Depression, GAD, PTSD'},
+      {n:'Eating-behavior subfactor', d:'Eating disorders'},
+      {n:'Shared loading', d:'Negative affect as the spectrum axis'},
     ],
-    mech:'All conditions on the spectrum share one loading: high negative affect, neurobiological threat vulnerability, emotional regulation impairment. This explains high comorbidity — not different diseases, but one spectrum with different phenotypes.',
+    mech:'All states on the spectrum share one loading: high negative affect, neurobiological vulnerability to threats, impaired emotion regulation. This is exactly what explains the high comorbidity — these are not different diseases, but one spectrum with different phenotypes.',
     src:'Krueger & Markon (2006) · HiTOP Working Group (2017–2023)',
-    trans:'Fear and depression are still different things within the spectrum. They differ neurobiologically and clinically. The next level describes this difference: two subfactors.',
-    nextTitle:'Fear · Distress subfactors'
+    trans:'Fear and depression are still different things within the spectrum. They differ neurobiologically and clinically. That distinction is described by the next level: two subfactors.',
+    nextTitle:'Fear and distress subfactors'
   },
   {
     num:'4', badge:'subfactors',
     title:'Fear · Distress — two subfactors',
     sub:'Krueger (1999) · Watson & Clark (1991)',
-    q:'How does phobic vulnerability fundamentally differ from depressive-anxious vulnerability?',
-    def:'Within the internalizing spectrum, two subfactors consistently emerge. The fear subfactor includes conditions centered on present threat: panic disorder, phobias, separation anxiety. The distress subfactor includes conditions centered on loss, hopelessness, and chronic uncertainty: depression, GAD, PTSD.',
+    q:'What fundamentally distinguishes phobic vulnerability from depressive-anxious vulnerability?',
+    def:'Within the internalizing spectrum, two subfactors are reliably found. The fear subfactor includes states centered on a here-and-now threat: panic disorder, phobias, separation anxiety. The distress subfactor includes states centered on loss, hopelessness, and chronic uncertainty: depression, GAD, PTSD.',
     comps:[
-      {n:'Fear: panic disorder',d:'Response to predictable threat'},
-      {n:'Fear: specific phobias',d:'Conditioned fear of objects/situations'},
-      {n:'Fear: social anxiety',d:'Threat of social evaluation'},
-      {n:'Distress: depression',d:'Loss, anhedonia, hopelessness'},
-      {n:'Distress: GAD',d:'Chronic uncertain threat'},
-      {n:'Distress: PTSD',d:'Response to experienced threat'},
+      {n:'Fear: panic disorder', d:'Response to a predictable threat'},
+      {n:'Fear: specific phobias', d:'Conditioned fear of objects/situations'},
+      {n:'Fear: social anxiety', d:'Threat of social evaluation'},
+      {n:'Distress: depression', d:'Loss, anhedonia, hopelessness'},
+      {n:'Distress: GAD', d:'Chronic uncertain threat'},
+      {n:'Distress: PTSD', d:'Response to an experienced threat'},
     ],
-    mech:'Neurobiologically: the fear subfactor is linked to reactivity to predictable threat (amygdala, BLA). The distress subfactor — to unpredictable threat and chronic dysregulation (PFC, hippocampus, HPA axis). One person can have high fear and low distress — these are fundamentally different profiles.',
+    mech:'Neurobiologically: the fear subfactor is linked to reactivity to a predictable threat (amygdala, BLA). The distress subfactor — to unpredictable threat and chronic dysregulation (PFC, hippocampus, HPA axis). One person may have high fear and low distress — these are fundamentally different profiles.',
     src:'Krueger (1999) · Watson & Clark (1991) · RDoC NIMH (2023)',
-    trans:'Subfactors define the structure of vulnerability. But how do they manifest clinically? What specific disorders do they produce — and why are there so many?',
+    trans:'The subfactors set the structure of vulnerability. But how do they manifest clinically? Which specific disorders do they produce — and why are there so many?',
     nextTitle:'Syndromes'
   },
   {
     num:'5', badge:'syndromes',
-    title:'Syndromes — clinical manifestations',
+    title:'Syndromes — clinical presentations',
     sub:'DSM-5-TR (APA, 2022) · HiTOP',
     q:'How does vulnerability become a specific disorder?',
-    def:'Syndromes are stable clusters of symptoms, roughly corresponding to DSM diagnoses, but treated as points on continuous dimensions rather than categories. One person with high fear subfactor loading may receive different DSM diagnoses depending on the specific object of fear: spiders, crowds, heights. HiTOP argues: these are not three diseases — it is one vulnerability with different objects.',
+    def:'Syndromes are stable symptom clusters roughly corresponding to DSM diagnoses, but treated as points on continuous dimensions rather than categories. One person with a high loading on the fear subfactor may receive different DSM diagnoses depending on the specific object of fear: spiders, crowds, heights. HiTOP asserts: these are not three diseases — they are one vulnerability with different objects.',
     comps:[
-      {n:'Panic disorder',d:'Recurrent sudden fear peaks'},
-      {n:'Agoraphobia',d:'Avoidance of open/crowded spaces'},
-      {n:'Social anxiety disorder',d:'Fear of being judged by others'},
-      {n:'Specific phobias',d:'Fear of specific stimuli'},
-      {n:'Major depression',d:'Anhedonia + low mood ≥2 weeks'},
-      {n:'GAD',d:'Uncontrollable worry ≥6 months'},
-      {n:'PTSD',d:'Re-experiencing + hyperarousal'},
-      {n:'Separation anxiety',d:'Fear of separation from close others'},
+      {n:'Panic disorder', d:'Recurrent sudden peaks of fear'},
+      {n:'Agoraphobia', d:'Avoidance of open/crowded places'},
+      {n:'Social anxiety', d:'Fear of evaluation by others'},
+      {n:'Specific phobias', d:'Fear of specific stimuli'},
+      {n:'Major depression', d:'Anhedonia + low mood ≥2 weeks'},
+      {n:'GAD', d:'Uncontrollable worry ≥6 months'},
+      {n:'PTSD', d:'Re-experiencing + hyperarousal'},
+      {n:'Separation anxiety', d:'Fear of separation from loved ones'},
     ],
-    mech:'DSM diagnoses are clinically useful threshold labels on continuous dimensions. Comorbidity (multiple diagnoses) is explained not by independent diseases but by shared subfactor loading. 80% of patients with panic disorder have at least one additional diagnosis — because it is one vulnerability.',
+    mech:'DSM diagnoses are clinically useful threshold markers on continuous dimensions. Comorbidity (having several diagnoses) is explained not by independent diseases but by a shared loading of the subfactors. 80% of patients with panic disorder have at least one more diagnosis — because it is one vulnerability.',
     src:'DSM-5-TR (APA, 2022) · HiTOP primer (Conway et al., 2022)',
-    trans:'Syndromes describe the pattern. But where does the symptom itself come from — what exactly is disrupted at the level of specific moment-to-moment experience?',
+    trans:'Syndromes describe a pattern of symptoms. But where does the symptom itself come from — what exactly is disrupted at the level of the specific experience, moment by moment?',
     nextTitle:'Symptom dimensions'
   },
   {
     num:'6', badge:'symptoms',
     title:'Symptom dimensions',
     sub:'RDoC · Borsboom (2017)',
-    q:'Of what specific impairments are disorders composed?',
-    def:'The most granular clinical level: individual symptoms treated as continuous dimensions, not binary features. Separation anxiety, rumination, insomnia, avoidance, anhedonia, physiological arousal — each can be measured quantitatively. Here live the RDoC biomarkers: startle reflex, skin conductance, amygdala activation patterns.',
+    q:'What specific impairments are disorders made of?',
+    def:'The most fine-grained clinical level: individual symptoms are treated as continuous dimensions rather than binary signs. Separation anxiety, rumination, insomnia, avoidance, anhedonia, physiological arousal — each can be measured quantitatively. This is where the RDoC biomarkers live: the startle reflex, skin conductance, amygdala-activation patterns.',
     comps:[
-      {n:'Rumination',d:'Repetitive thoughts about threat/loss'},
-      {n:'Avoidance',d:'Behavioral escape from triggers'},
-      {n:'Hyperarousal',d:'Nervousness, insomnia, reactivity'},
-      {n:'Anhedonia',d:'Reduced capacity for pleasure'},
-      {n:'Memory intrusion',d:'Intrusive memories/flashbacks'},
-      {n:'Somatic symptoms',d:'Muscle tension, palpitations'},
+      {n:'Rumination', d:'Repetitive thoughts about threat/loss'},
+      {n:'Avoidance', d:'Behavioral evasion of triggers'},
+      {n:'Hyperarousal', d:'Anxiety, insomnia, reactivity'},
+      {n:'Anhedonia', d:'Reduced capacity for pleasure'},
+      {n:'Memory intrusions', d:'Intrusive memories/flashbacks'},
+      {n:'Somatic symptoms', d:'Muscle tension, palpitations'},
     ],
-    mech:'Symptoms are not isolated — they form networks (Borsboom network model): one symptom activates another. Insomnia amplifies rumination → rumination amplifies anxiety → anxiety disrupts sleep. This explains disorder chronification even after the original stressor is removed.',
+    mech:'Symptoms are not isolated — they form networks (Borsboom’s network model): one symptom activates another. Insomnia amplifies rumination → rumination amplifies anxiety → anxiety disrupts sleep. This explains the chronification of disorders even after the original stressor is removed.',
     src:'Borsboom (2017), Psychological Review · NIMH RDoC Matrix (2023)',
-    trans:'Until now we described psychopathology — what happens. But how does this connect to personality — to who a person persistently is, not just during episodes of disorder?',
+    trans:'So far we have described psychopathology — what happens. But how is all of this connected to personality — to who a person is continuously, not only during episodes of disorder?',
     nextTitle:'Neuroticism'
   },
   {
     num:'7', badge:'personality trait',
     title:'Neuroticism — the bridge to personality',
     sub:'Kotov et al. (2010) · Lahey (2009)',
-    q:'Is there a personality trait that explains the full internalizing spectrum vulnerability?',
-    def:'Neuroticism is a stable personality trait describing the tendency toward negative emotions, emotional instability, and reactivity to stressors. Correlation with p-factor r ≈ 0.50 — the single most powerful predictor of psychopathology among all Big Five traits. Neuroticism precedes disorders and persists after recovery — it is not a symptom, but a vulnerability.',
+    q:'Is there a personality trait that explains a propensity for the entire internalizing spectrum?',
+    def:'Neuroticism is a stable personality trait describing a tendency toward negative emotions, emotional instability, and reactivity to stressors. Its correlation with the p-factor of r ≈ 0.50 makes it the single most powerful predictor of psychopathology among all the Big Five traits. Neuroticism precedes disorders and persists after recovery — it is not a symptom but a vulnerability.',
     comps:[
-      {n:'Anxiousness',d:'Chronic background worry'},
-      {n:'Emotional instability',d:'Rapid mood fluctuations'},
-      {n:'Vulnerability',d:'Reduced stress tolerance'},
-      {n:'Self-criticism',d:'Negative automatic thoughts about self'},
-      {n:'Somatization',d:'Bodily expression of emotional distress'},
+      {n:'Anxiousness', d:'Chronic background worry'},
+      {n:'Emotional instability', d:'Rapid mood swings'},
+      {n:'Vulnerability', d:'Reduced stress resilience'},
+      {n:'Self-criticism', d:'Negative automatic thoughts about oneself'},
+      {n:'Somatization', d:'Bodily expression of emotional distress'},
     ],
-    mech:'Neuroticism is a stable trait (40–60% genetically determined), rising in adolescence, peaking at ~age 20, then slowly declining. Longitudinal studies: high neuroticism at 15 → 14-fold increase in depression risk by age 25. Neuroticism is an amplifier: it intensifies any stressor.',
+    mech:'Neuroticism is a stable trait (40–60% genetically determined): it rises in adolescence, peaks around age 20, then slowly declines. Longitudinal studies: high neuroticism at 15 → a 14-fold increase in depression risk by age 25. Neuroticism is an amplifier: it intensifies any stressor.',
     src:'Kotov et al. (2010), Psychological Bulletin · Lahey (2009), Ann. Rev. Clin. Psych.',
-    trans:'Neuroticism is a trait describing "who the person is." But how exactly does it influence how the person constructs their self, makes decisions, and builds their life? The mechanism is self-regulation.',
+    trans:'Neuroticism is a trait describing “who a person is.” But how exactly does it shape how a person builds their self, makes decisions, and builds a life? The mechanism is self-regulation.',
     nextTitle:'Self-regulation'
   },
   {
     num:'8', badge:'cognition',
     title:'Self-regulation — the cognitive mechanism',
     sub:'Leyro et al. (2010) · Carver & Scheier',
-    q:'Through what mechanism does the internalizing spectrum influence personality development?',
-    def:'Self-regulation is the ability to maintain goal-directed behavior in the face of distress, uncertainty, and internal conflict. The link between neuroticism and disorders is mediated by four cognitive vulnerabilities that impair self-regulation: anxiety sensitivity, intolerance of uncertainty, experiential avoidance, and looming cognitive style.',
+    q:'Through what mechanism does the internalizing spectrum affect personality development?',
+    def:'Self-regulation is the ability to maintain goal-directed behavior in the face of distress, uncertainty, and inner conflict. The link between neuroticism and disorders is mediated by four cognitive vulnerabilities that impair self-regulation: anxiety sensitivity, intolerance of uncertainty, experiential avoidance, and a looming cognitive style.',
     comps:[
-      {n:'Anxiety sensitivity',d:'"Fear of fear" — fear of anxiety\'s physical symptoms'},
-      {n:'Intolerance of uncertainty',d:'Inability to act without guarantees'},
-      {n:'Experiential avoidance',d:'Escape from inner experience'},
-      {n:'Looming cognition',d:'Future threat perceived as already real'},
-      {n:'Working memory deficit',d:'Chronic anxiety reduces cognitive resources'},
+      {n:'Anxiety sensitivity', d:'“Fear of fear” — fear of the physical symptoms of anxiety'},
+      {n:'Intolerance of uncertainty', d:'Inability to act without guarantees'},
+      {n:'Experiential avoidance', d:'Evasion of inner experience'},
+      {n:'Looming cognitive style', d:'A future threat is perceived as already real'},
+      {n:'Working-memory deficit', d:'Chronic anxiety reduces cognitive resources'},
     ],
-    mech:'Impaired self-regulation is the key mechanism through which the p-factor manifests in life outcomes. A person with high p and neuroticism regulates attention, decision-making, social interaction, and long-term planning less effectively. This affects education, relationships, career — and how the self is constructed.',
+    mech:'Impaired self-regulation is the key mechanism through which the p-factor manifests in life outcomes. A person with high p and neuroticism regulates attention, decision-making, social interaction, and long-term planning more poorly. This affects education, relationships, career — and how the self is formed.',
     src:'Leyro, Zvolensky & Bernstein (2010) · Hofmann et al. (2012)',
-    trans:'Impaired self-regulation directly affects the capacity to explore oneself, commit to choices, and revise the self — that is, to form identity.',
+    trans:'Impaired self-regulation directly affects the ability to explore the self, make commitments, and revise one’s self — that is, the formation of identity.',
     nextTitle:'Identity'
   },
   {
     num:'9', badge:'identity',
-    title:'Identity — the developmental outcome',
+    title:'Identity — the outcome of development',
     sub:'Luyckx et al. (2013) · Erikson (1968)',
-    q:'How does biological vulnerability ultimately sum up in the structure of the self?',
-    def:'Identity is an organized system of a person\'s representations of themselves, their values, goals, and place in the world. It forms through two interacting processes: exploration (trying different versions of the self) and commitment (choosing and following through on them). The internalizing spectrum disrupts both processes.',
+    q:'How does biological vulnerability sum up into the structure of the self?',
+    def:'Identity is an organized system of a person’s representations about themselves, their values, goals, and place in the world. It forms through two interacting processes: exploration (trying out different versions of the self) and commitment (choosing and following them). The internalizing spectrum disrupts both processes.',
     comps:[
-      {n:'Exploration in breadth',d:'Trying different roles, values, relationships'},
-      {n:'Exploration in depth',d:'Reflecting on made commitments'},
-      {n:'Ruminative exploration',d:'Pathological inability to finalize a choice'},
-      {n:'Commitment',d:'Stable identifications and goals'},
-      {n:'Identification with commitments',d:'Emotional investment in choices'},
-      {n:'Diffuse identity',d:'Absence of stable self — outcome of disruption'},
+      {n:'Exploration in breadth', d:'Trying out different roles, values, relationships'},
+      {n:'Exploration in depth', d:'Reflection on commitments made'},
+      {n:'Ruminative exploration', d:'A pathological inability to finalize a choice'},
+      {n:'Commitment making', d:'Stable identifications and goals'},
+      {n:'Identification with commitment', d:'Emotional engagement in the choice'},
+      {n:'Diffuse identity', d:'Absence of a stable self — the result of disruption'},
     ],
-    mech:'Anxiety and depression disrupt identity formation through two paths: ruminative exploration (the person endlessly reconsiders choices without finalizing them) and avoidance of exploration (the person does not try new things out of fear). The result is either a diffuse or a prematurely foreclosed identity. Longitudinal data confirm a feedback loop: symptoms → identity disruption → amplified symptoms.',
+    mech:'Anxiety and depression disrupt identity formation in two ways: ruminative exploration (the person endlessly revisits choices without finalizing them) and avoidance of exploration (the person never tries anything new out of fear). The result is either a diffuse or a prematurely foreclosed identity. A loop has been documented longitudinally: symptoms → identity disturbance → intensified symptoms.',
     src:'Luyckx et al. (2013), Dev. Psychology · Klimstra et al. (2016) · Erikson (1968)',
-    trans:null,
-    nextTitle:null
+    trans:null, nextTitle:null
   }
 ];
 
 function toggleCard(id) {
-  const card = document.getElementById('card-' + id);
-  card.classList.toggle('open');
+  document.getElementById('card-'+id).classList.toggle('open');
   updateProgress();
 }
-
-function switchTab(levelIdx, tab) {
-  const card = document.getElementById('card-' + levelIdx);
+function switchTab(idx, tab) {
+  const card = document.getElementById('card-'+idx);
   card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('act'));
   card.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('act'));
-  card.querySelector('.tab-btn[data-tab="' + tab + '"]').classList.add('act');
-  card.querySelector('.panel-' + tab).classList.add('act');
+  card.querySelector('.tab-btn[data-tab="'+tab+'"]').classList.add('act');
+  card.querySelector('.panel-'+tab).classList.add('act');
 }
-
-function openNext(currentIdx) {
-  const nextIdx = currentIdx + 1;
-  if (nextIdx < LEVELS.length) {
-    const card = document.getElementById('card-' + nextIdx);
-    card.classList.add('open');
-    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    updateProgress();
-  }
+function openNext(idx) {
+  const next = document.getElementById('card-'+(idx+1));
+  if (next) { next.classList.add('open'); next.scrollIntoView({behavior:'smooth',block:'start'}); updateProgress(); }
 }
-
 function updateProgress() {
   const open = document.querySelectorAll('.level-card.open').length;
-  document.getElementById('prog').style.width = Math.round(open / LEVELS.length * 100) + '%';
+  document.getElementById('prog').style.width = Math.round(open/LEVELS.length*100)+'%';
 }
 
 const container = document.getElementById('levels-container');
-
 LEVELS.forEach((lv, i) => {
   if (i > 0) {
     const conn = document.createElement('div');
@@ -577,26 +1560,23 @@ LEVELS.forEach((lv, i) => {
     conn.innerHTML = '<div class="conn-line"></div>';
     container.appendChild(conn);
   }
-
-  const hasNext = lv.trans !== null;
   const compsHtml = lv.comps.map(c =>
     `<div class="comp-item"><div class="comp-name">${c.n}</div><div class="comp-desc">${c.d}</div></div>`
   ).join('');
-
-  const transTab = hasNext ? `<button class="tab-btn" data-tab="trans" onclick="switchTab(${i},'trans')">Transition</button>` : '';
-  const transPanel = hasNext ? `
+  const transTab = lv.trans ? `<button class="tab-btn" data-tab="trans" onclick="switchTab(${i},'trans')">Transition</button>` : '';
+  const transPanel = lv.trans ? `
     <div class="tab-panel panel-trans">
       <div class="trans-block">
         <p class="trans-q">${lv.trans}</p>
         <div class="trans-next-label">Next level</div>
         <div class="trans-next-name">${lv.nextTitle}</div>
       </div>
-      <button class="open-next-btn" onclick="openNext(${i})">Open next level →</button>
+      <button class="open-next-btn" onclick="openNext(${i})">Open the next level →</button>
     </div>` : '';
 
   const div = document.createElement('div');
   div.className = 'level-card';
-  div.id = 'card-' + i;
+  div.id = 'card-'+i;
   div.innerHTML = `
     <div class="level-header" onclick="toggleCard(${i})">
       <div class="level-num">${lv.num}</div>
@@ -607,40 +1587,32 @@ LEVELS.forEach((lv, i) => {
       <span class="level-badge">${lv.badge}</span>
       <span class="chev">▾</span>
     </div>
-    <div class="level-body">
-      <div class="level-body-inner">
-        <div class="level-content">
-          <div class="tabs">
-            <button class="tab-btn act" data-tab="def" onclick="switchTab(${i},'def')">Definition</button>
-            <button class="tab-btn" data-tab="comp" onclick="switchTab(${i},'comp')">Components</button>
-            <button class="tab-btn" data-tab="mech" onclick="switchTab(${i},'mech')">Mechanism</button>
-            ${transTab}
-          </div>
-          <div class="tab-panel panel-def act">
-            <p class="def-q">${lv.q}</p>
-            <p class="def-text">${lv.def}</p>
-          </div>
-          <div class="tab-panel panel-comp">
-            <div class="comp-grid">${compsHtml}</div>
-          </div>
-          <div class="tab-panel panel-mech">
-            <div class="mech-block">
-              <p class="mech-text">${lv.mech}</p>
-              <div class="mech-source">${lv.src}</div>
-            </div>
-          </div>
-          ${transPanel}
+    <div class="level-body"><div class="level-body-inner"><div class="level-content">
+      <div class="tabs">
+        <button class="tab-btn act" data-tab="def" onclick="switchTab(${i},'def')">Definition</button>
+        <button class="tab-btn" data-tab="comp" onclick="switchTab(${i},'comp')">Components</button>
+        <button class="tab-btn" data-tab="mech" onclick="switchTab(${i},'mech')">Mechanism</button>
+        ${transTab}
+      </div>
+      <div class="tab-panel panel-def act">
+        <p class="def-q">${lv.q}</p>
+        <p class="def-text">${lv.def}</p>
+      </div>
+      <div class="tab-panel panel-comp"><div class="comp-grid">${compsHtml}</div></div>
+      <div class="tab-panel panel-mech">
+        <div class="mech-block">
+          <p class="mech-text">${lv.mech}</p>
+          <div class="mech-source">${lv.src}</div>
         </div>
       </div>
-    </div>`;
+      ${transPanel}
+    </div></div></div>`;
   container.appendChild(div);
 });
 
-// Open first card
 document.getElementById('card-0').classList.add('open');
 updateProgress();
 
-// Language dropdown
 document.getElementById('language-toggle').addEventListener('click', function(e) {
   e.stopPropagation();
   document.getElementById('language-dropdown').classList.toggle('active');
