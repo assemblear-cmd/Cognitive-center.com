@@ -267,6 +267,16 @@ nav a{
 }
 nav a:hover{color:var(--color-obsidian)!important; border-bottom:none!important;}
 nav a.active-link{color:var(--color-obsidian)!important; font-weight:500!important; border-bottom:none!important;}
+/* ---- Neuralink-style animated underline on nav hover ------- */
+nav a{position:relative!important;}
+nav a::after{
+  content:""!important; position:absolute!important; left:0!important; bottom:-3px!important;
+  width:100%!important; height:1px!important; background:var(--color-obsidian)!important;
+  transform:scaleX(0)!important; transform-origin:left center!important;
+  transition:transform .32s cubic-bezier(.22,.61,.36,1)!important;
+}
+nav a:hover::after{transform:scaleX(1)!important;}
+nav a.active-link::after{transform:scaleX(1)!important;}
 .language-code{font-family:var(--font-untitledsans)!important;}
 .current-language{border:1px solid var(--color-fog); border-radius:var(--radius-nav); padding:6px 12px!important;}
 .current-language:hover{background:transparent!important; border-color:var(--color-obsidian);}
@@ -1311,14 +1321,6 @@ nav a.active-link{color:var(--color-obsidian)!important; font-weight:500!importa
       })();
       </script>
 
-      <div class="levels-section" style="margin:60px 0 10px;">
-        <div class="master-q" style="margin-bottom:28px;">
-          <div class="mq-label">From vulnerability to identity</div>
-          <p>How does a single biological vulnerability cascade — level by level — from the p-factor all the way up to the structure of the self? Open each level in turn.</p>
-        </div>
-        <div id="levels-container"></div>
-      </div>
-
       <div class="navigation-links">
         <a href="ptsd_recovery_en.html" class="nav-link prev">
           <span class="nav-arrow">←</span>
@@ -1368,256 +1370,6 @@ nav a.active-link{color:var(--color-obsidian)!important; font-weight:500!importa
 </footer>
 
 <script>
-const LEVELS = [
-  {
-    num:'1', badge:'superstructure',
-    title:'The p-factor — general vulnerability',
-    sub:'Caspi et al., 2014',
-    q:'Why are some people prone to any mental disorder, while others are prone to none?',
-    def:'There is a single latent factor — p — that explains why a person who has developed one mental disorder is statistically vulnerable to all the others. It is not a disease and not a diagnosis. It is a measurable predisposition — a kind of “mental resistance” to breakdown. The name “p” is a direct analogy to the g-factor of intelligence: just as a person with high g solves all cognitive tasks well, a person with high p is vulnerable to all types of psychopathology.',
-    comps:[
-      {n:'Neurobiological vulnerability', d:'Amygdala hyperreactivity, impaired PFC regulation'},
-      {n:'Genetic component', d:'Polygenic heritability ~40–60%'},
-      {n:'Early development', d:'Adverse experience at ages 0–5 raises p'},
-      {n:'Neuroticism as a proxy', d:'Correlation r ≈ 0.50 with the p-factor'},
-      {n:'Self-regulation deficit', d:'Impaired response inhibition'},
-      {n:'Cognitive vulnerabilities', d:'Intolerance of uncertainty'},
-    ],
-    mech:'p is defined through a bifactor statistical model: symptoms of all major disorders load onto it simultaneously. High p does not mean “ill with everything”: it means any sufficient stressor can cause a breakdown at any point in the system. The mechanism is impaired emotional regulation as a common pathway to any form of psychopathology.',
-    src:'Caspi et al. (2014), Nature Neuroscience · Lahey et al. (2012) · Caspi & Moffitt (2024)',
-    trans:'p explains general vulnerability, but it does not say where exactly it will go. That requires the next level: how p breaks down into types of emotional responding.',
-    nextTitle:'Emotional dysfunction'
-  },
-  {
-    num:'2', badge:'superspectrum',
-    title:'Emotional dysfunction',
-    sub:'Watson et al., 2022 · HiTOP',
-    q:'What class of problems unites fear, depression, anxiety, and bodily symptoms?',
-    def:'The emotional-dysfunction superspectrum is the second level after p. It unites all disorders in which distress is directed inward: anxiety, fear, depression, somatic symptoms. This superspectrum is contrasted with the externalizing one (aggression, impulsivity, addictions) and the thought-disorder spectrum (psychosis). Emotional dysfunction = suffering directed at the self, not outward.',
-    comps:[
-      {n:'Internalizing spectrum', d:'Anxiety, fear, depression, PTSD'},
-      {n:'Somatoform spectrum', d:'Bodily symptoms without an organic cause'},
-      {n:'Negative affect', d:'The shared loading of both spectra'},
-      {n:'Neuroticism', d:'The personality axis of the superspectrum'},
-    ],
-    mech:'The superspectrum forms through a common pathway: high negative affect + reduced positive affect + neurobiological hyperreactivity to threats. This distinguishes it from externalizing, where low impulse control dominates rather than high emotional reactivity.',
-    src:'Watson et al. (2022), World Psychiatry · HiTOP Consortium',
-    trans:'There is structure within the superspectrum: not all “inner” disorders are alike. Some are centered on a here-and-now threat, others on loss and hopelessness. That distinction is described by the internalizing spectrum.',
-    nextTitle:'Internalizing spectrum'
-  },
-  {
-    num:'3', badge:'spectrum',
-    title:'Internalizing spectrum',
-    sub:'Krueger & Markon, 2006 · HiTOP',
-    q:'What do fear, panic, anxiety, and depression have in common — despite their differences?',
-    def:'The internalizing spectrum is an empirically derived dimension uniting disorders in which distress is directed inward: anxiety, fear, depression, PTSD. It is not a diagnostic category but a continuous space. The DSM cut this spectrum into separate disorders for clinical convenience — not according to biological reality. This is your range of states.',
-    comps:[
-      {n:'Fear subfactor', d:'Panic, phobias, separation anxiety'},
-      {n:'Distress subfactor', d:'Depression, GAD, PTSD'},
-      {n:'Eating-behavior subfactor', d:'Eating disorders'},
-      {n:'Shared loading', d:'Negative affect as the spectrum axis'},
-    ],
-    mech:'All states on the spectrum share one loading: high negative affect, neurobiological vulnerability to threats, impaired emotion regulation. This is exactly what explains the high comorbidity — these are not different diseases, but one spectrum with different phenotypes.',
-    src:'Krueger & Markon (2006) · HiTOP Working Group (2017–2023)',
-    trans:'Fear and depression are still different things within the spectrum. They differ neurobiologically and clinically. That distinction is described by the next level: two subfactors.',
-    nextTitle:'Fear and distress subfactors'
-  },
-  {
-    num:'4', badge:'subfactors',
-    title:'Fear · Distress — two subfactors',
-    sub:'Krueger (1999) · Watson & Clark (1991)',
-    q:'What fundamentally distinguishes phobic vulnerability from depressive-anxious vulnerability?',
-    def:'Within the internalizing spectrum, two subfactors are reliably found. The fear subfactor includes states centered on a here-and-now threat: panic disorder, phobias, separation anxiety. The distress subfactor includes states centered on loss, hopelessness, and chronic uncertainty: depression, GAD, PTSD.',
-    comps:[
-      {n:'Fear: panic disorder', d:'Response to a predictable threat'},
-      {n:'Fear: specific phobias', d:'Conditioned fear of objects/situations'},
-      {n:'Fear: social anxiety', d:'Threat of social evaluation'},
-      {n:'Distress: depression', d:'Loss, anhedonia, hopelessness'},
-      {n:'Distress: GAD', d:'Chronic uncertain threat'},
-      {n:'Distress: PTSD', d:'Response to an experienced threat'},
-    ],
-    mech:'Neurobiologically: the fear subfactor is linked to reactivity to a predictable threat (amygdala, BLA). The distress subfactor — to unpredictable threat and chronic dysregulation (PFC, hippocampus, HPA axis). One person may have high fear and low distress — these are fundamentally different profiles.',
-    src:'Krueger (1999) · Watson & Clark (1991) · RDoC NIMH (2023)',
-    trans:'The subfactors set the structure of vulnerability. But how do they manifest clinically? Which specific disorders do they produce — and why are there so many?',
-    nextTitle:'Syndromes'
-  },
-  {
-    num:'5', badge:'syndromes',
-    title:'Syndromes — clinical presentations',
-    sub:'DSM-5-TR (APA, 2022) · HiTOP',
-    q:'How does vulnerability become a specific disorder?',
-    def:'Syndromes are stable symptom clusters roughly corresponding to DSM diagnoses, but treated as points on continuous dimensions rather than categories. One person with a high loading on the fear subfactor may receive different DSM diagnoses depending on the specific object of fear: spiders, crowds, heights. HiTOP asserts: these are not three diseases — they are one vulnerability with different objects.',
-    comps:[
-      {n:'Panic disorder', d:'Recurrent sudden peaks of fear'},
-      {n:'Agoraphobia', d:'Avoidance of open/crowded places'},
-      {n:'Social anxiety', d:'Fear of evaluation by others'},
-      {n:'Specific phobias', d:'Fear of specific stimuli'},
-      {n:'Major depression', d:'Anhedonia + low mood ≥2 weeks'},
-      {n:'GAD', d:'Uncontrollable worry ≥6 months'},
-      {n:'PTSD', d:'Re-experiencing + hyperarousal'},
-      {n:'Separation anxiety', d:'Fear of separation from loved ones'},
-    ],
-    mech:'DSM diagnoses are clinically useful threshold markers on continuous dimensions. Comorbidity (having several diagnoses) is explained not by independent diseases but by a shared loading of the subfactors. 80% of patients with panic disorder have at least one more diagnosis — because it is one vulnerability.',
-    src:'DSM-5-TR (APA, 2022) · HiTOP primer (Conway et al., 2022)',
-    trans:'Syndromes describe a pattern of symptoms. But where does the symptom itself come from — what exactly is disrupted at the level of the specific experience, moment by moment?',
-    nextTitle:'Symptom dimensions'
-  },
-  {
-    num:'6', badge:'symptoms',
-    title:'Symptom dimensions',
-    sub:'RDoC · Borsboom (2017)',
-    q:'What specific impairments are disorders made of?',
-    def:'The most fine-grained clinical level: individual symptoms are treated as continuous dimensions rather than binary signs. Separation anxiety, rumination, insomnia, avoidance, anhedonia, physiological arousal — each can be measured quantitatively. This is where the RDoC biomarkers live: the startle reflex, skin conductance, amygdala-activation patterns.',
-    comps:[
-      {n:'Rumination', d:'Repetitive thoughts about threat/loss'},
-      {n:'Avoidance', d:'Behavioral evasion of triggers'},
-      {n:'Hyperarousal', d:'Anxiety, insomnia, reactivity'},
-      {n:'Anhedonia', d:'Reduced capacity for pleasure'},
-      {n:'Memory intrusions', d:'Intrusive memories/flashbacks'},
-      {n:'Somatic symptoms', d:'Muscle tension, palpitations'},
-    ],
-    mech:'Symptoms are not isolated — they form networks (Borsboom’s network model): one symptom activates another. Insomnia amplifies rumination → rumination amplifies anxiety → anxiety disrupts sleep. This explains the chronification of disorders even after the original stressor is removed.',
-    src:'Borsboom (2017), Psychological Review · NIMH RDoC Matrix (2023)',
-    trans:'So far we have described psychopathology — what happens. But how is all of this connected to personality — to who a person is continuously, not only during episodes of disorder?',
-    nextTitle:'Neuroticism'
-  },
-  {
-    num:'7', badge:'personality trait',
-    title:'Neuroticism — the bridge to personality',
-    sub:'Kotov et al. (2010) · Lahey (2009)',
-    q:'Is there a personality trait that explains a propensity for the entire internalizing spectrum?',
-    def:'Neuroticism is a stable personality trait describing a tendency toward negative emotions, emotional instability, and reactivity to stressors. Its correlation with the p-factor of r ≈ 0.50 makes it the single most powerful predictor of psychopathology among all the Big Five traits. Neuroticism precedes disorders and persists after recovery — it is not a symptom but a vulnerability.',
-    comps:[
-      {n:'Anxiousness', d:'Chronic background worry'},
-      {n:'Emotional instability', d:'Rapid mood swings'},
-      {n:'Vulnerability', d:'Reduced stress resilience'},
-      {n:'Self-criticism', d:'Negative automatic thoughts about oneself'},
-      {n:'Somatization', d:'Bodily expression of emotional distress'},
-    ],
-    mech:'Neuroticism is a stable trait (40–60% genetically determined): it rises in adolescence, peaks around age 20, then slowly declines. Longitudinal studies: high neuroticism at 15 → a 14-fold increase in depression risk by age 25. Neuroticism is an amplifier: it intensifies any stressor.',
-    src:'Kotov et al. (2010), Psychological Bulletin · Lahey (2009), Ann. Rev. Clin. Psych.',
-    trans:'Neuroticism is a trait describing “who a person is.” But how exactly does it shape how a person builds their self, makes decisions, and builds a life? The mechanism is self-regulation.',
-    nextTitle:'Self-regulation'
-  },
-  {
-    num:'8', badge:'cognition',
-    title:'Self-regulation — the cognitive mechanism',
-    sub:'Leyro et al. (2010) · Carver & Scheier',
-    q:'Through what mechanism does the internalizing spectrum affect personality development?',
-    def:'Self-regulation is the ability to maintain goal-directed behavior in the face of distress, uncertainty, and inner conflict. The link between neuroticism and disorders is mediated by four cognitive vulnerabilities that impair self-regulation: anxiety sensitivity, intolerance of uncertainty, experiential avoidance, and a looming cognitive style.',
-    comps:[
-      {n:'Anxiety sensitivity', d:'“Fear of fear” — fear of the physical symptoms of anxiety'},
-      {n:'Intolerance of uncertainty', d:'Inability to act without guarantees'},
-      {n:'Experiential avoidance', d:'Evasion of inner experience'},
-      {n:'Looming cognitive style', d:'A future threat is perceived as already real'},
-      {n:'Working-memory deficit', d:'Chronic anxiety reduces cognitive resources'},
-    ],
-    mech:'Impaired self-regulation is the key mechanism through which the p-factor manifests in life outcomes. A person with high p and neuroticism regulates attention, decision-making, social interaction, and long-term planning more poorly. This affects education, relationships, career — and how the self is formed.',
-    src:'Leyro, Zvolensky & Bernstein (2010) · Hofmann et al. (2012)',
-    trans:'Impaired self-regulation directly affects the ability to explore the self, make commitments, and revise one’s self — that is, the formation of identity.',
-    nextTitle:'Identity'
-  },
-  {
-    num:'9', badge:'identity',
-    title:'Identity — the outcome of development',
-    sub:'Luyckx et al. (2013) · Erikson (1968)',
-    q:'How does biological vulnerability sum up into the structure of the self?',
-    def:'Identity is an organized system of a person’s representations about themselves, their values, goals, and place in the world. It forms through two interacting processes: exploration (trying out different versions of the self) and commitment (choosing and following them). The internalizing spectrum disrupts both processes.',
-    comps:[
-      {n:'Exploration in breadth', d:'Trying out different roles, values, relationships'},
-      {n:'Exploration in depth', d:'Reflection on commitments made'},
-      {n:'Ruminative exploration', d:'A pathological inability to finalize a choice'},
-      {n:'Commitment making', d:'Stable identifications and goals'},
-      {n:'Identification with commitment', d:'Emotional engagement in the choice'},
-      {n:'Diffuse identity', d:'Absence of a stable self — the result of disruption'},
-    ],
-    mech:'Anxiety and depression disrupt identity formation in two ways: ruminative exploration (the person endlessly revisits choices without finalizing them) and avoidance of exploration (the person never tries anything new out of fear). The result is either a diffuse or a prematurely foreclosed identity. A loop has been documented longitudinally: symptoms → identity disturbance → intensified symptoms.',
-    src:'Luyckx et al. (2013), Dev. Psychology · Klimstra et al. (2016) · Erikson (1968)',
-    trans:null, nextTitle:null
-  }
-];
-
-function toggleCard(id) {
-  document.getElementById('card-'+id).classList.toggle('open');
-  updateProgress();
-}
-function switchTab(idx, tab) {
-  const card = document.getElementById('card-'+idx);
-  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('act'));
-  card.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('act'));
-  card.querySelector('.tab-btn[data-tab="'+tab+'"]').classList.add('act');
-  card.querySelector('.panel-'+tab).classList.add('act');
-}
-function openNext(idx) {
-  const next = document.getElementById('card-'+(idx+1));
-  if (next) { next.classList.add('open'); next.scrollIntoView({behavior:'smooth',block:'start'}); updateProgress(); }
-}
-function updateProgress() {
-  const open = document.querySelectorAll('.level-card.open').length;
-  document.getElementById('prog').style.width = Math.round(open/LEVELS.length*100)+'%';
-}
-
-const container = document.getElementById('levels-container');
-LEVELS.forEach((lv, i) => {
-  if (i > 0) {
-    const conn = document.createElement('div');
-    conn.className = 'connector';
-    conn.innerHTML = '<div class="conn-line"></div>';
-    container.appendChild(conn);
-  }
-  const compsHtml = lv.comps.map(c =>
-    `<div class="comp-item"><div class="comp-name">${c.n}</div><div class="comp-desc">${c.d}</div></div>`
-  ).join('');
-  const transTab = lv.trans ? `<button class="tab-btn" data-tab="trans" onclick="switchTab(${i},'trans')">Transition</button>` : '';
-  const transPanel = lv.trans ? `
-    <div class="tab-panel panel-trans">
-      <div class="trans-block">
-        <p class="trans-q">${lv.trans}</p>
-        <div class="trans-next-label">Next level</div>
-        <div class="trans-next-name">${lv.nextTitle}</div>
-      </div>
-      <button class="open-next-btn" onclick="openNext(${i})">Open the next level →</button>
-    </div>` : '';
-
-  const div = document.createElement('div');
-  div.className = 'level-card';
-  div.id = 'card-'+i;
-  div.innerHTML = `
-    <div class="level-header" onclick="toggleCard(${i})">
-      <div class="level-num">${lv.num}</div>
-      <div class="level-meta">
-        <div class="level-title">${lv.title}</div>
-        <div class="level-sub">${lv.sub}</div>
-      </div>
-      <span class="level-badge">${lv.badge}</span>
-      <span class="chev">▾</span>
-    </div>
-    <div class="level-body"><div class="level-body-inner"><div class="level-content">
-      <div class="tabs">
-        <button class="tab-btn act" data-tab="def" onclick="switchTab(${i},'def')">Definition</button>
-        <button class="tab-btn" data-tab="comp" onclick="switchTab(${i},'comp')">Components</button>
-        <button class="tab-btn" data-tab="mech" onclick="switchTab(${i},'mech')">Mechanism</button>
-        ${transTab}
-      </div>
-      <div class="tab-panel panel-def act">
-        <p class="def-q">${lv.q}</p>
-        <p class="def-text">${lv.def}</p>
-      </div>
-      <div class="tab-panel panel-comp"><div class="comp-grid">${compsHtml}</div></div>
-      <div class="tab-panel panel-mech">
-        <div class="mech-block">
-          <p class="mech-text">${lv.mech}</p>
-          <div class="mech-source">${lv.src}</div>
-        </div>
-      </div>
-      ${transPanel}
-    </div></div></div>`;
-  container.appendChild(div);
-});
-
-document.getElementById('card-0').classList.add('open');
-updateProgress();
-
 document.getElementById('language-toggle').addEventListener('click', function(e) {
   e.stopPropagation();
   document.getElementById('language-dropdown').classList.toggle('active');
