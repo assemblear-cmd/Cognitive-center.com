@@ -343,23 +343,10 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .site-footer .footer-column a,.site-footer .footer-copyright{font-family:var(--font-untitledsans)!important; color:#555!important; letter-spacing:-0.21px!important;}
 .site-footer .footer-column a:hover{color:var(--color-obsidian)!important;}
 
-/* ---- Thalamus signal-distribution scheme ------------------ */
-.thal-scheme{
-  background:var(--color-obsidian,#000)!important;border-radius:12px!important;
-  padding:24px 22px!important;margin-top:14px!important;
-  font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace!important;
-  color:var(--color-paper,#fff)!important;overflow-x:auto!important;
-}
-.thal-scheme .thal-chain{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
-.thal-scheme .thal-node{font-size:13px!important;letter-spacing:-0.01em!important;color:var(--color-paper,#fff)!important;line-height:1.4!important;font-weight:400!important;margin:0!important}
-.thal-scheme .thal-arrow{color:var(--color-fog,#bababa)!important;font-size:11px!important;line-height:1.5!important;padding:3px 0 3px 2px!important;margin:0!important}
-.thal-scheme .thal-branch{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:18px!important;margin-top:14px!important;border-top:1px solid #333!important;padding-top:18px!important}
-.thal-scheme .thal-col{display:flex!important;flex-direction:column!important;gap:6px!important}
-.thal-scheme .thal-col-arrow{color:var(--color-fog,#bababa)!important;font-size:11px!important;margin:0!important}
-.thal-scheme .thal-col-title{font-size:12.5px!important;color:var(--color-paper,#fff)!important;font-weight:500!important;letter-spacing:-0.01em!important;line-height:1.35!important;margin:0!important}
-.thal-scheme .thal-col-sub{font-size:11px!important;color:var(--color-fog,#bababa)!important;line-height:1.45!important;letter-spacing:-0.005em!important;margin:0!important}
-@media(max-width:640px){ .thal-scheme .thal-branch{grid-template-columns:repeat(2,1fr)!important;gap:14px 16px!important} }
-@media(max-width:380px){ .thal-scheme .thal-branch{grid-template-columns:1fr!important} }
+/* ---- Thalamus signal-distribution list --------------------- */
+.thal-list{list-style:none!important;margin:4px 0 0 0!important;padding:0!important;border-top:1px solid #ececec!important}
+.thal-list li{margin:0!important;padding:11px 2px!important;border-bottom:1px solid #ececec!important;font-size:14px!important;line-height:1.5!important;letter-spacing:-0.015em!important;color:#1a1a1a!important}
+.thal-list li .term{font-weight:500!important}
 
 /* ---- Responsive display sizing ---------------------------- */
 @media (max-width:768px){
@@ -739,40 +726,13 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <div class="fsimple-title"><span class="term" data-term="таламус">Таламус</span> → распределение сигналов</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
-                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc">
-                  <div class="thal-scheme">
-                    <div class="thal-chain">
-                      <div class="thal-node">Внешняя среда</div>
-                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
-                      <div class="thal-node">Органы чувств</div>
-                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
-                      <div class="thal-node">Рецепторы</div>
-                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
-                      <div class="thal-node">Таламус</div>
-                    </div>
-                    <div class="thal-branch">
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Сенсорная кора</div>
-                        <div class="thal-col-sub">детальный анализ</div>
-                      </div>
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Миндалевидное тело</div>
-                        <div class="thal-col-sub">быстрая оценка биологической значимости</div>
-                      </div>
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Гиппокамп</div>
-                        <div class="thal-col-sub">контекст и память</div>
-                      </div>
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Островковая кора</div>
-                        <div class="thal-col-sub">сигналы тела, внутреннее состояние</div>
-                      </div>
-                    </div>
-                  </div></div></div></div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><p style="margin:0 0 14px 0">Таламус распределяет сигнал в распределительную сеть:</p>
+                  <ul class="thal-list">
+                    <li><span class="term" data-term="сенсорная кора">Сенсорная кора</span></li>
+                    <li><span class="term" data-term="амигдала">Миндалевидное тело</span></li>
+                    <li><span class="term" data-term="гиппокамп">Гиппокамп</span></li>
+                    <li><span class="term" data-term="островковая кора">Островковая кора</span></li>
+                  </ul></div></div></div>
               </div>
               <div class="fsimple" id="fs-4">
                 <div class="fsimple-hdr" onclick="fsToggle(this, event)">
@@ -1233,6 +1193,24 @@ nav a.active-link::after{transform:scaleX(1)!important;}
       <script>
       (function(){
         var TERMS = {
+          "сенсорная кора": {
+            name: "Сенсорная кора",
+            def: "Первичные и ассоциативные сенсорные зоны коры, куда таламус направляет сигнал для детального осознанного анализа. Это «высокий путь» (high road) обработки угрозы: медленнее прямого таламо-амигдалярного пути, но точнее — кора распознаёт, что именно перед нами, и передаёт уточнённую оценку амигдале.",
+            src: "LeDoux (2000) Emotion Circuits in the Brain. Annual Review of Neuroscience",
+            url: "https://doi.org/10.1146/annurev.neuro.23.1.155"
+          },
+          "гиппокамп": {
+            name: "Гиппокамп",
+            def: "Структура медиальной височной доли, кодирующая контекст события — где, когда и при каких обстоятельствах оно произошло. Связывает страх с обстановкой (контекстное обусловливание) и обеспечивает извлечение памяти об угрозе. Дисфункция сети гиппокамп — амигдала — мПФК связана с ПТСР.",
+            src: "Maren, Phan & Liberzon (2013) The contextual brain. Nature Reviews Neuroscience",
+            url: "https://doi.org/10.1038/nrn3492"
+          },
+          "островковая кора": {
+            name: "Островковая кора (инсула)",
+            def: "Кора в глубине латеральной борозды, главный центр интероцепции — восприятия сигналов от внутренней среды тела (сердцебиение, дыхание, висцеральные ощущения). Передняя инсула интегрирует телесные сигналы в осознанное «чувство» состояния тела, что составляет телесную основу переживания страха.",
+            src: "Craig (2009) How do you feel — now? The anterior insula and human awareness. Nature Reviews Neuroscience",
+            url: "https://doi.org/10.1038/nrn2555"
+          },
           "амигдала": {
             name: "Амигдала (миндалевидное тело)",
             def: "Парная структура медиальной височной доли, ~13 ядер. Базолатеральный комплекс (БЛА) — центр ассоциативного обусловливания страха; центральное ядро (ЦЯ) — главный выход для координации защитных реакций. Реагирует на угрозу за 88–170 мс — до осознания стимула корой.",
