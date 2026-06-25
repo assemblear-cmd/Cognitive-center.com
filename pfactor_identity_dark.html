@@ -481,7 +481,7 @@ nav a.active-link::after{transform:scaleX(1)!important;}
           font-size: 11px;
         }
         .tp-source a:hover { border-bottom-color: #1a1a1a; }
-        @media (prefers-color-scheme: dark) {
+        @media (prefers-color-scheme: dark) and (min-width: 99999px) {
           .term-popup { background: #1c1c19; border-color: #e0e0e0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
           .tp-term-name { color: #e8e4d8; }
           .tp-def { color: #9b9990; }
@@ -500,7 +500,7 @@ nav a.active-link::after{transform:scaleX(1)!important;}
         .ac-body-inner { overflow:hidden; }
         .ac-content { padding:0 22px 28px 22px; border-top:0.5px solid #f0f0f0; }
 
-        @media(prefers-color-scheme:dark){
+        @media (prefers-color-scheme: dark) and (min-width: 99999px) {
           .ac-item { border-color:#2a2a28; }
           .ac-item.ac-open { border-color:#e0e0e0; }
           .ac-item:hover:not(.ac-open) { border-color:#555; }
@@ -554,7 +554,7 @@ nav a.active-link::after{transform:scaleX(1)!important;}
               .compare-title{font-size:12px;font-weight:600;margin-bottom:6px}
               .compare-text{font-size:12.5px;line-height:1.65;color:#444}
 
-              @media(prefers-color-scheme:dark){
+              @media (prefers-color-scheme: dark) and (min-width: 99999px) {
                 .def-quote2{color:#bbb}
                 .def-text2{color:#a8a6a0}
                 .def-src2 a{color:#e8e4d8;border-bottom-color:#555}
@@ -651,7 +651,11 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                 .fsimple.fsimple-open .fsimple-body{grid-template-rows:1fr}
                 .fsimple-body-in{overflow:hidden}
                 .fsimple-desc{padding:0 8px 16px 58px;font-size:13px;line-height:1.75;color:#555}
-                @media(prefers-color-scheme:dark){
+                @media(max-width:768px){
+                  .fsimple-hdr{gap:10px}
+                  .fsimple-desc{padding:0 4px 16px 16px;overflow-wrap:break-word;word-break:break-word}
+                }
+                @media (prefers-color-scheme: dark) and (min-width: 99999px) {
                   .fsimple:hover{background:#1c1c19}
                   .fsimple-title{color:#e8e4d8}
                   .fsimple-chev{color:#555}
@@ -985,7 +989,7 @@ nav a.active-link::after{transform:scaleX(1)!important;}
             .dis-name{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:3px}
             .dis-mech{font-size:12px;margin-bottom:6px;font-weight:500}
             .dis-desc{font-size:13px;line-height:1.7;color:#555}
-            @media(prefers-color-scheme:dark){.dtabs{border-bottom-color:#333}.dtab:hover{color:#e8e4d8}.dtab.dtab-act{color:#e8e4d8;border-bottom-color:#e8e4d8}.dis-card{border-color:#333;background:#1c1c19}.dis-name{color:#e8e4d8}.dis-desc{color:#888}}
+            @media (prefers-color-scheme: dark) and (min-width: 99999px) {.dtabs{border-bottom-color:#333}.dtab:hover{color:#e8e4d8}.dtab.dtab-act{color:#e8e4d8;border-bottom-color:#e8e4d8}.dis-card{border-color:#333;background:#1c1c19}.dis-name{color:#e8e4d8}.dis-desc{color:#888}}
           </style>
           <div class="dtabs">
             <button class="dtab dtab-act" onclick="dTab(0)">Тревожные расстройства</button>
@@ -1104,7 +1108,7 @@ nav a.active-link::after{transform:scaleX(1)!important;}
               .rs-source a{font-size:12px;color:#1a1a1a;text-decoration:none;border-bottom:0.5px solid #ccc;transition:border-color .15s;line-height:1.5}
               .rs-source a:hover{border-bottom-color:#1a1a1a}
               .rs-year{font-size:11px;color:#bbb}
-              @media(prefers-color-scheme:dark){
+              @media (prefers-color-scheme: dark) and (min-width: 99999px) {
                 .rs-card{border-color:#2a2a28;background:#1c1c19}
                 .rs-card:hover{border-color:#555}
                 .rs-card.rs-open{border-color:#e0e0e0}
