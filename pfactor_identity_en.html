@@ -343,23 +343,10 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .site-footer .footer-column a,.site-footer .footer-copyright{font-family:var(--font-untitledsans)!important; color:#555!important; letter-spacing:-0.21px!important;}
 .site-footer .footer-column a:hover{color:var(--color-obsidian)!important;}
 
-/* ---- Thalamus signal-distribution scheme ------------------ */
-.thal-scheme{
-  background:var(--color-obsidian,#000)!important;border-radius:12px!important;
-  padding:24px 22px!important;margin-top:14px!important;
-  font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace!important;
-  color:var(--color-paper,#fff)!important;overflow-x:auto!important;
-}
-.thal-scheme .thal-chain{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
-.thal-scheme .thal-node{font-size:13px!important;letter-spacing:-0.01em!important;color:var(--color-paper,#fff)!important;line-height:1.4!important;font-weight:400!important;margin:0!important}
-.thal-scheme .thal-arrow{color:var(--color-fog,#bababa)!important;font-size:11px!important;line-height:1.5!important;padding:3px 0 3px 2px!important;margin:0!important}
-.thal-scheme .thal-branch{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:18px!important;margin-top:14px!important;border-top:1px solid #333!important;padding-top:18px!important}
-.thal-scheme .thal-col{display:flex!important;flex-direction:column!important;gap:6px!important}
-.thal-scheme .thal-col-arrow{color:var(--color-fog,#bababa)!important;font-size:11px!important;margin:0!important}
-.thal-scheme .thal-col-title{font-size:12.5px!important;color:var(--color-paper,#fff)!important;font-weight:500!important;letter-spacing:-0.01em!important;line-height:1.35!important;margin:0!important}
-.thal-scheme .thal-col-sub{font-size:11px!important;color:var(--color-fog,#bababa)!important;line-height:1.45!important;letter-spacing:-0.005em!important;margin:0!important}
-@media(max-width:640px){ .thal-scheme .thal-branch{grid-template-columns:repeat(2,1fr)!important;gap:14px 16px!important} }
-@media(max-width:380px){ .thal-scheme .thal-branch{grid-template-columns:1fr!important} }
+/* ---- Thalamus signal-distribution list --------------------- */
+.thal-list{list-style:none!important;margin:4px 0 0 0!important;padding:0!important;border-top:1px solid #ececec!important}
+.thal-list li{margin:0!important;padding:11px 2px!important;border-bottom:1px solid #ececec!important;font-size:14px!important;line-height:1.5!important;letter-spacing:-0.015em!important;color:#1a1a1a!important}
+.thal-list li .term{font-weight:500!important}
 
 /* ---- Responsive display sizing ---------------------------- */
 @media (max-width:768px){
@@ -750,40 +737,13 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <div class="fsimple-title"><span class="term" data-term="thalamus">Thalamus</span> → signal distribution</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
-                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc">
-                  <div class="thal-scheme">
-                    <div class="thal-chain">
-                      <div class="thal-node">External environment</div>
-                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
-                      <div class="thal-node">Sense organs</div>
-                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
-                      <div class="thal-node">Receptors</div>
-                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
-                      <div class="thal-node">Thalamus</div>
-                    </div>
-                    <div class="thal-branch">
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Sensory cortex</div>
-                        <div class="thal-col-sub">detailed analysis</div>
-                      </div>
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Amygdala</div>
-                        <div class="thal-col-sub">rapid appraisal of biological significance</div>
-                      </div>
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Hippocampus</div>
-                        <div class="thal-col-sub">context and memory</div>
-                      </div>
-                      <div class="thal-col">
-                        <div class="thal-col-arrow">&#9662;</div>
-                        <div class="thal-col-title">Insular cortex</div>
-                        <div class="thal-col-sub">body signals, internal state</div>
-                      </div>
-                    </div>
-                  </div></div></div></div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><p style="margin:0 0 14px 0">The thalamus distributes the signal across a distribution network:</p>
+                  <ul class="thal-list">
+                    <li><span class="term" data-term="sensory cortex">Sensory cortex</span></li>
+                    <li><span class="term" data-term="amygdala">Amygdala</span></li>
+                    <li><span class="term" data-term="hippocampus">Hippocampus</span></li>
+                    <li><span class="term" data-term="insular cortex">Insular cortex</span></li>
+                  </ul></div></div></div>
               </div>
               <div class="fsimple" id="fs-4">
                 <div class="fsimple-hdr" onclick="fsToggle(this, event)">
@@ -1244,6 +1204,24 @@ nav a.active-link::after{transform:scaleX(1)!important;}
       <script>
       (function(){
         var TERMS = {
+          "sensory cortex": {
+            name: "Sensory cortex",
+            def: "Primary and association sensory areas of the cortex, where the thalamus routes the signal for detailed conscious analysis. This is the \"high road\" of threat processing: slower than the direct thalamo-amygdalar route but more precise — the cortex identifies exactly what is in front of us and passes a refined appraisal to the amygdala.",
+            src: "LeDoux (2000) Emotion Circuits in the Brain. Annual Review of Neuroscience",
+            url: "https://doi.org/10.1146/annurev.neuro.23.1.155"
+          },
+          "hippocampus": {
+            name: "Hippocampus",
+            def: "A medial temporal lobe structure that encodes the context of an event — where, when, and under what circumstances it occurred. It binds fear to its setting (contextual conditioning) and supports retrieval of threat memory. Dysfunction of the hippocampus — amygdala — mPFC network is implicated in PTSD.",
+            src: "Maren, Phan & Liberzon (2013) The contextual brain. Nature Reviews Neuroscience",
+            url: "https://doi.org/10.1038/nrn3492"
+          },
+          "insular cortex": {
+            name: "Insular cortex (insula)",
+            def: "Cortex buried deep in the lateral sulcus, the principal hub of interoception — the perception of signals from the body's internal environment (heartbeat, breathing, visceral sensations). The anterior insula integrates bodily signals into a conscious \"feeling\" of body state, which forms the bodily basis of the experience of fear.",
+            src: "Craig (2009) How do you feel — now? The anterior insula and human awareness. Nature Reviews Neuroscience",
+            url: "https://doi.org/10.1038/nrn2555"
+          },
           "amygdala": {
             name: "Amygdala",
             def: "A paired structure of the medial temporal lobe, ~13 nuclei. The basolateral complex (BLA) is the center of associative fear conditioning; the central nucleus (CeA) is the main output for coordinating defensive responses. Responds to threat within 88–170 ms — before the cortex is aware of the stimulus.",
