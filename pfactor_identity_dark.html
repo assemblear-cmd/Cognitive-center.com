@@ -349,24 +349,11 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .vid-toggle .vid-chev{font-size:10px!important;transition:transform .2s!important}
 .vid-toggle.vid-open .vid-chev{transform:rotate(180deg)!important}
 
-/* ---- Thalamus distribution tree (site style) -------------- */
-.thal-tree{margin-top:14px!important}
-.thal-tree-top{display:flex!important;justify-content:center!important}
-.thal-tree-root{display:inline-block!important;border:1px solid #1a1a1a!important;border-radius:9px!important;padding:9px 22px!important;font-size:14px!important;font-weight:500!important;letter-spacing:-0.015em!important;color:#1a1a1a!important;background:#fff!important}
-.thal-tree-stem{width:1px!important;height:14px!important;background:#cfcfcf!important;margin:0 auto!important}
-.thal-tree-branch{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:14px!important;position:relative!important}
-.thal-tree-branch::before{content:""!important;position:absolute!important;top:-14px!important;left:12.5%!important;right:12.5%!important;height:1px!important;background:#cfcfcf!important}
-.thal-tree .thal-node{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;padding-top:14px!important}
-.thal-tree .thal-node::before{content:""!important;position:absolute!important;top:-14px!important;left:50%!important;width:1px!important;height:14px!important;background:#cfcfcf!important}
-.thal-node-box{border:1px solid #e2e2e2!important;border-radius:9px!important;padding:10px 12px!important;width:100%!important;box-sizing:border-box!important;text-align:center!important;background:#fafafa!important;font-size:13px!important;font-weight:500!important;letter-spacing:-0.015em!important;color:#1a1a1a!important;line-height:1.3!important;transition:border-color .15s,background .15s!important}
-.thal-node-box:hover{border-color:#bdbdbd!important;background:#f3f3f3!important}
-@media(max-width:620px){
-  .thal-tree-branch{grid-template-columns:repeat(2,1fr)!important;gap:14px 12px!important}
-  .thal-tree-branch::before{display:none!important}
-  .thal-tree .thal-node::before{display:none!important}
-  .thal-tree-stem{display:none!important}
-}
-@media(max-width:360px){ .thal-tree-branch{grid-template-columns:1fr!important} }
+/* ---- Thalamus distribution diagram (organic SVG) ---------- */
+.thal-svg-wrap{margin-top:18px!important;width:100%!important}
+.thal-svg{display:block!important;width:100%!important;height:auto!important;max-width:760px!important;margin:0 auto!important;overflow:visible!important}
+.thal-svg text.term{border-bottom:0!important}
+.thal-svg text.term:hover{fill:#6452d8!important}
 
 /* ---- Responsive display sizing ---------------------------- */
 @media (max-width:768px){
@@ -740,17 +727,98 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><p style="margin:0 0 14px 0">Таламус распределяет сигнал в распределительную сеть:</p>
-                  <div class="thal-tree">
-                    <div class="thal-tree-top">
-                      <div class="thal-tree-root"><span class="term" data-term="таламус">Таламус</span></div>
-                    </div>
-                    <div class="thal-tree-stem"></div>
-                    <div class="thal-tree-branch">
-                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="сенсорная кора">Сенсорная кора</span></div></div>
-                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="амигдала">Миндалевидное тело</span></div></div>
-                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="гиппокамп">Гиппокамп</span></div></div>
-                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="островковая кора">Островковая кора</span></div></div>
-                    </div>
+                  <div class="thal-svg-wrap">
+                    <svg class="thal-svg" viewBox="0 60 1600 660" width="100%" style="display: block; max-width: 1600px; height: auto; overflow: visible;">
+    <defs>
+      <radialGradient id="somaFill" cx="50%" cy="36%" r="72%">
+        <stop offset="0%" stop-color="#fcfcfe"></stop>
+        <stop offset="62%" stop-color="#efeff3"></stop>
+        <stop offset="100%" stop-color="#e3e3e9"></stop>
+      </radialGradient>
+      <radialGradient id="somaFillTop" cx="50%" cy="36%" r="72%">
+        <stop offset="0%" stop-color="#fdfdff"></stop>
+        <stop offset="60%" stop-color="#f0f0f5"></stop>
+        <stop offset="100%" stop-color="#e0e0e7"></stop>
+      </radialGradient>
+      <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+        <feDropShadow dx="0" dy="4" stdDeviation="9" flood-color="#5a5a66" flood-opacity="0.12"></feDropShadow>
+      </filter>
+      <filter id="glow" x="-300%" y="-300%" width="700%" height="700%">
+        <feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur>
+        <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+      </filter>
+      <g id="dendrites" fill="none" stroke="#c7c7ce" stroke-linecap="round">
+        <path stroke-width="2.4" d="M0,0 Q-14,-34 -48,-54 Q-66,-66 -76,-94"></path>
+        <path stroke-width="1.4" stroke="#d4d4da" d="M-48,-54 Q-62,-66 -84,-70"></path>
+        <path stroke-width="2.4" d="M0,0 Q-2,-40 -12,-78 Q-18,-104 -36,-122"></path>
+        <path stroke-width="1.4" stroke="#d4d4da" d="M-12,-78 Q-24,-92 -42,-96"></path>
+        <path stroke-width="2.4" d="M0,0 Q14,-36 44,-54 Q66,-66 76,-92"></path>
+        <path stroke-width="1.4" stroke="#d4d4da" d="M44,-54 Q62,-64 84,-66"></path>
+        <path stroke-width="2.4" d="M0,0 Q6,-38 18,-74 Q26,-100 46,-114"></path>
+        <path stroke-width="1.4" stroke="#d4d4da" d="M18,-74 Q32,-86 48,-86"></path>
+      </g>
+    </defs>
+
+    
+    <g fill="none" stroke="#bdc0ca" stroke-width="3" stroke-linecap="round">
+      <path id="c0" d="M800,198 C800,316 200,396 200,560"></path>
+      <path id="c1" d="M800,198 C800,316 600,396 600,560"></path>
+      <path id="c2" d="M800,198 C800,316 1000,396 1000,560"></path>
+      <path id="c3" d="M800,198 C800,316 1400,396 1400,560"></path>
+    </g>
+
+    
+    
+      <circle r="5" fill="#8f9bd1" filter="url(#glow)" opacity="0.95">
+        <animateMotion path="M800,198 C800,316 200,396 200,560" dur="3s" begin="0s" repeatCount="indefinite"></animateMotion>
+      </circle>
+    
+      <circle r="5" fill="#8f9bd1" filter="url(#glow)" opacity="0.95">
+        <animateMotion path="M800,198 C800,316 600,396 600,560" dur="3s" begin="0s" repeatCount="indefinite"></animateMotion>
+      </circle>
+    
+      <circle r="5" fill="#8f9bd1" filter="url(#glow)" opacity="0.95">
+        <animateMotion path="M800,198 C800,316 1000,396 1000,560" dur="3s" begin="0s" repeatCount="indefinite"></animateMotion>
+      </circle>
+    
+      <circle r="5" fill="#8f9bd1" filter="url(#glow)" opacity="0.95">
+        <animateMotion path="M800,198 C800,316 1400,396 1400,560" dur="3s" begin="0s" repeatCount="indefinite"></animateMotion>
+      </circle>
+    
+
+
+    
+    <g fill="#e8e8ed" stroke="#d4d4dc" stroke-width="1.5" stroke-linejoin="round">
+      <path d="M915.5,138.0 C914.4,149.7 901.3,164.8 890.1,174.0 C879.0,183.2 868.0,188.6 848.6,193.0 C829.1,197.3 793.1,203.4 773.4,200.1 C753.7,196.8 742.0,180.5 730.4,173.3 C718.9,166.0 713.5,164.4 703.9,156.6 C694.4,148.8 670.1,135.7 673.3,126.7 C676.5,117.8 703.7,108.5 722.9,102.8 C742.2,97.1 766.4,95.7 789.1,92.7 C811.7,89.6 841.0,82.7 858.9,84.6 C876.7,86.6 886.9,95.4 896.3,104.3 C905.8,113.2 916.5,126.4 915.5,138.0 Z"></path>
+      <path d="M365.4,617.2 C368.9,627.5 364.0,648.3 350.4,657.2 C336.7,666.1 309.3,666.9 283.4,670.9 C257.6,674.8 222.0,680.3 195.4,681.0 C168.7,681.8 147.7,680.9 123.5,675.4 C99.3,669.9 66.5,656.7 50.1,647.9 C33.8,639.1 24.3,632.0 25.6,622.7 C26.9,613.4 41.5,601.2 58.1,591.9 C74.6,582.5 101.0,572.6 125.0,566.5 C149.1,560.5 176.5,554.5 202.5,555.4 C228.5,556.3 259.8,565.2 280.9,571.8 C302.0,578.5 315.2,587.9 329.3,595.4 C343.4,603.0 361.9,606.9 365.4,617.2 Z"></path>
+      <path d="M774.1,619.6 C773.9,629.3 762.9,643.1 746.4,651.0 C729.9,659.0 698.2,661.3 675.2,667.1 C652.3,672.8 634.9,683.8 608.5,685.5 C582.1,687.2 542.5,683.4 516.6,677.2 C490.7,671.1 465.1,657.6 453.1,648.5 C441.0,639.4 442.8,631.8 444.4,622.5 C446.0,613.2 452.7,603.0 462.5,592.5 C472.4,582.1 480.7,566.8 503.5,559.8 C526.2,552.8 570.6,550.6 599.3,550.7 C627.9,550.7 650.4,552.9 675.2,559.9 C700.0,567.0 731.3,582.9 747.8,592.8 C764.3,602.8 774.4,609.9 774.1,619.6 Z"></path>
+      <path d="M1169.8,618.4 C1170.3,627.9 1139.9,640.5 1125.7,649.4 C1111.6,658.3 1103.8,665.7 1084.7,671.7 C1065.6,677.7 1039.0,683.5 1011.1,685.2 C983.2,686.9 944.1,686.3 917.2,682.0 C890.4,677.8 861.3,670.5 849.8,659.6 C838.2,648.8 843.8,628.7 848.0,617.0 C852.3,605.3 862.4,598.3 875.2,589.6 C888.1,580.8 904.3,569.8 925.1,564.4 C945.9,558.9 975.4,557.1 1000.0,557.0 C1024.6,556.9 1052.2,557.8 1072.7,563.7 C1093.2,569.6 1106.6,583.4 1122.8,592.5 C1139.0,601.6 1169.3,608.9 1169.8,618.4 Z"></path>
+      <path d="M1578.4,620.9 C1580.0,630.3 1560.3,640.7 1543.5,650.4 C1526.7,660.2 1503.0,675.6 1477.6,679.6 C1452.1,683.5 1418.3,674.5 1390.9,674.1 C1363.6,673.8 1337.6,681.4 1313.4,677.5 C1289.3,673.7 1257.0,660.6 1246.1,651.0 C1235.2,641.5 1244.2,630.4 1247.9,620.2 C1251.7,610.0 1259.2,600.0 1268.5,589.9 C1277.8,579.8 1279.8,565.2 1303.5,559.7 C1327.3,554.3 1381.6,556.1 1411.1,557.2 C1440.5,558.3 1459.7,560.3 1480.2,566.5 C1500.8,572.7 1517.9,585.4 1534.3,594.5 C1550.6,603.5 1576.9,611.6 1578.4,620.9 Z"></path>
+    </g>
+
+    
+    <g fill="#c6cad6" stroke="#b2b6c2" stroke-width="1.2">
+      <ellipse cx="200" cy="556" rx="11" ry="8"></ellipse>
+      <ellipse cx="600" cy="556" rx="11" ry="8"></ellipse>
+      <ellipse cx="1000" cy="556" rx="11" ry="8"></ellipse>
+      <ellipse cx="1400" cy="556" rx="11" ry="8"></ellipse>
+    </g>
+    <g fill="#ffffff" opacity="0.85" stroke="none">
+      <circle cx="197" cy="555" r="2"></circle><circle cx="203" cy="558" r="1.8"></circle>
+      <circle cx="597" cy="555" r="2"></circle><circle cx="603" cy="558" r="1.8"></circle>
+      <circle cx="997" cy="555" r="2"></circle><circle cx="1003" cy="558" r="1.8"></circle>
+      <circle cx="1397" cy="555" r="2"></circle><circle cx="1403" cy="558" r="1.8"></circle>
+    </g>
+
+    
+    <g fill="#42424b" text-anchor="middle" font-family="'UntitledSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+      <text x="800" y="148" font-size="28" font-weight="600" letter-spacing="0.3" class="term" data-term="таламус" style="cursor:pointer">Таламус</text>
+      <text x="200" y="628" font-size="25" font-weight="500" class="term" data-term="сенсорная кора" style="cursor:pointer">Сенсорная кора</text>
+      <text x="600" y="628" font-size="25" font-weight="500" class="term" data-term="амигдала" style="cursor:pointer">Миндалевидное тело</text>
+      <text x="1000" y="628" font-size="25" font-weight="500" class="term" data-term="гиппокамп" style="cursor:pointer">Гиппокамп</text>
+      <text x="1400" y="628" font-size="25" font-weight="500" class="term" data-term="островковая кора" style="cursor:pointer">Островковая кора</text>
+    </g>
+  </svg>
                   </div></div></div></div>
               </div>
               <div class="fsimple" id="fs-4">
