@@ -344,10 +344,13 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .site-footer .footer-column a:hover{color:var(--color-obsidian)!important;}
 
 /* ---- "How it works" video toggle -------------------------- */
-.vid-toggle{font-size:12px!important;padding:6px 14px!important;border:1px solid #1a1a1a!important;border-radius:8px!important;background:none!important;color:#1a1a1a!important;cursor:pointer!important;font-family:inherit!important;display:inline-flex!important;align-items:center!important;gap:6px!important;transition:background .15s,color .15s!important}
-.vid-toggle:hover{background:#1a1a1a!important;color:#fff!important}
+.vid-toggle{font-size:12px!important;padding:6px 14px!important;border:1px solid #bdbdbd!important;border-radius:8px!important;background:none!important;color:#888!important;cursor:pointer!important;font-family:inherit!important;display:inline-flex!important;align-items:center!important;gap:6px!important;vertical-align:middle!important;transition:background .15s,color .15s,border-color .15s!important}
+.vid-toggle:hover{background:#f0f0f0!important;color:#555!important;border-color:#999!important}
 .vid-toggle .vid-chev{font-size:10px!important;transition:transform .2s!important}
 .vid-toggle.vid-open .vid-chev{transform:rotate(180deg)!important}
+.vid-btn-wrap{margin-left:16px!important}
+.vid-panel{display:none;margin-top:12px!important}
+.vid-panel.vid-show{display:block!important}
 
 /* ---- Thalamus distribution diagram (organic SVG) ---------- */
 .thal-svg-wrap{margin-top:18px!important;width:100%!important}
@@ -669,7 +672,8 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                     A physical stimulus is converted into a neural electrochemical signal in specialized receptors:<br>
                     <span style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:5px">
                     <span style="display:block;flex:1 1 300px;min-width:260px">
-                    <span style="display:block"><strong style="color:#444">Light</strong> &#8594; retinal photoreceptors (rods and cones) &#8594; optic nerve &#8594; LGN <span class="term" data-term="thalamus">thalamus</span> <span style="display:inline-block;vertical-align:middle;margin-left:8px" onclick="event.stopPropagation()"><button type="button" class="vid-toggle" onclick="vidToggle(this)"><span>Video. How it works</span><span class="vid-chev">&#9662;</span></button><span class="vid-panel" style="display:none"><span style="display:block;border:0.5px solid #ddd;border-radius:8px;overflow:hidden;background:#000;aspect-ratio:16/9;margin-top:8px;max-width:300px"><iframe width="100%" height="100%" style="display:block;border:0;width:100%;height:100%" data-src="https://www.youtube-nocookie.com/embed/3m-464MqBJY?rel=0" title="How the eye perceives light" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></span><span style="display:block;margin-top:6px;font-size:10px;color:#999;line-height:1.4">Light → retina → optic nerve → thalamus</span></span></span></span>
+                    <span style="display:block"><strong style="color:#444">Light</strong> &#8594; retinal photoreceptors (rods and cones) &#8594; optic nerve &#8594; LGN <span class="term" data-term="thalamus">thalamus</span><span class="vid-btn-wrap" style="display:inline-block" onclick="event.stopPropagation()"><button type="button" class="vid-toggle" onclick="vidToggle(this)"><span>Video. How it works</span><span class="vid-chev">&#9662;</span></button></span></span>
+                    <span class="vid-panel" onclick="event.stopPropagation()"><span style="display:block;border:0.5px solid #ddd;border-radius:8px;overflow:hidden;background:#000;aspect-ratio:16/9;max-width:300px"><iframe width="100%" height="100%" style="display:block;border:0;width:100%;height:100%" data-src="https://www.youtube-nocookie.com/embed/3m-464MqBJY?rel=0" title="How the eye perceives light" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></span><span style="display:block;margin-top:6px;font-size:10px;color:#999;line-height:1.4">Light → retina → optic nerve → thalamus</span></span>
                     <span style="display:block;margin-top:3px"><strong style="color:#444">Sound</strong> &#8594; cochlear hair cells (air pressure &#8594; membrane vibration &#8594; ion current) &#8594; auditory nerve &#8594; MGN <span class="term" data-term="thalamus">thalamus</span></span>
                     <span style="display:block;margin-top:3px"><strong style="color:#444">Touch</strong> &#8594; skin mechanoreceptors &#8594; spinal cord / brainstem &#8594; VPN <span class="term" data-term="thalamus">thalamus</span></span>
                     <span style="display:block;margin-top:3px"><strong style="color:#444">Taste</strong> &#8594; taste receptors of the tongue &#8594; facial nerve &#8594; nucleus of the solitary tract &#8594; VPM <span class="term" data-term="thalamus">thalamus</span></span>
@@ -718,18 +722,7 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <div class="fsimple-title">Receptors → <span class="term" data-term="thalamus">thalamus</span></div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
-                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>12–88 ms.</strong> The electrical signal from the sense organs begins traveling through the nervous system. The first stop for most sensory signals is the <span class="term" data-term="thalamus">thalamus</span>. The thalamus receives signals from the sense organs and routes them down two pathways at once.
-                  <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
-                    <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
-                      <div style="font-size:11px;font-weight:600;color:#993c1d;margin-bottom:3px">The first pathway — fast</div>
-                      <div style="font-size:13px;line-height:1.65;color:#555">From the thalamus directly to the <span class="term" data-term="amygdala">amygdala</span>. It carries only the general features of the event and cannot pin down exactly what happened. Its job is to determine as fast as possible <strong>whether the event might be dangerous</strong>.</div>
-                    </div>
-                    <div style="border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 13px">
-                      <div style="font-size:11px;font-weight:600;color:#185fa5;margin-bottom:3px">The second pathway — slow</div>
-                      <div style="font-size:13px;line-height:1.65;color:#555">From the thalamus to the sensory and association cortex. There it is determined <strong>what happened</strong>, and <strong>whether this event is dangerous</strong>.</div>
-                    </div>
-                    <div style="font-size:12px;line-height:1.7;color:#666;margin-top:2px">Now the same signal travels down both pathways simultaneously. <strong style="color:#993c1d">Fast pathway:</strong> “Could this be dangerous?” &nbsp;<strong style="color:#185fa5">Slow pathway:</strong> “What exactly happened?”</div>
-                  </div></div></div></div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc">Sensory receptors convert the physical impact of the environment on the receptor into an electrical signal. This signal then travels to the <span class="term" data-term="thalamus">thalamus</span>.</div></div></div>
               </div>
               <div class="fsimple" id="fs-3">
                 <div class="fsimple-hdr" onclick="fsToggle(this, event)">
@@ -884,17 +877,20 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                 if (!wasOpen) item.classList.add('fsimple-open');
               }
               function vidToggle(btn){
-                var wrap = btn.parentNode;
-                var panel = wrap.querySelector('.vid-panel');
+                var line = btn.closest('span[style*="display:block"]') || btn.parentNode.parentNode;
+                var panel = line ? line.nextElementSibling : null;
+                while (panel && !(panel.classList && panel.classList.contains('vid-panel'))) {
+                  panel = panel.nextElementSibling;
+                }
                 if (!panel) return;
-                var open = panel.style.display !== 'none';
+                var open = panel.classList.contains('vid-show');
                 if (open){
-                  panel.style.display = 'none';
+                  panel.classList.remove('vid-show');
                   btn.classList.remove('vid-open');
                 } else {
                   var ifr = panel.querySelector('iframe');
                   if (ifr && !ifr.src && ifr.getAttribute('data-src')) ifr.src = ifr.getAttribute('data-src');
-                  panel.style.display = 'block';
+                  panel.classList.add('vid-show');
                   btn.classList.add('vid-open');
                 }
               }
