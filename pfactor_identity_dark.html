@@ -343,10 +343,30 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .site-footer .footer-column a,.site-footer .footer-copyright{font-family:var(--font-untitledsans)!important; color:#555!important; letter-spacing:-0.21px!important;}
 .site-footer .footer-column a:hover{color:var(--color-obsidian)!important;}
 
-/* ---- Thalamus signal-distribution list --------------------- */
-.thal-list{list-style:none!important;margin:4px 0 0 0!important;padding:0!important;border-top:1px solid #ececec!important}
-.thal-list li{margin:0!important;padding:11px 2px!important;border-bottom:1px solid #ececec!important;font-size:14px!important;line-height:1.5!important;letter-spacing:-0.015em!important;color:#1a1a1a!important}
-.thal-list li .term{font-weight:500!important}
+/* ---- "How it works" video toggle -------------------------- */
+.vid-toggle{font-size:12px!important;padding:6px 14px!important;border:1px solid #1a1a1a!important;border-radius:8px!important;background:none!important;color:#1a1a1a!important;cursor:pointer!important;font-family:inherit!important;display:inline-flex!important;align-items:center!important;gap:6px!important;transition:background .15s,color .15s!important}
+.vid-toggle:hover{background:#1a1a1a!important;color:#fff!important}
+.vid-toggle .vid-chev{font-size:10px!important;transition:transform .2s!important}
+.vid-toggle.vid-open .vid-chev{transform:rotate(180deg)!important}
+
+/* ---- Thalamus distribution tree (site style) -------------- */
+.thal-tree{margin-top:14px!important}
+.thal-tree-top{display:flex!important;justify-content:center!important}
+.thal-tree-root{display:inline-block!important;border:1px solid #1a1a1a!important;border-radius:9px!important;padding:9px 22px!important;font-size:14px!important;font-weight:500!important;letter-spacing:-0.015em!important;color:#1a1a1a!important;background:#fff!important}
+.thal-tree-stem{width:1px!important;height:14px!important;background:#cfcfcf!important;margin:0 auto!important}
+.thal-tree-branch{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:14px!important;position:relative!important}
+.thal-tree-branch::before{content:""!important;position:absolute!important;top:-14px!important;left:12.5%!important;right:12.5%!important;height:1px!important;background:#cfcfcf!important}
+.thal-tree .thal-node{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;padding-top:14px!important}
+.thal-tree .thal-node::before{content:""!important;position:absolute!important;top:-14px!important;left:50%!important;width:1px!important;height:14px!important;background:#cfcfcf!important}
+.thal-node-box{border:1px solid #e2e2e2!important;border-radius:9px!important;padding:10px 12px!important;width:100%!important;box-sizing:border-box!important;text-align:center!important;background:#fafafa!important;font-size:13px!important;font-weight:500!important;letter-spacing:-0.015em!important;color:#1a1a1a!important;line-height:1.3!important;transition:border-color .15s,background .15s!important}
+.thal-node-box:hover{border-color:#bdbdbd!important;background:#f3f3f3!important}
+@media(max-width:620px){
+  .thal-tree-branch{grid-template-columns:repeat(2,1fr)!important;gap:14px 12px!important}
+  .thal-tree-branch::before{display:none!important}
+  .thal-tree .thal-node::before{display:none!important}
+  .thal-tree-stem{display:none!important}
+}
+@media(max-width:360px){ .thal-tree-branch{grid-template-columns:1fr!important} }
 
 /* ---- Responsive display sizing ---------------------------- */
 @media (max-width:768px){
@@ -656,7 +676,7 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <div class="fsimple-title">Внешняя среда → рецепторы</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
-                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><p style="margin:0 0 14px 0">Страх начинается с того, что с нами происходит какое-либо <strong>событие</strong>.</p><p style="margin:0 0 14px 0">Событие мы воспринимаем с помощью <strong>органов чувств</strong>: глаз, ушей, носа, языка и кожи.</p><p style="margin:0">Органы чувств преобразуют сигналы из внешней среды в <strong>электрический сигнал</strong>, который начинает движение к мозгу. На этом этапе информация из внешней среды преобразовалась в <strong>электрический сигнал</strong> и направилась в мозг — мы ещё ничего не поняли и не испытали никаких эмоций, но процесс обработки информации уже запущен.</p>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><p style="margin:0 0 14px 0">Страх начинается с того, что с нами происходит какое-либо <strong>событие</strong>.</p><p style="margin:0 0 14px 0">Событие мы воспринимаем с помощью <strong>органов чувств</strong>: глаз, ушей, носа, языка и кожи.</p><p style="margin:0">Органы чувств преобразуют сигналы из внешней среды в <strong>электрический сигнал</strong>, который начинает движение к мозгу. На этом этапе информация из внешней среды преобразовалась в электрический сигнал и направилась в мозг — мы ещё ничего не поняли и не испытали никаких эмоций, но процесс обработки информации уже запущен.</p>
                   <div style="margin-top:12px;padding:11px 14px;background:#f7f7f5;border-radius:8px;border-left:3px solid #ccc;font-size:12px;line-height:1.75;color:#666">
                     <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:7px">Сенсорная трансдукция &#8594; таламус</div>
                     Физическое воздействие преобразуется в нейронный электрохимический сигнал в специализированных рецепторах:<br>
@@ -670,10 +690,16 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                     <span style="display:block;margin-top:3px"><strong style="color:#444"><span class="term" data-term="интероцепция">Интероцепция</span></strong> &#8594; механо- и хеморецепторы органов &#8594; блуждающий нерв &#8594; ядро одиночного тракта &#8594; инсула &#8594; <span class="term" data-term="таламус">таламус</span></span>
                     </span>
                     <span style="display:block;flex:0 0 300px;max-width:300px;width:100%" onclick="event.stopPropagation()">
-                      <span style="display:block;border:0.5px solid #ddd;border-radius:8px;overflow:hidden;background:#000;aspect-ratio:16/9">
-                        <iframe width="100%" height="100%" style="display:block;border:0;width:100%;height:100%" src="https://www.youtube-nocookie.com/embed/3m-464MqBJY?rel=0" title="Как глаз воспринимает свет" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <button type="button" class="vid-toggle" onclick="vidToggle(this)">
+                        <span>Как это работает</span>
+                        <span class="vid-chev">&#9662;</span>
+                      </button>
+                      <span class="vid-panel" style="display:none">
+                        <span style="display:block;border:0.5px solid #ddd;border-radius:8px;overflow:hidden;background:#000;aspect-ratio:16/9;margin-top:8px">
+                          <iframe width="100%" height="100%" style="display:block;border:0;width:100%;height:100%" data-src="https://www.youtube-nocookie.com/embed/3m-464MqBJY?rel=0" title="Как глаз воспринимает свет" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </span>
+                        <span style="display:block;margin-top:6px;font-size:10px;color:#999;line-height:1.4">Свет → сетчатка → зрительный нерв → таламус</span>
                       </span>
-                      <span style="display:block;margin-top:6px;font-size:10px;color:#999;line-height:1.4">Свет → сетчатка → зрительный нерв → таламус</span>
                     </span>
                     </span>
                     <span style="display:block;margin-top:8px;color:#555">Все пути (кроме обоняния) сходятся в <span class="term" data-term="таламус">таламусе</span> — он первым решает: немедленно сигнализировать амигдале <em>(нижний путь)</em> или направить сигнал в кору для точного анализа <em>(верхний путь)</em>.</span>
@@ -727,12 +753,18 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
                 <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><p style="margin:0 0 14px 0">Таламус распределяет сигнал в распределительную сеть:</p>
-                  <ul class="thal-list">
-                    <li><span class="term" data-term="сенсорная кора">Сенсорная кора</span></li>
-                    <li><span class="term" data-term="амигдала">Миндалевидное тело</span></li>
-                    <li><span class="term" data-term="гиппокамп">Гиппокамп</span></li>
-                    <li><span class="term" data-term="островковая кора">Островковая кора</span></li>
-                  </ul></div></div></div>
+                  <div class="thal-tree">
+                    <div class="thal-tree-top">
+                      <div class="thal-tree-root"><span class="term" data-term="таламус">Таламус</span></div>
+                    </div>
+                    <div class="thal-tree-stem"></div>
+                    <div class="thal-tree-branch">
+                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="сенсорная кора">Сенсорная кора</span></div></div>
+                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="амигдала">Миндалевидное тело</span></div></div>
+                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="гиппокамп">Гиппокамп</span></div></div>
+                      <div class="thal-node"><div class="thal-node-box"><span class="term" data-term="островковая кора">Островковая кора</span></div></div>
+                    </div>
+                  </div></div></div></div>
               </div>
               <div class="fsimple" id="fs-4">
                 <div class="fsimple-hdr" onclick="fsToggle(this, event)">
@@ -784,6 +816,21 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                 var wasOpen = item.classList.contains('fsimple-open');
                 document.querySelectorAll('.fsimple').forEach(function(it){ it.classList.remove('fsimple-open'); });
                 if (!wasOpen) item.classList.add('fsimple-open');
+              }
+              function vidToggle(btn){
+                var wrap = btn.parentNode;
+                var panel = wrap.querySelector('.vid-panel');
+                if (!panel) return;
+                var open = panel.style.display !== 'none';
+                if (open){
+                  panel.style.display = 'none';
+                  btn.classList.remove('vid-open');
+                } else {
+                  var ifr = panel.querySelector('iframe');
+                  if (ifr && !ifr.src && ifr.getAttribute('data-src')) ifr.src = ifr.getAttribute('data-src');
+                  panel.style.display = 'block';
+                  btn.classList.add('vid-open');
+                }
               }
               </script>
 
