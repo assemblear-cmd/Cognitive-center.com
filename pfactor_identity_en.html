@@ -241,9 +241,7 @@ nav a:not(.active-link):hover { border-bottom-color: #ccc; }
 
 /* ---- Base / typography ------------------------------------ */
 body{font-family:var(--font-untitledsans)!important;background:var(--color-paper)!important;color:var(--color-obsidian)!important;line-height:1.5!important;}
-.container{max-width:1200px!important; padding-left:64px!important; padding-right:64px!important; box-sizing:border-box!important;}
-@media (max-width:900px){ .container{padding-left:32px!important; padding-right:32px!important;} }
-@media (max-width:560px){ .container{padding-left:20px!important; padding-right:20px!important;} }
+.container{max-width:1100px!important;}
 
 /* ---- Synapse announcement bar ----------------------------- */
 .synapse-bar{
@@ -287,29 +285,13 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .progress-fill{background:var(--gradient-synapse)!important;}
 
 /* ---- Hero / article title --------------------------------- */
-.article-section{padding:72px 0 60px!important;}
-/* Article meta row — pill + dot + date (Neuralink article header) */
-.article-meta{
-  display:flex!important; align-items:center!important; gap:16px!important;
-  margin:0 0 40px 0!important;
-}
-.meta-pill{
-  font-family:var(--font-untitledsans)!important; font-weight:400!important;
-  font-size:14px!important; letter-spacing:-0.015em!important; color:var(--color-paper)!important;
-  background:var(--color-fog)!important; border-radius:var(--radius-buttons)!important;
-  padding:5px 16px!important; line-height:1.2!important; white-space:nowrap!important;
-}
-.meta-dot{width:5px!important; height:5px!important; border-radius:50%!important;
-  background:var(--color-obsidian)!important; flex:0 0 auto!important;}
-.meta-date{font-family:var(--font-untitledsans)!important; font-weight:400!important;
-  font-size:16px!important; letter-spacing:-0.02em!important; color:var(--color-obsidian)!important;}
+.article-section{padding:80px 0 60px!important;}
 .article-title{
   font-family:var(--font-untitledsans)!important; font-weight:300!important;
   font-size:88px!important; line-height:0.98!important; letter-spacing:-0.055em!important;
-  color:var(--color-obsidian)!important; margin:0 0 40px 0!important;
+  color:var(--color-obsidian)!important; margin:0 0 28px 0!important;
 }
-.intro-block{font-size:22px!important; color:#1a1a1a!important; letter-spacing:-0.5px!important;
-  max-width:760px!important; line-height:1.4!important;}
+.intro-block{font-size:20px!important; color:#555!important; letter-spacing:-0.4px;}
 .intro-block p{font-weight:400!important;}
 
 /* section H2/H3 — light display weight, tight tracking */
@@ -320,6 +302,12 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 }
 .article-section h3{font-family:var(--font-untitledsans)!important; font-weight:400!important; letter-spacing:-0.03em!important;}
 .article-section p{font-family:var(--font-untitledsans)!important; color:#1a1a1a!important; letter-spacing:-0.32px;}
+/* fs-1 paragraphs match the other timeline sub-blocks (.fsimple-desc) */
+.article-section .fsimple-desc p{
+  font-size:13px!important; line-height:1.75!important; color:inherit!important;
+  letter-spacing:-0.015em!important; font-weight:400!important;
+}
+.article-section .fsimple-desc p:last-child{margin-bottom:0!important;}
 
 /* ---- Accordion → Paper cards, Fog hairlines --------------- */
 .ac-wrap{margin:48px 0 56px!important;}
@@ -355,12 +343,27 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .site-footer .footer-column a,.site-footer .footer-copyright{font-family:var(--font-untitledsans)!important; color:#555!important; letter-spacing:-0.21px!important;}
 .site-footer .footer-column a:hover{color:var(--color-obsidian)!important;}
 
+/* ---- Thalamus signal-distribution scheme ------------------ */
+.thal-scheme{
+  background:var(--color-obsidian,#000)!important;border-radius:12px!important;
+  padding:24px 22px!important;margin-top:14px!important;
+  font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace!important;
+  color:var(--color-paper,#fff)!important;overflow-x:auto!important;
+}
+.thal-scheme .thal-chain{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
+.thal-scheme .thal-node{font-size:13px!important;letter-spacing:-0.01em!important;color:var(--color-paper,#fff)!important;line-height:1.4!important;font-weight:400!important;margin:0!important}
+.thal-scheme .thal-arrow{color:var(--color-fog,#bababa)!important;font-size:11px!important;line-height:1.5!important;padding:3px 0 3px 2px!important;margin:0!important}
+.thal-scheme .thal-branch{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:18px!important;margin-top:14px!important;border-top:1px solid #333!important;padding-top:18px!important}
+.thal-scheme .thal-col{display:flex!important;flex-direction:column!important;gap:6px!important}
+.thal-scheme .thal-col-arrow{color:var(--color-fog,#bababa)!important;font-size:11px!important;margin:0!important}
+.thal-scheme .thal-col-title{font-size:12.5px!important;color:var(--color-paper,#fff)!important;font-weight:500!important;letter-spacing:-0.01em!important;line-height:1.35!important;margin:0!important}
+.thal-scheme .thal-col-sub{font-size:11px!important;color:var(--color-fog,#bababa)!important;line-height:1.45!important;letter-spacing:-0.005em!important;margin:0!important}
+@media(max-width:640px){ .thal-scheme .thal-branch{grid-template-columns:repeat(2,1fr)!important;gap:14px 16px!important} }
+@media(max-width:380px){ .thal-scheme .thal-branch{grid-template-columns:1fr!important} }
+
 /* ---- Responsive display sizing ---------------------------- */
 @media (max-width:768px){
   .article-title{font-size:48px!important; letter-spacing:-0.04em!important;}
-  .article-meta{gap:12px!important; margin-bottom:28px!important;}
-  .meta-date{font-size:14px!important;}
-  .intro-block{font-size:18px!important;}
   .article-section h2{font-size:30px!important;}
   .site-header{padding:14px 18px!important;}
   .synapse-bar{font-size:11px; padding:9px 36px 9px 16px;}
@@ -572,7 +575,6 @@ nav a.active-link::after{transform:scaleX(1)!important;}
             <div style="margin:16px 0">
               <span class="def-pill2">DSM-5-TR · Clinical</span>
               <div class="def-quote2">“Fear is the emotional response to a real or perceived imminent threat.”</div>
-              <div class="def-text2">Fear is associated with surges of autonomic arousal needed for the “fight or flight” response, thoughts of immediate danger, and escape or avoidance behavior. It differs from anxiety (anticipation of a future threat) by its time horizon: fear = now, anxiety = later. This is the single operational definition used in diagnosis.</div>
               <div class="def-src2">APA, DSM-5-TR, 2022 &mdash; <a href="https://doi.org/10.1176/appi.books.9780890425787" target="_blank" rel="noopener">psychiatryonline.org</a></div>
 
               <button class="more-btn" id="more-btn" onclick="moreToggle()">
@@ -583,6 +585,11 @@ nav a.active-link::after{transform:scaleX(1)!important;}
               <div class="more-panel" id="more-panel">
                 <div class="more-panel-inner">
                   <div class="more-content">
+
+                    <div class="more-card">
+                      <div class="more-card-label">Operational definition</div>
+                      <div class="def-text2" style="margin:0">Fear is associated with surges of autonomic arousal needed for the “fight or flight” response, thoughts of immediate danger, and escape or avoidance behavior. It differs from anxiety (anticipation of a future threat) by its time horizon: fear = now, anxiety = later. This is the single operational definition used in diagnosis.</div>
+                    </div>
 
                     <div class="more-card">
                       <div class="more-card-label">How anxiety differs from fear</div>
@@ -740,10 +747,43 @@ nav a.active-link::after{transform:scaleX(1)!important;}
               <div class="fsimple" id="fs-3">
                 <div class="fsimple-hdr" onclick="fsToggle(this, event)">
                   <div class="fsimple-dot" style="color:#993c1d;background:#faece7">3</div>
-                  <div class="fsimple-title"><span class="term" data-term="amygdala">Amygdala</span> → <span class="term" data-term="hypothalamus">hypothalamus</span>, brainstem, and <span class="term" data-term="pfc">PFC</span> simultaneously</div>
+                  <div class="fsimple-title"><span class="term" data-term="thalamus">Thalamus</span> → signal distribution</div>
                   <span class="fsimple-chev">&#9662;</span>
                 </div>
-                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><strong>100–200 ms.</strong> The central nucleus of the amygdala (CeA) activates three parallel outputs: <span class="term" data-term="hypothalamus">hypothalamus</span> (<span class="term" data-term="ans">ANS</span> + <span class="term" data-term="hpa axis">HPA axis</span>), brainstem / PAG (freeze, flight, fight) and initiates appraisal in the <span class="term" data-term="pfc">PFC</span>.</div></div></div>
+                <div class="fsimple-body"><div class="fsimple-body-in"><div class="fsimple-desc"><p style="margin:0 0 14px 0">The thalamus is the brain's "dispatch center." Once it receives the signal, it relays it simultaneously along four pathways, each of which processes the information in its own way.</p>
+                  <div class="thal-scheme">
+                    <div class="thal-chain">
+                      <div class="thal-node">External environment</div>
+                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
+                      <div class="thal-node">Sense organs</div>
+                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
+                      <div class="thal-node">Receptors</div>
+                      <div class="thal-arrow">&#9474;<br>&#9662;</div>
+                      <div class="thal-node">Thalamus</div>
+                    </div>
+                    <div class="thal-branch">
+                      <div class="thal-col">
+                        <div class="thal-col-arrow">&#9662;</div>
+                        <div class="thal-col-title">Sensory cortex</div>
+                        <div class="thal-col-sub">detailed analysis</div>
+                      </div>
+                      <div class="thal-col">
+                        <div class="thal-col-arrow">&#9662;</div>
+                        <div class="thal-col-title">Amygdala</div>
+                        <div class="thal-col-sub">rapid appraisal of biological significance</div>
+                      </div>
+                      <div class="thal-col">
+                        <div class="thal-col-arrow">&#9662;</div>
+                        <div class="thal-col-title">Hippocampus</div>
+                        <div class="thal-col-sub">context and memory</div>
+                      </div>
+                      <div class="thal-col">
+                        <div class="thal-col-arrow">&#9662;</div>
+                        <div class="thal-col-title">Insular cortex</div>
+                        <div class="thal-col-sub">body signals, internal state</div>
+                      </div>
+                    </div>
+                  </div></div></div></div>
               </div>
               <div class="fsimple" id="fs-4">
                 <div class="fsimple-hdr" onclick="fsToggle(this, event)">
