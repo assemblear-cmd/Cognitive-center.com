@@ -372,14 +372,15 @@ nav a.active-link::after{transform:scaleX(1)!important;}
 .thal-zoom-close{position:fixed!important;top:14px!important;right:14px!important;width:42px!important;height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#fff!important;border:1px solid #d8d8d8!important;border-radius:10px!important;box-shadow:0 1px 4px rgba(0,0,0,0.12)!important;cursor:pointer!important;z-index:99999!important;font-size:22px!important;line-height:1!important;color:#444!important;padding:0!important;-webkit-tap-highlight-color:transparent!important}
 .thal-zoom-close:active{background:#f2f2f2!important}
 /* ---- fs-5: three parallel feedback-loop columns ----------- */
-.fs5-cols{display:flex!important;flex-direction:row!important;gap:24px!important;align-items:flex-start!important;margin-top:8px!important}
+.fs5-cols{display:flex!important;flex-direction:row!important;gap:20px!important;align-items:flex-start!important;margin-top:8px!important;justify-content:flex-start!important}
 .fs5-col{flex:1 1 0!important;min-width:0!important;display:flex!important;flex-direction:column!important}
 .fs5-col > div[style*="font-weight:600"]{margin-top:0!important;min-height:42px!important}
 .fs5-col .thal-svg-wrap{margin-top:4px!important}
-.fs5-col .thal-svg{max-width:100%!important}
+.fs5-col .thal-svg{max-width:100%!important;margin:0!important}
 @media(max-width:768px){
-  .fs5-cols{flex-direction:column!important;gap:8px!important}
+  .fs5-cols{flex-direction:column!important;gap:8px!important;width:100%!important;margin-left:0!important}
   .fs5-col > div[style*="font-weight:600"]{min-height:0!important;margin-top:22px!important}
+  .fs5-col .thal-svg{margin:0 auto!important}
 }
 
 /* ---- Responsive display sizing ---------------------------- */
@@ -940,55 +941,30 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <div class="fs5-cols">
                   <div class="fs5-col"><div style="font-size:14px;font-weight:600;color:#1a1a1a;margin:26px 0 10px 0;letter-spacing:-0.01em">1. Вегетативная реакция → интероцептивная обратная связь</div>
                   <div class="thal-svg-wrap">
-                    <svg class="thal-svg" viewBox="0 0 1600 1402" width="100%" style="display: block; max-width: 900px; height: auto; overflow: visible;">
-  <defs>
-    <filter id="glowC" x="-300%" y="-300%" width="700%" height="700%">
-      <feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur>
-      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-    </filter>
-  </defs>
+                    <svg class="thal-svg" viewBox="416 0 767 1166" width="100%" style="display: block; max-width: 767px; height: auto; overflow: visible;">
+  <defs><filter id="glowC" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>
   <g fill="none" stroke="#bdc0ca" stroke-width="3" stroke-linecap="round">
     <path d="M800,162 C800,194 800,198 800,230"></path>
     <path d="M800,322 C800,354 800,358 800,390"></path>
     <path d="M800,482 C800,514 800,518 800,550"></path>
-    <path d="M800,604 C800,636 800,636 800,668"></path>
-    <path d="M800,760 C800,792 800,796 800,828"></path>
-    <path d="M800,882 C800,914 800,914 800,946"></path>
-    <path d="M800,1038 C800,1070 800,1074 800,1106"></path>
-    <path d="M800,1198 C800,1230 800,1234 800,1266"></path>
+    <path d="M800,642 C800,674 800,678 800,710"></path>
+    <path d="M800,802 C800,834 800,838 800,870"></path>
+    <path d="M800,962 C800,994 800,998 800,1030"></path>
   </g>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,162 C800,194 800,198 800,230" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,322 C800,354 800,358 800,390" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,482 C800,514 800,518 800,550" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,604 C800,636 800,636 800,668" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,760 C800,792 800,796 800,828" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,882 C800,914 800,914 800,946" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,1038 C800,1070 800,1074 800,1106" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,1198 C800,1230 800,1234 800,1266" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,162 C800,194 800,198 800,230" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,322 C800,354 800,358 800,390" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,482 C800,514 800,518 800,550" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,642 C800,674 800,678 800,710" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,802 C800,834 800,838 800,870" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,962 C800,994 800,998 800,1030" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
   <g fill="#e8e8ed" stroke="#d4d4dc" stroke-width="1.5" stroke-linejoin="round">
-    <path d="M955.8,116.0 C955.8,123.8 945.5,132.5 932.6,139.5 C919.7,146.4 900.6,154.0 878.5,157.7 C856.4,161.3 826.0,161.5 800.0,161.4 C774.0,161.3 743.0,161.0 722.7,157.0 C702.4,153.1 689.0,144.4 678.1,137.6 C667.3,130.7 659.6,123.6 657.5,116.0 C655.3,108.4 653.9,98.8 665.2,92.1 C676.4,85.5 702.6,79.7 725.0,76.2 C747.5,72.6 775.3,70.6 800.0,70.8 C824.7,70.9 851.3,73.4 873.4,77.0 C895.5,80.7 918.9,86.0 932.6,92.5 C946.4,99.0 955.8,108.2 955.8,116.0 Z"></path>
-    <path d="M946.4,276.0 C945.1,283.4 933.2,290.9 921.0,297.4 C908.8,303.9 893.4,310.9 873.2,314.9 C853.0,318.9 824.3,321.4 800.0,321.3 C775.7,321.3 748.8,318.3 727.6,314.5 C706.4,310.7 685.7,304.9 672.9,298.5 C660.0,292.1 651.3,283.6 650.6,276.0 C649.9,268.4 656.7,259.6 668.8,252.8 C680.9,246.0 701.3,239.0 723.1,235.2 C745.0,231.3 774.7,229.6 800.0,229.8 C825.3,229.9 853.8,232.1 875.2,236.1 C896.6,240.0 916.7,246.6 928.6,253.2 C940.4,259.9 947.6,268.6 946.4,276.0 Z"></path>
-    <path d="M1074.9,436.0 C1078.0,443.6 1060.2,453.1 1036.7,459.8 C1013.2,466.6 973.4,472.5 934.0,476.5 C894.5,480.5 843.0,484.1 800.0,483.6 C757.0,483.2 712.4,477.8 675.7,473.6 C639.0,469.3 601.1,464.5 579.5,458.2 C558.0,452.0 547.3,443.5 546.4,436.0 C545.4,428.5 552.4,419.5 573.7,413.2 C595.1,406.9 636.9,401.6 674.7,398.1 C712.4,394.6 758.0,392.5 800.0,392.4 C842.0,392.3 890.6,394.0 926.9,397.6 C963.3,401.2 993.4,407.6 1018.1,414.0 C1042.7,420.4 1071.8,428.4 1074.9,436.0 Z"></path>
-    <path d="M1134.6,714.0 C1133.9,721.8 1138.8,730.4 1113.8,737.2 C1088.8,744.0 1037.0,751.0 984.7,754.9 C932.4,758.8 861.6,760.8 800.0,760.8 C738.4,760.8 665.4,759.0 615.3,754.9 C565.3,750.8 526.1,743.0 499.6,736.2 C473.0,729.4 456.1,721.4 455.9,714.0 C455.7,706.6 472.0,698.6 498.3,691.7 C524.7,684.9 563.6,676.9 613.9,672.8 C664.2,668.7 741.1,666.4 800.0,667.1 C858.9,667.8 914.3,673.0 967.3,676.9 C1020.2,680.9 1089.7,684.4 1117.6,690.6 C1145.5,696.7 1135.2,706.2 1134.6,714.0 Z"></path>
-    <path d="M1098.9,992.0 C1098.2,999.8 1095.3,1009.1 1069.5,1015.4 C1043.7,1021.6 989.0,1025.5 944.1,1029.5 C899.2,1033.5 850.1,1039.0 800.0,1039.5 C749.9,1040.0 685.6,1036.9 643.7,1032.6 C601.9,1028.3 575.3,1020.6 548.8,1013.8 C522.2,1007.0 488.0,999.5 484.6,992.0 C481.3,984.5 501.2,975.0 528.8,968.5 C556.4,962.0 605.0,956.9 650.2,953.1 C695.4,949.2 749.2,945.7 800.0,945.4 C850.8,945.2 909.7,947.8 955.3,951.6 C1000.9,955.4 1049.8,961.5 1073.7,968.3 C1097.6,975.0 1099.6,984.2 1098.9,992.0 Z"></path>
-    <path d="M951.9,1152.0 C952.4,1159.7 945.3,1169.0 932.0,1175.4 C918.8,1181.8 894.3,1186.7 872.3,1190.4 C850.3,1194.1 824.7,1197.1 800.0,1197.4 C775.3,1197.7 745.0,1196.2 724.0,1192.4 C703.0,1188.5 684.7,1181.0 674.0,1174.3 C663.4,1167.6 661.4,1159.7 660.1,1152.0 C658.8,1144.3 655.4,1135.0 666.2,1128.3 C677.0,1121.7 702.5,1116.1 724.8,1112.1 C747.1,1108.0 775.1,1104.1 800.0,1104.2 C824.9,1104.2 852.8,1108.4 874.3,1112.5 C895.8,1116.7 916.1,1122.6 929.0,1129.2 C941.9,1135.7 951.4,1144.3 951.9,1152.0 Z"></path>
-    <path d="M1132.1,1312.0 C1128.0,1319.6 1104.4,1327.0 1077.5,1333.7 C1050.6,1340.4 1017.0,1348.1 970.7,1352.1 C924.5,1356.0 857.8,1357.2 800.0,1357.4 C742.2,1357.6 674.6,1356.9 624.1,1353.3 C573.6,1349.7 525.3,1342.6 497.1,1335.7 C468.9,1328.8 451.5,1319.6 454.8,1312.0 C458.1,1304.4 487.2,1296.4 516.8,1289.8 C546.3,1283.3 584.9,1276.7 632.1,1272.6 C679.3,1268.5 742.8,1265.5 800.0,1265.2 C857.2,1265.0 924.8,1267.0 975.1,1270.9 C1025.3,1274.7 1075.4,1281.5 1101.5,1288.4 C1127.7,1295.2 1136.1,1304.4 1132.1,1312.0 Z"></path>
+    <path d="M947.8,116.0 C947.6,124.0 946.3,132.9 934.7,139.9 C923.2,146.8 901.1,154.3 878.6,157.8 C856.1,161.2 825.3,161.1 800.0,160.7 C774.7,160.2 747.1,158.7 726.9,154.8 C706.8,150.9 692.6,143.9 679.2,137.4 C665.8,130.9 648.4,123.5 646.5,116.0 C644.6,108.5 654.2,99.0 667.7,92.6 C681.2,86.2 705.5,81.2 727.6,77.5 C749.6,73.8 774.9,70.9 800.0,70.4 C825.1,69.9 855.3,71.0 877.9,74.6 C900.5,78.2 924.1,85.1 935.8,92.0 C947.4,98.9 948.0,108.0 947.8,116.0 Z"></path>
+    <path d="M953.3,276.0 C951.2,283.6 934.8,290.8 921.9,297.6 C909.1,304.3 896.5,312.4 876.2,316.5 C855.9,320.6 824.6,322.5 800.0,322.1 C775.4,321.7 750.1,317.9 728.4,314.0 C706.7,310.2 682.0,305.4 669.9,299.0 C657.7,292.7 654.3,283.5 655.5,276.0 C656.7,268.5 665.8,261.0 677.1,254.2 C688.4,247.5 703.0,239.1 723.5,235.4 C744.0,231.6 774.8,231.6 800.0,231.7 C825.2,231.9 852.2,233.0 874.6,236.4 C897.0,239.8 921.2,245.6 934.3,252.2 C947.5,258.8 955.4,268.4 953.3,276.0 Z"></path>
+    <path d="M1071.3,436.0 C1070.6,443.7 1049.9,452.3 1026.1,458.8 C1002.3,465.2 966.0,470.6 928.3,474.8 C890.6,478.9 844.3,483.2 800.0,483.7 C755.7,484.1 699.3,481.7 662.8,477.5 C626.3,473.2 602.5,465.0 580.9,458.1 C559.3,451.2 532.5,443.3 533.2,436.0 C533.8,428.7 562.9,421.2 584.7,414.3 C606.4,407.4 627.9,398.9 663.8,394.8 C699.7,390.8 756.2,389.7 800.0,390.2 C843.8,390.6 888.5,393.9 926.9,397.7 C965.2,401.4 1006.0,406.4 1030.0,412.8 C1054.1,419.2 1071.9,428.3 1071.3,436.0 Z"></path>
+    <path d="M1137.9,596.0 C1132.6,603.6 1122.6,611.4 1095.0,617.8 C1067.4,624.1 1021.4,630.1 972.2,634.1 C923.0,638.2 859.6,641.7 800.0,642.2 C740.4,642.7 668.5,640.7 614.9,637.0 C561.2,633.3 509.9,626.6 477.9,619.8 C445.9,612.9 419.5,603.7 422.9,596.0 C426.3,588.3 465.5,580.4 498.5,573.7 C531.5,567.1 570.6,560.3 620.9,556.3 C671.1,552.4 742.0,549.7 800.0,550.0 C858.0,550.4 914.5,554.9 969.0,558.6 C1023.4,562.2 1098.4,565.7 1126.6,571.9 C1154.7,578.1 1143.1,588.4 1137.9,596.0 Z"></path>
+    <path d="M1089.6,756.0 C1093.3,763.5 1092.8,772.9 1069.2,779.3 C1045.6,785.8 993.0,790.4 948.1,794.5 C903.3,798.6 849.1,803.9 800.0,803.8 C750.9,803.7 696.7,798.3 653.7,794.0 C610.7,789.8 565.6,784.7 542.0,778.4 C518.3,772.0 510.6,763.3 512.0,756.0 C513.4,748.7 527.9,741.0 550.3,734.4 C572.8,727.7 605.2,719.9 646.8,716.2 C688.4,712.4 750.5,711.2 800.0,711.7 C849.5,712.1 902.3,714.9 943.5,718.7 C984.7,722.5 1022.9,728.4 1047.2,734.6 C1071.6,740.8 1085.9,748.5 1089.6,756.0 Z"></path>
+    <path d="M946.9,916.0 C946.7,923.8 943.2,932.5 931.6,939.3 C919.9,946.1 899.0,952.9 877.1,956.9 C855.1,961.0 824.8,964.3 800.0,963.8 C775.2,963.3 750.7,958.1 728.3,954.1 C705.9,950.1 679.1,946.1 665.6,939.8 C652.2,933.4 646.1,923.7 647.6,916.0 C649.1,908.3 662.1,900.7 674.4,893.8 C686.7,886.8 700.3,877.8 721.3,874.2 C742.2,870.5 774.9,871.3 800.0,871.9 C825.1,872.5 849.7,874.4 871.9,877.8 C894.1,881.2 920.7,886.0 933.2,892.4 C945.8,898.8 947.2,908.2 946.9,916.0 Z"></path>
+    <path d="M1152.3,1076.0 C1151.2,1083.6 1118.9,1091.8 1089.6,1098.7 C1060.3,1105.6 1024.8,1113.6 976.5,1117.5 C928.3,1121.3 856.4,1122.2 800.0,1121.6 C743.6,1121.0 688.7,1117.6 638.2,1114.0 C587.8,1110.3 527.6,1106.0 497.4,1099.7 C467.2,1093.4 456.3,1083.8 457.1,1076.0 C457.9,1068.2 474.4,1059.6 502.3,1052.7 C530.1,1045.8 574.5,1038.6 624.1,1034.7 C673.7,1030.8 744.2,1028.5 800.0,1029.1 C855.8,1029.8 909.5,1034.7 958.8,1038.7 C1008.2,1042.6 1063.7,1046.6 1095.9,1052.8 C1128.2,1059.1 1153.4,1068.4 1152.3,1076.0 Z"></path>
   </g>
   <g fill="#c6cad6" stroke="#b2b6c2" stroke-width="1.2">
     <ellipse cx="800" cy="162" rx="10" ry="7"></ellipse>
@@ -997,29 +973,21 @@ nav a.active-link::after{transform:scaleX(1)!important;}
     <ellipse cx="800" cy="390" rx="10" ry="7"></ellipse>
     <ellipse cx="800" cy="482" rx="10" ry="7"></ellipse>
     <ellipse cx="800" cy="550" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="604" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="668" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="760" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="828" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="882" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="946" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1038" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1106" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1198" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1266" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="642" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="710" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="802" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="870" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="962" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="1030" rx="10" ry="7"></ellipse>
   </g>
   <g fill="#42424b" font-family="'UntitledSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
     <text x="800" y="125" font-size="27" font-weight="500" text-anchor="middle" class="term" data-term="амигдала" style="cursor:pointer">Миндалина</text>
     <text x="800" y="285" font-size="27" font-weight="500" text-anchor="middle" class="term" data-term="гипоталамус" style="cursor:pointer">Гипоталамус</text>
     <text x="800" y="445" font-size="27" font-weight="500" text-anchor="middle">Вегетативные центры ствола</text>
-    <text x="800" y="722" font-size="23" font-weight="500" text-anchor="middle">Сердце, лёгкие, сосуды, потовые железы и др.</text>
-    <text x="800" y="1000" font-size="24" font-weight="500" text-anchor="middle">Ствол мозга (солитарное ядро и др.)</text>
-    <text x="800" y="1161" font-size="27" font-weight="500" text-anchor="middle" class="term" data-term="таламус" style="cursor:pointer">Таламус</text>
-    <text x="800" y="1319" font-size="22" font-weight="500" text-anchor="middle">Островок, поясная кора, префронтальная кора</text>
-  </g>
-  <g font-family="'UntitledSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
-    <text x="800" y="584" font-size="22" font-weight="400" fill="#9a9aa4" text-anchor="middle">(симпатические и парасимпатические нервы)</text>
-    <text x="800" y="862" font-size="22" font-weight="400" fill="#9a9aa4" text-anchor="middle">висцеральные афференты: блуждающий нерв, спинальные пути</text>
+    <text x="800" y="604" font-size="23" font-weight="500" text-anchor="middle">Сердце, лёгкие, сосуды, потовые железы и др.</text>
+    <text x="800" y="764" font-size="24" font-weight="500" text-anchor="middle">Ствол мозга (солитарное ядро и др.)</text>
+    <text x="800" y="925" font-size="27" font-weight="500" text-anchor="middle" class="term" data-term="таламус" style="cursor:pointer">Таламус</text>
+    <text x="800" y="1083" font-size="22" font-weight="500" text-anchor="middle">Островок, поясная кора, префронтальная кора</text>
   </g>
 </svg>
                     <button type="button" class="thal-zoom-btn" aria-label="Увеличить схему" onclick="event.stopPropagation();thalZoom(this)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#bdc0ca" stroke-width="2"></circle><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line><line x1="11" y1="8" x2="11" y2="14" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line><line x1="8" y1="11" x2="14" y2="11" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line></svg></button>
@@ -1027,41 +995,24 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <div class="thal-zoom-overlay" onclick="event.stopPropagation();if(event.target===this)thalZoomClose()"><button type="button" class="thal-zoom-close" aria-label="Закрыть" onclick="event.stopPropagation();thalZoomClose()">&#10005;</button><div class="thal-zoom-stage"></div></div></div>
                                     <div class="fs5-col"><div style="font-size:14px;font-weight:600;color:#1a1a1a;margin:26px 0 10px 0;letter-spacing:-0.01em">2. Эндокринная реакция → гормональная обратная связь</div>
                   <div class="thal-svg-wrap">
-                    <svg class="thal-svg" viewBox="0 0 1600 964" width="100%" style="display: block; max-width: 900px; height: auto; overflow: visible;">
-  <defs>
-    <filter id="glowC" x="-300%" y="-300%" width="700%" height="700%">
-      <feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur>
-      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-    </filter>
-  </defs>
+                    <svg class="thal-svg" viewBox="450 0 699 846" width="100%" style="display: block; max-width: 699px; height: auto; overflow: visible;">
+  <defs><filter id="glowC" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>
   <g fill="none" stroke="#bdc0ca" stroke-width="3" stroke-linecap="round">
     <path d="M800,162 C800,194 800,198 800,230"></path>
     <path d="M800,322 C800,354 800,358 800,390"></path>
     <path d="M800,482 C800,514 800,518 800,550"></path>
     <path d="M800,642 C800,674 800,678 800,710"></path>
-    <path d="M800,764 C800,796 800,796 800,828"></path>
   </g>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,162 C800,194 800,198 800,230" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,322 C800,354 800,358 800,390" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,482 C800,514 800,518 800,550" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,642 C800,674 800,678 800,710" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,764 C800,796 800,796 800,828" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,162 C800,194 800,198 800,230" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,322 C800,354 800,358 800,390" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,482 C800,514 800,518 800,550" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,642 C800,674 800,678 800,710" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
   <g fill="#e8e8ed" stroke="#d4d4dc" stroke-width="1.5" stroke-linejoin="round">
-    <path d="M967.7,116.0 C970.3,123.6 964.8,133.5 950.3,139.9 C935.8,146.4 905.9,150.7 880.9,154.6 C855.8,158.5 827.1,163.2 800.0,163.3 C772.9,163.4 742.4,159.1 718.1,155.1 C693.8,151.1 667.6,145.7 654.4,139.2 C641.2,132.7 637.6,123.5 638.7,116.0 C639.8,108.5 648.5,100.7 661.1,93.9 C673.7,87.1 691.1,79.1 714.3,75.1 C737.4,71.0 772.5,69.0 800.0,69.5 C827.5,70.0 856.9,73.9 879.3,78.1 C901.8,82.3 919.9,88.3 934.6,94.6 C949.3,100.9 965.0,108.4 967.7,116.0 Z"></path>
-    <path d="M946.4,276.0 C945.1,283.4 933.2,290.9 921.0,297.4 C908.8,303.9 893.4,310.9 873.2,314.9 C853.0,318.9 824.3,321.4 800.0,321.3 C775.7,321.3 748.8,318.3 727.6,314.5 C706.4,310.7 685.7,304.9 672.9,298.5 C660.0,292.1 651.3,283.6 650.6,276.0 C649.9,268.4 656.7,259.6 668.8,252.8 C680.9,246.0 701.3,239.0 723.1,235.2 C745.0,231.3 774.7,229.6 800.0,229.8 C825.3,229.9 853.8,232.1 875.2,236.1 C896.6,240.0 916.7,246.6 928.6,253.2 C940.4,259.9 947.6,268.6 946.4,276.0 Z"></path>
-    <path d="M947.4,436.0 C949.6,443.6 948.1,453.4 936.1,460.1 C924.0,466.7 897.8,472.6 875.1,475.9 C852.4,479.2 824.6,480.0 800.0,479.8 C775.4,479.6 750.0,477.8 727.6,474.5 C705.1,471.1 677.6,466.2 665.5,459.8 C653.5,453.4 654.5,443.8 655.3,436.0 C656.2,428.2 658.3,419.4 670.6,413.1 C682.9,406.8 707.5,402.1 729.1,398.3 C750.7,394.5 776.5,390.2 800.0,390.3 C823.5,390.4 849.8,394.7 870.2,398.7 C890.6,402.7 909.8,408.1 922.6,414.3 C935.5,420.5 945.2,428.4 947.4,436.0 Z"></path>
-    <path d="M940.0,596.0 C941.8,603.6 946.0,613.6 934.4,619.8 C922.9,626.1 893.0,629.5 870.6,633.5 C848.2,637.5 823.4,643.7 800.0,643.7 C776.6,643.7 751.5,637.3 730.0,633.2 C708.4,629.1 683.6,625.1 670.7,618.9 C657.9,612.7 652.7,603.6 652.9,596.0 C653.0,588.4 659.4,579.8 671.6,573.3 C683.9,566.7 704.8,561.0 726.2,556.8 C747.6,552.6 775.1,548.4 800.0,548.2 C824.9,548.0 855.2,551.4 875.8,555.7 C896.4,560.0 912.9,567.4 923.6,574.1 C934.3,580.8 938.2,588.4 940.0,596.0 Z"></path>
-    <path d="M1114.4,874.0 C1109.6,881.6 1090.4,888.9 1065.6,895.7 C1040.7,902.4 1009.7,910.2 965.4,914.5 C921.2,918.7 854.3,921.3 800.0,921.1 C745.7,920.9 686.8,917.3 639.5,913.3 C592.3,909.3 541.2,903.7 516.6,897.1 C491.9,890.6 489.8,881.6 491.6,874.0 C493.3,866.4 503.0,858.4 527.1,851.7 C551.2,845.1 590.6,837.5 636.1,833.9 C681.6,830.3 746.9,829.7 800.0,830.1 C853.1,830.4 905.8,832.8 954.8,836.1 C1003.8,839.4 1067.5,843.7 1094.1,850.0 C1120.7,856.3 1119.1,866.4 1114.4,874.0 Z"></path>
+    <path d="M956.0,116.0 C957.9,123.7 961.6,132.9 950.1,139.9 C938.6,146.8 912.1,153.6 887.1,157.6 C862.1,161.6 828.0,164.5 800.0,164.0 C772.0,163.5 742.8,158.9 719.0,154.7 C695.1,150.5 670.4,145.2 656.9,138.8 C643.5,132.3 639.1,123.7 638.3,116.0 C637.5,108.3 638.8,99.0 652.1,92.5 C665.4,86.0 693.5,80.8 718.1,76.9 C742.8,73.0 772.4,69.2 800.0,69.0 C827.6,68.9 860.6,71.9 883.7,76.0 C906.9,80.2 926.9,87.2 939.0,93.9 C951.0,100.5 954.1,108.3 956.0,116.0 Z"></path>
+    <path d="M953.3,276.0 C951.2,283.6 934.8,290.8 921.9,297.6 C909.1,304.3 896.5,312.4 876.2,316.5 C855.9,320.6 824.6,322.5 800.0,322.1 C775.4,321.7 750.1,317.9 728.4,314.0 C706.7,310.2 682.0,305.4 669.9,299.0 C657.7,292.7 654.3,283.5 655.5,276.0 C656.7,268.5 665.8,261.0 677.1,254.2 C688.4,247.5 703.0,239.1 723.5,235.4 C744.0,231.6 774.8,231.6 800.0,231.7 C825.2,231.9 852.2,233.0 874.6,236.4 C897.0,239.8 921.2,245.6 934.3,252.2 C947.5,258.8 955.4,268.4 953.3,276.0 Z"></path>
+    <path d="M947.5,436.0 C946.1,443.7 937.2,451.4 925.6,458.2 C913.9,465.1 898.6,472.9 877.6,477.2 C856.7,481.6 825.3,484.5 800.0,484.2 C774.7,483.9 748.0,479.5 725.8,475.4 C703.5,471.4 678.9,466.2 666.4,459.7 C653.9,453.1 651.1,444.0 650.7,436.0 C650.3,428.0 651.3,418.4 663.9,411.9 C676.4,405.3 703.3,399.9 726.0,396.7 C748.7,393.5 774.8,392.9 800.0,392.6 C825.2,392.3 855.1,391.6 877.5,394.9 C899.8,398.1 922.2,405.4 933.9,412.3 C945.6,419.1 948.9,428.3 947.5,436.0 Z"></path>
+    <path d="M951.5,596.0 C953.1,603.6 946.0,612.8 933.5,619.6 C921.1,626.5 899.2,633.4 877.0,636.9 C854.7,640.4 824.6,641.2 800.0,640.6 C775.4,640.1 751.2,637.1 729.4,633.5 C707.6,629.9 682.0,625.4 669.2,619.2 C656.5,612.9 652.6,603.7 652.9,596.0 C653.2,588.3 659.5,579.9 671.3,573.2 C683.2,566.5 702.7,559.6 724.1,555.7 C745.6,551.8 775.4,549.7 800.0,550.1 C824.6,550.4 851.2,553.8 871.8,557.8 C892.5,561.8 910.6,567.7 923.8,574.1 C937.1,580.4 949.9,588.4 951.5,596.0 Z"></path>
+    <path d="M1122.1,756.0 C1120.6,763.6 1101.8,772.0 1073.8,778.3 C1045.8,784.6 999.9,789.7 954.3,793.8 C908.6,797.8 851.3,802.4 800.0,802.4 C748.7,802.4 695.6,797.3 646.7,793.5 C597.7,789.8 531.5,786.2 506.5,779.9 C481.5,773.7 492.9,763.7 496.8,756.0 C500.6,748.3 506.6,740.7 529.6,733.9 C552.6,727.2 589.7,719.8 634.7,715.6 C679.8,711.4 744.8,708.7 800.0,708.7 C855.2,708.7 918.8,711.4 966.0,715.4 C1013.1,719.4 1056.9,726.2 1082.9,732.9 C1109.0,739.7 1123.7,748.4 1122.1,756.0 Z"></path>
   </g>
   <g fill="#c6cad6" stroke="#b2b6c2" stroke-width="1.2">
     <ellipse cx="800" cy="162" rx="10" ry="7"></ellipse>
@@ -1072,18 +1023,13 @@ nav a.active-link::after{transform:scaleX(1)!important;}
     <ellipse cx="800" cy="550" rx="10" ry="7"></ellipse>
     <ellipse cx="800" cy="642" rx="10" ry="7"></ellipse>
     <ellipse cx="800" cy="710" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="764" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="828" rx="10" ry="7"></ellipse>
   </g>
   <g fill="#42424b" font-family="'UntitledSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
     <text x="800" y="125" font-size="26" font-weight="500" text-anchor="middle">Миндалина / ПФК</text>
     <text x="800" y="285" font-size="27" font-weight="500" text-anchor="middle" class="term" data-term="гипоталамус" style="cursor:pointer">Гипоталамус</text>
     <text x="800" y="445" font-size="27" font-weight="500" text-anchor="middle">Гипофиз</text>
     <text x="800" y="605" font-size="27" font-weight="500" text-anchor="middle">Надпочечники</text>
-    <text x="800" y="881" font-size="22" font-weight="500" text-anchor="middle">Миндалина, гиппокамп, префронтальная кора</text>
-  </g>
-  <g font-family="'UntitledSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
-    <text x="800" y="744" font-size="22" font-weight="400" fill="#9a9aa4" text-anchor="middle">(кортизол, адреналин и др. в крови)</text>
+    <text x="800" y="763" font-size="22" font-weight="500" text-anchor="middle">Миндалина, гиппокамп, префронтальная кора</text>
   </g>
 </svg>
                     <button type="button" class="thal-zoom-btn" aria-label="Увеличить схему" onclick="event.stopPropagation();thalZoom(this)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#bdc0ca" stroke-width="2"></circle><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line><line x1="11" y1="8" x2="11" y2="14" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line><line x1="8" y1="11" x2="14" y2="11" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line></svg></button>
@@ -1091,56 +1037,33 @@ nav a.active-link::after{transform:scaleX(1)!important;}
                   <div class="thal-zoom-overlay" onclick="event.stopPropagation();if(event.target===this)thalZoomClose()"><button type="button" class="thal-zoom-close" aria-label="Закрыть" onclick="event.stopPropagation();thalZoomClose()">&#10005;</button><div class="thal-zoom-stage"></div></div></div>
                                     <div class="fs5-col"><div style="font-size:14px;font-weight:600;color:#1a1a1a;margin:26px 0 10px 0;letter-spacing:-0.01em">3. Моторная реакция → сенсорная обратная связь</div>
                   <div class="thal-svg-wrap">
-                    <svg class="thal-svg" viewBox="0 0 1600 1444" width="100%" style="display: block; max-width: 900px; height: auto; overflow: visible;">
-  <defs>
-    <filter id="glowC" x="-300%" y="-300%" width="700%" height="700%">
-      <feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur>
-      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-    </filter>
-  </defs>
+                    <svg class="thal-svg" viewBox="424 0 752 1326" width="100%" style="display: block; max-width: 752px; height: auto; overflow: visible;">
+  <defs><filter id="glowC" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="3.2" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>
   <g fill="none" stroke="#bdc0ca" stroke-width="3" stroke-linecap="round">
     <path d="M800,162 C800,194 800,198 800,230"></path>
     <path d="M800,322 C800,354 800,358 800,390"></path>
     <path d="M800,482 C800,514 800,518 800,550"></path>
     <path d="M800,642 C800,674 800,678 800,710"></path>
-    <path d="M800,764 C800,796 800,796 800,828"></path>
-    <path d="M800,920 C800,952 800,956 800,988"></path>
-    <path d="M800,1080 C800,1112 800,1116 800,1148"></path>
-    <path d="M800,1240 C800,1272 800,1276 800,1308"></path>
+    <path d="M800,802 C800,834 800,838 800,870"></path>
+    <path d="M800,962 C800,994 800,998 800,1030"></path>
+    <path d="M800,1122 C800,1154 800,1158 800,1190"></path>
   </g>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,162 C800,194 800,198 800,230" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,322 C800,354 800,358 800,390" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,482 C800,514 800,518 800,550" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,642 C800,674 800,678 800,710" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,764 C800,796 800,796 800,828" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,920 C800,952 800,956 800,988" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,1080 C800,1112 800,1116 800,1148" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
-  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95">
-    <animateMotion path="M800,1240 C800,1272 800,1276 800,1308" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion>
-  </circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,162 C800,194 800,198 800,230" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,322 C800,354 800,358 800,390" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,482 C800,514 800,518 800,550" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,642 C800,674 800,678 800,710" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,802 C800,834 800,838 800,870" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,962 C800,994 800,998 800,1030" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
+  <circle r="5" fill="#8f9bd1" filter="url(#glowC)" opacity="0.95"><animateMotion path="M800,1122 C800,1154 800,1158 800,1190" dur="3.2s" begin="0s" repeatCount="indefinite"></animateMotion></circle>
   <g fill="#e8e8ed" stroke="#d4d4dc" stroke-width="1.5" stroke-linejoin="round">
-    <path d="M1089.5,116.0 C1089.5,123.8 1085.4,132.9 1061.9,139.5 C1038.4,146.2 992.4,152.5 948.7,156.1 C905.1,159.7 848.3,161.3 800.0,160.9 C751.7,160.6 702.3,157.6 659.1,154.0 C615.9,150.4 567.1,145.6 541.1,139.3 C515.0,132.9 499.6,123.5 502.9,116.0 C506.1,108.5 534.9,100.9 560.7,94.5 C586.5,88.1 617.8,81.5 657.6,77.6 C697.5,73.7 752.2,71.3 800.0,71.2 C847.8,71.1 901.0,73.5 944.7,77.0 C988.3,80.5 1037.6,86.0 1061.7,92.5 C1085.8,99.0 1089.4,108.2 1089.5,116.0 Z"></path>
-    <path d="M947.8,276.0 C948.9,283.7 945.1,292.6 933.6,299.5 C922.0,306.4 900.7,313.5 878.5,317.5 C856.2,321.4 826.2,323.4 800.0,323.4 C773.8,323.4 743.5,321.6 721.4,317.5 C699.3,313.5 679.6,306.3 667.5,299.3 C655.4,292.4 648.7,283.8 648.8,276.0 C648.9,268.2 656.0,259.7 668.2,252.8 C680.4,245.9 700.1,238.9 722.0,234.8 C744.0,230.7 775.2,227.7 800.0,228.3 C824.8,228.9 849.7,234.3 871.0,238.5 C892.2,242.7 914.7,247.3 927.5,253.5 C940.3,259.8 946.8,268.3 947.8,276.0 Z"></path>
-    <path d="M1075.9,436.0 C1076.0,443.4 1064.8,451.8 1042.2,458.3 C1019.6,464.8 980.6,470.8 940.3,474.7 C899.9,478.7 848.3,481.6 800.0,482.1 C751.7,482.5 693.2,481.1 650.2,477.4 C607.2,473.7 567.1,466.7 541.8,459.8 C516.5,452.9 494.1,443.5 498.4,436.0 C502.6,428.5 539.9,420.9 567.2,414.6 C594.4,408.2 623.2,402.3 662.0,397.9 C700.8,393.4 754.2,387.7 800.0,387.8 C845.8,387.9 896.5,393.9 936.8,398.2 C977.0,402.5 1018.5,407.5 1041.7,413.7 C1064.8,420.0 1075.8,428.6 1075.9,436.0 Z"></path>
-    <path d="M1152.5,596.0 C1155.0,603.5 1124.5,612.3 1094.3,619.0 C1064.0,625.7 1020.0,632.3 971.0,636.2 C921.9,640.0 856.7,642.0 800.0,641.9 C743.3,641.8 679.6,639.6 630.9,635.7 C582.2,631.9 536.7,625.5 507.7,618.9 C478.6,612.3 458.3,603.8 456.7,596.0 C455.1,588.2 470.2,579.2 498.3,572.4 C526.4,565.5 575.1,558.6 625.4,555.0 C675.7,551.4 741.7,550.7 800.0,550.6 C858.3,550.6 928.4,551.0 975.0,554.9 C1021.5,558.8 1049.7,567.3 1079.3,574.1 C1108.9,581.0 1150.0,588.5 1152.5,596.0 Z"></path>
-    <path d="M1136.3,874.0 C1139.9,881.6 1142.2,891.4 1113.9,897.7 C1085.6,904.0 1018.7,907.6 966.4,911.7 C914.1,915.7 858.5,921.3 800.0,921.9 C741.5,922.6 666.6,919.9 615.6,915.7 C564.7,911.6 518.2,904.0 494.4,897.1 C470.5,890.1 469.7,881.5 472.5,874.0 C475.3,866.5 486.2,858.9 511.1,852.2 C536.1,845.5 574.0,837.8 622.1,833.7 C670.2,829.6 740.5,827.7 800.0,827.7 C859.5,827.7 930.2,829.5 978.9,833.5 C1027.5,837.6 1065.8,845.2 1092.0,852.0 C1118.2,858.7 1132.6,866.4 1136.3,874.0 Z"></path>
-    <path d="M951.9,1034.0 C952.4,1041.7 945.3,1051.0 932.0,1057.4 C918.8,1063.8 894.3,1068.7 872.3,1072.4 C850.3,1076.1 824.7,1079.1 800.0,1079.4 C775.3,1079.7 745.0,1078.2 724.0,1074.4 C703.0,1070.5 684.7,1063.0 674.0,1056.3 C663.4,1049.6 661.4,1041.7 660.1,1034.0 C658.8,1026.3 655.4,1017.0 666.2,1010.3 C677.0,1003.7 702.5,998.1 724.8,994.1 C747.1,990.0 775.1,986.1 800.0,986.2 C824.9,986.2 852.8,990.4 874.3,994.5 C895.8,998.7 916.1,1004.6 929.0,1011.2 C941.9,1017.7 951.4,1026.3 951.9,1034.0 Z"></path>
-    <path d="M1051.2,1194.0 C1051.5,1201.4 1033.9,1209.5 1014.0,1216.4 C994.2,1223.2 967.6,1231.3 931.9,1235.3 C896.3,1239.4 844.1,1240.8 800.0,1240.8 C755.9,1240.9 705.2,1239.5 667.1,1235.6 C629.0,1231.8 589.0,1224.8 571.6,1217.8 C554.2,1210.9 560.0,1201.7 562.8,1194.0 C565.6,1186.3 569.7,1178.4 588.6,1171.9 C607.5,1165.5 641.0,1159.3 676.2,1155.2 C711.5,1151.1 758.9,1147.1 800.0,1147.2 C841.1,1147.2 887.4,1151.4 922.7,1155.6 C958.0,1159.7 990.4,1165.5 1011.8,1171.9 C1033.2,1178.3 1050.8,1186.6 1051.2,1194.0 Z"></path>
-    <path d="M1024.2,1354.0 C1025.0,1361.3 1017.3,1369.6 999.3,1376.1 C981.4,1382.5 949.5,1389.0 916.3,1392.7 C883.1,1396.3 838.4,1398.0 800.0,1397.8 C761.6,1397.7 719.8,1395.5 685.9,1391.9 C651.9,1388.4 615.8,1382.9 596.4,1376.5 C577.1,1370.2 571.4,1361.7 569.7,1354.0 C568.0,1346.3 568.6,1337.2 586.2,1330.3 C603.7,1323.4 639.4,1315.9 675.0,1312.5 C710.6,1309.0 759.9,1308.9 800.0,1309.4 C840.1,1309.9 883.3,1311.7 915.7,1315.6 C948.1,1319.4 976.3,1326.1 994.3,1332.5 C1012.4,1338.9 1023.3,1346.7 1024.2,1354.0 Z"></path>
+    <path d="M1091.6,116.0 C1090.3,123.4 1066.6,131.2 1042.7,137.8 C1018.8,144.5 988.7,152.3 948.3,156.0 C907.8,159.6 848.6,159.9 800.0,159.7 C751.4,159.5 700.2,158.0 656.6,154.7 C613.1,151.3 564.4,145.9 538.8,139.5 C513.3,133.0 500.3,123.5 503.4,116.0 C506.6,108.5 532.8,100.8 557.9,94.2 C582.9,87.7 613.3,80.7 653.7,76.6 C694.0,72.4 749.9,69.7 800.0,69.3 C850.1,69.0 912.7,70.3 954.5,74.4 C996.3,78.4 1027.9,86.5 1050.8,93.5 C1073.6,100.4 1093.0,108.6 1091.6,116.0 Z"></path>
+    <path d="M941.2,276.0 C941.5,283.5 940.2,292.3 928.9,298.7 C917.5,305.1 894.4,311.0 873.0,314.5 C851.5,318.1 824.2,320.2 800.0,320.1 C775.8,320.1 748.2,317.9 727.8,314.1 C707.4,310.4 690.6,303.9 677.7,297.5 C664.9,291.2 653.0,283.6 650.7,276.0 C648.5,268.4 651.7,258.7 664.0,252.0 C676.2,245.4 701.4,239.3 724.0,235.9 C746.7,232.4 775.4,230.8 800.0,231.1 C824.6,231.5 850.4,234.4 871.6,238.2 C892.8,241.9 915.5,247.3 927.1,253.6 C938.7,259.9 940.9,268.5 941.2,276.0 Z"></path>
+    <path d="M1093.8,436.0 C1093.2,443.8 1078.1,452.6 1053.3,459.3 C1028.6,466.0 987.6,472.1 945.3,476.2 C903.1,480.2 849.4,483.6 800.0,483.8 C750.6,484.1 692.5,481.6 649.2,477.7 C605.8,473.7 559.8,466.9 539.8,460.0 C519.8,453.0 526.2,443.7 529.2,436.0 C532.1,428.3 537.6,420.6 557.6,413.7 C577.7,406.8 609.1,397.9 649.5,394.4 C689.9,391.0 749.9,392.9 800.0,392.9 C850.1,392.9 907.1,391.3 950.0,394.6 C992.9,397.8 1033.4,405.4 1057.4,412.3 C1081.4,419.2 1094.5,428.2 1093.8,436.0 Z"></path>
+    <path d="M1118.4,596.0 C1115.5,603.5 1103.5,611.2 1078.8,617.8 C1054.0,624.5 1016.3,631.9 969.8,635.9 C923.3,639.8 854.7,641.9 800.0,641.5 C745.3,641.0 692.6,636.8 641.5,633.2 C590.4,629.6 520.2,626.2 493.2,620.0 C466.2,613.8 477.4,603.8 479.5,596.0 C481.6,588.2 481.9,579.9 505.8,573.0 C529.6,566.0 573.8,558.5 622.8,554.4 C671.8,550.3 741.1,548.5 800.0,548.5 C858.9,548.5 926.9,550.6 976.2,554.6 C1025.6,558.7 1072.4,565.9 1096.1,572.8 C1119.8,579.7 1121.3,588.5 1118.4,596.0 Z"></path>
+    <path d="M1145.7,756.0 C1151.0,763.6 1146.8,773.2 1119.8,780.1 C1092.9,787.1 1037.5,794.3 984.2,797.7 C930.9,801.1 859.8,800.6 800.0,800.3 C740.2,799.9 674.3,799.2 625.6,795.5 C577.0,791.8 539.1,784.6 508.2,778.0 C477.3,771.4 444.3,763.6 440.3,756.0 C436.2,748.4 453.8,738.9 484.0,732.2 C514.2,725.4 568.6,719.2 621.3,715.5 C674.0,711.9 740.1,710.2 800.0,710.1 C859.9,710.0 932.8,711.0 980.9,715.1 C1028.9,719.1 1060.7,727.4 1088.2,734.3 C1115.6,741.1 1140.5,748.4 1145.7,756.0 Z"></path>
+    <path d="M946.9,916.0 C946.7,923.8 943.2,932.5 931.6,939.3 C919.9,946.1 899.0,952.9 877.1,956.9 C855.1,961.0 824.8,964.3 800.0,963.8 C775.2,963.3 750.7,958.1 728.3,954.1 C705.9,950.1 679.1,946.1 665.6,939.8 C652.2,933.4 646.1,923.7 647.6,916.0 C649.1,908.3 662.1,900.7 674.4,893.8 C686.7,886.8 700.3,877.8 721.3,874.2 C742.2,870.5 774.9,871.3 800.0,871.9 C825.1,872.5 849.7,874.4 871.9,877.8 C894.1,881.2 920.7,886.0 933.2,892.4 C945.8,898.8 947.2,908.2 946.9,916.0 Z"></path>
+    <path d="M1065.9,1076.0 C1067.0,1083.6 1045.6,1092.5 1022.8,1099.3 C1000.0,1106.0 966.4,1112.6 929.3,1116.5 C892.2,1120.4 841.6,1123.3 800.0,1122.8 C758.4,1122.3 714.8,1117.8 679.7,1113.7 C644.5,1109.6 609.1,1104.3 589.2,1098.0 C569.3,1091.7 562.7,1083.6 560.1,1076.0 C557.5,1068.4 554.4,1058.9 573.7,1052.4 C592.9,1045.9 637.9,1040.3 675.6,1037.0 C713.3,1033.8 757.9,1033.1 800.0,1032.9 C842.1,1032.7 891.9,1032.5 927.9,1035.9 C964.0,1039.3 993.2,1046.7 1016.2,1053.4 C1039.2,1060.1 1064.8,1068.4 1065.9,1076.0 Z"></path>
+    <path d="M1024.6,1236.0 C1025.2,1243.7 1029.0,1252.8 1011.3,1259.4 C993.7,1266.0 953.9,1271.7 918.7,1275.4 C883.4,1279.1 839.3,1281.7 800.0,1281.6 C760.7,1281.5 719.3,1278.4 683.1,1274.9 C646.8,1271.3 602.7,1266.6 582.5,1260.1 C562.3,1253.6 558.3,1243.6 561.8,1236.0 C565.4,1228.4 583.1,1220.6 603.6,1214.2 C624.1,1207.9 652.1,1202.0 684.8,1197.7 C717.6,1193.4 761.0,1188.6 800.0,1188.4 C839.0,1188.2 884.4,1192.3 919.1,1196.4 C953.7,1200.5 990.3,1206.4 1007.9,1213.0 C1025.5,1219.6 1024.0,1228.3 1024.6,1236.0 Z"></path>
   </g>
   <g fill="#c6cad6" stroke="#b2b6c2" stroke-width="1.2">
     <ellipse cx="800" cy="162" rx="10" ry="7"></ellipse>
@@ -1151,27 +1074,22 @@ nav a.active-link::after{transform:scaleX(1)!important;}
     <ellipse cx="800" cy="550" rx="10" ry="7"></ellipse>
     <ellipse cx="800" cy="642" rx="10" ry="7"></ellipse>
     <ellipse cx="800" cy="710" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="764" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="828" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="920" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="988" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1080" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1148" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1240" rx="10" ry="7"></ellipse>
-    <ellipse cx="800" cy="1308" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="802" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="870" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="962" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="1030" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="1122" rx="10" ry="7"></ellipse>
+    <ellipse cx="800" cy="1190" rx="10" ry="7"></ellipse>
   </g>
   <g fill="#42424b" font-family="'UntitledSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
     <text x="800" y="124" font-size="23" font-weight="500" text-anchor="middle">Миндалина / ПФК / базальные ганглии</text>
     <text x="800" y="285" font-size="26" font-weight="500" text-anchor="middle">Моторная кора</text>
     <text x="800" y="444" font-size="23" font-weight="500" text-anchor="middle">Кортикоспинальные и стволовые пути</text>
     <text x="800" y="603" font-size="22" font-weight="500" text-anchor="middle">Мышцы, поза, движение (flight/fight/freeze)</text>
-    <text x="800" y="881" font-size="21" font-weight="500" text-anchor="middle">Зрительные, слуховые, соматосенсорные рецепторы</text>
-    <text x="800" y="1043" font-size="27" font-weight="500" text-anchor="middle" class="term" data-term="таламус" style="cursor:pointer">Таламус</text>
-    <text x="800" y="1202" font-size="24" font-weight="500" text-anchor="middle">Сенсорная ассоциативная кора</text>
-    <text x="800" y="1362" font-size="25" font-weight="500" text-anchor="middle">Гиппокамп, миндалина, ПФК</text>
-  </g>
-  <g font-family="'UntitledSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
-    <text x="800" y="744" font-size="22" font-weight="400" fill="#9a9aa4" text-anchor="middle">(изменение внешней ситуации)</text>
+    <text x="800" y="763" font-size="21" font-weight="500" text-anchor="middle">Зрительные, слуховые, соматосенсорные рецепторы</text>
+    <text x="800" y="925" font-size="27" font-weight="500" text-anchor="middle" class="term" data-term="таламус" style="cursor:pointer">Таламус</text>
+    <text x="800" y="1084" font-size="24" font-weight="500" text-anchor="middle">Сенсорная ассоциативная кора</text>
+    <text x="800" y="1244" font-size="25" font-weight="500" text-anchor="middle">Гиппокамп, миндалина, ПФК</text>
   </g>
 </svg>
                     <button type="button" class="thal-zoom-btn" aria-label="Увеличить схему" onclick="event.stopPropagation();thalZoom(this)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#bdc0ca" stroke-width="2"></circle><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line><line x1="11" y1="8" x2="11" y2="14" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line><line x1="8" y1="11" x2="14" y2="11" stroke="#bdc0ca" stroke-width="2" stroke-linecap="round"></line></svg></button>
