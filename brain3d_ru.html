@@ -176,7 +176,7 @@
     position: relative;
     min-width: 0;
     min-height: 0;
-    background: radial-gradient(circle at 50% 38%, #ffffff 0%, #eef0f4 55%, #e2e5ea 100%);
+    background: radial-gradient(circle at 50% 40%, #f6f3f0 0%, #e7e2dd 58%, #d7d1ca 100%);
     overflow: hidden;
 }
 
@@ -282,19 +282,6 @@
     cursor: pointer;
 }
 
-.atlas-hint {
-    position: absolute;
-    left: 12px;
-    bottom: 12px;
-    font-size: 12px;
-    color: #6d7178;
-    background: rgba(255, 255, 255, .8);
-    border-radius: 6px;
-    padding: 6px 10px;
-    pointer-events: none;
-    z-index: 4;
-}
-
 .atlas-overlay {
     position: absolute;
     inset: 0;
@@ -346,7 +333,7 @@
     justify-content: center;
     font-size: 14px;
     color: #666;
-    background: #eef0f4;
+    background: #e9e4df;
     z-index: 8;
     transition: opacity .4s;
 }
@@ -368,64 +355,8 @@
     padding: 30px;
     font-size: 15px;
     color: #555;
-    background: #eef0f4;
+    background: #e9e4df;
     z-index: 9;
-}
-
-/* --- Intro overlay --- */
-
-.atlas-intro {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(238, 240, 244, .82);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    padding: 20px;
-}
-
-.atlas-intro.hidden {
-    display: none;
-}
-
-.atlas-intro-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, .14);
-    padding: 28px 30px;
-    max-width: 420px;
-}
-
-.atlas-intro-card h2 {
-    font-size: 21px;
-    font-weight: 500;
-    margin: 0 0 14px 0;
-}
-
-.atlas-intro-card ul {
-    margin: 0 0 22px 0;
-    padding-left: 20px;
-}
-
-.atlas-intro-card li {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 7px;
-}
-
-.atlas-intro-card button {
-    font-family: inherit;
-    font-size: 14px;
-    background: #1a1a1a;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
 }
 
 /* --- Info panel --- */
@@ -675,10 +606,6 @@
     .tool-slider input {
         width: 70px;
     }
-
-    .atlas-hint {
-        display: none;
-    }
 }
 </style>
 </head>
@@ -707,8 +634,9 @@
     <div class="container">
         <div class="atlas-head">
             <h1>3D-атлас мозга</h1>
-            <p>Вращайте модель, выбирайте структуру мышью или в списке слева — и читайте, за что она отвечает.
-               Двадцать пять анатомических областей: от коры больших полушарий до ядер ствола.</p>
+            <p>Тяните мышью, чтобы повернуть мозг, колесом меняйте масштаб. Щёлкните по структуре — или
+               выберите её в списке слева — и справа появится описание. Двадцать пять анатомических
+               областей: от коры больших полушарий до ядер ствола.</p>
         </div>
     </div>
 
@@ -730,24 +658,18 @@
         <div class="atlas-stage" id="atlas-stage">
             <div class="atlas-toolbar">
                 <button type="button" class="tool-btn" id="btn-reset">Сбросить вид</button>
-                <div class="tool-group" id="view-presets">
-                    <button type="button" class="tool-btn" data-view="left">Слева</button>
-                    <button type="button" class="tool-btn" data-view="front">Спереди</button>
-                    <button type="button" class="tool-btn" data-view="top">Сверху</button>
-                    <button type="button" class="tool-btn" data-view="back">Сзади</button>
-                </div>
                 <div class="tool-slider">
-                    <label for="cortex-opacity">Кора</label>
-                    <input type="range" id="cortex-opacity" min="0" max="100" value="100">
+                    <label for="cortex-opacity">Прозрачность</label>
+                    <input type="range" id="cortex-opacity" min="0" max="100" value="0">
                 </div>
                 <button type="button" class="tool-btn" id="btn-section">Разрез</button>
+                <button type="button" class="tool-btn" id="btn-lobes">Доли</button>
                 <button type="button" class="tool-btn" id="btn-labels">Подписи</button>
                 <button type="button" class="tool-btn" id="btn-spin">Вращение</button>
             </div>
 
             <div class="atlas-overlay" id="atlas-overlay"></div>
             <div class="atlas-tooltip" id="atlas-tooltip"></div>
-            <div class="atlas-hint">Левая кнопка — поворот · колесо — масштаб · правая кнопка — сдвиг</div>
 
             <div class="atlas-loader" id="atlas-loader">Строим модель мозга…</div>
 
@@ -757,18 +679,6 @@
                     Попробуйте открыть страницу в свежей версии Chrome, Safari или Firefox.</span>
             </div>
 
-            <div class="atlas-intro" id="atlas-intro">
-                <div class="atlas-intro-card">
-                    <h2>Как пользоваться атласом</h2>
-                    <ul>
-                        <li>Тяните мышью, чтобы поворачивать мозг, крутите колесо для масштаба.</li>
-                        <li>Щёлкните по структуре — камера подлетит к ней, справа появится описание.</li>
-                        <li>Ползунок «Кора» делает полушария прозрачными, кнопка «Разрез» показывает срединный срез.</li>
-                        <li>Ссылку на выбранную структуру можно скопировать и отправить — она откроется сразу на ней.</li>
-                    </ul>
-                    <button type="button" id="intro-close">Начать</button>
-                </div>
-            </div>
         </div>
 
         <aside class="atlas-info" id="atlas-info">
@@ -828,11 +738,9 @@ window.setTimeout(function () {
     if (window.__atlasReady) return;
     var loader = document.getElementById('atlas-loader');
     var fallback = document.getElementById('atlas-fallback');
-    var intro = document.getElementById('atlas-intro');
     var tree = document.getElementById('atlas-tree');
     if (loader) loader.className = 'atlas-loader hidden';
     if (fallback) fallback.style.display = 'flex';
-    if (intro) intro.className = 'atlas-intro hidden';
     if (tree && !tree.children.length) {
         tree.innerHTML = '<div class="tree-empty">Список структур недоступен в этом браузере.</div>';
     }
@@ -926,7 +834,7 @@ const STRUCTURES = {
         related: ['cingulate_gyrus', 'amygdala', 'hypothalamus']
     },
     cerebellum: {
-        name: 'Мозжечок', latin: 'Cerebellum', color: '#c8a68a', deep: false,
+        name: 'Мозжечок', latin: 'Cerebellum', color: '#e0a68f', deep: false,
         path: 'Brain-cerebellum',
         desc: 'Плотно сложенная структура под затылочными долями. Мозжечок постоянно сравнивает намерение двигаться ' +
               'с тем, что получилось, и вносит поправки — именно поэтому движения выходят плавными и точными.',
@@ -939,7 +847,7 @@ const STRUCTURES = {
         related: ['pons', 'midbrain', 'thalamus']
     },
     midbrain: {
-        name: 'Средний мозг', latin: 'Mesencephalon', color: '#9db6c8', deep: false,
+        name: 'Средний мозг', latin: 'Mesencephalon', color: '#e0a993', deep: false,
         path: 'Brain-brainstem-midbrain',
         desc: 'Верхний отдел ствола. Через него проходят все пути между корой и спинным мозгом, а его собственные ядра ' +
               'управляют рефлекторными поворотами глаз и головы и вырабатывают дофамин.',
@@ -952,7 +860,7 @@ const STRUCTURES = {
         related: ['pons', 'accumbens', 'globus_pallidus']
     },
     pons: {
-        name: 'Мост', latin: 'Pons', color: '#8ea8be', deep: false,
+        name: 'Мост', latin: 'Pons', color: '#d69c88', deep: false,
         path: 'Brain-brainstem-pons',
         desc: 'Выпуклый «мостик» на передней поверхности ствола: через него кора связывается с мозжечком. ' +
               'Здесь же лежат ядра черепных нервов и центры, переключающие фазы сна.',
@@ -965,7 +873,7 @@ const STRUCTURES = {
         related: ['medulla', 'midbrain', 'cerebellum']
     },
     medulla: {
-        name: 'Продолговатый мозг', latin: 'Medulla oblongata', color: '#7f97ae', deep: false,
+        name: 'Продолговатый мозг', latin: 'Medulla oblongata', color: '#c98f7d', deep: false,
         path: 'Brain-brainstem-medulla',
         desc: 'Нижний отдел ствола, переходящий в спинной мозг. Крошечная область, без которой невозможна жизнь: ' +
               'здесь находятся центры дыхания и кровообращения.',
@@ -1288,16 +1196,27 @@ function wobble(x, y, z) {
 }
 
 /**
+ * Shape functions report how deep the point sits inside a sulcus (0 on a gyral
+ * crown, 1 at the bottom of a fissure). shapedGeometry turns that into vertex
+ * colours, which is what gives the tissue its pale crowns and crimson clefts.
+ */
+let SHAPE_DEPTH = 0;
+
+/**
  * Builds a smooth-shaded mesh from a radial shape function of a unit direction.
  * Normals are derived analytically (finite differences on the shape function),
  * which keeps the surface smooth even though the base geometry is non-indexed.
  */
-function shapedGeometry(shapeFn, detail) {
+function shapedGeometry(shapeFn, detail, ramp) {
     const src = new THREE.IcosahedronGeometry(1, detail);
     const pos = src.attributes.position;
     const count = pos.count;
     const positions = new Float32Array(count * 3);
     const normals = new Float32Array(count * 3);
+    const colors = ramp ? new Float32Array(count * 3) : null;
+    const crown = ramp ? new THREE.Color(ramp.crown) : null;
+    const cleft = ramp ? new THREE.Color(ramp.cleft) : null;
+    const mix = new THREE.Color();
     const d = new THREE.Vector3(), p = new THREE.Vector3();
     const p1 = new THREE.Vector3(), p2 = new THREE.Vector3();
     const t1 = new THREE.Vector3(), t2 = new THREE.Vector3();
@@ -1325,12 +1244,18 @@ function shapedGeometry(shapeFn, detail) {
 
         positions[i * 3] = p.x; positions[i * 3 + 1] = p.y; positions[i * 3 + 2] = p.z;
         normals[i * 3] = n.x; normals[i * 3 + 1] = n.y; normals[i * 3 + 2] = n.z;
+
+        if (ramp) {
+            mix.copy(crown).lerp(cleft, Math.min(1, Math.max(0, SHAPE_DEPTH)));
+            colors[i * 3] = mix.r; colors[i * 3 + 1] = mix.g; colors[i * 3 + 2] = mix.b;
+        }
     }
 
     src.dispose();
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+    if (ramp) geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     return geo;
 }
 
@@ -1338,6 +1263,7 @@ function shapedGeometry(shapeFn, detail) {
 function splitByTriangle(geo, classify) {
     const pos = geo.attributes.position.array;
     const nor = geo.attributes.normal.array;
+    const col = geo.attributes.color ? geo.attributes.color.array : null;
     const buckets = new Map();
     const triangles = pos.length / 9;
 
@@ -1348,8 +1274,12 @@ function splitByTriangle(geo, classify) {
         const cz = (pos[o + 2] + pos[o + 5] + pos[o + 8]) / 3;
         const key = classify(cx, cy, cz);
         let bucket = buckets.get(key);
-        if (!bucket) { bucket = { p: [], n: [] }; buckets.set(key, bucket); }
-        for (let k = 0; k < 9; k++) { bucket.p.push(pos[o + k]); bucket.n.push(nor[o + k]); }
+        if (!bucket) { bucket = { p: [], n: [], c: [] }; buckets.set(key, bucket); }
+        for (let k = 0; k < 9; k++) {
+            bucket.p.push(pos[o + k]);
+            bucket.n.push(nor[o + k]);
+            if (col) bucket.c.push(col[o + k]);
+        }
     }
 
     const out = new Map();
@@ -1357,6 +1287,7 @@ function splitByTriangle(geo, classify) {
         const g = new THREE.BufferGeometry();
         g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(bucket.p), 3));
         g.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(bucket.n), 3));
+        if (col) g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(bucket.c), 3));
         out.set(key, g);
     });
     return out;
@@ -1451,6 +1382,11 @@ function blobGeometry(rx, ry, rz, amp) {
 
 const CORTEX_HALF = { x: 6.75, y: 5.2, z: 8.1 };
 
+// Fixed brain tissue: shaded from the gyral crown down into the sulcus.
+const CORTEX_RAMP = { crown: '#f6d2c2', cleft: '#b8455f' };
+const CEREBELLUM_RAMP = { crown: '#eec2ac', cleft: '#b25668' };
+const TISSUE = ['frontal_lobe', 'parietal_lobe', 'temporal_lobe', 'occipital_lobe', 'insula', 'cerebellum'];
+
 function cortexShape(d, out) {
     let x = d.x * CORTEX_HALF.x;
     let y = d.y * CORTEX_HALF.y;
@@ -1483,12 +1419,22 @@ function cortexShape(d, out) {
     const dz = z - (2.2 - 0.52 * y);
     const cen = Math.exp(-(dz * dz) / 0.4) * smoothstep(-2.6, -0.8, y);
 
-    // Gyri: two octaves of folding, the coarse one giving the main convolutions.
-    // Anisotropic frequency stretches the folds front-to-back, the way real gyri run.
-    const g = 0.52 * wobble(out.x * 3.05, out.y * 3.30, out.z * 1.95) +
-              0.17 * wobble(out.x * 6.10 + 5, out.y * 6.40 - 2, out.z * 4.10 + 3);
+    // Gyri. Taking |noise| instead of the raw value puts a sharp crease along every
+    // zero crossing and leaves the crowns broad and rounded — the shape of real folds.
+    // The anisotropic frequency stretches them front-to-back, the way gyri actually run.
+    const w1 = wobble(out.x * 2.35, out.y * 2.55, out.z * 1.55);
+    const w2 = wobble(out.x * 5.10 + 5, out.y * 5.30 - 2, out.z * 3.40 + 3);
+    const a1 = Math.min(1, Math.abs(w1) / 0.45);
+    const a2 = Math.min(1, Math.abs(w2) / 0.40);
+    const g = 0.58 * (a1 - 0.5) + 0.11 * (a2 - 0.5);
 
     out.addScaledVector(n, g - 0.95 * syl - 0.45 * cen);
+
+    // Colour follows the crease, not the height: a narrow band either side of the
+    // zero crossing, plus the two named fissures.
+    const crease = Math.min(1, Math.max(0, 1 - Math.abs(w1) / 0.13));
+    const t = Math.max(crease * crease, Math.max(0.85 * syl, 0.7 * cen));
+    SHAPE_DEPTH = Math.min(1, Math.max(0, t));
     return out;
 }
 
@@ -1508,10 +1454,15 @@ function cerebellumShape(d, out) {
     if (y > 0) y *= 0.80;
     out.set(x, y, z);
     const n = SHAPE_TMP.copy(out).normalize();
-    const folia = 0.075 * Math.sin(y * 12.5 + z * 0.9 + 0.6 * Math.sin(x * 1.6));
+    // Folia: same crease trick as the cortex, but as tight parallel bands.
+    const band = Math.abs(Math.sin(y * 8.5 + z * 0.55 + 0.5 * Math.sin(x * 1.6)));
+    const folia = 0.16 * (Math.min(1, band / 0.75) - 0.5);
     const vermis = -0.38 * Math.exp(-(x * x) / 0.55);
-    const noise = 0.07 * wobble(x * 3, y * 3, z * 3);
+    const noise = 0.05 * wobble(x * 3, y * 3, z * 3);
     out.addScaledVector(n, folia + vermis + noise);
+
+    const crease = Math.min(1, Math.max(0, 1 - band / 0.28));
+    SHAPE_DEPTH = Math.max(crease * crease, Math.exp(-(x * x) / 0.4));
     out.y += -3.95;
     out.z += -5.05;
     return out;
@@ -1525,17 +1476,25 @@ function part(id, geometry, options) {
 
 function buildAnatomy() {
     /* --- Cerebral cortex, split into lobes --- */
-    const cortexGeo = shapedGeometry(cortexShape, 44);
+    const cortexGeo = shapedGeometry(cortexShape, 52, CORTEX_RAMP);
     const lobes = splitByTriangle(cortexGeo, function (x, y, z) { return classifyLobe(x, y, z); });
     cortexGeo.dispose();
     lobes.forEach(function (geo, id) { part(id, geo); });
 
     /* --- Insula (hidden under the operculum) --- */
-    const insula = blobGeometry(0.42, 1.35, 1.95, 0.05);
+    const insula = shapedGeometry(function (d, out) {
+        const w = 0.05 * wobble(d.x * 4.1 + 11, d.y * 4.3 - 3, d.z * 4.7 + 7);
+        const fold = 0.10 * wobble(d.y * 9, d.z * 5, d.x * 9);
+        out.set(d.x * 0.42 * (1 + w), d.y * 1.35 * (1 + w), d.z * 1.95 * (1 + w));
+        out.multiplyScalar(1 + fold / 2);
+        const t = Math.min(1, Math.max(0, -fold / 0.09));
+        SHAPE_DEPTH = t * t;
+        return out;
+    }, 16, CORTEX_RAMP);
     part('insula', insula, { position: [4.35, -0.65, 1.0], mirror: true });
 
     /* --- Cerebellum --- */
-    part('cerebellum', shapedGeometry(cerebellumShape, 30));
+    part('cerebellum', shapedGeometry(cerebellumShape, 30, CEREBELLUM_RAMP));
 
     /* --- Brainstem --- */
     part('midbrain', tubeGeometry([[0, -1.0, -0.6], [0, -1.9, -0.85], [0, -3.0, -1.15]],
@@ -1624,11 +1583,13 @@ const state = {
     cortexOpacity: 1,
     labels: false,
     section: false,
-    spin: false
+    spin: false,
+    lobeColors: false
 };
 
 const clipPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0.02);
 const DESATURATED = new THREE.Color(0xbfc3c9);
+const WHITE = new THREE.Color(0xffffff);
 
 function hasWebGL() {
     try {
@@ -1646,7 +1607,7 @@ function initScene() {
     renderer.setSize(stage.clientWidth, stage.clientHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.0;
+    renderer.toneMappingExposure = 1.05;
     stage.appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
@@ -1661,14 +1622,14 @@ function initScene() {
     controls.maxDistance = 70;
     controls.target.set(0, -1, 0);
 
-    scene.add(new THREE.HemisphereLight(0xf4f7ff, 0x6f7580, 0.85));
-    const key = new THREE.DirectionalLight(0xffffff, 2.1);
+    scene.add(new THREE.HemisphereLight(0xfff4ea, 0x8b8079, 0.80));
+    const key = new THREE.DirectionalLight(0xfff3e8, 2.15);
     key.position.set(-14, 16, 14);
     scene.add(key);
-    const fill = new THREE.DirectionalLight(0xdfe6f2, 0.55);
+    const fill = new THREE.DirectionalLight(0xe6ecf6, 0.50);
     fill.position.set(16, -6, -12);
     scene.add(fill);
-    const rim = new THREE.DirectionalLight(0xffffff, 0.5);
+    const rim = new THREE.DirectionalLight(0xffffff, 0.55);
     rim.position.set(6, 10, -18);
     scene.add(rim);
 
@@ -1677,19 +1638,29 @@ function initScene() {
     scene.add(root);
 }
 
+function isTissue(id) {
+    return TISSUE.indexOf(id) !== -1;
+}
+
 function materialFor(id) {
     if (!materials[id]) {
         const info = STRUCTURES[id];
-        materials[id] = new THREE.MeshStandardMaterial({
-            color: new THREE.Color(info.color),
-            roughness: 0.72,
-            metalness: 0.02,
+        const tissue = isTissue(id);
+        // Tissue carries its colour per vertex, so the material tint stays white
+        // until a lobe is highlighted; the clearcoat gives the damp, fresh-specimen sheen.
+        materials[id] = new THREE.MeshPhysicalMaterial({
+            color: tissue ? 0xffffff : new THREE.Color(info.color),
+            vertexColors: tissue,
+            roughness: tissue ? 0.54 : 0.62,
+            metalness: 0,
+            clearcoat: tissue ? 0.38 : 0.20,
+            clearcoatRoughness: tissue ? 0.45 : 0.55,
             side: THREE.DoubleSide,
             transparent: false,
-            opacity: 1,
-            flatShading: false
+            opacity: 1
         });
-        materials[id].userData.baseColor = new THREE.Color(info.color);
+        materials[id].userData.baseColor = new THREE.Color(tissue ? 0xffffff : info.color);
+        materials[id].userData.tint = new THREE.Color(info.color);
     }
     return materials[id];
 }
@@ -1784,28 +1755,47 @@ function applyVisualState() {
         const info = STRUCTURES[sid];
         const sel = isSelected(sid);
 
-        // Only the cortical shell fades by default; deep structures stay solid so shapes stay readable.
+        // The cortical shell fades only through the transparency slider; deep structures
+        // stay solid so their shapes keep reading.
         let opacity = info.cortex && !info.deep ? state.cortexOpacity : 1;
-        if (anySelection() && !sel && info.cortex && !info.deep) opacity *= 0.8;
         if (anySelection() && !sel && !(info.cortex && !info.deep) && occludes(sid)) opacity = 0.25;
         if (sel) opacity = Math.max(opacity, 0.95);
 
+        const wasTransparent = material.transparent;
         material.opacity = opacity;
         material.transparent = opacity < 0.995;
         material.depthWrite = opacity > 0.85;
 
-        const emissive = sel ? 0.38 : (state.hovered === sid ? 0.18 : 0);
-        material.emissive.copy(material.userData.baseColor).multiplyScalar(emissive);
+        const hover = state.hovered === sid;
         material.color.copy(material.userData.baseColor);
-        if (!sel && anySelection()) material.color.lerp(DESATURATED, 0.22);
-        material.needsUpdate = true;
+        let vertexColors = false;
+
+        if (isTissue(sid)) {
+            // Natural tissue comes from the vertex colours; a selected lobe (or lobe
+            // mode) drops them for a flat tint so the region is unmistakable.
+            const flat = sel || state.lobeColors;
+            vertexColors = !flat;
+            if (flat) material.color.copy(material.userData.tint).lerp(WHITE, sel ? 0.05 : 0.2);
+            material.emissive.copy(material.userData.tint).multiplyScalar(sel ? 0.10 : (hover ? 0.14 : 0));
+        } else {
+            material.emissive.copy(material.userData.tint).multiplyScalar(sel ? 0.38 : (hover ? 0.18 : 0));
+            if (!sel && anySelection()) material.color.lerp(DESATURATED, 0.22);
+        }
+
+        // Only relink the shader when something structural changed — this runs on
+        // every hover and while the camera moves.
+        if (material.vertexColors !== vertexColors || material.transparent !== wasTransparent) {
+            material.vertexColors = vertexColors;
+            material.needsUpdate = true;
+        }
     });
     updateLabelSet();
 }
 
+/** The slider is labelled "Прозрачность", so 0 means a solid cortex and 100 a fully see-through one. */
 function setCortexOpacity(value, syncSlider) {
     state.cortexOpacity = value;
-    if (syncSlider !== false) document.getElementById('cortex-opacity').value = Math.round(value * 100);
+    if (syncSlider !== false) document.getElementById('cortex-opacity').value = Math.round((1 - value) * 100);
     applyVisualState();
 }
 
@@ -1857,8 +1847,9 @@ function focusStructure(sid) {
     const dir = new THREE.Vector3(centre.x >= 0 ? 0.92 : -0.92, 0.30, 0.72);
     if (Math.abs(centre.x) < 0.6) dir.set(-0.92, 0.28, 0.72);
     dir.normalize();
-    // Small structures get surrounding context; large ones are framed close to their extent.
-    const distance = frameDistance(Math.max(anchor.radius * 3.0, 5.0), 1.0);
+    // A constant margin on top of the radius: small nuclei keep their surroundings
+    // in view, whole lobes stay framed at roughly the size of the brain.
+    const distance = frameDistance(anchor.radius * 1.15 + 4.0, 1.0);
     animateCamera(centre.clone().addScaledVector(dir, distance), centre.clone());
 }
 
@@ -2213,17 +2204,9 @@ function clearSelection(skipHash) {
 let ignoreHashChange = false;
 
 function writeHash(path) {
-    const intro = introDismissed ? 'intro=false' : null;
-    const parts = [];
-    if (intro) parts.push(intro);
-    if (path) parts.push('focus=' + path);
     ignoreHashChange = true;
-    const next = parts.length ? '#' + parts.join('&') : ' ';
-    if (parts.length) {
-        history.replaceState(null, '', location.pathname + location.search + next);
-    } else {
-        history.replaceState(null, '', location.pathname + location.search);
-    }
+    const url = location.pathname + location.search + (path ? '#focus=' + path : '');
+    history.replaceState(null, '', url);
     setTimeout(function () { ignoreHashChange = false; }, 0);
 }
 
@@ -2238,8 +2221,8 @@ function parseHash() {
 }
 
 function applyHash(initial) {
+    // `intro=false` may appear in brainfacts-style links; it is simply ignored.
     const params = parseHash();
-    if (params.intro === 'false') dismissIntro(true);
     if (!params.focus) {
         if (!initial) clearSelection(true);
         return;
@@ -2344,16 +2327,8 @@ document.getElementById('btn-reset').addEventListener('click', function () {
     resetView();
 });
 
-document.getElementById('view-presets').addEventListener('click', function (event) {
-    const button = event.target.closest('button[data-view]');
-    if (!button) return;
-    document.querySelectorAll('#view-presets .tool-btn').forEach(function (el) { el.classList.remove('active'); });
-    button.classList.add('active');
-    setView(button.dataset.view);
-});
-
 document.getElementById('cortex-opacity').addEventListener('input', function (event) {
-    setCortexOpacity(parseInt(event.target.value, 10) / 100, false);
+    setCortexOpacity(1 - parseInt(event.target.value, 10) / 100, false);
 });
 
 document.getElementById('btn-section').addEventListener('click', function () {
@@ -2362,10 +2337,13 @@ document.getElementById('btn-section').addEventListener('click', function () {
     renderer.clippingPlanes = state.section ? [clipPlane] : [];
     updateLabelSet();
     // The cut face only reads from the right, so swing the camera around to it.
-    if (state.section && camera.position.x < 0) {
-        document.querySelectorAll('#view-presets .tool-btn').forEach(function (el) { el.classList.remove('active'); });
-        setView('right');
-    }
+    if (state.section && camera.position.x < 0) setView('right');
+});
+
+document.getElementById('btn-lobes').addEventListener('click', function () {
+    state.lobeColors = !state.lobeColors;
+    this.classList.toggle('active', state.lobeColors);
+    applyVisualState();
 });
 
 document.getElementById('btn-labels').addEventListener('click', function () {
@@ -2380,22 +2358,6 @@ document.getElementById('btn-spin').addEventListener('click', function () {
     controls.autoRotate = state.spin;
     controls.autoRotateSpeed = 1.1;
 });
-
-/* --- Intro overlay --- */
-
-const introEl = document.getElementById('atlas-intro');
-let introDismissed = false;
-
-function dismissIntro(silent) {
-    introDismissed = true;
-    introEl.classList.add('hidden');
-    if (!silent) {
-        const params = parseHash();
-        writeHash(params.focus || null);
-    }
-}
-
-document.getElementById('intro-close').addEventListener('click', function () { dismissIntro(false); });
 
 /* --- Mobile panel switcher --- */
 
@@ -2470,7 +2432,6 @@ function boot() {
         window.__atlasReady = true;
         loaderEl.classList.add('hidden');
         document.getElementById('atlas-fallback').style.display = 'flex';
-        document.getElementById('atlas-intro').classList.add('hidden');
         buildTree();
         renderInfo();
         return;
