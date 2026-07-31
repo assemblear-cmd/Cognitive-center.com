@@ -176,7 +176,7 @@
     position: relative;
     min-width: 0;
     min-height: 0;
-    background: radial-gradient(circle at 50% 40%, #f6f3f0 0%, #e7e2dd 58%, #d7d1ca 100%);
+    background: radial-gradient(circle at 50% 40%, #f4f4f6 0%, #e3e4e8 58%, #d2d4d9 100%);
     overflow: hidden;
 }
 
@@ -663,7 +663,7 @@
                     <input type="range" id="cortex-opacity" min="0" max="100" value="0">
                 </div>
                 <button type="button" class="tool-btn" id="btn-section">Разрез</button>
-                <button type="button" class="tool-btn" id="btn-lobes">Доли</button>
+                <button type="button" class="tool-btn" id="btn-tissue">Ткань</button>
                 <button type="button" class="tool-btn" id="btn-labels">Подписи</button>
                 <button type="button" class="tool-btn" id="btn-spin">Вращение</button>
             </div>
@@ -765,7 +765,7 @@ import { OrbitControls } from './js/three-orbitcontrols.js';
 
 const STRUCTURES = {
     frontal_lobe: {
-        name: 'Лобная доля', latin: 'Lobus frontalis', color: '#e2a49c', deep: false, cortex: true,
+        name: 'Лобная доля', latin: 'Lobus frontalis', color: '#c4838f', deep: false, cortex: true,
         path: 'Brain-cerebral_cortex-frontal_lobe',
         desc: 'Самая крупная доля коры, занимающая всю переднюю треть полушария. Здесь формируются планы и решения, ' +
               'удерживается рабочая память, тормозятся импульсы. По задней границе доли проходит прецентральная извилина — ' +
@@ -780,7 +780,7 @@ const STRUCTURES = {
         related: ['parietal_lobe', 'caudate', 'cingulate_gyrus']
     },
     parietal_lobe: {
-        name: 'Теменная доля', latin: 'Lobus parietalis', color: '#e3c295', deep: false, cortex: true,
+        name: 'Теменная доля', latin: 'Lobus parietalis', color: '#86b3bd', deep: false, cortex: true,
         path: 'Brain-cerebral_cortex-parietal_lobe',
         desc: 'Лежит позади центральной борозды и собирает телесные ощущения в единую картину. ' +
               'Постцентральная извилина — первичная соматосенсорная кора, где представлена вся поверхность тела: ' +
@@ -794,7 +794,7 @@ const STRUCTURES = {
         related: ['frontal_lobe', 'occipital_lobe', 'thalamus']
     },
     temporal_lobe: {
-        name: 'Височная доля', latin: 'Lobus temporalis', color: '#a7c3e2', deep: false, cortex: true,
+        name: 'Височная доля', latin: 'Lobus temporalis', color: '#c9d17e', deep: false, cortex: true,
         path: 'Brain-cerebral_cortex-temporal_lobe',
         desc: 'Расположена под сильвиевой бороздой и отвечает за слух, понимание речи и узнавание объектов. ' +
               'В её глубине скрыты гиппокамп и миндалевидное тело, поэтому доля критична и для памяти, и для эмоций.',
@@ -807,7 +807,7 @@ const STRUCTURES = {
         related: ['hippocampus', 'amygdala', 'occipital_lobe']
     },
     occipital_lobe: {
-        name: 'Затылочная доля', latin: 'Lobus occipitalis', color: '#b3d5ab', deep: false, cortex: true,
+        name: 'Затылочная доля', latin: 'Lobus occipitalis', color: '#e8a68a', deep: false, cortex: true,
         path: 'Brain-cerebral_cortex-occipital_lobe',
         desc: 'Задний полюс полушария, целиком посвящённый зрению. Сигнал приходит сюда от сетчатки через таламус ' +
               'и последовательно обрабатывается: сначала линии и границы, затем движение, цвет и форма.',
@@ -820,7 +820,7 @@ const STRUCTURES = {
         related: ['temporal_lobe', 'parietal_lobe', 'thalamus']
     },
     insula: {
-        name: 'Островковая доля', latin: 'Insula', color: '#d0abdd', deep: true, cortex: true,
+        name: 'Островковая доля', latin: 'Insula', color: '#b58fce', deep: true, cortex: true,
         path: 'Brain-cerebral_cortex-insula',
         desc: 'Скрытая доля коры, спрятанная в глубине сильвиевой борозды под лобной, теменной и височной долями. ' +
               'Островок соединяет телесные ощущения с эмоциями: он «читает» сигналы от внутренних органов и ' +
@@ -834,7 +834,7 @@ const STRUCTURES = {
         related: ['cingulate_gyrus', 'amygdala', 'hypothalamus']
     },
     cerebellum: {
-        name: 'Мозжечок', latin: 'Cerebellum', color: '#e0a68f', deep: false,
+        name: 'Мозжечок', latin: 'Cerebellum', color: '#9d6aa8', deep: false,
         path: 'Brain-cerebellum',
         desc: 'Плотно сложенная структура под затылочными долями. Мозжечок постоянно сравнивает намерение двигаться ' +
               'с тем, что получилось, и вносит поправки — именно поэтому движения выходят плавными и точными.',
@@ -847,7 +847,7 @@ const STRUCTURES = {
         related: ['pons', 'midbrain', 'thalamus']
     },
     midbrain: {
-        name: 'Средний мозг', latin: 'Mesencephalon', color: '#e0a993', deep: false,
+        name: 'Средний мозг', latin: 'Mesencephalon', color: '#7b8cd0', deep: false,
         path: 'Brain-brainstem-midbrain',
         desc: 'Верхний отдел ствола. Через него проходят все пути между корой и спинным мозгом, а его собственные ядра ' +
               'управляют рефлекторными поворотами глаз и головы и вырабатывают дофамин.',
@@ -860,7 +860,7 @@ const STRUCTURES = {
         related: ['pons', 'accumbens', 'globus_pallidus']
     },
     pons: {
-        name: 'Мост', latin: 'Pons', color: '#d69c88', deep: false,
+        name: 'Мост', latin: 'Pons', color: '#6b7fc4', deep: false,
         path: 'Brain-brainstem-pons',
         desc: 'Выпуклый «мостик» на передней поверхности ствола: через него кора связывается с мозжечком. ' +
               'Здесь же лежат ядра черепных нервов и центры, переключающие фазы сна.',
@@ -873,7 +873,7 @@ const STRUCTURES = {
         related: ['medulla', 'midbrain', 'cerebellum']
     },
     medulla: {
-        name: 'Продолговатый мозг', latin: 'Medulla oblongata', color: '#c98f7d', deep: false,
+        name: 'Продолговатый мозг', latin: 'Medulla oblongata', color: '#5f74b8', deep: false,
         path: 'Brain-brainstem-medulla',
         desc: 'Нижний отдел ствола, переходящий в спинной мозг. Крошечная область, без которой невозможна жизнь: ' +
               'здесь находятся центры дыхания и кровообращения.',
@@ -1382,10 +1382,16 @@ function blobGeometry(rx, ry, rz, amp) {
 
 const CORTEX_HALF = { x: 6.75, y: 5.2, z: 8.1 };
 
-// Fixed brain tissue: shaded from the gyral crown down into the sulcus.
-const CORTEX_RAMP = { crown: '#f6d2c2', cleft: '#b8455f' };
-const CEREBELLUM_RAMP = { crown: '#eec2ac', cleft: '#b25668' };
+// Vertex colours carry shading, not hue: white on a gyral crown, dark at the
+// bottom of a sulcus. They multiply whatever colour the lobe is wearing, so the
+// folds stay readable in both the coloured and the natural-tissue mode.
+const CORTEX_RAMP = { crown: '#ffffff', cleft: '#2b2629' };
+const CEREBELLUM_RAMP = { crown: '#ffffff', cleft: '#332d30' };
+const FLESH = new THREE.Color('#eec3b2');
 const TISSUE = ['frontal_lobe', 'parietal_lobe', 'temporal_lobe', 'occipital_lobe', 'insula', 'cerebellum'];
+// Brainstem parts have no baked shading, but they are outer surface too and follow
+// the cortex into the natural-tissue look.
+const OUTER = TISSUE.concat(['midbrain', 'pons', 'medulla']);
 
 function cortexShape(d, out) {
     let x = d.x * CORTEX_HALF.x;
@@ -1422,18 +1428,20 @@ function cortexShape(d, out) {
     // Gyri. Taking |noise| instead of the raw value puts a sharp crease along every
     // zero crossing and leaves the crowns broad and rounded — the shape of real folds.
     // The anisotropic frequency stretches them front-to-back, the way gyri actually run.
-    const w1 = wobble(out.x * 2.35, out.y * 2.55, out.z * 1.55);
-    const w2 = wobble(out.x * 5.10 + 5, out.y * 5.30 - 2, out.z * 3.40 + 3);
+    const w1 = wobble(out.x * 2.60, out.y * 2.95, out.z * 1.05);
+    const w2 = wobble(out.x * 5.40 + 5, out.y * 5.60 - 2, out.z * 2.60 + 3);
     const a1 = Math.min(1, Math.abs(w1) / 0.45);
     const a2 = Math.min(1, Math.abs(w2) / 0.40);
-    const g = 0.58 * (a1 - 0.5) + 0.11 * (a2 - 0.5);
+    const g = 0.68 * (a1 - 0.5) + 0.05 * (a2 - 0.5);
 
     out.addScaledVector(n, g - 0.95 * syl - 0.45 * cen);
 
     // Colour follows the crease, not the height: a narrow band either side of the
     // zero crossing, plus the two named fissures.
-    const crease = Math.min(1, Math.max(0, 1 - Math.abs(w1) / 0.13));
-    const t = Math.max(crease * crease, Math.max(0.85 * syl, 0.7 * cen));
+    // Shade by height, the way ambient occlusion would: bright on the crowns,
+    // darkening steadily down the walls of every sulcus.
+    const t = Math.max(Math.pow(Math.min(1, Math.max(0, (0.06 - g) / 0.34)), 1.1),
+                       Math.max(0.9 * syl, 0.75 * cen));
     SHAPE_DEPTH = Math.min(1, Math.max(0, t));
     return out;
 }
@@ -1461,8 +1469,8 @@ function cerebellumShape(d, out) {
     const noise = 0.05 * wobble(x * 3, y * 3, z * 3);
     out.addScaledVector(n, folia + vermis + noise);
 
-    const crease = Math.min(1, Math.max(0, 1 - band / 0.28));
-    SHAPE_DEPTH = Math.max(crease * crease, Math.exp(-(x * x) / 0.4));
+    SHAPE_DEPTH = Math.max(Math.min(1, Math.max(0, (0.01 - folia) / 0.09)),
+                           Math.exp(-(x * x) / 0.4));
     out.y += -3.95;
     out.z += -5.05;
     return out;
@@ -1584,7 +1592,7 @@ const state = {
     labels: false,
     section: false,
     spin: false,
-    lobeColors: false
+    naturalTissue: false
 };
 
 const clipPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0.02);
@@ -1622,8 +1630,8 @@ function initScene() {
     controls.maxDistance = 70;
     controls.target.set(0, -1, 0);
 
-    scene.add(new THREE.HemisphereLight(0xfff4ea, 0x8b8079, 0.80));
-    const key = new THREE.DirectionalLight(0xfff3e8, 2.15);
+    scene.add(new THREE.HemisphereLight(0xf6f7fa, 0x6e6a68, 0.52));
+    const key = new THREE.DirectionalLight(0xfff6ef, 2.45);
     key.position.set(-14, 16, 14);
     scene.add(key);
     const fill = new THREE.DirectionalLight(0xe6ecf6, 0.50);
@@ -1649,17 +1657,17 @@ function materialFor(id) {
         // Tissue carries its colour per vertex, so the material tint stays white
         // until a lobe is highlighted; the clearcoat gives the damp, fresh-specimen sheen.
         materials[id] = new THREE.MeshPhysicalMaterial({
-            color: tissue ? 0xffffff : new THREE.Color(info.color),
+            color: new THREE.Color(info.color),
             vertexColors: tissue,
-            roughness: tissue ? 0.54 : 0.62,
+            roughness: tissue ? 0.72 : 0.62,
             metalness: 0,
-            clearcoat: tissue ? 0.38 : 0.20,
-            clearcoatRoughness: tissue ? 0.45 : 0.55,
+            clearcoat: tissue ? 0.12 : 0.20,
+            clearcoatRoughness: tissue ? 0.5 : 0.55,
             side: THREE.DoubleSide,
             transparent: false,
             opacity: 1
         });
-        materials[id].userData.baseColor = new THREE.Color(tissue ? 0xffffff : info.color);
+        materials[id].userData.baseColor = new THREE.Color(info.color);
         materials[id].userData.tint = new THREE.Color(info.color);
     }
     return materials[id];
@@ -1767,27 +1775,20 @@ function applyVisualState() {
         material.depthWrite = opacity > 0.85;
 
         const hover = state.hovered === sid;
-        material.color.copy(material.userData.baseColor);
-        let vertexColors = false;
+        const tissue = isTissue(sid);
 
-        if (isTissue(sid)) {
-            // Natural tissue comes from the vertex colours; a selected lobe (or lobe
-            // mode) drops them for a flat tint so the region is unmistakable.
-            const flat = sel || state.lobeColors;
-            vertexColors = !flat;
-            if (flat) material.color.copy(material.userData.tint).lerp(WHITE, sel ? 0.05 : 0.2);
-            material.emissive.copy(material.userData.tint).multiplyScalar(sel ? 0.10 : (hover ? 0.14 : 0));
-        } else {
-            material.emissive.copy(material.userData.tint).multiplyScalar(sel ? 0.38 : (hover ? 0.18 : 0));
-            if (!sel && anySelection()) material.color.lerp(DESATURATED, 0.22);
-        }
+        // Tissue wears its lobe colour by default and turns flesh-toned in natural
+        // mode; the baked shading multiplies on top either way.
+        const natural = state.naturalTissue && OUTER.indexOf(sid) !== -1;
+        material.color.copy(natural ? FLESH : material.userData.baseColor);
+        material.emissive.copy(material.userData.tint)
+            .multiplyScalar(sel ? (tissue ? 0.26 : 0.38) : (hover ? 0.16 : 0));
+        if (sel) material.color.lerp(WHITE, 0.18);
+        else if (anySelection()) material.color.lerp(DESATURATED, tissue ? 0.42 : 0.22);
 
-        // Only relink the shader when something structural changed — this runs on
+        // Relink the shader only when something structural changed — this runs on
         // every hover and while the camera moves.
-        if (material.vertexColors !== vertexColors || material.transparent !== wasTransparent) {
-            material.vertexColors = vertexColors;
-            material.needsUpdate = true;
-        }
+        if (material.transparent !== wasTransparent) material.needsUpdate = true;
     });
     updateLabelSet();
 }
@@ -2340,9 +2341,9 @@ document.getElementById('btn-section').addEventListener('click', function () {
     if (state.section && camera.position.x < 0) setView('right');
 });
 
-document.getElementById('btn-lobes').addEventListener('click', function () {
-    state.lobeColors = !state.lobeColors;
-    this.classList.toggle('active', state.lobeColors);
+document.getElementById('btn-tissue').addEventListener('click', function () {
+    state.naturalTissue = !state.naturalTissue;
+    this.classList.toggle('active', state.naturalTissue);
     applyVisualState();
 });
 
