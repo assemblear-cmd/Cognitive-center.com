@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D-атлас мозга — Центр когнитивных исследований</title>
+<meta name="description" content="Интерактивный трёхмерный атлас головного мозга: кора, лимбическая система, базальные ядра, промежуточный мозг, ствол и мозжечок. Вращайте модель, выбирайте структуры и читайте об их функциях.">
+<link rel="shortcut icon" href="images/tild3633-3838-4263-b033-616238336237__i.jpg" type="image/x-icon">
+<meta property="og:url" content="https://cognitive-center.com/brain3d_ru" />
+<meta property="og:title" content="3D-атлас мозга" />
+<meta property="og:description" content="Интерактивный трёхмерный атлас головного мозга: 25 структур, их функции и роль в познании." />
+<meta property="og:type" content="website" />
+<link rel="canonical" href="brain3d_ru.html">
+
+<link rel="stylesheet" href="css/common.css">
+<style>
+/* ==========================================================================
+   3D BRAIN ATLAS
+   ========================================================================== */
+
+.atlas-head {
+    padding: 40px 0 24px;
+}
+
+.atlas-head h1 {
+    font-size: 42px;
+    font-weight: 300;
+    margin: 0 0 14px 0;
+    line-height: 1.15;
+}
+
+.atlas-head p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+    max-width: 720px;
+}
+
+.atlas-shell {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) 330px;
+    gap: 0;
+    height: clamp(560px, calc(100vh - 190px), 860px);
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background: #fff;
+}
+
+/* --- Sidebar with the structure tree --- */
+
+.atlas-sidebar {
+    border-right: 1px solid #ececec;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: #fbfbfc;
+}
+
+.atlas-search {
+    padding: 14px;
+    border-bottom: 1px solid #ececec;
+}
+
+.atlas-search input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1a1a1a;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.atlas-search input:focus {
+    border-color: #1a1a1a;
+}
+
+.atlas-tree {
+    overflow-y: auto;
+    padding: 8px 0 24px;
+    flex: 1;
+    min-height: 0;
+}
+
+.tree-group > .tree-group-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .15s;
+}
+
+.tree-group > .tree-group-title:hover {
+    background: #f1f1f3;
+}
+
+.tree-group.selected > .tree-group-title {
+    background: #ececf0;
+}
+
+.tree-caret {
+    width: 9px;
+    height: 9px;
+    flex: 0 0 9px;
+    border-right: 1.6px solid #999;
+    border-bottom: 1.6px solid #999;
+    transform: rotate(-45deg);
+    transition: transform .2s;
+    margin-left: 2px;
+}
+
+.tree-group.open .tree-caret {
+    transform: rotate(45deg);
+}
+
+.tree-children {
+    display: none;
+    padding-bottom: 6px;
+}
+
+.tree-group.open .tree-children {
+    display: block;
+}
+
+.tree-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 14px 7px 30px;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background-color .15s, color .15s;
+}
+
+.tree-item:hover {
+    background: #f1f1f3;
+    color: #1a1a1a;
+}
+
+.tree-item.selected {
+    background: #eef2f7;
+    border-left-color: #1a1a1a;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.tree-dot {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12);
+}
+
+.tree-empty {
+    padding: 18px 16px;
+    font-size: 13px;
+    color: #999;
+}
+
+/* --- 3D stage --- */
+
+.atlas-stage {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    background: radial-gradient(circle at 50% 38%, #ffffff 0%, #eef0f4 55%, #e2e5ea 100%);
+    overflow: hidden;
+}
+
+.atlas-stage canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+    cursor: grab;
+}
+
+.atlas-stage canvas:active {
+    cursor: grabbing;
+}
+
+.atlas-toolbar {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.atlas-toolbar > * {
+    pointer-events: auto;
+}
+
+.tool-btn {
+    font-family: inherit;
+    font-size: 13px;
+    color: #1a1a1a;
+    background: rgba(255, 255, 255, .92);
+    border: 1px solid #dcdce0;
+    border-radius: 7px;
+    padding: 7px 11px;
+    cursor: pointer;
+    transition: background-color .15s, border-color .15s;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.tool-btn:hover {
+    background: #fff;
+    border-color: #b6b6bd;
+}
+
+.tool-btn.active {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+
+.tool-group {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, .92);
+    border: 1px solid #dcdce0;
+    border-radius: 7px;
+    padding: 3px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.tool-group .tool-btn {
+    border: none;
+    background: transparent;
+    padding: 5px 9px;
+    border-radius: 5px;
+    backdrop-filter: none;
+}
+
+.tool-group .tool-btn:hover {
+    background: #eee;
+}
+
+.tool-group .tool-btn.active {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.tool-slider {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(255, 255, 255, .92);
+    border: 1px solid #dcdce0;
+    border-radius: 7px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #444;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.tool-slider input {
+    width: 92px;
+    accent-color: #1a1a1a;
+    cursor: pointer;
+}
+
+.atlas-hint {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    font-size: 12px;
+    color: #6d7178;
+    background: rgba(255, 255, 255, .8);
+    border-radius: 6px;
+    padding: 6px 10px;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.atlas-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.atlas-label {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    line-height: 1.2;
+    color: #1a1a1a;
+    background: rgba(255, 255, 255, .88);
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 5px;
+    padding: 3px 7px;
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+}
+
+.atlas-label.is-selected {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+    font-weight: 600;
+}
+
+.atlas-tooltip {
+    position: absolute;
+    transform: translate(12px, -50%);
+    font-size: 13px;
+    color: #fff;
+    background: rgba(26, 26, 26, .9);
+    border-radius: 5px;
+    padding: 5px 9px;
+    white-space: nowrap;
+    display: none;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.atlas-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #666;
+    background: #eef0f4;
+    z-index: 8;
+    transition: opacity .4s;
+}
+
+.atlas-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.atlas-fallback {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 30px;
+    font-size: 15px;
+    color: #555;
+    background: #eef0f4;
+    z-index: 9;
+}
+
+/* --- Intro overlay --- */
+
+.atlas-intro {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(238, 240, 244, .82);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: 20px;
+}
+
+.atlas-intro.hidden {
+    display: none;
+}
+
+.atlas-intro-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, .14);
+    padding: 28px 30px;
+    max-width: 420px;
+}
+
+.atlas-intro-card h2 {
+    font-size: 21px;
+    font-weight: 500;
+    margin: 0 0 14px 0;
+}
+
+.atlas-intro-card ul {
+    margin: 0 0 22px 0;
+    padding-left: 20px;
+}
+
+.atlas-intro-card li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 7px;
+}
+
+.atlas-intro-card button {
+    font-family: inherit;
+    font-size: 14px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* --- Info panel --- */
+
+.atlas-info {
+    border-left: 1px solid #ececec;
+    overflow-y: auto;
+    padding: 22px 22px 40px;
+    min-height: 0;
+    background: #fff;
+}
+
+.info-kicker {
+    font-size: 12px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: #8a8f97;
+    margin-bottom: 8px;
+}
+
+.info-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+}
+
+.info-latin {
+    font-size: 14px;
+    font-style: italic;
+    color: #888;
+    margin-bottom: 18px;
+}
+
+.info-swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12);
+}
+
+.atlas-info p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+.atlas-info h3 {
+    font-size: 13px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #8a8f97;
+    font-weight: 600;
+    margin: 24px 0 10px 0;
+}
+
+.atlas-info ul.info-func {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.atlas-info ul.info-func li {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: #333;
+    margin-bottom: 7px;
+}
+
+.info-fact {
+    background: #f8f9fa;
+    border-left: 3px solid #1a1a1a;
+    padding: 14px 16px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 22px;
+}
+
+.info-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.info-chip {
+    font-size: 13px;
+    color: #444;
+    background: #f2f3f5;
+    border: 1px solid #e6e7ea;
+    border-radius: 14px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: background-color .15s;
+}
+
+.info-chip:hover {
+    background: #e6e7ea;
+}
+
+.info-placeholder {
+    color: #8a8f97;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.info-share {
+    margin-top: 26px;
+    font-size: 13px;
+    color: #8a8f97;
+}
+
+.info-share button {
+    font-family: inherit;
+    font-size: 13px;
+    color: #444;
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 7px 12px;
+    cursor: pointer;
+}
+
+.info-share button:hover {
+    border-color: #999;
+    color: #1a1a1a;
+}
+
+/* --- Mobile panel switcher (hidden on desktop) --- */
+
+.atlas-mobile-switch {
+    display: none;
+    gap: 8px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ececec;
+}
+
+.atlas-mobile-switch button {
+    flex: 1;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 9px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #444;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.atlas-mobile-switch button.active {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+
+/* --- Notes under the atlas --- */
+
+.atlas-notes {
+    padding: 50px 0 70px;
+}
+
+.atlas-notes h2 {
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+}
+
+.atlas-notes p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: #444;
+    margin: 0 0 16px 0;
+}
+
+.atlas-notes a {
+    color: #888;
+    text-decoration: underline;
+}
+
+.atlas-notes a:hover {
+    color: #666;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 1100px) {
+    .atlas-shell {
+        grid-template-columns: 230px minmax(0, 1fr) 290px;
+    }
+}
+
+@media (max-width: 900px) {
+    .atlas-head {
+        padding: 26px 0 18px;
+    }
+
+    .atlas-head h1 {
+        font-size: 30px;
+    }
+
+    .atlas-shell {
+        display: block;
+        height: auto;
+    }
+
+    .atlas-mobile-switch {
+        display: flex;
+    }
+
+    .atlas-stage {
+        height: 58vh;
+        min-height: 380px;
+    }
+
+    .atlas-sidebar,
+    .atlas-info {
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid #ececec;
+        max-height: 46vh;
+        overflow-y: auto;
+    }
+
+    .atlas-sidebar[hidden],
+    .atlas-info[hidden] {
+        display: none;
+    }
+
+    .atlas-toolbar {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        gap: 6px;
+    }
+
+    .tool-btn,
+    .tool-slider {
+        font-size: 12px;
+        padding: 6px 9px;
+    }
+
+    .tool-slider input {
+        width: 70px;
+    }
+
+    .atlas-hint {
+        display: none;
+    }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+    <div class="logo"><a href="ru.html" style="text-decoration:none;color:inherit;">ЦКИ</a></div>
+    <div class="nav-container">
+        <nav>
+            <a href="ru.html">Главная</a>
+            <a href="baza.html" class="active-link">База</a>
+            <a href="blog.html">Блог</a>
+            <a href="tests.html">Тесты</a>
+        </nav>
+        <div class="language-selector">
+            <div class="current-language" id="language-toggle"><span class="language-code">RU</span></div>
+            <div class="language-dropdown" id="language-dropdown">
+                <a href="brain3d_ru.html" class="language-option current"><span class="language-code">RU</span></a>
+                <a href="index.html" class="language-option"><span class="language-code">EN</span></a>
+                <a href="index_es.html" class="language-option"><span class="language-code">ES</span></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="atlas-head">
+            <h1>3D-атлас мозга</h1>
+            <p>Вращайте модель, выбирайте структуру мышью или в списке слева — и читайте, за что она отвечает.
+               Двадцать пять анатомических областей: от коры больших полушарий до ядер ствола.</p>
+        </div>
+    </div>
+
+    <div class="atlas-mobile-switch" id="mobile-switch">
+        <button type="button" data-panel="stage" class="active">Модель</button>
+        <button type="button" data-panel="list">Структуры</button>
+        <button type="button" data-panel="info">Описание</button>
+    </div>
+
+    <div class="atlas-shell" id="atlas-shell">
+
+        <aside class="atlas-sidebar" id="atlas-sidebar">
+            <div class="atlas-search">
+                <input type="search" id="structure-search" placeholder="Поиск структуры…" autocomplete="off" aria-label="Поиск структуры">
+            </div>
+            <div class="atlas-tree" id="atlas-tree"></div>
+        </aside>
+
+        <div class="atlas-stage" id="atlas-stage">
+            <div class="atlas-toolbar">
+                <button type="button" class="tool-btn" id="btn-reset">Сбросить вид</button>
+                <div class="tool-group" id="view-presets">
+                    <button type="button" class="tool-btn" data-view="left">Слева</button>
+                    <button type="button" class="tool-btn" data-view="front">Спереди</button>
+                    <button type="button" class="tool-btn" data-view="top">Сверху</button>
+                    <button type="button" class="tool-btn" data-view="back">Сзади</button>
+                </div>
+                <div class="tool-slider">
+                    <label for="cortex-opacity">Кора</label>
+                    <input type="range" id="cortex-opacity" min="0" max="100" value="100">
+                </div>
+                <button type="button" class="tool-btn" id="btn-section">Разрез</button>
+                <button type="button" class="tool-btn" id="btn-labels">Подписи</button>
+                <button type="button" class="tool-btn" id="btn-spin">Вращение</button>
+            </div>
+
+            <div class="atlas-overlay" id="atlas-overlay"></div>
+            <div class="atlas-tooltip" id="atlas-tooltip"></div>
+            <div class="atlas-hint">Левая кнопка — поворот · колесо — масштаб · правая кнопка — сдвиг</div>
+
+            <div class="atlas-loader" id="atlas-loader">Строим модель мозга…</div>
+
+            <div class="atlas-fallback" id="atlas-fallback">
+                <strong>Не удалось запустить 3D-просмотр</strong>
+                <span>Возможно, в браузере отключён WebGL или он не поддерживает современные модули JavaScript.
+                    Попробуйте открыть страницу в свежей версии Chrome, Safari или Firefox.</span>
+            </div>
+
+            <div class="atlas-intro" id="atlas-intro">
+                <div class="atlas-intro-card">
+                    <h2>Как пользоваться атласом</h2>
+                    <ul>
+                        <li>Тяните мышью, чтобы поворачивать мозг, крутите колесо для масштаба.</li>
+                        <li>Щёлкните по структуре — камера подлетит к ней, справа появится описание.</li>
+                        <li>Ползунок «Кора» делает полушария прозрачными, кнопка «Разрез» показывает срединный срез.</li>
+                        <li>Ссылку на выбранную структуру можно скопировать и отправить — она откроется сразу на ней.</li>
+                    </ul>
+                    <button type="button" id="intro-close">Начать</button>
+                </div>
+            </div>
+        </div>
+
+        <aside class="atlas-info" id="atlas-info">
+            <div id="info-content">
+                <div class="info-kicker">3D-атлас</div>
+                <h2 class="info-title">Выберите структуру</h2>
+                <p class="info-placeholder">Щёлкните по любой области модели или выберите пункт в списке слева.
+                    Здесь появится описание структуры, её функции и место в системе мозга.</p>
+            </div>
+        </aside>
+    </div>
+
+    <div class="container">
+        <section class="atlas-notes">
+            <h2>О модели</h2>
+            <p>Модель построена процедурно и передаёт взаимное расположение, форму и относительные размеры структур,
+               но не является медицинским изображением: она не заменяет анатомический атлас, данные МРТ или гистологию.
+               Границы долей коры показаны условно — в реальном мозге они проходят по бороздам, положение которых
+               индивидуально.</p>
+            <p>Материал носит образовательный характер. Если вас интересует, как эти структуры работают вместе,
+               посмотрите статью <a href="brain_ru.html">«Анатомия когнитивных функций»</a> и другие материалы
+               в разделе <a href="baza.html">«База»</a>.</p>
+        </section>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-copyright">© Все права защищены. Центр когнитивных исследований</div>
+        <div class="footer-nav">
+            <div class="footer-column">
+                <h4>Меню</h4>
+                <ul>
+                    <li><a href="ru.html">Главная</a></li>
+                    <li><a href="baza.html">База</a></li>
+                    <li><a href="blog.html">Блог</a></li>
+                    <li><a href="tests.html">Тесты</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4><a href="about_ru.html">О нас</a></h4>
+                <ul>
+                    <li><a href="about_ru.html#who-we-are">Кто мы</a></li>
+                    <li><a href="about_ru.html#mission">Миссия</a></li>
+                    <li><a href="about_ru.html#tasks">Задачи</a></li>
+                    <li><a href="about_ru.html#contacts">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/common.js"></script>
+
+<script>
+window.setTimeout(function () {
+    if (window.__atlasReady) return;
+    var loader = document.getElementById('atlas-loader');
+    var fallback = document.getElementById('atlas-fallback');
+    var intro = document.getElementById('atlas-intro');
+    var tree = document.getElementById('atlas-tree');
+    if (loader) loader.className = 'atlas-loader hidden';
+    if (fallback) fallback.style.display = 'flex';
+    if (intro) intro.className = 'atlas-intro hidden';
+    if (tree && !tree.children.length) {
+        tree.innerHTML = '<div class="tree-empty">Список структур недоступен в этом браузере.</div>';
+    }
+}, 15000);
+</script>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "./js/three.module.min.js"
+    }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from './js/three-orbitcontrols.js';
+
+/* ==========================================================================
+   1. DATA: structures, groups, hierarchy
+   ========================================================================== */
+
+const STRUCTURES = {
+    frontal_lobe: {
+        name: 'Лобная доля', latin: 'Lobus frontalis', color: '#e2a49c', deep: false, cortex: true,
+        path: 'Brain-cerebral_cortex-frontal_lobe',
+        desc: 'Самая крупная доля коры, занимающая всю переднюю треть полушария. Здесь формируются планы и решения, ' +
+              'удерживается рабочая память, тормозятся импульсы. По задней границе доли проходит прецентральная извилина — ' +
+              'первичная моторная кора, управляющая произвольными движениями.',
+        func: ['Планирование, постановка целей и контроль их выполнения',
+               'Рабочая память и переключение между задачами',
+               'Торможение импульсов и социально неуместных реакций',
+               'Произвольные движения (моторная кора)',
+               'Порождение речи (зона Брока в левом полушарии)'],
+        fact: 'Префронтальная кора созревает последней: миелинизация её связей продолжается примерно до 25 лет — ' +
+              'отсюда типичная подростковая импульсивность.',
+        related: ['parietal_lobe', 'caudate', 'cingulate_gyrus']
+    },
+    parietal_lobe: {
+        name: 'Теменная доля', latin: 'Lobus parietalis', color: '#e3c295', deep: false, cortex: true,
+        path: 'Brain-cerebral_cortex-parietal_lobe',
+        desc: 'Лежит позади центральной борозды и собирает телесные ощущения в единую картину. ' +
+              'Постцентральная извилина — первичная соматосенсорная кора, где представлена вся поверхность тела: ' +
+              'губы и кисти занимают в ней непропорционально большую площадь.',
+        func: ['Осязание, температура, боль, положение тела в пространстве',
+               'Схема тела и координация «глаз — рука»',
+               'Пространственное внимание и навигация',
+               'Счёт и оперирование числами (угловая извилина)'],
+        fact: 'Повреждение правой теменной доли вызывает синдром игнорирования: человек перестаёт замечать левую ' +
+              'половину пространства — может съесть еду только с правой стороны тарелки.',
+        related: ['frontal_lobe', 'occipital_lobe', 'thalamus']
+    },
+    temporal_lobe: {
+        name: 'Височная доля', latin: 'Lobus temporalis', color: '#a7c3e2', deep: false, cortex: true,
+        path: 'Brain-cerebral_cortex-temporal_lobe',
+        desc: 'Расположена под сильвиевой бороздой и отвечает за слух, понимание речи и узнавание объектов. ' +
+              'В её глубине скрыты гиппокамп и миндалевидное тело, поэтому доля критична и для памяти, и для эмоций.',
+        func: ['Первичная слуховая кора и анализ звуков',
+               'Понимание речи (зона Вернике)',
+               'Узнавание лиц, объектов и сцен (вентральный зрительный путь)',
+               'Долговременная память — через медиальные отделы'],
+        fact: 'В веретеновидной извилине есть участок, реагирующий на лица сильнее, чем на любые другие объекты; ' +
+              'при его повреждении развивается прозопагнозия — неспособность узнавать лица, включая собственное.',
+        related: ['hippocampus', 'amygdala', 'occipital_lobe']
+    },
+    occipital_lobe: {
+        name: 'Затылочная доля', latin: 'Lobus occipitalis', color: '#b3d5ab', deep: false, cortex: true,
+        path: 'Brain-cerebral_cortex-occipital_lobe',
+        desc: 'Задний полюс полушария, целиком посвящённый зрению. Сигнал приходит сюда от сетчатки через таламус ' +
+              'и последовательно обрабатывается: сначала линии и границы, затем движение, цвет и форма.',
+        func: ['Первичная зрительная кора V1 — ориентация линий и контраст',
+               'Обработка движения (зона V5/MT) и цвета (V4)',
+               'Передача информации в теменную и височную доли',
+               'Зрительные образы в воображении и во сне'],
+        fact: 'Повреждение V1 приводит к «слепозрению»: человек утверждает, что ничего не видит, но правильно ' +
+              'указывает на объекты — обходные пути через средний мозг работают без участия сознания.',
+        related: ['temporal_lobe', 'parietal_lobe', 'thalamus']
+    },
+    insula: {
+        name: 'Островковая доля', latin: 'Insula', color: '#d0abdd', deep: true, cortex: true,
+        path: 'Brain-cerebral_cortex-insula',
+        desc: 'Скрытая доля коры, спрятанная в глубине сильвиевой борозды под лобной, теменной и височной долями. ' +
+              'Островок соединяет телесные ощущения с эмоциями: он «читает» сигналы от внутренних органов и ' +
+              'превращает их в чувства.',
+        func: ['Интероцепция — восприятие сердцебиения, дыхания, состояния желудка',
+               'Вкус и висцеральные ощущения',
+               'Переживание отвращения, боли и эмпатии',
+               'Регуляция вегетативных реакций'],
+        fact: 'Передний островок активируется и когда человеку больно, и когда он видит боль другого — ' +
+              'это одна из нейронных основ сопереживания.',
+        related: ['cingulate_gyrus', 'amygdala', 'hypothalamus']
+    },
+    cerebellum: {
+        name: 'Мозжечок', latin: 'Cerebellum', color: '#c8a68a', deep: false,
+        path: 'Brain-cerebellum',
+        desc: 'Плотно сложенная структура под затылочными долями. Мозжечок постоянно сравнивает намерение двигаться ' +
+              'с тем, что получилось, и вносит поправки — именно поэтому движения выходят плавными и точными.',
+        func: ['Координация и точность движений, равновесие и поза',
+               'Моторное обучение и автоматизация навыков',
+               'Тонкая настройка речи и движений глаз',
+               'Участие во внимании, языке и обработке времени'],
+        fact: 'При массе около 10% от массы мозга мозжечок содержит примерно половину всех его нейронов — ' +
+              'около 69 миллиардов клеток-зёрен.',
+        related: ['pons', 'midbrain', 'thalamus']
+    },
+    midbrain: {
+        name: 'Средний мозг', latin: 'Mesencephalon', color: '#9db6c8', deep: false,
+        path: 'Brain-brainstem-midbrain',
+        desc: 'Верхний отдел ствола. Через него проходят все пути между корой и спинным мозгом, а его собственные ядра ' +
+              'управляют рефлекторными поворотами глаз и головы и вырабатывают дофамин.',
+        func: ['Зрительные и слуховые ориентировочные рефлексы (четверохолмие)',
+               'Движения глаз и зрачковый рефлекс',
+               'Чёрная субстанция — дофамин для базальных ядер',
+               'Вентральная область покрышки — дофамин системы вознаграждения'],
+        fact: 'Гибель дофаминовых нейронов чёрной субстанции вызывает болезнь Паркинсона; симптомы появляются, ' +
+              'когда потеряно уже 60–80% этих клеток.',
+        related: ['pons', 'accumbens', 'globus_pallidus']
+    },
+    pons: {
+        name: 'Мост', latin: 'Pons', color: '#8ea8be', deep: false,
+        path: 'Brain-brainstem-pons',
+        desc: 'Выпуклый «мостик» на передней поверхности ствола: через него кора связывается с мозжечком. ' +
+              'Здесь же лежат ядра черепных нервов и центры, переключающие фазы сна.',
+        func: ['Передача команд от коры к мозжечку',
+               'Ядра черепных нервов V–VIII: чувствительность лица, мимика, слух, равновесие',
+               'Регуляция ритма дыхания вместе с продолговатым мозгом',
+               'Запуск фазы быстрого сна и мышечная атония во сне'],
+        fact: 'Именно мост во время быстрого сна «отключает» мышцы тела: без этого механизма человек начинает ' +
+              'физически разыгрывать свои сновидения.',
+        related: ['medulla', 'midbrain', 'cerebellum']
+    },
+    medulla: {
+        name: 'Продолговатый мозг', latin: 'Medulla oblongata', color: '#7f97ae', deep: false,
+        path: 'Brain-brainstem-medulla',
+        desc: 'Нижний отдел ствола, переходящий в спинной мозг. Крошечная область, без которой невозможна жизнь: ' +
+              'здесь находятся центры дыхания и кровообращения.',
+        func: ['Автоматическая регуляция дыхания',
+               'Частота сердечных сокращений и тонус сосудов',
+               'Глотание, кашель, чихание, рвотный рефлекс',
+               'Перекрест пирамидных путей — левое полушарие управляет правой половиной тела'],
+        fact: 'Дыхательный центр продолговатого мозга генерирует ритм самостоятельно: он продолжает работать, ' +
+              'даже когда человек без сознания.',
+        related: ['pons', 'hypothalamus']
+    },
+    thalamus: {
+        name: 'Таламус', latin: 'Thalamus', color: '#b98ccc', deep: true,
+        path: 'Brain-diencephalon-thalamus',
+        desc: 'Парное яйцевидное образование в центре мозга. Практически вся сенсорная информация — кроме запахов — ' +
+              'проходит через таламус, прежде чем попасть в кору, поэтому его называют воротами сознания.',
+        func: ['Переключение зрительных, слуховых и телесных сигналов к коре',
+               'Фильтрация: что пропустить в сознание, а что приглушить',
+               'Поддержание бодрствования и уровня внимания',
+               'Участие в моторных петлях с базальными ядрами и мозжечком'],
+        fact: 'При редком наследственном заболевании — фатальной семейной бессоннице — гибнут именно ядра таламуса, ' +
+              'и человек полностью теряет способность спать.',
+        related: ['parietal_lobe', 'globus_pallidus', 'hypothalamus']
+    },
+    hypothalamus: {
+        name: 'Гипоталамус', latin: 'Hypothalamus', color: '#e0a25c', deep: true,
+        path: 'Brain-diencephalon-hypothalamus',
+        desc: 'Структура размером с миндальный орех под таламусом. Управляет гомеостазом — постоянством внутренней ' +
+              'среды — и связывает нервную систему с эндокринной через гипофиз.',
+        func: ['Температура тела, голод, жажда, водно-солевой баланс',
+               'Циркадные ритмы (супрахиазматическое ядро — «внутренние часы»)',
+               'Стрессовая ось: кортиколиберин → гипофиз → кортизол',
+               'Половое поведение и родительская привязанность'],
+        fact: 'Супрахиазматическое ядро содержит около 20 000 нейронов и задаёт суточный ритм всему организму, ' +
+              'сверяясь со светом через прямой путь от сетчатки.',
+        related: ['pituitary', 'amygdala', 'mammillary_bodies']
+    },
+    pituitary: {
+        name: 'Гипофиз', latin: 'Hypophysis', color: '#e28ea0', deep: true,
+        path: 'Brain-diencephalon-pituitary',
+        desc: 'Железа размером с горошину, свисающая на ножке от гипоталамуса. Выполняет его команды, ' +
+              'выбрасывая в кровь гормоны, которые управляют остальными железами тела.',
+        func: ['Гормон роста и обмен веществ',
+               'АКТГ — запуск выработки кортизола надпочечниками',
+               'ТТГ — управление щитовидной железой',
+               'Задняя доля: окситоцин и вазопрессин, поступающие из гипоталамуса'],
+        fact: 'Гипофиз часто называют главной железой, хотя фактически он лишь исполнитель: программу задаёт ' +
+              'гипоталамус, а обратную связь — уровень гормонов в крови.',
+        related: ['hypothalamus']
+    },
+    pineal: {
+        name: 'Эпифиз (шишковидная железа)', latin: 'Corpus pineale', color: '#8ad5c5', deep: true,
+        path: 'Brain-diencephalon-pineal',
+        desc: 'Маленькая непарная железа позади таламуса. Ночью, получая сигнал от «внутренних часов», ' +
+              'она выбрасывает в кровь мелатонин — химический сигнал темноты.',
+        func: ['Синтез мелатонина и регуляция цикла «сон — бодрствование»',
+               'Сезонная и суточная настройка физиологии',
+               'Влияние на сроки полового созревания'],
+        fact: 'Декарт считал эпифиз «вместилищем души» — единственной непарной структурой, где, по его мысли, ' +
+              'встречаются душа и тело.',
+        related: ['hypothalamus', 'thalamus']
+    },
+    amygdala: {
+        name: 'Миндалевидное тело', latin: 'Corpus amygdaloideum', color: '#dd5d5d', deep: true,
+        path: 'Brain-limbic_system-amygdala',
+        desc: 'Парное скопление ядер в глубине височной доли, по форме напоминающее миндаль. ' +
+              'Работает как детектор значимости: за доли секунды оценивает, опасно ли происходящее, ' +
+              'и запускает телесную реакцию раньше, чем событие осознано.',
+        func: ['Обнаружение угрозы и реакция «бей или беги»',
+               'Формирование условных рефлексов страха',
+               'Эмоциональная окраска воспоминаний — вместе с гиппокампом',
+               'Считывание социальных сигналов: выражений лица, взгляда'],
+        fact: 'Пациентка S.M. с двусторонним разрушением миндалин при болезни Урбаха-Вите не испытывала страха ' +
+              'ни перед змеями, ни в фильмах ужасов — но паника возвращалась при вдыхании воздуха с высоким CO₂.',
+        related: ['hippocampus', 'hypothalamus', 'cingulate_gyrus']
+    },
+    hippocampus: {
+        name: 'Гиппокамп', latin: 'Hippocampus', color: '#4e9fd6', deep: true,
+        path: 'Brain-limbic_system-hippocampus',
+        desc: 'Изогнутая структура, названная за сходство с морским коньком. Превращает текущий опыт в ' +
+              'долговременные воспоминания и строит внутреннюю карту пространства.',
+        func: ['Формирование эпизодической памяти о событиях',
+               'Консолидация — перенос следов памяти в кору, во многом во сне',
+               'Пространственная навигация: клетки места и клетки решётки',
+               'Контекст для эмоциональных реакций миндалины'],
+        fact: 'После удаления гиппокампов пациент H.M. перестал запоминать новые события, но сохранил детские ' +
+              'воспоминания и способность осваивать двигательные навыки — так была открыта множественность систем памяти.',
+        related: ['amygdala', 'fornix', 'temporal_lobe']
+    },
+    fornix: {
+        name: 'Свод', latin: 'Fornix', color: '#7fd0b7', deep: true,
+        path: 'Brain-limbic_system-fornix',
+        desc: 'Изогнутый пучок белого вещества — главный выходной путь гиппокампа. Дугой огибает таламус ' +
+              'и спускается к сосцевидным телам, замыкая круг Пейпеца.',
+        func: ['Передача сигналов от гиппокампа к сосцевидным телам и гипоталамусу',
+               'Звено круга памяти и эмоций (круг Пейпеца)',
+               'Влияние на скорость воспроизведения воспоминаний'],
+        fact: 'Толщина свода на МРТ — один из ранних маркеров: её снижение заметно ещё до того, как проявятся ' +
+              'явные нарушения памяти.',
+        related: ['hippocampus', 'mammillary_bodies', 'corpus_callosum']
+    },
+    mammillary_bodies: {
+        name: 'Сосцевидные тела', latin: 'Corpora mamillaria', color: '#eda45a', deep: true,
+        path: 'Brain-limbic_system-mammillary_bodies',
+        desc: 'Два маленьких округлых бугорка на нижней поверхности мозга, за гипофизом. Принимают сигнал ' +
+              'от гиппокампа по своду и передают его дальше в таламус.',
+        func: ['Узел памяти в круге Пейпеца',
+               'Участие в пространственной памяти',
+               'Связь лимбической системы с таламусом'],
+        fact: 'Их повреждение при дефиците витамина B1 (синдром Корсакова) приводит к тяжёлой амнезии, ' +
+              'при которой человек заполняет провалы памяти выдуманными событиями.',
+        related: ['fornix', 'hypothalamus', 'hippocampus']
+    },
+    cingulate_gyrus: {
+        name: 'Поясная извилина', latin: 'Gyrus cinguli', color: '#b18ddd', deep: true,
+        path: 'Brain-limbic_system-cingulate_gyrus',
+        desc: 'Извилина, дугой лежащая над мозолистым телом. Соединяет эмоции с действием: следит за ошибками ' +
+              'и конфликтом между намерением и результатом.',
+        func: ['Обнаружение ошибок и конфликта между реакциями',
+               'Переживание боли — её эмоциональная составляющая',
+               'Мотивация и оценка усилия',
+               'Регуляция эмоций совместно с префронтальной корой'],
+        fact: 'Передняя поясная кора реагирует на социальное отвержение почти так же, как на физическую боль — ' +
+              'выражение «душевная боль» оказалось анатомически точным.',
+        related: ['insula', 'amygdala', 'frontal_lobe']
+    },
+    caudate: {
+        name: 'Хвостатое ядро', latin: 'Nucleus caudatus', color: '#6cbd72', deep: true,
+        path: 'Brain-basal_ganglia-caudate_nucleus',
+        desc: 'Длинное С-образное ядро, изгибающееся вокруг таламуса вслед за боковым желудочком. ' +
+              'Вместе со скорлупой образует стриатум — вход базальных ядер.',
+        func: ['Инициация и отбор движений',
+               'Формирование привычек и автоматических действий',
+               'Целенаправленное поведение и обучение с подкреплением',
+               'Участие в контуре мотивации вместе с лобной корой'],
+        fact: 'Гибель нейронов хвостатого ядра лежит в основе болезни Гентингтона: избыточные движения возникают ' +
+              'из-за того, что «тормоз» базальных ядер перестаёт работать.',
+        related: ['putamen', 'globus_pallidus', 'accumbens']
+    },
+    putamen: {
+        name: 'Скорлупа', latin: 'Putamen', color: '#4fae9f', deep: true,
+        path: 'Brain-basal_ganglia-putamen',
+        desc: 'Наружное ядро чечевицеобразного тела, лежащее под островком. Вместе с хвостатым ядром принимает ' +
+              'сигналы почти от всей коры и участвует в запуске отработанных движений.',
+        func: ['Отбор и запуск моторных программ',
+               'Автоматизация навыков — от письма до вождения',
+               'Обучение по принципу «стимул — реакция»',
+               'Регуляция силы и амплитуды движений'],
+        fact: 'Когда навык становится автоматическим, активность смещается от лобной коры к скорлупе — ' +
+              'мозг буквально «перекладывает» отработанное действие на более экономный контур.',
+        related: ['caudate', 'globus_pallidus', 'midbrain']
+    },
+    globus_pallidus: {
+        name: 'Бледный шар', latin: 'Globus pallidus', color: '#8ecdc0', deep: true,
+        path: 'Brain-basal_ganglia-globus_pallidus',
+        desc: 'Внутреннее ядро чечевицеобразного тела — главный выход базальных ядер. Постоянно тормозит таламус, ' +
+              'а для запуска движения это торможение на мгновение снимается.',
+        func: ['Выходное звено базальных ядер к таламусу',
+               'Подавление лишних, конкурирующих движений',
+               'Настройка мышечного тонуса',
+               'Ключевая мишень глубокой стимуляции мозга при дистонии и паркинсонизме'],
+        fact: 'Электрод, вживлённый во внутренний сегмент бледного шара, способен за секунды снять тяжёлый ' +
+              'мышечный спазм при дистонии.',
+        related: ['putamen', 'thalamus', 'midbrain']
+    },
+    accumbens: {
+        name: 'Прилежащее ядро', latin: 'Nucleus accumbens', color: '#eeb44b', deep: true,
+        path: 'Brain-basal_ganglia-nucleus_accumbens',
+        desc: 'Небольшое ядро в месте соединения хвостатого ядра и скорлупы — центральный узел системы ' +
+              'вознаграждения. Получает дофамин из вентральной области покрышки.',
+        func: ['Мотивация и предвкушение награды',
+               'Обучение на положительном подкреплении',
+               'Оценка усилия: «стоит ли это того»',
+               'Ключевое звено формирования зависимостей'],
+        fact: 'Дофамин здесь сигнализирует не столько об удовольствии, сколько об ошибке предсказания награды — ' +
+              'о том, что результат оказался лучше ожидаемого.',
+        related: ['midbrain', 'amygdala', 'frontal_lobe']
+    },
+    corpus_callosum: {
+        name: 'Мозолистое тело', latin: 'Corpus callosum', color: '#ece2cf', deep: true,
+        path: 'Brain-white_matter-corpus_callosum',
+        desc: 'Самая крупная спайка мозга: плотный пласт волокон, соединяющий левое и правое полушария. ' +
+              'Благодаря ему две половины мозга работают как единое целое.',
+        func: ['Обмен сенсорной и моторной информацией между полушариями',
+               'Согласование речи левого полушария с образным анализом правого',
+               'Координация движений двух рук',
+               'Перенос выученного из одного полушария в другое'],
+        fact: 'После рассечения мозолистого тела (каллозотомии при тяжёлой эпилепсии) полушария начинают действовать ' +
+              'независимо: левая рука может расстёгивать рубашку, пока правая её застёгивает.',
+        related: ['fornix', 'frontal_lobe', 'cingulate_gyrus']
+    },
+    ventricles: {
+        name: 'Желудочки мозга', latin: 'Ventriculi cerebri', color: '#7fd2ef', deep: true,
+        path: 'Brain-ventricles-lateral_ventricles',
+        desc: 'Система соединённых полостей внутри мозга, заполненных спинномозговой жидкостью. ' +
+              'Ликвор вырабатывается сосудистыми сплетениями, омывает мозг и всасывается обратно в кровь.',
+        func: ['Механическая амортизация мозга',
+               'Поддержание постоянства внутренней среды и вынос продуктов обмена',
+               'Транспорт гормонов и сигнальных молекул',
+               'Участие в «промывании» мозга во время сна (глимфатическая система)'],
+        fact: 'В голове одновременно находится около 150 мл ликвора, но за сутки его вырабатывается порядка 500 мл — ' +
+              'жидкость полностью обновляется три-четыре раза в день.',
+        related: ['corpus_callosum', 'thalamus']
+    },
+    olfactory_bulb: {
+        name: 'Обонятельная луковица', latin: 'Bulbus olfactorius', color: '#eebdd4', deep: true,
+        path: 'Brain-limbic_system-olfactory_bulb',
+        desc: 'Вытянутое образование на нижней поверхности лобной доли — первая станция обработки запахов. ' +
+              'Единственный сенсорный путь, который попадает в кору минуя таламус.',
+        func: ['Первичный анализ запахов',
+               'Прямая передача сигнала в миндалину и гиппокамп',
+               'Связь запахов с эмоциями и автобиографической памятью'],
+        fact: 'Именно из-за прямого пути в лимбическую систему запах вызывает воспоминания мгновенно и ярко — ' +
+              'этот эффект называют «феноменом Пруста».',
+        related: ['amygdala', 'hippocampus', 'temporal_lobe']
+    }
+};
+
+const GROUPS = {
+    cerebral_cortex: {
+        name: 'Кора больших полушарий', latin: 'Cortex cerebri',
+        children: ['frontal_lobe', 'parietal_lobe', 'temporal_lobe', 'occipital_lobe', 'insula'],
+        desc: 'Слой серого вещества толщиной 2–4 мм, покрывающий полушария. Складки-извилины позволяют уместить ' +
+              'в черепе поверхность площадью около 2200 см². Кора отвечает за восприятие, речь, планирование ' +
+              'и всё, что мы называем сознательным мышлением.',
+        func: ['Высшие когнитивные функции: мышление, речь, планирование',
+               'Осознанное восприятие всех видов чувствительности',
+               'Произвольные движения',
+               'Хранение семантических знаний'],
+        fact: 'Около двух третей коры скрыто в глубине борозд — снаружи видно меньше трети её поверхности.'
+    },
+    limbic_system: {
+        name: 'Лимбическая система', latin: 'Systema limbicum',
+        children: ['amygdala', 'hippocampus', 'cingulate_gyrus', 'hypothalamus', 'fornix', 'mammillary_bodies', 'olfactory_bulb'],
+        desc: 'Кольцо структур на границе коры и ствола, отвечающее за эмоции, мотивацию и память. ' +
+              'Это не единый орган, а сеть: миндалина оценивает значимость, гиппокамп запоминает контекст, ' +
+              'гипоталамус переводит эмоцию в телесную реакцию.',
+        func: ['Эмоциональная оценка событий',
+               'Формирование долговременной памяти',
+               'Мотивация и базовые влечения',
+               'Вегетативные и гормональные ответы на стресс'],
+        fact: 'Термин «лимбическая система» ввёл Пол Маклин в 1952 году; сегодня её границы считают ' +
+              'условными — многие структуры участвуют и в чисто когнитивных задачах.'
+    },
+    basal_ganglia: {
+        name: 'Базальные ядра', latin: 'Nuclei basales',
+        children: ['caudate', 'putamen', 'globus_pallidus', 'accumbens'],
+        desc: 'Группа подкорковых ядер, образующих петли «кора → базальные ядра → таламус → кора». ' +
+              'Они выбирают, какое из конкурирующих действий запустить, и превращают повторяющиеся действия в привычки.',
+        func: ['Отбор и запуск движений',
+               'Формирование привычек и навыков',
+               'Обучение с подкреплением и мотивация',
+               'Подавление нежелательных движений'],
+        fact: 'Дофамин действует на базальные ядра как «педаль газа»: при его нехватке движения замедляются ' +
+              '(паркинсонизм), при избытке появляются лишние (хорея, тики).'
+    },
+    diencephalon: {
+        name: 'Промежуточный мозг', latin: 'Diencephalon',
+        children: ['thalamus', 'hypothalamus', 'pineal', 'pituitary'],
+        desc: 'Центральный отдел мозга между полушариями и стволом. Здесь сходятся сенсорные пути, ' +
+              'регулируется гомеостаз и работает связь нервной системы с эндокринной.',
+        func: ['Переключение сенсорных потоков к коре',
+               'Гомеостаз: температура, голод, жажда, ритмы',
+               'Гормональная регуляция через гипофиз',
+               'Поддержание уровня бодрствования'],
+        fact: 'Промежуточный мозг занимает меньше 2% объёма мозга, но через него проходит почти вся информация, ' +
+              'достигающая сознания.'
+    },
+    cerebellum_group: {
+        name: 'Мозжечок', latin: 'Cerebellum',
+        children: ['cerebellum'],
+        desc: 'Отдельный «малый мозг» с собственной корой и ядрами, подключённый к стволу тремя парами ножек.',
+        func: ['Координация движений и равновесие', 'Моторное обучение', 'Тонкая настройка когнитивных операций'],
+        fact: 'Мозжечок получает копию каждой моторной команды коры и сравнивает её с реальным результатом.'
+    },
+    brainstem: {
+        name: 'Ствол мозга', latin: 'Truncus encephali',
+        children: ['midbrain', 'pons', 'medulla'],
+        desc: 'Продолжение спинного мозга внутри черепа. Через ствол проходят все восходящие и нисходящие пути, ' +
+              'а его ядра поддерживают жизненно важные функции и уровень бодрствования.',
+        func: ['Дыхание, сердечный ритм, давление',
+               'Ядра черепных нервов',
+               'Ретикулярная формация — сон, бодрствование, внимание',
+               'Проведение всех путей между мозгом и телом'],
+        fact: 'Гибель ствола юридически и физиологически означает смерть мозга: без него невозможны ни дыхание, ' +
+              'ни сознание.'
+    },
+    white_matter: {
+        name: 'Белое вещество и полости', latin: 'Substantia alba',
+        children: ['corpus_callosum', 'fornix', 'ventricles'],
+        desc: 'Пучки миелинизированных аксонов, связывающие области мозга между собой, и система желудочков ' +
+              'со спинномозговой жидкостью.',
+        func: ['Связь между полушариями и долями',
+               'Скоростная передача сигналов',
+               'Циркуляция ликвора и защита мозга'],
+        fact: 'Общая длина нервных волокон в белом веществе взрослого человека оценивается примерно ' +
+              'в 150–180 тысяч километров.'
+    }
+};
+
+const TREE = ['cerebral_cortex', 'limbic_system', 'basal_ganglia', 'diencephalon', 'cerebellum_group', 'brainstem', 'white_matter'];
+
+/* ==========================================================================
+   2. GEOMETRY HELPERS
+   ========================================================================== */
+
+// Scratch vector reserved for the shape functions below; the mesh builder keeps its own.
+const SHAPE_TMP = new THREE.Vector3();
+
+function smoothstep(edge0, edge1, x) {
+    const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
+    return t * t * (3 - 2 * t);
+}
+
+/** Deterministic, cheap pseudo-noise in [-1, 1]. */
+function wobble(x, y, z) {
+    return (Math.sin(x) * Math.cos(y * 1.13 + 0.7) +
+            Math.sin(y * 0.97 + 1.3) * Math.cos(z * 1.07) +
+            Math.sin(z * 1.05 + 2.1) * Math.cos(x * 0.93 + 0.4)) / 3;
+}
+
+/**
+ * Builds a smooth-shaded mesh from a radial shape function of a unit direction.
+ * Normals are derived analytically (finite differences on the shape function),
+ * which keeps the surface smooth even though the base geometry is non-indexed.
+ */
+function shapedGeometry(shapeFn, detail) {
+    const src = new THREE.IcosahedronGeometry(1, detail);
+    const pos = src.attributes.position;
+    const count = pos.count;
+    const positions = new Float32Array(count * 3);
+    const normals = new Float32Array(count * 3);
+    const d = new THREE.Vector3(), p = new THREE.Vector3();
+    const p1 = new THREE.Vector3(), p2 = new THREE.Vector3();
+    const t1 = new THREE.Vector3(), t2 = new THREE.Vector3();
+    const n = new THREE.Vector3();
+    const eps = 0.004;
+
+    for (let i = 0; i < count; i++) {
+        d.fromBufferAttribute(pos, i).normalize();
+        shapeFn(d, p);
+
+        t1.set(0, 1, 0);
+        if (Math.abs(d.y) > 0.9) t1.set(1, 0, 0);
+        t1.crossVectors(d, t1).normalize();
+        t2.crossVectors(d, t1).normalize();
+
+        t1.multiplyScalar(eps).add(d).normalize();
+        shapeFn(t1, p1);
+        t2.multiplyScalar(eps).add(d).normalize();
+        shapeFn(t2, p2);
+
+        p1.sub(p);
+        p2.sub(p);
+        n.crossVectors(p1, p2).normalize();
+        if (n.dot(d) < 0) n.negate();
+
+        positions[i * 3] = p.x; positions[i * 3 + 1] = p.y; positions[i * 3 + 2] = p.z;
+        normals[i * 3] = n.x; normals[i * 3 + 1] = n.y; normals[i * 3 + 2] = n.z;
+    }
+
+    src.dispose();
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+    return geo;
+}
+
+/** Splits a non-indexed geometry into several geometries by a per-triangle classifier. */
+function splitByTriangle(geo, classify) {
+    const pos = geo.attributes.position.array;
+    const nor = geo.attributes.normal.array;
+    const buckets = new Map();
+    const triangles = pos.length / 9;
+
+    for (let t = 0; t < triangles; t++) {
+        const o = t * 9;
+        const cx = (pos[o] + pos[o + 3] + pos[o + 6]) / 3;
+        const cy = (pos[o + 1] + pos[o + 4] + pos[o + 7]) / 3;
+        const cz = (pos[o + 2] + pos[o + 5] + pos[o + 8]) / 3;
+        const key = classify(cx, cy, cz);
+        let bucket = buckets.get(key);
+        if (!bucket) { bucket = { p: [], n: [] }; buckets.set(key, bucket); }
+        for (let k = 0; k < 9; k++) { bucket.p.push(pos[o + k]); bucket.n.push(nor[o + k]); }
+    }
+
+    const out = new Map();
+    buckets.forEach(function (bucket, key) {
+        const g = new THREE.BufferGeometry();
+        g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(bucket.p), 3));
+        g.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(bucket.n), 3));
+        out.set(key, g);
+    });
+    return out;
+}
+
+/** Tube of varying radius along a Catmull-Rom curve; radiusFn(t) -> number or {n, b}. */
+function tubeGeometry(points, radiusFn, tubularSegments, radialSegments, closedEnds) {
+    const curve = new THREE.CatmullRomCurve3(points.map(function (p) {
+        return new THREE.Vector3(p[0], p[1], p[2]);
+    }));
+    const frames = curve.computeFrenetFrames(tubularSegments, false);
+    const positions = [];
+    const normals = [];
+    const indices = [];
+    const P = new THREE.Vector3();
+    const N = new THREE.Vector3();
+
+    for (let i = 0; i <= tubularSegments; i++) {
+        const t = i / tubularSegments;
+        curve.getPointAt(t, P);
+        const r = radiusFn(t);
+        const rn = typeof r === 'number' ? r : r.n;
+        const rb = typeof r === 'number' ? r : r.b;
+        const normal = frames.normals[i];
+        const binormal = frames.binormals[i];
+        for (let j = 0; j <= radialSegments; j++) {
+            const v = j / radialSegments * Math.PI * 2;
+            const sx = -Math.sin(v);
+            const cy = Math.cos(v);
+            N.set(sx * normal.x * rb + cy * binormal.x * rn,
+                  sx * normal.y * rb + cy * binormal.y * rn,
+                  sx * normal.z * rb + cy * binormal.z * rn);
+            positions.push(P.x + N.x, P.y + N.y, P.z + N.z);
+            N.normalize();
+            normals.push(N.x, N.y, N.z);
+        }
+    }
+
+    for (let i = 1; i <= tubularSegments; i++) {
+        for (let j = 1; j <= radialSegments; j++) {
+            const a = (radialSegments + 1) * (i - 1) + (j - 1);
+            const b = (radialSegments + 1) * i + (j - 1);
+            const c = (radialSegments + 1) * i + j;
+            const d = (radialSegments + 1) * (i - 1) + j;
+            indices.push(a, b, d, b, c, d);
+        }
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geo.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+    geo.setIndex(indices);
+
+    if (closedEnds !== false) {
+        // Caps: fan around the first and last ring using their existing rim vertices.
+        const capIndices = [];
+        const base = positions.length / 3;
+        curve.getPointAt(0, P);
+        positions.push(P.x, P.y, P.z);
+        const t0 = curve.getTangentAt(0);
+        normals.push(-t0.x, -t0.y, -t0.z);
+        curve.getPointAt(1, P);
+        positions.push(P.x, P.y, P.z);
+        const t1 = curve.getTangentAt(1);
+        normals.push(t1.x, t1.y, t1.z);
+        for (let j = 1; j <= radialSegments; j++) {
+            capIndices.push(base, j - 1, j);
+            const off = (radialSegments + 1) * tubularSegments;
+            capIndices.push(base + 1, off + j, off + j - 1);
+        }
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        geo.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+        geo.setIndex(indices.concat(capIndices));
+    }
+
+    return geo;
+}
+
+/** Rounded blob: an ellipsoid with a little organic noise. */
+function blobGeometry(rx, ry, rz, amp) {
+    // IcosahedronGeometry subdivides each edge `detail` times, so scale it with the blob.
+    const detail = Math.max(6, Math.min(26, Math.round(Math.max(rx, ry, rz) * 11)));
+    return shapedGeometry(function (d, out) {
+        const w = amp ? amp * wobble(d.x * 4.1 + 11, d.y * 4.3 - 3, d.z * 4.7 + 7) : 0;
+        out.set(d.x * rx * (1 + w), d.y * ry * (1 + w), d.z * rz * (1 + w));
+    }, detail);
+}
+
+/* ==========================================================================
+   3. ANATOMY
+   ========================================================================== */
+
+const CORTEX_HALF = { x: 6.75, y: 5.2, z: 8.1 };
+
+function cortexShape(d, out) {
+    let x = d.x * CORTEX_HALF.x;
+    let y = d.y * CORTEX_HALF.y;
+    let z = d.z * CORTEX_HALF.z;
+    const zn = z / CORTEX_HALF.z;
+
+    // Narrower frontal and occipital poles.
+    x *= zn > 0 ? 1 - 0.20 * zn * zn : 1 - 0.30 * zn * zn;
+    y *= zn > 0 ? 1 - 0.10 * zn * zn : 1 - 0.20 * zn * zn;
+
+    // Flatter base of the hemispheres: the inferior surface rests on the skull base.
+    if (y < 0) y = -4.15 * Math.tanh(-y / 4.15);
+
+    // Interhemispheric (longitudinal) fissure.
+    const fissure = Math.exp(-(x * x) / 0.9);
+    if (y > 0) y -= 1.5 * fissure * smoothstep(0, 2.4, y);
+
+    out.set(x, y, z);
+    const n = SHAPE_TMP.copy(out).normalize();
+
+    // Sylvian fissure: a groove separating the temporal lobe from frontal/parietal.
+    const dy = y - (-1.35 + 0.14 * z);
+    const zw = (z - 0.6) / 5.6;
+    const zw2 = zw * zw;
+    const syl = Math.exp(-(dy * dy) / 0.55) *
+                Math.exp(-zw2 * zw2) *
+                smoothstep(1.4, 3.4, Math.abs(x));
+
+    // Central sulcus: runs down and forward from the vertex.
+    const dz = z - (2.2 - 0.52 * y);
+    const cen = Math.exp(-(dz * dz) / 0.4) * smoothstep(-2.6, -0.8, y);
+
+    // Gyri: two octaves of folding, the coarse one giving the main convolutions.
+    // Anisotropic frequency stretches the folds front-to-back, the way real gyri run.
+    const g = 0.52 * wobble(out.x * 3.05, out.y * 3.30, out.z * 1.95) +
+              0.17 * wobble(out.x * 6.10 + 5, out.y * 6.40 - 2, out.z * 4.10 + 3);
+
+    out.addScaledVector(n, g - 0.95 * syl - 0.45 * cen);
+    return out;
+}
+
+function classifyLobe(x, y, z) {
+    const ax = Math.abs(x);
+    const sylvian = -1.35 + 0.14 * z;
+    if (y < sylvian && z > -4.4 && z < 4.2 && ax > 1.1) return 'temporal_lobe';
+    if (z < -4.4) return 'occipital_lobe';
+    if (z > 2.2 - 0.52 * y) return 'frontal_lobe';
+    return 'parietal_lobe';
+}
+
+function cerebellumShape(d, out) {
+    const x = d.x * 4.6;
+    let y = d.y * 2.45;
+    const z = d.z * 3.05;
+    if (y > 0) y *= 0.80;
+    out.set(x, y, z);
+    const n = SHAPE_TMP.copy(out).normalize();
+    const folia = 0.075 * Math.sin(y * 12.5 + z * 0.9 + 0.6 * Math.sin(x * 1.6));
+    const vermis = -0.38 * Math.exp(-(x * x) / 0.55);
+    const noise = 0.07 * wobble(x * 3, y * 3, z * 3);
+    out.addScaledVector(n, folia + vermis + noise);
+    out.y += -3.95;
+    out.z += -5.05;
+    return out;
+}
+
+const PARTS = [];
+
+function part(id, geometry, options) {
+    PARTS.push(Object.assign({ id: id, geometry: geometry }, options || {}));
+}
+
+function buildAnatomy() {
+    /* --- Cerebral cortex, split into lobes --- */
+    const cortexGeo = shapedGeometry(cortexShape, 44);
+    const lobes = splitByTriangle(cortexGeo, function (x, y, z) { return classifyLobe(x, y, z); });
+    cortexGeo.dispose();
+    lobes.forEach(function (geo, id) { part(id, geo); });
+
+    /* --- Insula (hidden under the operculum) --- */
+    const insula = blobGeometry(0.42, 1.35, 1.95, 0.05);
+    part('insula', insula, { position: [4.35, -0.65, 1.0], mirror: true });
+
+    /* --- Cerebellum --- */
+    part('cerebellum', shapedGeometry(cerebellumShape, 30));
+
+    /* --- Brainstem --- */
+    part('midbrain', tubeGeometry([[0, -1.0, -0.6], [0, -1.9, -0.85], [0, -3.0, -1.15]],
+        function (t) { return { n: 1.20 - 0.10 * t, b: 1.00 }; }, 24, 20));
+    part('pons', tubeGeometry([[0, -2.9, -1.1], [0, -3.9, -0.95], [0, -5.0, -1.25]],
+        function (t) {
+            const bulge = Math.sin(Math.min(1, Math.max(0, t)) * Math.PI);
+            return { n: 1.35 + 0.35 * bulge, b: 1.15 + 0.55 * bulge };
+        }, 26, 20));
+    part('medulla', tubeGeometry([[0, -4.9, -1.25], [0, -6.2, -1.75], [0, -7.4, -2.2], [0, -8.6, -2.5]],
+        function (t) { return { n: 1.15 - 0.42 * t, b: 1.05 - 0.38 * t }; }, 26, 20));
+
+    /* --- Diencephalon --- */
+    part('thalamus', blobGeometry(1.05, 1.0, 1.8, 0.05), { position: [1.15, 0.05, -0.95], mirror: true });
+    part('hypothalamus', blobGeometry(0.62, 0.6, 0.95, 0.06), { position: [0.62, -1.6, 0.35], mirror: true });
+    part('pituitary', blobGeometry(0.48, 0.42, 0.46, 0.05), { position: [0, -3.15, 0.7] });
+    part('pituitary', tubeGeometry([[0, -2.15, 0.5], [0, -2.7, 0.62], [0, -3.05, 0.7]],
+        function () { return 0.14; }, 12, 10));
+    part('pineal', blobGeometry(0.34, 0.3, 0.36, 0.05), { position: [0, 0.15, -3.0] });
+
+    /* --- Limbic system --- */
+    part('amygdala', blobGeometry(0.85, 0.78, 1.05, 0.06),
+        { position: [3.25, -2.15, 1.5], rotation: [0, -0.25, 0.2], mirror: true });
+    part('hippocampus', tubeGeometry([
+        [3.35, -2.2, 0.7], [3.55, -2.15, -0.55], [3.5, -1.85, -1.95],
+        [3.05, -1.25, -3.1], [2.35, -0.7, -3.85], [1.75, -0.45, -4.0]
+    ], function (t) { return 0.62 - 0.30 * t; }, 44, 16), { mirror: true });
+    part('fornix', tubeGeometry([
+        [1.75, -0.4, -3.85], [1.3, 0.65, -3.5], [0.75, 1.35, -2.5],
+        [0.45, 1.4, -0.9], [0.45, 1.15, 0.8], [0.5, -0.2, 0.85], [0.5, -1.6, 0.05], [0.5, -2.1, -0.5]
+    ], function (t) { return 0.20 + 0.06 * Math.sin(t * Math.PI); }, 54, 12), { mirror: true });
+    part('mammillary_bodies', blobGeometry(0.38, 0.36, 0.38, 0.04), { position: [0.5, -2.35, -0.55], mirror: true });
+    part('cingulate_gyrus', tubeGeometry([
+        [1.1, -0.75, 3.15], [1.1, 0.95, 3.6], [1.1, 2.45, 2.6], [1.1, 3.05, 0.6],
+        [1.1, 2.75, -1.6], [1.1, 1.65, -3.4], [1.1, 0.2, -4.15]
+    ], function (t) { return { n: 0.52, b: 0.34 }; }, 50, 14), { mirror: true });
+    part('olfactory_bulb', blobGeometry(0.36, 0.3, 0.8, 0.05), { position: [0.95, -3.05, 5.1], mirror: true });
+    part('olfactory_bulb', tubeGeometry([[0.95, -3.05, 4.8], [1.05, -3.0, 4.0], [1.2, -2.9, 2.8]],
+        function () { return 0.17; }, 16, 10), { mirror: true });
+
+    /* --- Basal ganglia --- */
+    part('caudate', tubeGeometry([
+        [1.95, 1.15, 2.85], [2.15, 1.35, 1.6], [2.45, 1.2, 0.1], [2.75, 0.55, -1.6],
+        [3.05, -0.5, -2.7], [3.35, -1.6, -2.0], [3.5, -2.05, -0.5], [3.5, -2.2, 0.7]
+    ], function (t) { return 0.95 - 0.78 * Math.pow(t, 0.55); }, 56, 18), { mirror: true });
+    part('putamen', blobGeometry(0.62, 1.5, 1.95, 0.05),
+        { position: [3.35, -0.4, 0.55], rotation: [0, -0.12, 0], mirror: true });
+    part('globus_pallidus', blobGeometry(0.42, 1.05, 1.35, 0.05),
+        { position: [2.45, -0.65, 0.35], rotation: [0, -0.12, 0], mirror: true });
+    part('accumbens', blobGeometry(0.66, 0.6, 0.72, 0.06), { position: [1.75, -1.6, 2.3], mirror: true });
+
+    /* --- Commissures and cavities --- */
+    part('corpus_callosum', tubeGeometry([
+        [0, -0.45, 1.85], [0, 0.55, 2.95], [0, 1.75, 2.4], [0, 2.25, 0.6],
+        [0, 2.05, -1.6], [0, 1.15, -3.15], [0, 0.15, -3.35], [0, -0.35, -2.75]
+    ], function (t) { return { n: 0.42 + 0.12 * Math.sin(t * Math.PI), b: 0.70 }; }, 60, 16));
+    part('ventricles', tubeGeometry([
+        [1.45, 1.15, 3.0], [1.85, 1.45, 1.4], [2.15, 1.35, -0.6], [2.35, 0.75, -2.4], [1.95, 0.35, -4.2]
+    ], function (t) { return { n: 0.30, b: 0.55 - 0.15 * t }; }, 44, 14), { mirror: true });
+    part('ventricles', tubeGeometry([
+        [2.3, 0.55, -2.6], [2.75, -0.55, -2.75], [3.1, -1.6, -1.5], [3.15, -2.0, 0.2]
+    ], function (t) { return { n: 0.26, b: 0.34 }; }, 32, 12), { mirror: true });
+    part('ventricles', blobGeometry(0.13, 1.15, 1.85, 0), { position: [0, -0.35, -0.9] });
+}
+
+/* ==========================================================================
+   4. SCENE
+   ========================================================================== */
+
+const stage = document.getElementById('atlas-stage');
+const overlay = document.getElementById('atlas-overlay');
+const tooltipEl = document.getElementById('atlas-tooltip');
+const loaderEl = document.getElementById('atlas-loader');
+
+let renderer, scene, camera, controls, raycaster;
+let root;
+const meshesByStructure = {};
+const materials = {};
+const anchors = {};
+const allMeshes = [];
+
+const state = {
+    selected: null,       // structure id
+    selectedGroup: null,  // group id
+    hovered: null,
+    cortexOpacity: 1,
+    labels: false,
+    section: false,
+    spin: false
+};
+
+const clipPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0.02);
+const DESATURATED = new THREE.Color(0xbfc3c9);
+
+function hasWebGL() {
+    try {
+        const canvas = document.createElement('canvas');
+        return !!(window.WebGLRenderingContext &&
+            (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+    } catch (e) {
+        return false;
+    }
+}
+
+function initScene() {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(stage.clientWidth, stage.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    stage.appendChild(renderer.domElement);
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(38, (stage.clientWidth || 1) / (stage.clientHeight || 1), 0.1, 500);
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.rotateSpeed = 0.85;
+    controls.minDistance = 6;
+    controls.maxDistance = 70;
+    controls.target.set(0, -1, 0);
+
+    scene.add(new THREE.HemisphereLight(0xf4f7ff, 0x6f7580, 0.85));
+    const key = new THREE.DirectionalLight(0xffffff, 2.1);
+    key.position.set(-14, 16, 14);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0xdfe6f2, 0.55);
+    fill.position.set(16, -6, -12);
+    scene.add(fill);
+    const rim = new THREE.DirectionalLight(0xffffff, 0.5);
+    rim.position.set(6, 10, -18);
+    scene.add(rim);
+
+    raycaster = new THREE.Raycaster();
+    root = new THREE.Group();
+    scene.add(root);
+}
+
+function materialFor(id) {
+    if (!materials[id]) {
+        const info = STRUCTURES[id];
+        materials[id] = new THREE.MeshStandardMaterial({
+            color: new THREE.Color(info.color),
+            roughness: 0.72,
+            metalness: 0.02,
+            side: THREE.DoubleSide,
+            transparent: false,
+            opacity: 1,
+            flatShading: false
+        });
+        materials[id].userData.baseColor = new THREE.Color(info.color);
+    }
+    return materials[id];
+}
+
+function buildScene() {
+    buildAnatomy();
+
+    PARTS.forEach(function (p) {
+        const material = materialFor(p.id);
+        const add = function (mirror) {
+            const mesh = new THREE.Mesh(p.geometry, material);
+            if (p.position) mesh.position.set(mirror ? -p.position[0] : p.position[0], p.position[1], p.position[2]);
+            if (p.rotation) mesh.rotation.set(p.rotation[0], mirror ? -p.rotation[1] : p.rotation[1], mirror ? -p.rotation[2] : p.rotation[2]);
+            if (mirror) mesh.scale.x *= -1;
+            mesh.userData.sid = p.id;
+            mesh.renderOrder = STRUCTURES[p.id].cortex ? 10 : 1;
+            root.add(mesh);
+            allMeshes.push(mesh);
+            (meshesByStructure[p.id] = meshesByStructure[p.id] || []).push(mesh);
+        };
+        add(false);
+        if (p.mirror) add(true);
+    });
+
+    // Anchors are per mesh instance, not per structure: a paired nucleus must not be
+    // treated as one huge blob straddling the midline, or focus and occlusion go wrong.
+    const partBox = new THREE.Box3();
+    Object.keys(meshesByStructure).forEach(function (sid) {
+        const parts = meshesByStructure[sid].map(function (m) {
+            partBox.makeEmpty().expandByObject(m);
+            const size = partBox.getSize(new THREE.Vector3());
+            return {
+                point: partBox.getCenter(new THREE.Vector3()),
+                radius: Math.max(size.x, size.y, size.z) * 0.5
+            };
+        });
+        // The default views look at the brain from the left, so label the left-hand copy.
+        const left = parts.reduce(function (a, b) { return b.point.x < a.point.x ? b : a; });
+        anchors[sid] = {
+            point: left.point.clone(),
+            radius: parts.reduce(function (r, p) { return Math.max(r, p.radius); }, 0),
+            parts: parts
+        };
+    });
+
+    // Cortical labels read better near the left surface than at the lobe's centroid.
+    ['frontal_lobe', 'parietal_lobe', 'temporal_lobe', 'occipital_lobe'].forEach(function (sid) {
+        if (anchors[sid]) anchors[sid].point.x = -Math.abs(anchors[sid].point.x) * 0.55 - 2.4;
+    });
+}
+
+/* ==========================================================================
+   5. VISUAL STATE
+   ========================================================================== */
+
+function isSelected(sid) {
+    if (state.selected) return sid === state.selected;
+    if (state.selectedGroup) return GROUPS[state.selectedGroup].children.indexOf(sid) !== -1;
+    return false;
+}
+
+function anySelection() {
+    return !!(state.selected || state.selectedGroup);
+}
+
+/**
+ * Structures sitting between the camera and the selection are faded, so the
+ * highlighted one stays visible from any angle without ghosting the whole model.
+ */
+function occludes(sid) {
+    if (!anchors[sid]) return false;
+    const selIds = state.selected ? [state.selected] : (state.selectedGroup ? GROUPS[state.selectedGroup].children : []);
+    for (let i = 0; i < selIds.length; i++) {
+        const target = anchors[selIds[i]];
+        if (!target) continue;
+        for (let t = 0; t < target.parts.length; t++) {
+            const tp = target.parts[t];
+            const dTarget = camera.position.distanceTo(tp.point) - tp.radius;
+            const parts = anchors[sid].parts;
+            for (let o = 0; o < parts.length; o++) {
+                if (camera.position.distanceTo(parts[o].point) + parts[o].radius * 0.6 < dTarget) return true;
+            }
+        }
+    }
+    return false;
+}
+
+function applyVisualState() {
+    Object.keys(STRUCTURES).forEach(function (sid) {
+        const material = materials[sid];
+        if (!material) return;
+        const info = STRUCTURES[sid];
+        const sel = isSelected(sid);
+
+        // Only the cortical shell fades by default; deep structures stay solid so shapes stay readable.
+        let opacity = info.cortex && !info.deep ? state.cortexOpacity : 1;
+        if (anySelection() && !sel && info.cortex && !info.deep) opacity *= 0.8;
+        if (anySelection() && !sel && !(info.cortex && !info.deep) && occludes(sid)) opacity = 0.25;
+        if (sel) opacity = Math.max(opacity, 0.95);
+
+        material.opacity = opacity;
+        material.transparent = opacity < 0.995;
+        material.depthWrite = opacity > 0.85;
+
+        const emissive = sel ? 0.38 : (state.hovered === sid ? 0.18 : 0);
+        material.emissive.copy(material.userData.baseColor).multiplyScalar(emissive);
+        material.color.copy(material.userData.baseColor);
+        if (!sel && anySelection()) material.color.lerp(DESATURATED, 0.22);
+        material.needsUpdate = true;
+    });
+    updateLabelSet();
+}
+
+function setCortexOpacity(value, syncSlider) {
+    state.cortexOpacity = value;
+    if (syncSlider !== false) document.getElementById('cortex-opacity').value = Math.round(value * 100);
+    applyVisualState();
+}
+
+/* ==========================================================================
+   6. CAMERA
+   ========================================================================== */
+
+const HOME_DIR = new THREE.Vector3(-0.78, 0.30, 0.62).normalize();
+const HOME_TARGET = new THREE.Vector3(0, -1, 0);
+const BRAIN_RADIUS = 9.4;
+let camAnim = null;
+
+/** Distance at which a sphere of the given radius fits the viewport in both axes. */
+function frameDistance(radius, margin) {
+    const half = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
+    const d = radius / half;
+    return Math.max(d, d / camera.aspect) * (margin || 1);
+}
+
+function homePosition() {
+    return HOME_TARGET.clone().addScaledVector(HOME_DIR, frameDistance(BRAIN_RADIUS, 1.12));
+}
+
+function animateCamera(toPosition, toTarget, duration) {
+    camAnim = {
+        t0: performance.now(),
+        dur: duration || 750,
+        fromPos: camera.position.clone(),
+        toPos: toPosition.clone(),
+        fromTarget: controls.target.clone(),
+        toTarget: toTarget.clone()
+    };
+}
+
+function updateCamera(now) {
+    if (!camAnim) return;
+    let t = (now - camAnim.t0) / camAnim.dur;
+    if (t >= 1) { t = 1; }
+    const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    camera.position.lerpVectors(camAnim.fromPos, camAnim.toPos, e);
+    controls.target.lerpVectors(camAnim.fromTarget, camAnim.toTarget, e);
+    if (t === 1) camAnim = null;
+}
+
+function focusStructure(sid) {
+    const anchor = anchors[sid];
+    if (!anchor) return;
+    const centre = anchor.point;
+    const dir = new THREE.Vector3(centre.x >= 0 ? 0.92 : -0.92, 0.30, 0.72);
+    if (Math.abs(centre.x) < 0.6) dir.set(-0.92, 0.28, 0.72);
+    dir.normalize();
+    // Small structures get surrounding context; large ones are framed close to their extent.
+    const distance = frameDistance(Math.max(anchor.radius * 3.0, 5.0), 1.0);
+    animateCamera(centre.clone().addScaledVector(dir, distance), centre.clone());
+}
+
+function focusGroup(gid) {
+    const box = new THREE.Box3();
+    GROUPS[gid].children.forEach(function (sid) {
+        (meshesByStructure[sid] || []).forEach(function (m) { box.expandByObject(m); });
+    });
+    if (box.isEmpty()) return;
+    const centre = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const radius = Math.max(size.x, size.y, size.z) * 0.5;
+    const dir = new THREE.Vector3(-0.92, 0.3, 0.72).normalize();
+    animateCamera(centre.clone().addScaledVector(dir, frameDistance(Math.max(radius, 1.5), 1.9)), centre.clone());
+}
+
+const VIEW_DIRS = {
+    left:  new THREE.Vector3(-1, 0.06, 0),
+    right: new THREE.Vector3(1, 0.06, 0),
+    front: new THREE.Vector3(0, 0.06, 1),
+    back:  new THREE.Vector3(0, 0.06, -1),
+    top:   new THREE.Vector3(0, 1, 0.03)
+};
+
+function setView(name) {
+    const dir = VIEW_DIRS[name].clone().normalize();
+    const target = HOME_TARGET.clone();
+    animateCamera(target.clone().addScaledVector(dir, frameDistance(BRAIN_RADIUS, 1.12)), target, 650);
+}
+
+function resetView() {
+    animateCamera(homePosition(), HOME_TARGET, 700);
+}
+
+/* ==========================================================================
+   7. LABELS AND TOOLTIP
+   ========================================================================== */
+
+const labelEls = {};
+let visibleLabels = [];
+
+function createLabels() {
+    Object.keys(STRUCTURES).forEach(function (sid) {
+        const el = document.createElement('div');
+        el.className = 'atlas-label';
+        el.textContent = STRUCTURES[sid].name;
+        overlay.appendChild(el);
+        // Measure once: label boxes are needed every frame for collision culling.
+        el.dataset.w = el.offsetWidth;
+        el.dataset.h = el.offsetHeight;
+        el.style.display = 'none';
+        labelEls[sid] = el;
+    });
+}
+
+function updateLabelSet() {
+    const set = {};
+    if (state.labels) {
+        Object.keys(STRUCTURES).forEach(function (sid) {
+            const info = STRUCTURES[sid];
+            const visible = info.deep ? state.cortexOpacity < 0.6 || state.section || isSelected(sid) : true;
+            if (visible) set[sid] = true;
+        });
+    }
+    if (state.selected) set[state.selected] = true;
+    if (state.selectedGroup) GROUPS[state.selectedGroup].children.forEach(function (sid) { set[sid] = true; });
+    visibleLabels = Object.keys(set);
+    Object.keys(labelEls).forEach(function (sid) {
+        labelEls[sid].style.display = set[sid] ? 'block' : 'none';
+        labelEls[sid].classList.toggle('is-selected', isSelected(sid));
+    });
+}
+
+const projected = new THREE.Vector3();
+const placedBoxes = [];
+
+function positionLabels() {
+    if (!visibleLabels.length) return;
+    const w = stage.clientWidth;
+    const h = stage.clientHeight;
+    const items = [];
+
+    for (let i = 0; i < visibleLabels.length; i++) {
+        const sid = visibleLabels[i];
+        projected.copy(anchors[sid].point).project(camera);
+        if (projected.z > 1) { labelEls[sid].style.display = 'none'; continue; }
+        items.push({
+            sid: sid,
+            x: (projected.x * 0.5 + 0.5) * w,
+            y: (-projected.y * 0.5 + 0.5) * h,
+            z: projected.z,
+            sel: isSelected(sid) ? 1 : 0
+        });
+    }
+
+    // Selected labels win, then the ones closest to the camera; the rest yield on overlap.
+    items.sort(function (a, b) { return (b.sel - a.sel) || (a.z - b.z); });
+    placedBoxes.length = 0;
+
+    items.forEach(function (item) {
+        const el = labelEls[item.sid];
+        const bw = +el.dataset.w;
+        const bh = +el.dataset.h;
+        const left = item.x - bw / 2;
+        const top = item.y - bh / 2;
+        let collides = left < -bw || left > w || top < -bh || top > h;
+        for (let i = 0; !collides && i < placedBoxes.length; i++) {
+            const b = placedBoxes[i];
+            collides = left < b.r && left + bw > b.l && top < b.b && top + bh > b.t;
+        }
+        if (collides) { el.style.display = 'none'; return; }
+        placedBoxes.push({ l: left, r: left + bw, t: top, b: top + bh });
+        el.style.display = 'block';
+        el.style.left = item.x.toFixed(1) + 'px';
+        el.style.top = item.y.toFixed(1) + 'px';
+    });
+}
+
+/* ==========================================================================
+   8. SIDEBAR TREE
+   ========================================================================== */
+
+const treeEl = document.getElementById('atlas-tree');
+
+function buildTree() {
+    treeEl.innerHTML = '';
+    TREE.forEach(function (gid) {
+        const group = GROUPS[gid];
+        const groupEl = document.createElement('div');
+        groupEl.className = 'tree-group open';
+        groupEl.dataset.gid = gid;
+
+        const title = document.createElement('div');
+        title.className = 'tree-group-title';
+        title.innerHTML = '<span class="tree-caret"></span><span>' + group.name + '</span>';
+        title.addEventListener('click', function (event) {
+            if (event.target.classList.contains('tree-caret')) {
+                groupEl.classList.toggle('open');
+                return;
+            }
+            selectGroup(gid);
+        });
+        groupEl.appendChild(title);
+
+        const children = document.createElement('div');
+        children.className = 'tree-children';
+        group.children.forEach(function (sid) {
+            const info = STRUCTURES[sid];
+            const item = document.createElement('div');
+            item.className = 'tree-item';
+            item.dataset.sid = sid;
+            item.innerHTML = '<span class="tree-dot" style="background:' + info.color + '"></span>' +
+                             '<span>' + info.name + '</span>';
+            item.addEventListener('click', function () { selectStructure(sid); });
+            children.appendChild(item);
+        });
+        groupEl.appendChild(children);
+        treeEl.appendChild(groupEl);
+    });
+}
+
+function syncTree() {
+    treeEl.querySelectorAll('.tree-item').forEach(function (el) {
+        el.classList.toggle('selected', el.dataset.sid === state.selected);
+    });
+    treeEl.querySelectorAll('.tree-group').forEach(function (el) {
+        el.classList.toggle('selected', el.dataset.gid === state.selectedGroup);
+    });
+    if (state.selected) {
+        const el = treeEl.querySelector('.tree-item.selected');
+        if (el) {
+            const group = el.closest('.tree-group');
+            if (group) group.classList.add('open');
+            const box = treeEl.getBoundingClientRect();
+            const rect = el.getBoundingClientRect();
+            if (rect.top < box.top || rect.bottom > box.bottom) {
+                treeEl.scrollTop += rect.top - box.top - box.height / 2 + rect.height / 2;
+            }
+        }
+    }
+}
+
+document.getElementById('structure-search').addEventListener('input', function (event) {
+    const q = event.target.value.trim().toLowerCase();
+    let found = 0;
+    treeEl.querySelectorAll('.tree-group').forEach(function (groupEl) {
+        let groupHits = 0;
+        groupEl.querySelectorAll('.tree-item').forEach(function (item) {
+            const info = STRUCTURES[item.dataset.sid];
+            const hit = !q || info.name.toLowerCase().indexOf(q) !== -1 ||
+                        info.latin.toLowerCase().indexOf(q) !== -1;
+            item.style.display = hit ? '' : 'none';
+            if (hit) groupHits++;
+        });
+        const groupName = GROUPS[groupEl.dataset.gid].name.toLowerCase();
+        const groupHit = !q || groupName.indexOf(q) !== -1;
+        if (groupHit && q) {
+            groupEl.querySelectorAll('.tree-item').forEach(function (item) { item.style.display = ''; });
+            groupHits = GROUPS[groupEl.dataset.gid].children.length;
+        }
+        groupEl.style.display = groupHits || groupHit ? '' : 'none';
+        if (q) groupEl.classList.add('open');
+        found += groupHits;
+    });
+    let empty = treeEl.querySelector('.tree-empty');
+    if (!found && q) {
+        if (!empty) {
+            empty = document.createElement('div');
+            empty.className = 'tree-empty';
+            empty.textContent = 'Ничего не найдено';
+            treeEl.appendChild(empty);
+        }
+    } else if (empty) {
+        empty.remove();
+    }
+});
+
+/* ==========================================================================
+   9. INFO PANEL
+   ========================================================================== */
+
+const infoEl = document.getElementById('info-content');
+
+function escapeHtml(text) {
+    return String(text).replace(/[&<>"]/g, function (ch) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch];
+    });
+}
+
+function renderInfo() {
+    if (state.selected) {
+        const info = STRUCTURES[state.selected];
+        const groupName = groupOf(state.selected);
+        infoEl.innerHTML =
+            '<div class="info-kicker">' + escapeHtml(groupName) + '</div>' +
+            '<h2 class="info-title"><span class="info-swatch" style="background:' + info.color + '"></span>' +
+                escapeHtml(info.name) + '</h2>' +
+            '<div class="info-latin">' + escapeHtml(info.latin) + '</div>' +
+            '<p>' + escapeHtml(info.desc) + '</p>' +
+            '<h3>Функции</h3>' +
+            '<ul class="info-func">' + info.func.map(function (f) {
+                return '<li>' + escapeHtml(f) + '</li>';
+            }).join('') + '</ul>' +
+            (info.fact ? '<div class="info-fact">' + escapeHtml(info.fact) + '</div>' : '') +
+            (info.related && info.related.length ?
+                '<h3>Связанные структуры</h3><div class="info-chips">' + info.related.map(function (r) {
+                    return STRUCTURES[r] ? '<button type="button" class="info-chip" data-sid="' + r + '">' +
+                        escapeHtml(STRUCTURES[r].name) + '</button>' : '';
+                }).join('') + '</div>' : '') +
+            '<div class="info-share"><button type="button" id="copy-link">Скопировать ссылку на структуру</button></div>';
+    } else if (state.selectedGroup) {
+        const group = GROUPS[state.selectedGroup];
+        infoEl.innerHTML =
+            '<div class="info-kicker">Система</div>' +
+            '<h2 class="info-title">' + escapeHtml(group.name) + '</h2>' +
+            '<div class="info-latin">' + escapeHtml(group.latin) + '</div>' +
+            '<p>' + escapeHtml(group.desc) + '</p>' +
+            '<h3>Функции</h3>' +
+            '<ul class="info-func">' + group.func.map(function (f) {
+                return '<li>' + escapeHtml(f) + '</li>';
+            }).join('') + '</ul>' +
+            (group.fact ? '<div class="info-fact">' + escapeHtml(group.fact) + '</div>' : '') +
+            '<h3>Входят в состав</h3><div class="info-chips">' + group.children.map(function (sid) {
+                return '<button type="button" class="info-chip" data-sid="' + sid + '">' +
+                    escapeHtml(STRUCTURES[sid].name) + '</button>';
+            }).join('') + '</div>';
+    } else {
+        infoEl.innerHTML =
+            '<div class="info-kicker">3D-атлас</div>' +
+            '<h2 class="info-title">Выберите структуру</h2>' +
+            '<p class="info-placeholder">Щёлкните по любой области модели или выберите пункт в списке слева. ' +
+            'Здесь появится описание структуры, её функции и место в системе мозга.</p>';
+    }
+
+    infoEl.querySelectorAll('.info-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () { selectStructure(chip.dataset.sid); });
+    });
+    const copyBtn = infoEl.querySelector('#copy-link');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+            const url = location.href;
+            const done = function () {
+                copyBtn.textContent = 'Ссылка скопирована';
+                setTimeout(function () { copyBtn.textContent = 'Скопировать ссылку на структуру'; }, 2000);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(done, function () {});
+            } else {
+                const input = document.createElement('input');
+                input.value = url;
+                document.body.appendChild(input);
+                input.select();
+                try { document.execCommand('copy'); done(); } catch (e) {}
+                input.remove();
+            }
+        });
+    }
+}
+
+function groupOf(sid) {
+    for (let i = 0; i < TREE.length; i++) {
+        if (GROUPS[TREE[i]].children.indexOf(sid) !== -1) return GROUPS[TREE[i]].name;
+    }
+    return 'Головной мозг';
+}
+
+/* ==========================================================================
+   10. SELECTION
+   ========================================================================== */
+
+function selectStructure(sid, skipHash) {
+    if (!STRUCTURES[sid]) return;
+    state.selected = sid;
+    state.selectedGroup = null;
+    const info = STRUCTURES[sid];
+    setCortexOpacity(info.deep ? 0.14 : 1);
+    applyVisualState();
+    syncTree();
+    renderInfo();
+    focusStructure(sid);
+    if (!skipHash) writeHash(info.path);
+    if (window.innerWidth <= 900) showPanel('stage');
+}
+
+function selectGroup(gid, skipHash) {
+    if (!GROUPS[gid]) return;
+    state.selected = null;
+    state.selectedGroup = gid;
+    const deepGroup = GROUPS[gid].children.every(function (sid) { return STRUCTURES[sid].deep; });
+    setCortexOpacity(deepGroup ? 0.14 : 1);
+    applyVisualState();
+    syncTree();
+    renderInfo();
+    focusGroup(gid);
+    if (!skipHash) writeHash('Brain-' + gid);
+}
+
+function clearSelection(skipHash) {
+    state.selected = null;
+    state.selectedGroup = null;
+    setCortexOpacity(1);
+    applyVisualState();
+    syncTree();
+    renderInfo();
+    if (!skipHash) writeHash(null);
+}
+
+/* ==========================================================================
+   11. URL HASH (compatible with the #focus=Brain-limbic_system-amygdala scheme)
+   ========================================================================== */
+
+let ignoreHashChange = false;
+
+function writeHash(path) {
+    const intro = introDismissed ? 'intro=false' : null;
+    const parts = [];
+    if (intro) parts.push(intro);
+    if (path) parts.push('focus=' + path);
+    ignoreHashChange = true;
+    const next = parts.length ? '#' + parts.join('&') : ' ';
+    if (parts.length) {
+        history.replaceState(null, '', location.pathname + location.search + next);
+    } else {
+        history.replaceState(null, '', location.pathname + location.search);
+    }
+    setTimeout(function () { ignoreHashChange = false; }, 0);
+}
+
+function parseHash() {
+    const raw = location.hash.replace(/^#/, '');
+    const params = {};
+    raw.split('&').forEach(function (chunk) {
+        const eq = chunk.indexOf('=');
+        if (eq > 0) params[chunk.slice(0, eq)] = decodeURIComponent(chunk.slice(eq + 1));
+    });
+    return params;
+}
+
+function applyHash(initial) {
+    const params = parseHash();
+    if (params.intro === 'false') dismissIntro(true);
+    if (!params.focus) {
+        if (!initial) clearSelection(true);
+        return;
+    }
+    const segments = params.focus.split('-');
+    const last = segments[segments.length - 1];
+
+    // Exact structure id, then a match on the declared path, then a group id.
+    if (STRUCTURES[last]) { selectStructure(last, true); return; }
+    const byPath = Object.keys(STRUCTURES).filter(function (sid) {
+        return STRUCTURES[sid].path === params.focus ||
+               STRUCTURES[sid].path.split('-').pop() === last;
+    });
+    if (byPath.length) { selectStructure(byPath[0], true); return; }
+    if (GROUPS[last]) { selectGroup(last, true); return; }
+    const groupSegment = segments.length > 1 ? segments[1] : null;
+    if (groupSegment && GROUPS[groupSegment]) selectGroup(groupSegment, true);
+}
+
+window.addEventListener('hashchange', function () {
+    if (ignoreHashChange) return;
+    applyHash(false);
+});
+
+/* ==========================================================================
+   12. POINTER INTERACTION
+   ========================================================================== */
+
+const pointer = new THREE.Vector2();
+let downAt = null;
+
+function pickAt(clientX, clientY) {
+    const rect = renderer.domElement.getBoundingClientRect();
+    pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(pointer, camera);
+    // Nearly invisible structures should not swallow clicks meant for what is behind them.
+    const candidates = allMeshes.filter(function (mesh) { return mesh.material.opacity >= 0.2; });
+    const hits = raycaster.intersectObjects(candidates, false);
+    for (let i = 0; i < hits.length; i++) {
+        if (state.section && hits[i].point.x > 0.02) continue;
+        return hits[i];
+    }
+    return null;
+}
+
+stage.addEventListener('pointermove', function (event) {
+    if (downAt) return;
+    const hit = pickAt(event.clientX, event.clientY);
+    const sid = hit ? hit.object.userData.sid : null;
+    if (sid !== state.hovered) {
+        state.hovered = sid;
+        applyVisualState();
+    }
+    if (sid) {
+        const rect = stage.getBoundingClientRect();
+        tooltipEl.style.display = 'block';
+        tooltipEl.style.left = (event.clientX - rect.left) + 'px';
+        tooltipEl.style.top = (event.clientY - rect.top) + 'px';
+        tooltipEl.textContent = STRUCTURES[sid].name;
+    } else {
+        tooltipEl.style.display = 'none';
+    }
+});
+
+stage.addEventListener('pointerleave', function () {
+    tooltipEl.style.display = 'none';
+    if (state.hovered) { state.hovered = null; applyVisualState(); }
+});
+
+stage.addEventListener('pointerdown', function (event) {
+    downAt = { x: event.clientX, y: event.clientY, t: performance.now() };
+});
+
+stage.addEventListener('pointerup', function (event) {
+    if (!downAt) return;
+    const dx = event.clientX - downAt.x;
+    const dy = event.clientY - downAt.y;
+    const moved = Math.sqrt(dx * dx + dy * dy) > 5;
+    const quick = performance.now() - downAt.t < 700;
+    downAt = null;
+    if (moved || !quick) return;
+    if (event.target !== renderer.domElement) return;
+    const hit = pickAt(event.clientX, event.clientY);
+    if (hit) selectStructure(hit.object.userData.sid);
+    else clearSelection();
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') clearSelection();
+});
+
+/* ==========================================================================
+   13. TOOLBAR
+   ========================================================================== */
+
+document.getElementById('btn-reset').addEventListener('click', function () {
+    clearSelection();
+    state.section = false;
+    document.getElementById('btn-section').classList.remove('active');
+    renderer.clippingPlanes = [];
+    resetView();
+});
+
+document.getElementById('view-presets').addEventListener('click', function (event) {
+    const button = event.target.closest('button[data-view]');
+    if (!button) return;
+    document.querySelectorAll('#view-presets .tool-btn').forEach(function (el) { el.classList.remove('active'); });
+    button.classList.add('active');
+    setView(button.dataset.view);
+});
+
+document.getElementById('cortex-opacity').addEventListener('input', function (event) {
+    setCortexOpacity(parseInt(event.target.value, 10) / 100, false);
+});
+
+document.getElementById('btn-section').addEventListener('click', function () {
+    state.section = !state.section;
+    this.classList.toggle('active', state.section);
+    renderer.clippingPlanes = state.section ? [clipPlane] : [];
+    updateLabelSet();
+    // The cut face only reads from the right, so swing the camera around to it.
+    if (state.section && camera.position.x < 0) {
+        document.querySelectorAll('#view-presets .tool-btn').forEach(function (el) { el.classList.remove('active'); });
+        setView('right');
+    }
+});
+
+document.getElementById('btn-labels').addEventListener('click', function () {
+    state.labels = !state.labels;
+    this.classList.toggle('active', state.labels);
+    updateLabelSet();
+});
+
+document.getElementById('btn-spin').addEventListener('click', function () {
+    state.spin = !state.spin;
+    this.classList.toggle('active', state.spin);
+    controls.autoRotate = state.spin;
+    controls.autoRotateSpeed = 1.1;
+});
+
+/* --- Intro overlay --- */
+
+const introEl = document.getElementById('atlas-intro');
+let introDismissed = false;
+
+function dismissIntro(silent) {
+    introDismissed = true;
+    introEl.classList.add('hidden');
+    if (!silent) {
+        const params = parseHash();
+        writeHash(params.focus || null);
+    }
+}
+
+document.getElementById('intro-close').addEventListener('click', function () { dismissIntro(false); });
+
+/* --- Mobile panel switcher --- */
+
+function showPanel(name) {
+    const sidebar = document.getElementById('atlas-sidebar');
+    const info = document.getElementById('atlas-info');
+    const stageEl = document.getElementById('atlas-stage');
+    if (window.innerWidth > 900) {
+        sidebar.hidden = false;
+        info.hidden = false;
+        stageEl.style.display = '';
+        return;
+    }
+    sidebar.hidden = name !== 'list';
+    info.hidden = name !== 'info';
+    stageEl.style.display = name === 'stage' ? '' : 'none';
+    document.querySelectorAll('#mobile-switch button').forEach(function (button) {
+        button.classList.toggle('active', button.dataset.panel === name);
+    });
+    if (name === 'stage') onResize();
+}
+
+document.getElementById('mobile-switch').addEventListener('click', function (event) {
+    const button = event.target.closest('button[data-panel]');
+    if (button) showPanel(button.dataset.panel);
+});
+
+/* ==========================================================================
+   14. LOOP
+   ========================================================================== */
+
+function onResize() {
+    if (!renderer) return;
+    const w = stage.clientWidth;
+    const h = stage.clientHeight;
+    if (!w || !h) return;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+}
+
+window.addEventListener('resize', function () {
+    onResize();
+    showPanel(window.innerWidth > 900 ? 'stage' : currentPanel());
+});
+
+function currentPanel() {
+    const active = document.querySelector('#mobile-switch button.active');
+    return active ? active.dataset.panel : 'stage';
+}
+
+const lastFadeCamera = new THREE.Vector3(1e9, 0, 0);
+
+function tick() {
+    requestAnimationFrame(tick);
+    updateCamera(performance.now());
+    controls.update();
+    if (anySelection() && camera.position.distanceToSquared(lastFadeCamera) > 0.35) {
+        lastFadeCamera.copy(camera.position);
+        applyVisualState();
+    }
+    renderer.render(scene, camera);
+    positionLabels();
+}
+
+/* ==========================================================================
+   15. BOOT
+   ========================================================================== */
+
+function boot() {
+    if (!hasWebGL()) {
+        window.__atlasReady = true;
+        loaderEl.classList.add('hidden');
+        document.getElementById('atlas-fallback').style.display = 'flex';
+        document.getElementById('atlas-intro').classList.add('hidden');
+        buildTree();
+        renderInfo();
+        return;
+    }
+
+    initScene();
+    buildScene();
+    createLabels();
+    buildTree();
+    renderInfo();
+    applyVisualState();
+    onResize();
+    camera.position.copy(homePosition());
+    controls.target.copy(HOME_TARGET);
+    controls.update();
+    tick();
+    loaderEl.classList.add('hidden');
+    applyHash(true);
+    showPanel('stage');
+    window.__atlasReady = true;
+}
+
+// Building ~90k triangles takes a moment: let the loader paint first.
+requestAnimationFrame(function () { setTimeout(boot, 20); });
+</script>
+
+<script type="text/javascript">setTimeout(function(){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-Z6DM3MMBNL','auto');ga('send','pageview');},2000);</script>
+</body>
+</html>
