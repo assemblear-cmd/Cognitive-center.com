@@ -290,39 +290,59 @@
     overflow: hidden;
 }
 
-.atlas-label {
+.atlas-leader {
     position: absolute;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    line-height: 1.2;
-    color: #1a1a1a;
-    background: rgba(255, 255, 255, .88);
-    border: 1px solid rgba(0, 0, 0, .08);
-    border-radius: 5px;
-    padding: 3px 7px;
-    white-space: nowrap;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
-}
-
-.atlas-label.is-selected {
-    background: #1a1a1a;
-    color: #fff;
-    border-color: #1a1a1a;
-    font-weight: 600;
-}
-
-.atlas-tooltip {
-    position: absolute;
-    transform: translate(12px, -50%);
-    font-size: 13px;
-    color: #fff;
-    background: rgba(26, 26, 26, .9);
-    border-radius: 5px;
-    padding: 5px 9px;
-    white-space: nowrap;
-    display: none;
-    z-index: 6;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
     pointer-events: none;
+}
+
+.atlas-leader line {
+    stroke: #3a3a3e;
+    stroke-width: 1.1;
+}
+
+.atlas-leader circle {
+    fill: #3a3a3e;
+}
+
+.atlas-callout {
+    position: absolute;
+    display: none;
+    max-width: 230px;
+    background: rgba(255, 255, 255, .95);
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 7px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.atlas-callout .callout-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.25;
+}
+
+.atlas-callout .callout-latin {
+    font-size: 12px;
+    font-style: italic;
+    color: #85898f;
+    margin-top: 2px;
+}
+
+.atlas-callout .callout-swatch {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 7px;
+    vertical-align: baseline;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);
 }
 
 .atlas-loader {
@@ -388,7 +408,7 @@
     font-size: 14px;
     font-style: italic;
     color: #888;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 
 .info-swatch {
@@ -408,15 +428,6 @@
     margin: 0 0 16px 0;
 }
 
-.atlas-info h3 {
-    font-size: 13px;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: #8a8f97;
-    font-weight: 600;
-    margin: 24px 0 10px 0;
-}
-
 .atlas-info ul.info-func {
     margin: 0;
     padding-left: 18px;
@@ -429,22 +440,82 @@
     margin-bottom: 7px;
 }
 
-.info-fact {
-    background: #f8f9fa;
-    border-left: 3px solid #1a1a1a;
-    padding: 14px 16px;
-    border-radius: 0 6px 6px 0;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
-    margin-top: 22px;
+.info-section {
+    border-top: 1px solid #eeeff1;
+}
+
+.info-section:last-of-type {
+    border-bottom: 1px solid #eeeff1;
+}
+
+.info-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 13px 2px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #6d7178;
+    text-align: left;
+    cursor: pointer;
+}
+
+.info-section-head:hover {
+    color: #1a1a1a;
+}
+
+.info-section-head:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.info-section.open .info-section-head {
+    color: #1a1a1a;
+}
+
+.info-chevron {
+    flex: 0 0 8px;
+    width: 8px;
+    height: 8px;
+    border-right: 1.6px solid currentColor;
+    border-bottom: 1.6px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform .2s;
+}
+
+.info-section.open .info-chevron {
+    transform: translateY(1px) rotate(-135deg);
+}
+
+.info-section-body {
+    display: none;
+    padding: 0 2px 16px;
+}
+
+.info-section.open .info-section-body {
+    display: block;
+}
+
+.info-section-body p {
+    margin: 0;
+}
+
+.info-section-body .info-func {
+    margin: 0;
 }
 
 .info-chips {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
-    margin-top: 10px;
 }
 
 .info-chip {
@@ -664,12 +735,13 @@
                 </div>
                 <button type="button" class="tool-btn" id="btn-section">Разрез</button>
                 <button type="button" class="tool-btn" id="btn-tissue">Ткань</button>
-                <button type="button" class="tool-btn" id="btn-labels">Подписи</button>
                 <button type="button" class="tool-btn" id="btn-spin">Вращение</button>
             </div>
 
-            <div class="atlas-overlay" id="atlas-overlay"></div>
-            <div class="atlas-tooltip" id="atlas-tooltip"></div>
+            <div class="atlas-overlay" id="atlas-overlay">
+                <svg class="atlas-leader" id="atlas-leader"></svg>
+                <div class="atlas-callout" id="atlas-callout"></div>
+            </div>
 
             <div class="atlas-loader" id="atlas-loader">Строим модель мозга…</div>
 
@@ -1574,7 +1646,6 @@ function buildAnatomy() {
 
 const stage = document.getElementById('atlas-stage');
 const overlay = document.getElementById('atlas-overlay');
-const tooltipEl = document.getElementById('atlas-tooltip');
 const loaderEl = document.getElementById('atlas-loader');
 
 let renderer, scene, camera, controls, raycaster;
@@ -1589,7 +1660,6 @@ const state = {
     selectedGroup: null,  // group id
     hovered: null,
     cortexOpacity: 1,
-    labels: false,
     section: false,
     spin: false,
     naturalTissue: false
@@ -1790,7 +1860,7 @@ function applyVisualState() {
         // every hover and while the camera moves.
         if (material.transparent !== wasTransparent) material.needsUpdate = true;
     });
-    updateLabelSet();
+    updateCallout();
 }
 
 /** The slider is labelled "Прозрачность", so 0 means a solid cortex and 100 a fully see-through one. */
@@ -1889,84 +1959,126 @@ function resetView() {
    7. LABELS AND TOOLTIP
    ========================================================================== */
 
-const labelEls = {};
-let visibleLabels = [];
+const calloutEl = document.getElementById('atlas-callout');
+const leaderEl = document.getElementById('atlas-leader');
+const leaderLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+const leaderDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+leaderDot.setAttribute('r', '3');
+leaderEl.appendChild(leaderLine);
+leaderEl.appendChild(leaderDot);
 
-function createLabels() {
-    Object.keys(STRUCTURES).forEach(function (sid) {
-        const el = document.createElement('div');
-        el.className = 'atlas-label';
-        el.textContent = STRUCTURES[sid].name;
-        overlay.appendChild(el);
-        // Measure once: label boxes are needed every frame for collision culling.
-        el.dataset.w = el.offsetWidth;
-        el.dataset.h = el.offsetHeight;
-        el.style.display = 'none';
-        labelEls[sid] = el;
-    });
-}
+let calloutTarget = null;
 
-function updateLabelSet() {
-    const set = {};
-    if (state.labels) {
-        Object.keys(STRUCTURES).forEach(function (sid) {
-            const info = STRUCTURES[sid];
-            const visible = info.deep ? state.cortexOpacity < 0.6 || state.section || isSelected(sid) : true;
-            if (visible) set[sid] = true;
-        });
+/** The callout names whatever is selected; a hover preview takes over while it lasts. */
+function updateCallout() {
+    const sid = state.hovered || state.selected ||
+        (state.selectedGroup ? GROUPS[state.selectedGroup].children[0] : null);
+    calloutTarget = sid && anchors[sid] ? sid : null;
+
+    if (!calloutTarget) {
+        calloutEl.style.display = 'none';
+        leaderEl.style.display = 'none';
+        return;
     }
-    if (state.selected) set[state.selected] = true;
-    if (state.selectedGroup) GROUPS[state.selectedGroup].children.forEach(function (sid) { set[sid] = true; });
-    visibleLabels = Object.keys(set);
-    Object.keys(labelEls).forEach(function (sid) {
-        labelEls[sid].style.display = set[sid] ? 'block' : 'none';
-        labelEls[sid].classList.toggle('is-selected', isSelected(sid));
-    });
+
+    const info = STRUCTURES[calloutTarget];
+    calloutEl.innerHTML = '<div class="callout-name"><span class="callout-swatch" style="background:' +
+        info.color + '"></span>' + escapeHtml(info.name) + '</div>' +
+        '<div class="callout-latin">' + escapeHtml(info.latin) + '</div>';
+    calloutEl.style.display = 'block';
+    leaderEl.style.display = 'block';
+    positionCallout();
 }
 
 const projected = new THREE.Vector3();
-const placedBoxes = [];
+const cameraRight = new THREE.Vector3();
 
-function positionLabels() {
-    if (!visibleLabels.length) return;
+/**
+ * Places the box clear of the model — pushed outward from the centre of the brain —
+ * and runs a leader line back to the structure it names.
+ */
+function positionCallout() {
+    if (!calloutTarget) return;
     const w = stage.clientWidth;
     const h = stage.clientHeight;
-    const items = [];
 
-    for (let i = 0; i < visibleLabels.length; i++) {
-        const sid = visibleLabels[i];
-        projected.copy(anchors[sid].point).project(camera);
-        if (projected.z > 1) { labelEls[sid].style.display = 'none'; continue; }
-        items.push({
-            sid: sid,
-            x: (projected.x * 0.5 + 0.5) * w,
-            y: (-projected.y * 0.5 + 0.5) * h,
-            z: projected.z,
-            sel: isSelected(sid) ? 1 : 0
-        });
+    projected.copy(anchors[calloutTarget].point).project(camera);
+    if (projected.z > 1) {
+        calloutEl.style.display = 'none';
+        leaderEl.style.display = 'none';
+        return;
+    }
+    calloutEl.style.display = 'block';
+    leaderEl.style.display = 'block';
+
+    const ax = (projected.x * 0.5 + 0.5) * w;
+    const ay = (-projected.y * 0.5 + 0.5) * h;
+
+    // Push away from the middle of the brain itself — not from the orbit target,
+    // which sits on the selected structure and would give no direction at all.
+    projected.copy(HOME_TARGET).project(camera);
+    const cx = (projected.x * 0.5 + 0.5) * w;
+    const cy = (-projected.y * 0.5 + 0.5) * h;
+
+    let dx = ax - cx;
+    let dy = ay - cy;
+    const len = Math.hypot(dx, dy);
+    if (len < 24) {
+        // Structures near the centre have no meaningful outward direction.
+        dx = 0.55; dy = -0.84;
+    } else {
+        dx /= len; dy /= len;
     }
 
-    // Selected labels win, then the ones closest to the camera; the rest yield on overlap.
-    items.sort(function (a, b) { return (b.sel - a.sel) || (a.z - b.z); });
-    placedBoxes.length = 0;
+    const bw = calloutEl.offsetWidth;
+    const bh = calloutEl.offsetHeight;
+    const margin = 10;
 
-    items.forEach(function (item) {
-        const el = labelEls[item.sid];
-        const bw = +el.dataset.w;
-        const bh = +el.dataset.h;
-        const left = item.x - bw / 2;
-        const top = item.y - bh / 2;
-        let collides = left < -bw || left > w || top < -bh || top > h;
-        for (let i = 0; !collides && i < placedBoxes.length; i++) {
-            const b = placedBoxes[i];
-            collides = left < b.r && left + bw > b.l && top < b.b && top + bh > b.t;
-        }
-        if (collides) { el.style.display = 'none'; return; }
-        placedBoxes.push({ l: left, r: left + bw, t: top, b: top + bh });
-        el.style.display = 'block';
-        el.style.left = item.x.toFixed(1) + 'px';
-        el.style.top = item.y.toFixed(1) + 'px';
-    });
+    // Screen radius of the whole brain, so the box lands outside its silhouette
+    // instead of covering the model.
+    cameraRight.setFromMatrixColumn(camera.matrixWorld, 0);
+    projected.copy(HOME_TARGET).addScaledVector(cameraRight, BRAIN_RADIUS).project(camera);
+    const rx = (projected.x * 0.5 + 0.5) * w;
+    const ry = (-projected.y * 0.5 + 0.5) * h;
+    const screenRadius = Math.hypot(rx - cx, ry - cy);
+
+    // Just outside the silhouette — but when the model is zoomed past the viewport,
+    // cap how far the box may travel so it never parks on the far edge.
+    const reach = Math.min(screenRadius + 26 + Math.max(bw, bh) / 2, Math.min(w, h) * 0.46);
+    let px = cx + dx * reach;
+    let py = cy + dy * reach;
+
+    // Keep enough distance from the structure for the leader line to read.
+    const minOffset = 90 + Math.max(bw, bh) / 2;
+    if (Math.hypot(px - ax, py - ay) < minOffset) {
+        px = ax + dx * minOffset;
+        py = ay + dy * minOffset;
+    }
+
+    let left = Math.min(Math.max(px - bw / 2, margin), w - bw - margin);
+    let top = Math.min(Math.max(py - bh / 2, margin), h - bh - margin);
+
+    calloutEl.style.left = left.toFixed(1) + 'px';
+    calloutEl.style.top = top.toFixed(1) + 'px';
+
+    // The line stops at the edge of the box facing the structure.
+    const bxc = left + bw / 2;
+    const byc = top + bh / 2;
+    const vx = ax - bxc;
+    const vy = ay - byc;
+    const scale = Math.min(
+        Math.abs(vx) > 0.001 ? (bw / 2 + 2) / Math.abs(vx) : Infinity,
+        Math.abs(vy) > 0.001 ? (bh / 2 + 2) / Math.abs(vy) : Infinity
+    );
+    const ex = bxc + vx * Math.min(1, scale);
+    const ey = byc + vy * Math.min(1, scale);
+
+    leaderLine.setAttribute('x1', ax.toFixed(1));
+    leaderLine.setAttribute('y1', ay.toFixed(1));
+    leaderLine.setAttribute('x2', ex.toFixed(1));
+    leaderLine.setAttribute('y2', ey.toFixed(1));
+    leaderDot.setAttribute('cx', ax.toFixed(1));
+    leaderDot.setAttribute('cy', ay.toFixed(1));
 }
 
 /* ==========================================================================
@@ -2080,23 +2192,34 @@ function escapeHtml(text) {
     });
 }
 
+// Which accordion sections the reader left open — kept across selections so the
+// same block reopens for the next structure.
+const openSections = { desc: false, func: false, fact: false, related: false };
+
+function section(key, title, body) {
+    if (!body) return '';
+    const open = openSections[key];
+    return '<div class="info-section' + (open ? ' open' : '') + '" data-section="' + key + '">' +
+        '<button type="button" class="info-section-head" aria-expanded="' + (open ? 'true' : 'false') + '">' +
+        '<span>' + title + '</span><span class="info-chevron"></span></button>' +
+        '<div class="info-section-body">' + body + '</div></div>';
+}
+
 function renderInfo() {
     if (state.selected) {
         const info = STRUCTURES[state.selected];
-        const groupName = groupOf(state.selected);
         infoEl.innerHTML =
-            '<div class="info-kicker">' + escapeHtml(groupName) + '</div>' +
+            '<div class="info-kicker">' + escapeHtml(groupOf(state.selected)) + '</div>' +
             '<h2 class="info-title"><span class="info-swatch" style="background:' + info.color + '"></span>' +
                 escapeHtml(info.name) + '</h2>' +
             '<div class="info-latin">' + escapeHtml(info.latin) + '</div>' +
-            '<p>' + escapeHtml(info.desc) + '</p>' +
-            '<h3>Функции</h3>' +
-            '<ul class="info-func">' + info.func.map(function (f) {
+            section('desc', 'Описание', '<p>' + escapeHtml(info.desc) + '</p>') +
+            section('func', 'Функции', '<ul class="info-func">' + info.func.map(function (f) {
                 return '<li>' + escapeHtml(f) + '</li>';
-            }).join('') + '</ul>' +
-            (info.fact ? '<div class="info-fact">' + escapeHtml(info.fact) + '</div>' : '') +
-            (info.related && info.related.length ?
-                '<h3>Связанные структуры</h3><div class="info-chips">' + info.related.map(function (r) {
+            }).join('') + '</ul>') +
+            section('fact', 'Интересный факт', info.fact ? '<p>' + escapeHtml(info.fact) + '</p>' : '') +
+            section('related', 'Связанные структуры', info.related && info.related.length ?
+                '<div class="info-chips">' + info.related.map(function (r) {
                     return STRUCTURES[r] ? '<button type="button" class="info-chip" data-sid="' + r + '">' +
                         escapeHtml(STRUCTURES[r].name) + '</button>' : '';
                 }).join('') + '</div>' : '') +
@@ -2107,16 +2230,15 @@ function renderInfo() {
             '<div class="info-kicker">Система</div>' +
             '<h2 class="info-title">' + escapeHtml(group.name) + '</h2>' +
             '<div class="info-latin">' + escapeHtml(group.latin) + '</div>' +
-            '<p>' + escapeHtml(group.desc) + '</p>' +
-            '<h3>Функции</h3>' +
-            '<ul class="info-func">' + group.func.map(function (f) {
+            section('desc', 'Описание', '<p>' + escapeHtml(group.desc) + '</p>') +
+            section('func', 'Функции', '<ul class="info-func">' + group.func.map(function (f) {
                 return '<li>' + escapeHtml(f) + '</li>';
-            }).join('') + '</ul>' +
-            (group.fact ? '<div class="info-fact">' + escapeHtml(group.fact) + '</div>' : '') +
-            '<h3>Входят в состав</h3><div class="info-chips">' + group.children.map(function (sid) {
+            }).join('') + '</ul>') +
+            section('fact', 'Интересный факт', group.fact ? '<p>' + escapeHtml(group.fact) + '</p>' : '') +
+            section('related', 'Входят в состав', '<div class="info-chips">' + group.children.map(function (sid) {
                 return '<button type="button" class="info-chip" data-sid="' + sid + '">' +
                     escapeHtml(STRUCTURES[sid].name) + '</button>';
-            }).join('') + '</div>';
+            }).join('') + '</div>');
     } else {
         infoEl.innerHTML =
             '<div class="info-kicker">3D-атлас</div>' +
@@ -2124,6 +2246,16 @@ function renderInfo() {
             '<p class="info-placeholder">Щёлкните по любой области модели или выберите пункт в списке слева. ' +
             'Здесь появится описание структуры, её функции и место в системе мозга.</p>';
     }
+
+    infoEl.querySelectorAll('.info-section-head').forEach(function (head) {
+        head.addEventListener('click', function () {
+            const wrap = head.parentNode;
+            const open = !wrap.classList.contains('open');
+            wrap.classList.toggle('open', open);
+            head.setAttribute('aria-expanded', open ? 'true' : 'false');
+            openSections[wrap.dataset.section] = open;
+        });
+    });
 
     infoEl.querySelectorAll('.info-chip').forEach(function (chip) {
         chip.addEventListener('click', function () { selectStructure(chip.dataset.sid); });
@@ -2278,19 +2410,9 @@ stage.addEventListener('pointermove', function (event) {
         state.hovered = sid;
         applyVisualState();
     }
-    if (sid) {
-        const rect = stage.getBoundingClientRect();
-        tooltipEl.style.display = 'block';
-        tooltipEl.style.left = (event.clientX - rect.left) + 'px';
-        tooltipEl.style.top = (event.clientY - rect.top) + 'px';
-        tooltipEl.textContent = STRUCTURES[sid].name;
-    } else {
-        tooltipEl.style.display = 'none';
-    }
 });
 
 stage.addEventListener('pointerleave', function () {
-    tooltipEl.style.display = 'none';
     if (state.hovered) { state.hovered = null; applyVisualState(); }
 });
 
@@ -2336,7 +2458,6 @@ document.getElementById('btn-section').addEventListener('click', function () {
     state.section = !state.section;
     this.classList.toggle('active', state.section);
     renderer.clippingPlanes = state.section ? [clipPlane] : [];
-    updateLabelSet();
     // The cut face only reads from the right, so swing the camera around to it.
     if (state.section && camera.position.x < 0) setView('right');
 });
@@ -2345,12 +2466,6 @@ document.getElementById('btn-tissue').addEventListener('click', function () {
     state.naturalTissue = !state.naturalTissue;
     this.classList.toggle('active', state.naturalTissue);
     applyVisualState();
-});
-
-document.getElementById('btn-labels').addEventListener('click', function () {
-    state.labels = !state.labels;
-    this.classList.toggle('active', state.labels);
-    updateLabelSet();
 });
 
 document.getElementById('btn-spin').addEventListener('click', function () {
@@ -2421,7 +2536,7 @@ function tick() {
         applyVisualState();
     }
     renderer.render(scene, camera);
-    positionLabels();
+    positionCallout();
 }
 
 /* ==========================================================================
@@ -2440,7 +2555,6 @@ function boot() {
 
     initScene();
     buildScene();
-    createLabels();
     buildTree();
     renderInfo();
     applyVisualState();
